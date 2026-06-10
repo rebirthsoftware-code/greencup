@@ -1,0 +1,45 @@
+.App {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.footer {
+  padding: 4rem 5%;
+  background-color: var(--color-base);
+  border-top: 1px solid rgba(195, 224, 200, 0.05);
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.footer h2 {
+  font-family: var(--font-serif);
+  color: var(--color-gold);
+  font-size: 2rem;
+}
+
+.footer p {
+  color: var(--color-text-secondary);
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.footer-links a {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}

@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Bright "Awwwards Eco" Palette */
+  --color-base: #F8F7F2;      /* Off-white organic cream */
+  --color-surface: #EFECE1;   /* Warm surface texture */
+  --color-primary: #598845;   /* Matcha Green */
+  --color-secondary: #92B478; /* Soft Sage / Lime */
+  --color-accent: #CDE0B2;    /* Very light eco tint */
+  --color-gold: #C28F27;      /* Warm amber/gold */
+  
+  --color-text-primary: #1A2117; /* Darkest forest */
+  --color-text-secondary: #576352;
+  
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  
+  --nav-height: 100px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: none; /* Hide default cursor for custom cursor */
+}
+
+/* Fallback for devices without fine pointer */
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-secondary);
+  color: var(--color-base);
+}
+
+/* Glassmorphism utils tailored for bright theme */
+.glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(89, 136, 69, 0.05);
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+.text-primary {
+  color: var(--color-primary);
+}
+
+a, button {
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: var(--font-sans);
+}
+
+/* 3D Canvas Container */
+#canvas-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.relative-z {
+  position: relative;
+  z-index: 10;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: multiply; /* Gives a nice organic feel over images */
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-cursor.hovering {
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-secondary);
+  mix-blend-mode: normal;
+  opacity: 0.8;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+.custom-cursor-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-cursor.hovering .custom-cursor-label {
+  opacity: 1;
+}
+
+/* Utility to mark hovering elements */
+.hover-target {
+  /* Just a marker class */
+}
