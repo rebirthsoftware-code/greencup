@@ -44,9 +44,9 @@ const HeroSlider = () => {
   return (
     <div className="hero-section">
       <div className="hero-content relative-z">
-        <h1 className="hover-target" data-hover="PURE">Nature's Essence <br/><span className="text-primary">Preserved</span></h1>
-        <p>Awwwards premium eco packaging. Explore the flow of sustainability.</p>
-        <button className="btn-primary hover-target" data-hover="GO">Explore Collection</button>
+        <h1 className="hover-target" data-hover="SAF">Doğanın Özü <br/><span className="text-primary">Korunmuş</span></h1>
+        <p>Awwwards ödüllü premium eko ambalaj. Sürdürülebilirliğin akışını keşfedin.</p>
+        <button className="btn-primary hover-target" data-hover="GİT">Koleksiyonu Keşfet</button>
       </div>
 
       <div className="canvas-wrapper">

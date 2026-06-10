@@ -7,20 +7,20 @@ const FAQ = () => {
 
   const faqs = [
     {
-      q: "Are all your products 100% compostable?",
-      a: "Yes, our entire catalog is designed from plant-based materials and is officially certified as compostable, ensuring we leave zero trace behind."
+      q: "Tüm ürünleriniz %100 kompostlanabilir mi?",
+      a: "Evet, tüm kataloğumuz bitki bazlı malzemelerden tasarlanmıştır ve resmi olarak kompostlanabilir sertifikasına sahiptir; böylece hiçbir iz bırakmadığımızdan emin oluruz."
     },
     {
-      q: "Do you offer custom branding on cups?",
-      a: "Absolutely. We offer comprehensive support from your initial idea to launch, including custom eco-friendly ink printing for your brand."
+      q: "Bardaklarda özel markalama sunuyor musunuz?",
+      a: "Kesinlikle. İlk fikrinizden lansmana kadar, markanız için özel çevre dostu mürekkep baskısı dahil kapsamlı destek sunuyoruz."
     },
     {
-      q: "How does the WhatsApp ordering process work?",
-      a: "Simply browse our collection, click 'Order via WhatsApp' on the product you like, and you'll be connected directly to our sales team to finalize quantities and shipping."
+      q: "WhatsApp sipariş süreci nasıl işliyor?",
+      a: "Koleksiyonumuza göz atmanız, beğendiğiniz üründe 'WhatsApp ile Sipariş Ver' butonuna tıklamanız yeterli; miktar ve teslimat ayrıntılarını netleştirmek için doğrudan satış ekibimize bağlanırsınız."
     },
     {
-      q: "Do you ship internationally?",
-      a: "Currently, we focus on local and regional distribution to minimize our carbon footprint, but reach out to our team for specific volume requirements."
+      q: "Yurt dışına gönderim yapıyor musunuz?",
+      a: "Şu anda karbon ayak izimizi en aza indirmek için yerel ve bölgesel dağıtıma odaklanıyoruz, ancak belirli hacim ihtiyaçlarınız için ekibimizle iletişime geçebilirsiniz."
     }
   ];
 
@@ -31,7 +31,7 @@ const FAQ = () => {
   return (
     <section className="faq-section relative-z">
       <div className="faq-container">
-        <h2 className="faq-title hover-target" data-hover="ASK">Common <span className="text-primary">Questions</span></h2>
+        <h2 className="faq-title hover-target" data-hover="SOR">Sıkça Sorulan <span className="text-primary">Sorular</span></h2>
         
         <div className="faq-list">
           {faqs.map((faq, idx) => (
@@ -39,7 +39,7 @@ const FAQ = () => {
               key={idx} 
               className={`faq-item hover-target ${activeIndex === idx ? 'active' : ''}`}
               onClick={() => handleToggle(idx)}
-              data-hover={activeIndex === idx ? "CLOSE" : "OPEN"}
+              data-hover={activeIndex === idx ? "KAPAT" : "AÇ"}
             >
               <div className="faq-question">
                 <h3>{faq.q}</h3>

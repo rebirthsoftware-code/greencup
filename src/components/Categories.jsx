@@ -9,10 +9,10 @@ const Categories = () => {
   const sectionRef = useRef(null);
 
   const cats = [
-    { name: "Single Wall Cups", subtitle: "For Hot & Cold" },
-    { name: "Bio Containers", subtitle: "Leak-proof" },
-    { name: "Plant Bowls", subtitle: "100% Fibre" },
-    { name: "Cutlery & Straws", subtitle: "Compostable" }
+    { name: "Tek Cidarlı Bardaklar", subtitle: "Sıcak & Soğuk İçin" },
+    { name: "Biyolojik Kaplar", subtitle: "Sızdırmaz" },
+    { name: "Bitki Kaseler", subtitle: "%100 Lif" },
+    { name: "Çatal-Bıçak & Pipetler", subtitle: "Kompostlanabilir" }
   ];
 
   useEffect(() => {
@@ -36,11 +36,11 @@ const Categories = () => {
 
   return (
     <section className="categories-section relative-z" ref={sectionRef}>
-      <h2 className="categories-title hover-target" data-hover="BROWSE">Featured <span className="text-primary">Lines</span></h2>
+      <h2 className="categories-title hover-target" data-hover="GÖZAT">Öne Çıkan <span className="text-primary">Seriler</span></h2>
       
       <div className="bento-grid">
         {cats.map((item, i) => (
-          <div className={`bento-box bento-type-${i} glass hover-target`} data-hover="VIEW" key={i}>
+          <div className={`bento-box bento-type-${i} glass hover-target`} data-hover="İNCELE" key={i}>
             <div className="bento-content">
               <h3>{item.name}</h3>
               <p>{item.subtitle}</p>

@@ -34,7 +34,7 @@ const MenuLeaves = () => {
             }}
             style={{ scale, position: 'absolute' }}
           >
-            <img src="/leaf.png" alt="Leaf" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: 'drop-shadow(0px 10px 10px rgba(0,0,0,0.1))' }} />
+            <img src="/leaf.png" alt="Yaprak" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: 'drop-shadow(0px 10px 10px rgba(0,0,0,0.1))' }} />
           </motion.div>
         );
       })}
@@ -75,7 +75,7 @@ const SweepLeaves = () => {
               times: [0, 0.6, 1] // Keyframe timing
             }}
           >
-            <img src="/leaf.png" alt="Leaf" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: 'drop-shadow(0px 10px 10px rgba(0,0,0,0.15))' }} />
+            <img src="/leaf.png" alt="Yaprak" style={{ width: '40px', height: '40px', objectFit: 'contain', filter: 'drop-shadow(0px 10px 10px rgba(0,0,0,0.15))' }} />
           </motion.div>
         );
       })}
@@ -121,17 +121,17 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { title: 'Home', href: '#' },
-    { title: 'Products', href: '#products' },
-    { title: 'About Us', href: '#about' },
-    { title: 'Contact', href: '#contact' },
+    { title: 'Ana Sayfa', href: '#' },
+    { title: 'Ürünler', href: '#products' },
+    { title: 'Hakkımızda', href: '#about' },
+    { title: 'İletişim', href: '#contact' },
   ];
 
   return (
     <>
       <nav className="navbar glass relative-z">
         <div className="navbar-logo">Green Cup</div>
-        <button className="hamburger-btn hover-target" data-hover="MENU" onClick={toggleMenu}>
+        <button className="hamburger-btn hover-target" data-hover="MENÜ" onClick={toggleMenu}>
           <div className={`burger ${isOpen ? 'open' : ''}`}>
             <span></span>
             <span></span>
@@ -166,14 +166,14 @@ const Navbar = () => {
                       animate="open"
                       exit="closed"
                     >
-                      <a href={link.href} className="hover-target" data-hover="GO" onClick={toggleMenu}>{link.title}</a>
+                      <a href={link.href} className="hover-target" data-hover="GİT" onClick={toggleMenu}>{link.title}</a>
                     </motion.li>
                   ))}
                 </ul>
                 <div className="menu-footer">
-                  <p>Contact for orders</p>
-                  <a href="https://wa.me/905000000000" target="_blank" rel="noreferrer" className="whatsapp-link hover-target" data-hover="CHAT">
-                    WhatsApp Support
+                  <p>Siparişler için iletişime geçin</p>
+                  <a href="https://wa.me/905000000000" target="_blank" rel="noreferrer" className="whatsapp-link hover-target" data-hover="SOHBET">
+                    WhatsApp Destek
                   </a>
                 </div>
               </div>

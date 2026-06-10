@@ -45,8 +45,8 @@ const ProductCatalog = () => {
         
         {/* Intro Panel */}
         <div className="horizontal-panel intro-panel">
-          <h2 className="display-text hover-target" data-hover="WILD">Organic<br/>Collections</h2>
-          <p>Scroll down to explore horizontally.</p>
+          <h2 className="display-text hover-target" data-hover="DOĞAL">Organik<br/>Koleksiyonlar</h2>
+          <p>Yatay olarak keşfetmek için aşağı kaydırın.</p>
         </div>
 
         {/* Product Panels */}
@@ -54,15 +54,15 @@ const ProductCatalog = () => {
           <div className="horizontal-panel product-panel" key={product.id}>
             <div className="product-card glass" style={{ borderColor: product.color }}>
               <div 
-                className="product-image-placeholder hover-target" 
-                data-hover="DRAG"
+                className="product-image-placeholder hover-target"
+                data-hover="SÜRÜKLE"
                 style={{ backgroundColor: product.color }}
               >
                 <span>No.{index + 1}</span>
               </div>
               <div className="product-info">
                 <span className="product-category" style={{ color: product.color }}>{product.category}</span>
-                <h3 className="hover-target" data-hover="READ">{product.name}</h3>
+                <h3 className="hover-target" data-hover="OKU">{product.name}</h3>
                 <p>{product.shortDescription}</p>
                 
                 <ul className="product-features">
@@ -76,13 +76,13 @@ const ProductCatalog = () => {
 
                 <button 
                   className="whatsapp-btn hover-target"
-                  data-hover="BUY"
+                  data-hover="AL"
                   onClick={() => handleWhatsAppClick(product.name)}
                 >
                   <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                   </svg>
-                  Order via WhatsApp
+                  WhatsApp ile Sipariş Ver
                 </button>
               </div>
             </div>
@@ -91,7 +91,7 @@ const ProductCatalog = () => {
         
         {/* Outro Panel */}
         <div className="horizontal-panel intro-panel">
-          <h2 className="display-text text-gold hover-target">Future<br/>Ready.</h2>
+          <h2 className="display-text text-gold hover-target">Geleceğe<br/>Hazır.</h2>
         </div>
         
       </div>

@@ -11,18 +11,18 @@ const EcoFeatures = () => {
 
   const features = [
     {
-      title: "Plant-Based Packaging",
-      desc: "Crafted for a circular economy that prioritizes resource reuse and minimizes waste.",
+      title: "Bitki Bazlı Ambalaj",
+      desc: "Kaynakların yeniden kullanımını önceliklendiren ve atığı en aza indiren döngüsel bir ekonomi için tasarlandı.",
       index: "01"
     },
     {
-      title: "Officially Compostable",
-      desc: "Our advocacy for composting underscores its role as the optimal recycling method for food packaging.",
+      title: "Resmi Olarak Kompostlanabilir",
+      desc: "Kompostlamayı savunmamız, onun gıda ambalajları için en ideal geri dönüşüm yöntemi olduğunu vurgular.",
       index: "02"
     },
     {
-      title: "Decreasing Emissions",
-      desc: "We’ve established a plan to cut carbon emissions throughout our supply chain and operations.",
+      title: "Azalan Emisyonlar",
+      desc: "Tedarik zincirimiz ve operasyonlarımız genelinde karbon emisyonlarını azaltmak için bir plan oluşturduk.",
       index: "03"
     }
   ];
@@ -65,13 +65,13 @@ const EcoFeatures = () => {
 
   return (
     <section className="features-section relative-z" ref={sectionRef}>
-      <h2 className="features-main-title hover-target" data-hover="DISCOVER" ref={titleRef}>
-        From Initial Idea<br/>To <span className="text-primary">Launch</span>.
+      <h2 className="features-main-title hover-target" data-hover="KEŞFET" ref={titleRef}>
+        İlk Fikirden<br/><span className="text-primary">Lansmana</span>.
       </h2>
 
       <div className="features-list">
         {features.map((item, i) => (
-          <div className="feature-row hover-target" data-hover="ECO" key={i}>
+          <div className="feature-row hover-target" data-hover="EKO" key={i}>
             <div className="feature-index text-gold">{item.index}</div>
             <div className="feature-content">
               <h3>{item.title}</h3>

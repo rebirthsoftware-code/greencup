@@ -10,19 +10,19 @@ const Testimonials = () => {
 
   const reviews = [
     {
-      text: "Switching to Eco folioz for our café’s paper products was one of the best decisions we made. The bio disposable cups are not only visually appealing but also sturdy. The competitive pricing allows us to maintain our sustainability commitment without breaking the bank.",
+      text: "Kafemizin kağıt ürünleri için Green Cup'a geçmek yaptığımız en iyi kararlardan biriydi. Biyolojik tek kullanımlık bardaklar yalnızca görsel olarak çekici değil, aynı zamanda sağlam. Rekabetçi fiyatlandırma, bütçemizi zorlamadan sürdürülebilirlik taahhüdümüzü korumamızı sağlıyor.",
       author: "Sarah M",
-      role: "Café Owner"
+      role: "Kafe Sahibi"
     },
     {
-      text: "Eco folioz has truly revolutionized our restaurant’s sustainability game! The bio disposable paper products, including cups, plates, and cutlery, are not only eco-friendly but also of top-notch quality. Our customers love the Earth-conscious touch.",
+      text: "Green Cup, restoranımızın sürdürülebilirlik anlayışını gerçekten kökten değiştirdi! Bardaklar, tabaklar ve çatal-bıçak dahil biyolojik tek kullanımlık kağıt ürünleri yalnızca çevre dostu değil, aynı zamanda birinci sınıf kalitede. Müşterilerimiz bu doğaya duyarlı dokunuşa bayılıyor.",
       author: "Ahmet S",
-      role: "Restaurant Owner"
+      role: "Restoran Sahibi"
     },
     {
-      text: "The bio disposable paper products they offer are a game-changer. The variety allows me to match the theme of any event, and the eco-friendly aspect aligns perfectly with our clients’ values. Highly recommended!",
+      text: "Sundukları biyolojik tek kullanımlık kağıt ürünleri her şeyi değiştiriyor. Çeşitlilik, her etkinliğin temasına uyum sağlamama olanak tanıyor ve çevre dostu yönü müşterilerimizin değerleriyle mükemmel şekilde örtüşüyor. Kesinlikle tavsiye ederim!",
       author: "Mert Y",
-      role: "Event Planner"
+      role: "Etkinlik Planlamacısı"
     }
   ];
 
@@ -48,12 +48,12 @@ const Testimonials = () => {
   return (
     <section className="testimonials-section relative-z" ref={wrapperRef}>
       <div className="testimonials-header">
-        <h2 className="hover-target" data-hover="LOVE">Client <span className="text-secondary">Stories</span></h2>
+        <h2 className="hover-target" data-hover="SEVGİ">Müşteri <span className="text-secondary">Hikayeleri</span></h2>
       </div>
 
       <div className="testimonials-grid">
         {reviews.map((rev, index) => (
-          <div className="review-card glass hover-target" data-hover="READ" key={index}>
+          <div className="review-card glass hover-target" data-hover="OKU" key={index}>
             <div className="quote-icon">“</div>
             <p className="review-text">{rev.text}</p>
             <div className="review-author">

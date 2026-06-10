@@ -32,7 +32,7 @@ const CustomCursor = () => {
         // If element has a data-hover attribute, use it as text inside cursor
         const text = target.getAttribute('data-hover');
         if (text) setHoverText(text);
-        else setHoverText('EXPLORE');
+        else setHoverText('KEŞFET');
       }
     };
 

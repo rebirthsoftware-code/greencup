@@ -65,11 +65,11 @@ function App() {
       </main>
       <footer className="footer relative-z">
         <div className="footer-content">
-          <h2 className="hover-target" data-hover="GREEN">Green Cup</h2>
-          <p>Sustainable packaging for a better tomorrow.</p>
+          <h2 className="hover-target" data-hover="YEŞİL">Green Cup</h2>
+          <p>Daha iyi bir yarın için sürdürülebilir ambalaj.</p>
           <div className="footer-links">
-            <a href="#" className="hover-target">Privacy Policy</a>
-            <a href="#" className="hover-target">Terms of Service</a>
+            <a href="#" className="hover-target">Gizlilik Politikası</a>
+            <a href="#" className="hover-target">Hizmet Şartları</a>
           </div>
         </div>
       </footer>
