@@ -24,6 +24,11 @@
   font-size: 2rem;
 }
 
+.footer-logo {
+  height: 72px;
+  width: auto;
+}
+
 .footer p {
   color: var(--color-text-secondary);
 }

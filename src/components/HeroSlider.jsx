@@ -7,7 +7,8 @@ import './HeroSlider.css';
 
 useTexture.preload('/cup-body.png');
 
-const LID_COLOR = '#e7d9c1';
+const LID_COLOR = '#2d7316';   // GreenCup brand green
+const CUP_COLOR = '#f4f4f0';   // off-white cup base
 
 // Branded paper coffee cup ("THE TiOS") with a domed sipper lid.
 const PlaceholderCup = () => {
@@ -41,7 +42,7 @@ const PlaceholderCup = () => {
           {/* Bottom base */}
           <mesh position={[0, -1.5, 0]} receiveShadow>
             <cylinderGeometry args={[0.86, 0.86, 0.06, 64]} />
-            <meshStandardMaterial color={LID_COLOR} roughness={0.9} />
+            <meshStandardMaterial color={CUP_COLOR} roughness={0.9} />
           </mesh>
 
           {/* Lid rim that grips the cup */}

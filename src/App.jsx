@@ -65,7 +65,7 @@ function App() {
       </main>
       <footer className="footer relative-z">
         <div className="footer-content">
-          <h2 className="hover-target" data-hover="YEŞİL">Green Cup</h2>
+          <img src="/logo-greencup.png" alt="GreenCup Promosyon" className="footer-logo hover-target" data-hover="YEŞİL" />
           <p>Daha iyi bir yarın için sürdürülebilir ambalaj.</p>
           <div className="footer-links">
             <a href="#" className="hover-target">Gizlilik Politikası</a>

@@ -130,7 +130,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar glass relative-z">
-        <div className="navbar-logo">Green Cup</div>
+        <img src="/logo-greencup.png" alt="GreenCup Promosyon" className="navbar-logo" />
         <button className="hamburger-btn hover-target" data-hover="MENÜ" onClick={toggleMenu}>
           <div className={`burger ${isOpen ? 'open' : ''}`}>
             <span></span>
