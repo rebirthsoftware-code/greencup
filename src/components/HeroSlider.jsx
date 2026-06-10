@@ -1,5 +1,5 @@
-import React, { useRef, useMemo, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { useRef, useMemo, useState, useEffect, Suspense } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Environment, ContactShadows, PresentationControls, Sparkles, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import FallingLeaves from './FallingLeaves';
@@ -9,6 +9,26 @@ import './HeroSlider.css';
 useTexture.preload('/cup-body.png');
 
 const CUP_COLOR = '#f3f2ec'; // off-white paper
+
+// Keeps the WebGL context alive across scroll (the canvas can otherwise blank
+// out when it leaves the viewport and the GPU drops the context). R3F does not
+// handle this on its own, so we restore it manually.
+const ContextGuard = () => {
+  const gl = useThree((s) => s.gl);
+  const invalidate = useThree((s) => s.invalidate);
+  useEffect(() => {
+    const canvas = gl.domElement;
+    const onLost = (e) => { e.preventDefault(); };
+    const onRestored = () => { invalidate(); };
+    canvas.addEventListener('webglcontextlost', onLost, false);
+    canvas.addEventListener('webglcontextrestored', onRestored, false);
+    return () => {
+      canvas.removeEventListener('webglcontextlost', onLost, false);
+      canvas.removeEventListener('webglcontextrestored', onRestored, false);
+    };
+  }, [gl, invalidate]);
+  return null;
+};
 
 // A realistic branded paper coffee cup: white printed body + glossy black dome lid.
 const PlaceholderCup = () => {
@@ -22,26 +42,29 @@ const PlaceholderCup = () => {
     tex.anisotropy = 8;
   });
 
-  // Cross-section of a travel dome lid (radius, height), revolved around Y.
-  // Gives an overhanging brim that grips the cup, then a shallow dome.
-  const lidProfile = useMemo(() => ([
-    [1.17, 0.00], // skirt bottom (sits just outside the cup rim)
-    [1.30, 0.03], // flare out to the brim
-    [1.33, 0.10], // brim outer wall
-    [1.33, 0.20],
-    [1.27, 0.24], // brim top, turning inward
-    [1.14, 0.27], // step up toward the dome
-    [1.05, 0.31],
-    [0.95, 0.38], // dome shoulder
-    [0.78, 0.46],
-    [0.55, 0.52],
-    [0.30, 0.56],
-    [0.00, 0.575], // dome apex
-  ].map(([x, y]) => new THREE.Vector2(x, y))), []);
+  // Cross-section of a refined travel dome lid (radius, height), revolved
+  // around Y: a thin overhanging rim flowing into a smooth, shallow dome.
+  const lidProfile = useMemo(() => {
+    const pts = [
+      [1.17, 0.000], // skirt bottom — grips just outside the cup rim
+      [1.29, 0.020], // flares out to the rim
+      [1.30, 0.060], // thin outer rim wall
+      [1.295, 0.100],
+      [1.255, 0.126], // rim top, rounding inward
+      [1.220, 0.150], // base of the dome
+    ];
+    const baseR = 1.22, baseY = 0.15, domeH = 0.36, N = 22;
+    for (let i = 1; i <= N; i++) {
+      const phi = (i / N) * (Math.PI / 2);
+      pts.push([baseR * Math.cos(phi), baseY + domeH * Math.sin(phi)]);
+    }
+    return pts.map(([x, y]) => new THREE.Vector2(Math.max(x, 0), y));
+  }, []);
 
   useFrame((state, delta) => {
     if (cupRef.current) {
-      cupRef.current.rotation.y += delta * 0.3;
+      // clamp delta so resuming after an off-screen pause doesn't jump
+      cupRef.current.rotation.y += Math.min(delta, 0.1) * 0.3;
     }
   });
 
@@ -69,14 +92,14 @@ const PlaceholderCup = () => {
 
           {/* Glossy black dome lid */}
           <mesh position={[0, 1.42, 0]} castShadow>
-            <latheGeometry args={[lidProfile, 96]} />
+            <latheGeometry args={[lidProfile, 128]} />
             <meshPhysicalMaterial
-              color="#161616"
-              roughness={0.22}
+              color="#0d0d0d"
+              roughness={0.2}
               metalness={0}
               clearcoat={1}
-              clearcoatRoughness={0.18}
-              envMapIntensity={1.25}
+              clearcoatRoughness={0.12}
+              envMapIntensity={1.4}
               side={THREE.DoubleSide}
             />
           </mesh>
@@ -87,6 +110,22 @@ const PlaceholderCup = () => {
 };
 
 const HeroSlider = () => {
+  const wrapRef = useRef(null);
+  const [inView, setInView] = useState(true);
+
+  // Pause the render loop while the hero is scrolled out of view: saves GPU
+  // and makes a dropped WebGL context far less likely.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: '120px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="hero-section">
       <div className="hero-content relative-z">
@@ -95,11 +134,12 @@ const HeroSlider = () => {
         <button className="btn-primary hover-target" data-hover="GİT">Koleksiyonu Keşfet</button>
       </div>
 
-      <div className="canvas-wrapper">
+      <div className="canvas-wrapper" ref={wrapRef}>
         <SafeBoundary>
         <Canvas
           shadows
-          dpr={[1, 2]}
+          frameloop={inView ? 'always' : 'never'}
+          dpr={[1, 1.8]}
           camera={{ position: [0, 0.3, 7.5], fov: 42 }}
           gl={{ antialias: true, powerPreference: "high-performance", alpha: true }}
           onCreated={({ gl }) => {
@@ -107,6 +147,7 @@ const HeroSlider = () => {
             gl.toneMappingExposure = 1.05;
           }}
         >
+          <ContextGuard />
           <ambientLight intensity={0.5} />
           <directionalLight
             position={[5, 9, 6]}
