@@ -53,12 +53,13 @@ const ProductCatalog = () => {
         {productsData.map((product, index) => (
           <div className="horizontal-panel product-panel" key={product.id}>
             <div className="product-card glass" style={{ borderColor: product.color }}>
-              <div 
+              <div
                 className="product-image-placeholder hover-target"
                 data-hover="SÜRÜKLE"
                 style={{ backgroundColor: product.color }}
               >
-                <span>No.{index + 1}</span>
+                <img src={product.image} alt={product.name} className="product-image" loading="lazy" />
+                <span className="product-number">No.{index + 1}</span>
               </div>
               <div className="product-info">
                 <span className="product-category" style={{ color: product.color }}>{product.category}</span>

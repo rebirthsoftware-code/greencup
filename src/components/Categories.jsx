@@ -9,15 +9,15 @@ const Categories = () => {
   const sectionRef = useRef(null);
 
   const cats = [
-    { name: "Tek Cidarlı Bardaklar", subtitle: "Sıcak & Soğuk İçin" },
-    { name: "Biyolojik Kaplar", subtitle: "Sızdırmaz" },
-    { name: "Bitki Kaseler", subtitle: "%100 Lif" },
-    { name: "Çatal-Bıçak & Pipetler", subtitle: "Kompostlanabilir" }
+    { name: "Tek Cidarlı Bardaklar", subtitle: "Sıcak & Soğuk İçin", image: "/img/category-1.jpg" },
+    { name: "Biyolojik Kaplar", subtitle: "Sızdırmaz", image: "/img/category-2.jpg" },
+    { name: "Bitki Kaseler", subtitle: "%100 Lif", image: "/img/category-3.jpg" },
+    { name: "Çatal-Bıçak & Pipetler", subtitle: "Kompostlanabilir", image: "/img/category-4.jpg" }
   ];
 
   useEffect(() => {
     const boxes = gsap.utils.toArray('.bento-box');
-    
+
     gsap.fromTo(boxes,
       { scale: 0.8, opacity: 0 },
       {
@@ -37,10 +37,11 @@ const Categories = () => {
   return (
     <section className="categories-section relative-z" ref={sectionRef}>
       <h2 className="categories-title hover-target" data-hover="GÖZAT">Öne Çıkan <span className="text-primary">Seriler</span></h2>
-      
+
       <div className="bento-grid">
         {cats.map((item, i) => (
           <div className={`bento-box bento-type-${i} glass hover-target`} data-hover="İNCELE" key={i}>
+            <img className="bento-img" src={item.image} alt={item.name} loading="lazy" />
             <div className="bento-content">
               <h3>{item.name}</h3>
               <p>{item.subtitle}</p>

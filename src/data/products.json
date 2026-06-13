@@ -8,6 +8,7 @@
     "description": "Zamansız klasiğimiz. Sürdürülebilir, bitki bazlı malzemelerden üretilmiştir; günlük sıcak içecekleriniz için iz bırakmadan mükemmel.",
     "color": "#183221",
     "features": ["%100 Kompostlanabilir", "Bitki bazlı iç kaplama", "Yüksek ısı yalıtımı"],
+    "image": "/img/product-1.jpg",
     "modelPath": "/models/placeholder_cup.glb"
   },
   {
@@ -19,6 +20,7 @@
     "description": "Yerel sanatçıların tasarımlarını içerir. Ekstra yalıtım için çift cidarlıdır; elleriniz serin kalırken içeceklerinizi sıcak tutar.",
     "color": "#2c4021",
     "features": ["Çift cidar yalıtımı", "Özel sanat tasarımları", "Çevre dostu mürekkepler"],
+    "image": "/img/product-2.jpg",
     "modelPath": "/models/placeholder_cup.glb"
   },
   {
@@ -30,6 +32,7 @@
     "description": "Doğaya olan bağlılığımızı gösteren güzel, minimalist bir tasarım. Premium kafeler için mükemmel.",
     "color": "#3b5842",
     "features": ["Minimalist tasarım", "Sağlam yapı", "Kompostlanabilir"],
+    "image": "/img/product-3.jpg",
     "modelPath": "/models/placeholder_cup.glb"
   },
   {
@@ -41,6 +44,7 @@
     "description": "Salatalar ve sıcak çorbalar için ideal. Doğal olarak çözünen dayanıklı beyaz bitki lifinden üretilmiştir.",
     "color": "#d9cdb8",
     "features": ["Sızdırmaz", "Mikrodalga güvenli", "Bitki lifi malzeme"],
+    "image": "/img/product-4.jpg",
     "modelPath": "/models/placeholder_bowl.glb"
   }
 ]

@@ -54,6 +54,21 @@
   flex-grow: 1;
 }
 
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.review-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(89, 136, 69, 0.3);
+  flex-shrink: 0;
+}
+
 .review-author h4 {
   font-size: 1.2rem;
   color: var(--color-text-primary);

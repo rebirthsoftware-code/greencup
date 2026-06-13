@@ -12,23 +12,26 @@ const Testimonials = () => {
     {
       text: "Kafemizin kağıt ürünleri için Green Cup'a geçmek yaptığımız en iyi kararlardan biriydi. Biyolojik tek kullanımlık bardaklar yalnızca görsel olarak çekici değil, aynı zamanda sağlam. Rekabetçi fiyatlandırma, bütçemizi zorlamadan sürdürülebilirlik taahhüdümüzü korumamızı sağlıyor.",
       author: "Sarah M",
-      role: "Kafe Sahibi"
+      role: "Kafe Sahibi",
+      avatar: "/img/avatar-1.jpg"
     },
     {
       text: "Green Cup, restoranımızın sürdürülebilirlik anlayışını gerçekten kökten değiştirdi! Bardaklar, tabaklar ve çatal-bıçak dahil biyolojik tek kullanımlık kağıt ürünleri yalnızca çevre dostu değil, aynı zamanda birinci sınıf kalitede. Müşterilerimiz bu doğaya duyarlı dokunuşa bayılıyor.",
       author: "Ahmet S",
-      role: "Restoran Sahibi"
+      role: "Restoran Sahibi",
+      avatar: "/img/avatar-2.jpg"
     },
     {
       text: "Sundukları biyolojik tek kullanımlık kağıt ürünleri her şeyi değiştiriyor. Çeşitlilik, her etkinliğin temasına uyum sağlamama olanak tanıyor ve çevre dostu yönü müşterilerimizin değerleriyle mükemmel şekilde örtüşüyor. Kesinlikle tavsiye ederim!",
       author: "Mert Y",
-      role: "Etkinlik Planlamacısı"
+      role: "Etkinlik Planlamacısı",
+      avatar: "/img/avatar-3.jpg"
     }
   ];
 
   useEffect(() => {
     const cards = gsap.utils.toArray('.review-card');
-    
+
     gsap.fromTo(cards,
       { y: 100, opacity: 0 },
       {
@@ -57,8 +60,11 @@ const Testimonials = () => {
             <div className="quote-icon">“</div>
             <p className="review-text">{rev.text}</p>
             <div className="review-author">
-              <h4>{rev.author}</h4>
-              <span>{rev.role}</span>
+              <img className="review-avatar" src={rev.avatar} alt={rev.author} loading="lazy" />
+              <div className="review-author-info">
+                <h4>{rev.author}</h4>
+                <span>{rev.role}</span>
+              </div>
             </div>
           </div>
         ))}
