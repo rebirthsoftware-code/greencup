@@ -1,0 +1,75 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background-color: var(--color-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loader-leaves {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.loader-leaf {
+  position: absolute;
+}
+
+.loader-leaf img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(0px 10px 12px rgba(26, 33, 23, 0.1));
+}
+
+.loader-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 2rem;
+}
+
+.loader-logo {
+  width: min(280px, 62vw);
+  height: auto;
+  filter: drop-shadow(0 14px 34px rgba(89, 136, 69, 0.18));
+  animation: loaderPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes loaderPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.045); opacity: 0.9; }
+}
+
+.loader-bar {
+  width: 220px;
+  max-width: 60vw;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(89, 136, 69, 0.16);
+  overflow: hidden;
+}
+
+.loader-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+  box-shadow: 0 0 12px rgba(89, 136, 69, 0.35);
+  transition: width 0.25s ease-out;
+}
+
+.loader-pct {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}

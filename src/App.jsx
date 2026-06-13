@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSlider from './components/HeroSlider';
 import EcoFeatures from './components/EcoFeatures';
@@ -7,6 +7,7 @@ import ProductCatalog from './components/ProductCatalog';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import CustomCursor from './components/CustomCursor';
+import Loader from './components/Loader';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -15,6 +16,8 @@ import './App.css';
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     // Initial page load animation
     const tl = gsap.timeline();
@@ -53,10 +56,11 @@ function App() {
 
   return (
     <div className="App">
+      <Loader onComplete={() => setLoading(false)} />
       <CustomCursor />
       <Navbar />
       <main>
-        <HeroSlider />
+        <HeroSlider active={!loading} />
         <EcoFeatures />
         <Categories />
         <ProductCatalog />

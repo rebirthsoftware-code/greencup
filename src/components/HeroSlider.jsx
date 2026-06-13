@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useState, useEffect, Suspense } from 'react';
+import React, { useRef, useMemo, useEffect, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Environment, ContactShadows, PresentationControls, Sparkles, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
@@ -109,23 +109,7 @@ const PlaceholderCup = () => {
   );
 };
 
-const HeroSlider = () => {
-  const wrapRef = useRef(null);
-  const [inView, setInView] = useState(true);
-
-  // Pause the render loop while the hero is scrolled out of view: saves GPU
-  // and makes a dropped WebGL context far less likely.
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return;
-    const io = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { rootMargin: '120px' }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
+const HeroSlider = ({ active = true }) => {
   return (
     <div className="hero-section">
       <div className="hero-content relative-z">
@@ -134,11 +118,11 @@ const HeroSlider = () => {
         <button className="btn-primary hover-target" data-hover="GİT">Koleksiyonu Keşfet</button>
       </div>
 
-      <div className="canvas-wrapper" ref={wrapRef}>
+      <div className="canvas-wrapper">
         <SafeBoundary>
         <Canvas
           shadows
-          frameloop={inView ? 'always' : 'never'}
+          frameloop={active ? 'always' : 'never'}
           dpr={[1, 1.8]}
           camera={{ position: [0, 0.3, 7.5], fov: 42 }}
           gl={{ antialias: true, powerPreference: "high-performance", alpha: true }}

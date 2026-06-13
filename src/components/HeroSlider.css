@@ -58,6 +58,10 @@
   height: 100%;
   z-index: 1; /* Below content but above background */
   cursor: grab;
+  /* Keep the canvas on its own stable GPU layer so it doesn't blank out
+     when scrolled off-screen and back. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .canvas-wrapper:active {
