@@ -43,7 +43,16 @@
   }
  ],
  "transactions": [],
- "reserved": [],
+ "reserved": [
+  {
+   "id": "31lqnvqymu5zxjqk",
+   "createdAt": "2026-09-17T20:42:42.860Z",
+   "customerId": "uo7kqubfmu5w4ome",
+   "productId": "j46u41wtmu5zwww6",
+   "qty": 1000,
+   "updatedAt": "2026-09-17T20:42:42.860Z"
+  }
+ ],
  "cash": {
   "nakit": 0,
   "banka": 0,
