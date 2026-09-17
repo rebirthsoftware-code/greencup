@@ -4,7 +4,7 @@
   {
    "id": "6jh35dpjmu5mur2v",
    "unit": "adet",
-   "stock": 1,
+   "stock": 2,
    "price": 2000,
    "createdAt": "2026-09-17T14:36:37.399Z",
    "name": "Bardak",
@@ -12,46 +12,8 @@
    "updatedAt": "2026-09-17T14:36:37.399Z"
   }
  ],
- "customers": [
-  {
-   "id": "1qv0k8tvmu5muae8",
-   "color": "#0E6B3F",
-   "createdAt": "2026-09-17T14:36:15.776Z",
-   "name": "Özgür",
-   "type": "Cafe & Restaurant",
-   "phone": "5382120317",
-   "city": "",
-   "district": "",
-   "notes": "",
-   "address": "Ggggg",
-   "updatedAt": "2026-09-17T14:36:15.776Z"
-  }
- ],
- "transactions": [
-  {
-   "id": "tti3b6e2mu5mw9y3",
-   "date": "2026-09-17",
-   "createdAt": "2026-09-17T14:37:48.507Z",
-   "customerId": "1qv0k8tvmu5muae8",
-   "type": "sale",
-   "items": [
-    {
-     "productId": "6jh35dpjmu5mur2v",
-     "name": "Bardak",
-     "unit": "adet",
-     "qty": 1,
-     "unitPrice": 2000,
-     "amount": 2000
-    }
-   ],
-   "amount": 2000,
-   "invoiced": true,
-   "payment": "vadeli",
-   "dueDate": "2026-09-18",
-   "method": "nakit",
-   "invoiceNo": "2026/0001"
-  }
- ],
+ "customers": [],
+ "transactions": [],
  "reserved": [],
  "cash": {
   "nakit": 0,
@@ -68,7 +30,16 @@
    "role": "Yönetici"
   }
  ],
- "tombstones": [],
+ "tombstones": [
+  {
+   "id": "1qv0k8tvmu5muae8",
+   "at": "2026-09-17T16:55:00.195Z"
+  },
+  {
+   "id": "tti3b6e2mu5mw9y3",
+   "at": "2026-09-17T16:55:00.195Z"
+  }
+ ],
  "settings": {
   "userName": "Barış Kandemir",
   "userEmail": "baris@greencup.com.tr",
