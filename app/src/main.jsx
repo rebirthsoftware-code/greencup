@@ -10,6 +10,6 @@ createRoot(document.getElementById('root')).render(
 );
 
 // PWA: service worker (sadece production build'de)
-if ('serviceWorker' in navigator && import.meta.env.PROD && import.meta.env.BASE_URL === '/') {
-  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+if ('serviceWorker' in navigator && import.meta.env.PROD && import.meta.env.BASE_URL.startsWith('/')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {}));
 }

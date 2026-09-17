@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, HashRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { StoreProvider } from './store/store';
+import { SyncProvider } from './store/sync';
 import { TabBar, ToastProvider } from './components/ui';
 import Splash from './components/Splash';
 import Home from './pages/Home';
@@ -37,6 +38,7 @@ export default function App() {
 
   return (
     <StoreProvider>
+      <SyncProvider>
       <ToastProvider>
         <Router>
           <ScrollTop />
@@ -65,6 +67,7 @@ export default function App() {
         </Router>
         {splash && <Splash />}
       </ToastProvider>
+      </SyncProvider>
     </StoreProvider>
   );
 }

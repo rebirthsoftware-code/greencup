@@ -61,6 +61,8 @@ function reducer(state, action) {
 
     case 'UPDATE_SETTINGS':
       return { ...state, settings: { ...state.settings, ...action.patch } };
+    case 'REPLACE':
+      return action.state && typeof action.state === 'object' ? { ...makeSeed(), ...action.state } : state;
     case 'RESET':
       return makeSeed();
     default:
@@ -93,6 +95,7 @@ export function StoreProvider({ children }) {
     addProduct: (product) => dispatch({ type: 'ADD_PRODUCT', product }),
     updateSettings: (patch) => dispatch({ type: 'UPDATE_SETTINGS', patch }),
     reset: () => { clearState(); dispatch({ type: 'RESET' }); },
+    replaceState: (state) => dispatch({ type: 'REPLACE', state }),
   }), [state]);
 
   return <StoreCtx.Provider value={api}>{children}</StoreCtx.Provider>;

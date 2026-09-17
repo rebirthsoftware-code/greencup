@@ -1,7 +1,11 @@
 // Basit çevrimdışı önbellek: kabuk dosyalarını saklar, ağ yoksa önbellekten sunar.
-const CACHE = 'greencup-app-v1';
+// Alt yolda (örn. /greencup/) da çalışması için yollar kayıt kapsamına göre kurulur.
+const CACHE = 'greencup-app-v2';
+const base = new URL(self.registration.scope).pathname;
+const shell = ['', 'index.html', 'manifest.webmanifest', 'icons/icon.svg', 'logo-greencup.png'].map((p) => base + p);
+
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(['/', '/index.html', '/manifest.webmanifest', '/icons/icon.svg', '/logo-greencup.png'])));
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(shell)).catch(() => {}));
   self.skipWaiting();
 });
 self.addEventListener('activate', (e) => {
@@ -9,12 +13,13 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 self.addEventListener('fetch', (e) => {
-  if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
+  if (e.request.method !== 'GET' || url.origin !== self.location.origin) return; // API istekleri (GitHub) dokunulmaz
   e.respondWith(
     fetch(e.request).then((res) => {
       const copy = res.clone();
       caches.open(CACHE).then((c) => c.put(e.request, copy)).catch(() => {});
       return res;
-    }).catch(() => caches.match(e.request).then((r) => r || caches.match('/index.html')))
+    }).catch(() => caches.match(e.request).then((r) => r || caches.match(base + 'index.html')))
   );
 });
