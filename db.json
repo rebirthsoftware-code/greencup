@@ -58,12 +58,13 @@
  "settings": {
   "userName": "Barış Kandemir",
   "userEmail": "baris@greencup.com.tr",
-  "company": "GreenCup Promosyon",
-  "companyAddress": "",
-  "taxNo": "",
+  "company": "GreenCup ",
+  "companyAddress": "Yeşil Mahalle Kapuz Caddesi No:106 Merkez/Zonguldak",
+  "taxNo": "5301109240",
   "kdv": 20,
-  "overdueDays": 30,
-  "defaultDueDays": 30,
-  "invoiceSeq": 2
+  "overdueDays": 5,
+  "defaultDueDays": 15,
+  "invoiceSeq": 1,
+  "updatedAt": "2026-09-17T17:32:38.110Z"
  }
 }
