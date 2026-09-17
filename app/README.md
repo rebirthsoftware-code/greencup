@@ -1,7 +1,9 @@
 # GreenCup Müşteri Takip Uygulaması
 
 Siteden bağımsız çalışan, mobil öncelikli **müşteri takip ve cari yönetim** uygulaması (PWA).
-Telefonda "Ana ekrana ekle" ile uygulama gibi kurulur, çevrimdışı açılır.
+Telefonda "Ana ekrana ekle" ile uygulama gibi kurulur, çevrimdışı açılır. Simge ve açılış ekranı sitenin logosudur;
+manifest maskable ikonlar, kısayollar (Yeni Müşteri, Mal Ver, Tahsilat) ve iPhone açılış görselleri içerir.
+Ana sayfadaki "Ana ekrana ekle" kartı Android'de tek dokunuşla kurulum, iPhone'da adımları gösterir.
 
 ## Çalıştırma
 

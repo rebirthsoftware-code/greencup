@@ -1,8 +1,8 @@
 // Basit çevrimdışı önbellek: kabuk dosyalarını saklar, ağ yoksa önbellekten sunar.
 // Alt yolda (örn. /greencup/) da çalışması için yollar kayıt kapsamına göre kurulur.
-const CACHE = 'greencup-app-v2';
+const CACHE = 'greencup-app-v3';
 const base = new URL(self.registration.scope).pathname;
-const shell = ['', 'index.html', 'manifest.webmanifest', 'icons/icon.svg', 'logo-greencup.png'].map((p) => base + p);
+const shell = ['', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'logo-greencup.png'].map((p) => base + p);
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(shell)).catch(() => {}));

@@ -2,14 +2,26 @@
   "name": "GreenCup Müşteri Takip",
   "short_name": "GreenCup",
   "description": "Müşteri takip ve cari yönetim uygulaması",
-  "start_url": "/",
+  "id": "greencup-musteri-takip",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
   "background_color": "#F4F6F5",
-  "theme_color": "#0E6B3F",
+  "theme_color": "#F4F6F5",
   "lang": "tr",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
   "icons": [
-    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Yeni Müşteri", "url": "./musteriler/yeni", "icons": [{ "src": "icons/shortcut.png", "sizes": "96x96" }] },
+    { "name": "Mal Ver", "url": "./islem?tur=sale", "icons": [{ "src": "icons/shortcut.png", "sizes": "96x96" }] },
+    { "name": "Tahsilat Gir", "url": "./islem?tur=payment", "icons": [{ "src": "icons/shortcut.png", "sizes": "96x96" }] }
   ]
 }

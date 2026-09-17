@@ -35,7 +35,17 @@ body {
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
-  overscroll-behavior-y: none;
+  overscroll-behavior: none;            /* aşağı çekince yenileme yok */
+  -webkit-touch-callout: none;          /* uzun basınca menü yok */
+  -webkit-user-select: none; user-select: none;
+  touch-action: manipulation;           /* çift dokunma yakınlaştırma yok */
+}
+input, textarea, [contenteditable] { -webkit-user-select: text; user-select: text; }
+img { -webkit-user-drag: none; }
+::-webkit-scrollbar { width: 0; height: 0; }
+/* Ana ekrandan açıldığında (standalone) kenarlar */
+@media (display-mode: standalone) {
+  .page { padding-top: calc(16px + var(--safe-t)); }
 }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { background: none; border: 0; cursor: pointer; }
@@ -242,15 +252,14 @@ textarea.input { height: auto; min-height: 92px; padding: 12px 14px; resize: ver
 }
 @keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
 
-/* Splash */
+/* Splash (açılış) */
 .splash {
   position: fixed; inset: 0; z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  background: radial-gradient(120% 80% at 50% 20%, #12804C 0%, #0E6B3F 45%, #073A22 100%); color: #fff; text-align: center;
-  animation: splash-out .5s ease 1.3s forwards;
+  background: var(--bg); text-align: center; animation: splash-out .45s ease 1.4s forwards;
 }
-.splash h1 { font-size: 36px; font-weight: 800; letter-spacing: 2px; margin-top: 14px; }
-.splash p { opacity: 0.85; margin-top: 8px; font-size: 14px; }
-.splash .foot { position: absolute; bottom: calc(28px + var(--safe-b)); font-size: 12px; opacity: 0.7; }
+.splash-logo { width: min(62vw, 300px); animation: splash-in .7s cubic-bezier(.2,.8,.2,1) both; }
+.splash .foot { position: absolute; bottom: calc(36px + var(--safe-b)); font-size: 13px; letter-spacing: 1px; color: var(--text-3); text-transform: uppercase; }
+@keyframes splash-in { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
 @keyframes splash-out { to { opacity: 0; visibility: hidden; } }
 
 /* Table (stok) */
@@ -310,3 +319,15 @@ textarea.input { height: auto; min-height: 92px; padding: 12px 14px; resize: ver
 .row-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
 .tl-item { cursor: pointer; }
 .tl-meta { font-size: 11.5px; color: var(--text-3); margin-top: 4px; }
+
+/* Ana ekrana ekle kartı */
+.install { background: var(--green); color: #fff; border-radius: var(--radius); padding: 14px; display: flex; gap: 12px; align-items: center; margin-bottom: 16px; box-shadow: 0 6px 18px rgba(14,107,63,0.25); }
+.install img { width: 46px; height: 46px; border-radius: 12px; background: #fff; padding: 4px; flex-shrink: 0; }
+.install .t { flex: 1; min-width: 0; }
+.install .t b { display: block; font-size: 14.5px; }
+.install .t span { font-size: 12.5px; opacity: .9; }
+.install .btn { width: auto; height: 36px; padding: 0 14px; font-size: 13px; background: #fff; color: var(--green); border-radius: 999px; box-shadow: none; }
+.install .x { color: #fff; opacity: .8; display: grid; place-items: center; width: 28px; height: 28px; }
+.ios-steps { display: grid; gap: 10px; margin: 10px 0 4px; }
+.ios-steps div { display: flex; gap: 10px; align-items: center; }
+.ios-steps .n { width: 26px; height: 26px; border-radius: 50%; background: var(--green-light); color: var(--green); display: grid; place-items: center; font-size: 13px; flex-shrink: 0; }
