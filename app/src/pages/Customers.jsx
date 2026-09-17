@@ -23,7 +23,7 @@ export function CustomerRow({ s, right }) {
       : <span className="item-sub pos">Borç yok</span>;
   return (
     <Link to={`/musteriler/${c.id}`} className="item">
-      <Avatar customer={c} />
+      <Avatar customer={c} status={s.status} />
       <div className="item-body">
         <div className="item-title">{c.name}</div>
         {sub}

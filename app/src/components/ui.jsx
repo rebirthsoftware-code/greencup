@@ -43,8 +43,8 @@ export function PageHeader({ title, back = true, to, right, children }) {
 }
 
 /* ---------- Avatar / Badge ---------- */
-export function Avatar({ customer, size }) {
-  const cls = `avatar ${size === 'lg' ? 'avatar--lg' : size === 'sm' ? 'avatar--sm' : ''}`;
+export function Avatar({ customer, size, status }) {
+  const cls = `avatar ${size === 'lg' ? 'avatar--lg' : size === 'sm' ? 'avatar--sm' : ''} ${status ? `ring-${status}` : ''}`;
   return (
     <div className={cls} style={{ background: customer.color || '#0E6B3F' }}>
       {customer.logo ? <img src={customer.logo} alt="" /> : (customer.tag || initials(customer.name))}

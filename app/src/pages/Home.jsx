@@ -8,8 +8,8 @@ import { loadDevice } from '../store/storage';
 import * as Ic from '../components/Icons';
 import InstallPrompt from '../components/InstallPrompt';
 
-const Quick = ({ to, icon: Icon, label }) => (
-  <Link to={to} className="quick"><Icon size={24} /><span>{label}</span></Link>
+const Quick = ({ to, icon: Icon, label, tone = '' }) => (
+  <Link to={to} className="quick"><span className={`qi ${tone}`}><Icon size={22} /></span><span>{label}</span></Link>
 );
 
 export default function Home() {
@@ -22,6 +22,7 @@ export default function Home() {
   const firstName = (loadDevice().userName || state.settings.userName || '').split(' ')[0];
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Günaydın' : hour < 18 ? 'İyi günler' : 'İyi akşamlar';
+  const dateLine = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', weekday: 'long' });
 
   return (
     <div className="page">
@@ -34,7 +35,7 @@ export default function Home() {
 
       <div style={{ marginBottom: 16 }}>
         <div style={{ fontSize: 18, fontWeight: 800 }}>Hoş geldin {firstName} 👋</div>
-        <div className="muted small">{greet}, bugün güzel geçsin.</div>
+        <div className="muted small">{greet}, bugün güzel geçsin. <span className="xs" style={{ color: 'var(--text-3)' }}>· {dateLine}</span></div>
       </div>
       <InstallPrompt />
 
@@ -64,12 +65,12 @@ export default function Home() {
       <h2 className="section-title">Hızlı İşlemler</h2>
       <div className="grid-3">
         <Quick to="/musteriler/yeni" icon={Ic.UserPlus} label="Yeni Müşteri" />
-        <Quick to="/islem?tur=sale" icon={Ic.Truck} label="Mal Ver" />
-        <Quick to="/islem?tur=payment" icon={Ic.Cash} label="Tahsilat Gir" />
+        <Quick to="/islem?tur=sale" icon={Ic.Truck} label="Mal Ver" tone="blue" />
+        <Quick to="/islem?tur=payment" icon={Ic.Cash} label="Tahsilat Gir" tone="gold" />
       </div>
       <div className="grid-2" style={{ marginTop: 10 }}>
-        <Quick to="/islem?tur=sale&fatura=1" icon={Ic.FileText} label="Fatura Ekle" />
-        <Quick to="/islem?tur=visit" icon={Ic.Target} label="Ziyaret Ekle" />
+        <Quick to="/islem?tur=sale&fatura=1" icon={Ic.FileText} label="Fatura Ekle" tone="purple" />
+        <Quick to="/islem?tur=visit" icon={Ic.Target} label="Ziyaret Ekle" tone="orange" />
       </div>
 
       <h2 className="section-title">Bugün</h2>
