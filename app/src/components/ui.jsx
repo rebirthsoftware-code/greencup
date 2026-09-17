@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, createContext, useContext, useCallback } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import * as Ic from './Icons';
-import { initials } from '../utils/format';
+import { initials, fmtDate } from '../utils/format';
 import { STATUS_LABEL } from '../store/selectors';
 
 /* ---------- Tab bar ---------- */
@@ -45,7 +45,11 @@ export function PageHeader({ title, back = true, to, right, children }) {
 /* ---------- Avatar / Badge ---------- */
 export function Avatar({ customer, size }) {
   const cls = `avatar ${size === 'lg' ? 'avatar--lg' : size === 'sm' ? 'avatar--sm' : ''}`;
-  return <div className={cls} style={{ background: customer.color || '#0E6B3F' }}>{customer.tag || initials(customer.name)}</div>;
+  return (
+    <div className={cls} style={{ background: customer.color || '#0E6B3F' }}>
+      {customer.logo ? <img src={customer.logo} alt="" /> : (customer.tag || initials(customer.name))}
+    </div>
+  );
 }
 export function StatusBadge({ status }) {
   return <span className={`badge badge--${status}`}>{STATUS_LABEL[status] || status}</span>;
@@ -129,3 +133,21 @@ export const useToast = () => useContext(ToastCtx);
 
 /* ---------- Empty ---------- */
 export const Empty = ({ children }) => <div className="empty">{children}</div>;
+
+/* ---------- Tarih alanı (cihaz biçiminden bağımsız gün.ay.yıl gösterimi) ---------- */
+export function DateField({ label, value, onChange, min, max, required }) {
+  return (
+    <div className="field">
+      {label && <label>{label}</label>}
+      <div className="input">
+        <input type="date" value={value || ''} min={min} max={max} required={required} onChange={(e) => onChange(e.target.value)} lang="tr-TR" />
+        <span className="suffix">{value ? fmtDate(value) : ''}</span>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Onaylı sil düğmesi ---------- */
+export function DangerButton({ onConfirm, message = 'Silinsin mi? Bu işlem geri alınamaz.', children, className = 'btn btn-ghost btn-sm' }) {
+  return <button type="button" className={className} style={{ color: 'var(--red)' }} onClick={() => { if (confirm(message)) onConfirm(); }}>{children}</button>;
+}
