@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { asset } from '../utils/asset';
 import { loadDevice } from '../store/storage';
 import { sha256 } from '../utils/format';
 
@@ -44,7 +45,7 @@ export default function PinLock({ children }) {
   };
   return (
     <div className="pin-screen">
-      <img src="logo-greencup.png" alt="GreenCup" style={{ width: 150 }} />
+      <img src={asset('logo-greencup.png')} alt="GreenCup" style={{ width: 150 }} />
       <div className="bold" style={{ fontSize: 18, marginTop: 14 }}>PIN girin</div>
       <div className="pin-dots">{Array.from({ length: pinLen }, (_, i) => <span key={i} className={i < pin.length ? 'on' : ''} />)}</div>
       <div className="xs" style={{ color: 'var(--red)', minHeight: 18 }}>{err}</div>

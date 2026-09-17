@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { asset } from '../utils/asset';
 import { useStore } from '../store/store';
 import { useSync } from '../store/sync';
 import { dashboard, notifications } from '../store/selectors';
@@ -25,7 +26,7 @@ export default function Home() {
   return (
     <div className="page">
       <header className="page-header" style={{ marginBottom: 6 }}>
-        <img src="logo-greencup.png" alt="GreenCup" style={{ height: 34 }} />
+        <img src={asset('logo-greencup.png')} alt="GreenCup" style={{ height: 34 }} />
         <div style={{ flex: 1 }} />
         <Link to="/daha/ayarlar" className="icon-btn" aria-label={syncTitle} title={syncTitle} style={{ color: syncColor }}><Ic.Cloud size={20} /></Link>
         <Link to="/bildirimler" className="icon-btn" aria-label="Bildirimler"><Ic.Bell size={20} />{alerts.length > 0 && <span className="badge-dot">{alerts.length}</span>}</Link>
