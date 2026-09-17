@@ -1,13 +1,13 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from './store';
-import { makeSeed } from './seed';
+import { normalizeState } from './seed';
+import { mergeStates } from './merge';
 import { fetchDb, pushDb, createDb, GithubError } from './github';
 export { DEFAULT_CFG } from './github';
 
 // Senkron ayarları (token dahil) sadece bu cihazda, uygulama verisinden ayrı saklanır.
 const CFG_KEY = 'greencup.sync.cfg.v1';
 const META_KEY = 'greencup.sync.meta.v1';
-
 
 const readJson = (k, fallback) => { try { return JSON.parse(localStorage.getItem(k)) || fallback; } catch { return fallback; } };
 const writeJson = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* noop */ } };
@@ -43,11 +43,18 @@ export function SyncProvider({ children }) {
     setError(msg); setStatus(navigator.onLine ? 'error' : 'offline');
   }, []);
 
-  /** Yereli uzağa yazar; sha çakışırsa uzaktaki sha ile bir kez daha dener (son yazan kazanır). */
+  const apply = useCallback((data) => {
+    const next = normalizeState(data);
+    appliedRef.current = next; seenRef.current = next;
+    replaceState(next);
+    return next;
+  }, [replaceState]);
+
+  /** Yereli buluta yazar. sha çakışırsa (başka cihaz yazmış) iki sürümü birleştirip tekrar dener. */
   const push = useCallback(async () => {
     const c = cfgRef.current; if (!c?.token || busyRef.current) return;
     busyRef.current = true; setStatus('syncing'); setError(null);
-    clearTimeout(timerRef.current); // bekleyen gecikmeli yazma varsa bu yazma onu kapsar
+    clearTimeout(timerRef.current);
     try {
       let sha = metaRef.current.sha;
       try {
@@ -55,14 +62,16 @@ export function SyncProvider({ children }) {
       } catch (e) {
         if (e instanceof GithubError && (e.status === 409 || e.status === 422)) {
           const remote = await fetchDb(c);
-          sha = await pushDb(c, stateRef.current, remote.sha);
+          const merged = remote.data ? mergeStates(stateRef.current, normalizeState(remote.data)) : stateRef.current;
+          stateRef.current = merged; apply(merged);
+          sha = await pushDb(c, merged, remote.sha);
         } else throw e;
       }
       setMeta({ sha, dirty: false, lastSync: new Date().toISOString() }); setStatus('idle');
     } catch (e) { fail(e); } finally { busyRef.current = false; }
-  }, [fail, setMeta]);
+  }, [apply, fail, setMeta]);
 
-  /** Uzağı okur. Yerelde bekleyen değişiklik yoksa uzaktakini uygular; varsa yereli yazar. */
+  /** Buluttakini okur. Yerelde bekleyen değişiklik yoksa uygular; varsa birleştirip yazar. */
   const pull = useCallback(async ({ force = false } = {}) => {
     const c = cfgRef.current; if (!c?.token || busyRef.current) return;
     busyRef.current = true; setStatus('syncing'); setError(null);
@@ -73,17 +82,20 @@ export function SyncProvider({ children }) {
         setMeta({ sha, dirty: false, lastSync: new Date().toISOString() }); setStatus('idle');
         return;
       }
-      if (metaRef.current.dirty && !force) {     // yerelde bekleyen değişiklik var: önce onu yaz
+      if (metaRef.current.dirty && !force) {     // yerelde bekleyen değişiklik var
+        if (remote.sha !== metaRef.current.sha) { // ve bulut da değişmiş: birleştir
+          const merged = mergeStates(stateRef.current, normalizeState(remote.data));
+          stateRef.current = merged; apply(merged);
+          const sha = await pushDb(c, merged, remote.sha);
+          setMeta({ sha, dirty: false, lastSync: new Date().toISOString() }); setStatus('idle');
+          return;
+        }
         busyRef.current = false; await push(); return;
       }
-      if (remote.sha !== metaRef.current.sha || force) {
-        const next = { ...makeSeed(), ...remote.data }; // eksik alanlar varsayılanla tamamlanır
-        appliedRef.current = next; seenRef.current = next;
-        replaceState(next);
-      }
+      if (remote.sha !== metaRef.current.sha || force) apply(remote.data);
       setMeta({ sha: remote.sha, dirty: false, lastSync: new Date().toISOString() }); setStatus('idle');
     } catch (e) { fail(e); } finally { busyRef.current = false; }
-  }, [fail, push, replaceState, setMeta]);
+  }, [apply, fail, push, setMeta]);
 
   // Yerel değişiklik → kirli işaretle ve kısa gecikmeyle yaz
   useEffect(() => {
@@ -91,15 +103,14 @@ export function SyncProvider({ children }) {
     seenRef.current = state;
     if (appliedRef.current === state) return;
     if (!enabled) return;
-    // kirli bayrağı hemen kalıcı yaz (yenilemede kaybolmasın), React durumunu bir sonraki tick'te güncelle
     metaRef.current = { ...metaRef.current, dirty: true }; writeJson(META_KEY, metaRef.current);
     const uiTimer = setTimeout(() => setMetaState(metaRef.current), 0);
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => push(), 1500);
     return () => { clearTimeout(uiTimer); clearTimeout(timerRef.current); };
-  }, [state, enabled, push, setMeta]);
+  }, [state, enabled, push]);
 
-  // Açılışta ve uygulamaya geri dönünce uzağı kontrol et; internet gelince bekleyeni yaz
+  // Açılışta ve uygulamaya geri dönünce bulutu kontrol et; internet gelince bekleyeni yaz
   useEffect(() => {
     if (!enabled) return;
     const first = setTimeout(() => pull(), 0);

@@ -1,44 +1,89 @@
 import { useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store/store';
-import { fmtMoney, fmtNum, fmtPrice, today } from '../utils/format';
-import { PageHeader, SelectField, Segmented, Avatar, useToast } from '../components/ui';
+import { addDays } from '../store/seed';
+import { fmtMoney, fmtNum, fmtPrice, today, parseMoney } from '../utils/format';
+import { PageHeader, SelectField, Segmented, Avatar, DateField, useToast } from '../components/ui';
+import * as Ic from '../components/Icons';
+import { cleanItem } from '../utils/format';
 
 const TYPES = [
   { value: 'sale', label: 'Mal Ver' }, { value: 'payment', label: 'Tahsilat' }, { value: 'visit', label: 'Ziyaret' },
 ];
 const TITLES = { sale: 'Mal Ver / Yeni İşlem', payment: 'Tahsilat Gir', visit: 'Ziyaret Kaydı' };
 
+/** Çok ürünlü satır düzenleyici (yeni işlem ve düzenleme ekranlarında ortak). */
+export function ItemsEditor({ items, onChange, products }) {
+  const setRow = (i, patch) => {
+    const next = items.map((r, k) => (k === i ? { ...r, ...patch } : r));
+    const r = next[i];
+    if (patch.productId !== undefined) {
+      const p = products.find((x) => x.id === patch.productId);
+      if (p) { r.name = p.name; r.unit = p.unit; if (!r.manual) r.unitPrice = p.price; }
+    }
+    r.amount = Math.round((r.qty || 0) * (r.unitPrice || 0) * 100) / 100;
+    onChange(next);
+  };
+  const add = () => {
+    const p = products.find((x) => !items.some((r) => r.productId === x.id)) || products[0];
+    onChange([...items, { productId: p?.id || '', name: p?.name || '', unit: p?.unit || 'adet', qty: 0, unitPrice: p?.price || 0, amount: 0 }]);
+  };
+  return (
+    <div className="field">
+      <label>Ürünler</label>
+      <div className="line xs muted" style={{ marginBottom: 2 }}><span>Ürün</span><span>Miktar</span><span>Birim ₺</span><span /></div>
+      {items.map((r, i) => {
+        const p = products.find((x) => x.id === r.productId);
+        return (
+          <div className="line" key={i}>
+            <div className="input"><select value={r.productId} onChange={(e) => setRow(i, { productId: e.target.value })}>
+              <option value="">Ürün seçin</option>
+              {products.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
+            </select></div>
+            <div className="input"><input inputMode="numeric" value={r.qty || ''} placeholder="0" onChange={(e) => setRow(i, { qty: parseInt(e.target.value.replace(/\D/g, '') || '0', 10) })} /></div>
+            <div className="input"><input inputMode="decimal" value={r.unitPrice ?? ''} placeholder="0" onChange={(e) => setRow(i, { unitPrice: parseMoney(e.target.value), manual: true })} /></div>
+            <button type="button" className="rm" onClick={() => onChange(items.filter((_, k) => k !== i))} aria-label="Satırı kaldır"><Ic.X size={18} /></button>
+            {p && r.qty > p.stock && <div className="xs neg" style={{ gridColumn: '1 / -1', marginTop: -4 }}>Stok yetersiz: {p.name} mevcut {fmtNum(p.stock)} {p.unit}</div>}
+          </div>
+        );
+      })}
+      <button type="button" className="btn btn-ghost btn-sm" onClick={add} disabled={products.length === 0}><Ic.Plus size={16} /> Ürün satırı ekle</button>
+    </div>
+  );
+}
+
 export default function NewTransaction() {
   const [params] = useSearchParams();
   const nav = useNavigate();
   const toast = useToast();
   const { state, addTransaction } = useStore();
+  const planId = params.get('plan') || undefined;
 
   const [type, setType] = useState(params.get('tur') || 'sale');
   const [customerId, setCustomerId] = useState(params.get('musteri') || '');
-  const [productId, setProductId] = useState(state.products[0]?.id || '');
-  const [qty, setQty] = useState('');
+  const [items, setItems] = useState(() => {
+    const p = state.products[0];
+    return p ? [{ productId: p.id, name: p.name, unit: p.unit, qty: 0, unitPrice: p.price, amount: 0 }] : [];
+  });
   const [amount, setAmount] = useState('');
   const [invoiced, setInvoiced] = useState(params.get('fatura') === '1');
   const [payment, setPayment] = useState('vadeli');
   const [paidNow, setPaidNow] = useState('');
   const [method, setMethod] = useState('nakit');
   const [date, setDate] = useState(today());
+  const [dueDate, setDueDate] = useState(addDays(today(), state.settings.defaultDueDays || 30));
   const [note, setNote] = useState('');
-  const [autoAmount, setAutoAmount] = useState(true);
 
-  const product = state.products.find((p) => p.id === productId);
   const customer = state.customers.find((c) => c.id === customerId);
   const customerOpts = useMemo(() => state.customers.map((c) => ({ value: c.id, label: c.name, c })), [state.customers]);
-  const productOpts = useMemo(() => state.products.map((p) => ({ value: p.id, label: `${p.name} (${fmtNum(p.stock)} ${p.unit})` })), [state.products]);
 
-  const qtyN = parseInt(qty || '0', 10);
-  const suggested = product ? Math.round(qtyN * product.price) : 0;
-  const amountN = type === 'sale' && autoAmount ? suggested : parseFloat((amount || '0').toString().replace(',', '.')) || 0;
+  const validItems = items.filter((i) => i.productId && i.qty > 0);
+  const total = validItems.reduce((a, i) => a + i.amount, 0);
+  const amountN = type === 'sale' ? total : parseMoney(amount);
+  const paidNowN = parseMoney(paidNow);
 
   const valid = customerId && (
-    (type === 'sale' && productId && qtyN > 0 && amountN > 0) ||
+    (type === 'sale' && validItems.length > 0 && amountN > 0 && (payment !== 'kismi' || (paidNowN > 0 && paidNowN < amountN))) ||
     (type === 'payment' && amountN > 0) ||
     (type === 'visit')
   );
@@ -48,15 +93,14 @@ export default function NewTransaction() {
     if (!valid) return;
     const base = { customerId, date, note: note.trim() || undefined };
     if (type === 'sale') {
-      addTransaction({ ...base, type: 'sale', productId, qty: qtyN, amount: amountN, invoiced, payment,
-        paidNow: payment === 'kismi' ? parseFloat(paidNow || '0') : undefined, method,
-        invoiceNo: invoiced ? `${date.slice(0, 4)}/${String(state.transactions.length + 1).padStart(4, '0')}` : undefined });
+      addTransaction({ ...base, type: 'sale', items: validItems.map(cleanItem), amount: amountN, invoiced, payment,
+        dueDate: payment === 'pesin' ? date : dueDate, paidNow: payment === 'kismi' ? paidNowN : undefined, method });
       toast('İşlem kaydedildi');
     } else if (type === 'payment') {
       addTransaction({ ...base, type: 'payment', amount: amountN, method });
       toast('Tahsilat kaydedildi');
     } else {
-      addTransaction({ ...base, type: 'visit', note: note.trim() || 'Ziyaret yapıldı.' });
+      addTransaction({ ...base, type: 'visit', note: note.trim() || 'Ziyaret yapıldı.' }, planId);
       toast('Ziyaret kaydedildi');
     }
     nav(`/musteriler/${customerId}`, { replace: true });
@@ -68,31 +112,25 @@ export default function NewTransaction() {
       <form onSubmit={save}>
         <div className="field"><label>İşlem Türü</label><Segmented value={type} onChange={setType} options={TYPES} light /></div>
 
-        <SelectField label="Müşteri" value={customerId} onChange={setCustomerId} options={customerOpts} placeholder="Müşteri seçin"
+        <SelectField label="Müşteri" value={customerId} onChange={setCustomerId} options={customerOpts} placeholder={state.customers.length ? 'Müşteri seçin' : 'Henüz müşteri yok'}
           renderOption={(o) => <><Avatar customer={o.c} size="sm" /><span style={{ flex: 1 }}>{o.label}</span></>} />
+        {state.customers.length === 0 && <div className="card small" style={{ marginTop: -8, marginBottom: 16 }}>Önce <Link to="/musteriler/yeni" style={{ color: 'var(--green)', fontWeight: 700 }}>müşteri ekleyin</Link>.</div>}
 
         {type === 'sale' && (
           <>
-            <SelectField label="Ürün" value={productId} onChange={setProductId} options={productOpts} placeholder={state.products.length ? 'Ürün seçin' : 'Henüz ürün yok'} />
-            {state.products.length === 0 && <div className="card small" style={{ marginTop: -8, marginBottom: 16 }}>Önce <Link to="/stok" style={{ color: "var(--green)", fontWeight: 700 }}>Stok / Depo</Link> ekranından ürün ekleyin.</div>}
-            <div className="field"><label>Miktar</label>
-              <div className="input"><input inputMode="numeric" placeholder="5.000" value={qty} onChange={(e) => setQty(e.target.value.replace(/\D/g, ''))} /><span className="suffix">{product?.unit || 'adet'}</span></div>
-              {product && qtyN > product.stock && <span className="xs neg">Stok yetersiz: mevcut {fmtNum(product.stock)} {product.unit}</span>}
-            </div>
-            <div className="field"><label>Tutar {product && <span className="opt">(birim {fmtPrice(product.price)})</span>}</label>
-              <div className="input"><span className="suffix">₺</span>
-                <input inputMode="decimal" value={autoAmount ? (suggested || '') : amount} placeholder="0"
-                  onChange={(e) => { setAutoAmount(false); setAmount(e.target.value); }} />
-                {!autoAmount && <button type="button" className="btn btn-sm btn-ghost" onClick={() => setAutoAmount(true)}>Otomatik</button>}
-              </div>
-            </div>
+            {state.products.length === 0
+              ? <div className="card small" style={{ marginBottom: 16 }}>Önce <Link to="/stok" style={{ color: 'var(--green)', fontWeight: 700 }}>Stok / Depo</Link> ekranından ürün ekleyin.</div>
+              : <ItemsEditor items={items} onChange={setItems} products={state.products} />}
+            <div className="card row" style={{ marginBottom: 16 }}><span className="bold">Toplam</span><span className="num" style={{ fontSize: 18 }}>{fmtMoney(total)}</span></div>
             <div className="field"><label>Fatura Durumu</label>
               <Segmented value={invoiced ? 'f' : 'nf'} onChange={(v) => setInvoiced(v === 'f')} options={[{ value: 'f', label: 'Faturalı' }, { value: 'nf', label: 'Faturasız' }]} light /></div>
             <div className="field"><label>Ödeme Durumu</label>
               <Segmented value={payment} onChange={setPayment} options={[{ value: 'vadeli', label: 'Vadeli' }, { value: 'pesin', label: 'Peşin' }, { value: 'kismi', label: 'Kısmi' }]} light /></div>
             {payment === 'kismi' && (
               <div className="field"><label>Şimdi Ödenen</label>
-                <div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={paidNow} onChange={(e) => setPaidNow(e.target.value)} placeholder="0" /></div></div>
+                <div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={paidNow} onChange={(e) => setPaidNow(e.target.value)} placeholder="0" /></div>
+                {paidNowN > 0 && amountN > paidNowN && <span className="xs muted">Kalan {fmtMoney(amountN - paidNowN)} vadeye yazılır.</span>}
+              </div>
             )}
           </>
         )}
@@ -107,16 +145,20 @@ export default function NewTransaction() {
             <Segmented value={method} onChange={setMethod} options={[{ value: 'nakit', label: 'Nakit' }, { value: 'banka', label: 'Havale' }, { value: 'kart', label: 'Kart' }]} light /></div>
         )}
 
-        <div className="field"><label>Tarih</label><div className="input"><input type="date" value={date} onChange={(e) => setDate(e.target.value)} /></div></div>
+        <DateField label="Tarih" value={date} onChange={setDate} />
+        {type === 'sale' && payment !== 'pesin' && <DateField label="Vade Tarihi" value={dueDate} onChange={setDueDate} min={date} />}
 
         <div className="field"><label>Not <span className="opt">(isteğe bağlı)</span></label>
           <textarea className="input" placeholder="Örn: Yeni sezon siparişi..." value={note} onChange={(e) => setNote(e.target.value)} /></div>
 
         {customer && type !== 'visit' && amountN > 0 && (
           <div className="card small muted" style={{ marginBottom: 12 }}>
-            {type === 'sale' ? `${customer.name} için ${fmtNum(qtyN)} ${product?.unit} ${product?.name}, ${fmtMoney(amountN)} ${payment === 'pesin' ? 'peşin tahsil edilecek' : payment === 'kismi' ? 'kısmen tahsil, kalanı cariye işlenecek' : 'cariye borç yazılacak'}.` : `${customer.name} carisinden ${fmtMoney(amountN)} düşülecek, kasaya eklenecek.`}
+            {type === 'sale'
+              ? `${customer.name} için ${validItems.length} kalem, ${fmtMoney(amountN)}: ${payment === 'pesin' ? 'peşin tahsil edilecek' : payment === 'kismi' ? `${fmtMoney(paidNowN)} şimdi, kalanı vadeye` : `vade ${dueDate.split('-').reverse().join('.')}`}.`
+              : `${customer.name} carisinden ${fmtMoney(amountN)} düşülecek, kasaya eklenecek.`}
           </div>
         )}
+        {type === 'sale' && validItems.length > 0 && <div className="xs muted" style={{ marginBottom: 12 }}>Birim fiyatlar ürün kartından gelir ({validItems.map((i) => `${i.name}: ${fmtPrice(i.unitPrice)}`).join(', ')}); satırda değiştirebilirsiniz.</div>}
 
         <div className="sticky-bottom"><button className="btn btn-primary" type="submit" disabled={!valid}>Kaydet</button></div>
       </form>

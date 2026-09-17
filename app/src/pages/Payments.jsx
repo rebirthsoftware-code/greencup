@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useStore } from '../store/store';
-import { fmtMoney, fmtDayMonth, fmtDate, daysBetween, today } from '../utils/format';
-import { PageHeader, Sheet, Segmented, Empty, useToast } from '../components/ui';
+import { ACCOUNT_LABEL } from '../store/selectors';
+import { fmtMoney, fmtDayMonth, fmtDate, daysBetween, today, parseMoney } from '../utils/format';
+import { PageHeader, Sheet, Segmented, Empty, DateField, DangerButton, useToast } from '../components/ui';
 import * as Ic from '../components/Icons';
 
 export default function Payments() {
-  const { state, payExpense, addExpense } = useStore();
+  const { state, payExpense, unpayExpense, addExpense, updateExpense, deleteExpense } = useStore();
   const toast = useToast();
   const [tab, setTab] = useState(0);
-  const [paying, setPaying] = useState(null);
+  const [sel, setSel] = useState(null);     // seçili gider (detay/düzenle)
   const [account, setAccount] = useState('banka');
   const [adding, setAdding] = useState(false);
   const [f, setF] = useState({ title: '', amount: '', due: today() });
@@ -18,16 +19,21 @@ export default function Payments() {
   const past = state.expenses.filter((e) => e.paid).sort((a, b) => (a.paidAt < b.paidAt ? 1 : -1));
   const total = upcoming.reduce((a, e) => a + e.amount, 0);
 
-  const confirmPay = () => { payExpense(paying.id, account); toast(`${paying.title} ödendi`); setPaying(null); };
+  const open = (e) => { setSel(e); setF({ title: e.title, amount: String(e.amount), due: e.due }); };
   const saveNew = () => {
-    const amount = parseFloat(String(f.amount).replace(',', '.'));
+    const amount = parseMoney(f.amount);
     if (!f.title.trim() || !amount) return;
     addExpense({ title: f.title.trim(), amount, due: f.due }); toast('Ödeme eklendi'); setAdding(false); setF({ title: '', amount: '', due: t });
+  };
+  const saveEdit = () => {
+    const amount = parseMoney(f.amount);
+    if (!f.title.trim() || !amount) return;
+    updateExpense(sel.id, { title: f.title.trim(), amount, due: f.due }); toast('Güncellendi'); setSel(null);
   };
 
   return (
     <div className="page">
-      <PageHeader title="Benim Ödemelerim" to="/daha" right={<button className="icon-btn" onClick={() => setAdding(true)} aria-label="Ekle"><Ic.Plus size={20} /></button>} />
+      <PageHeader title="Benim Ödemelerim" to="/daha" right={<button className="icon-btn" onClick={() => { setF({ title: '', amount: '', due: t }); setAdding(true); }} aria-label="Ekle"><Ic.Plus size={20} /></button>} />
       <div className="tabs">
         <button className={tab === 0 ? 'active' : ''} onClick={() => setTab(0)}>Yaklaşan Ödemeler</button>
         <button className={tab === 1 ? 'active' : ''} onClick={() => setTab(1)}>Geçmiş</button>
@@ -40,7 +46,7 @@ export default function Payments() {
               const days = daysBetween(t, e.due);
               const color = days <= 0 ? 'red' : days <= 7 ? 'orange' : 'green';
               return (
-                <div key={e.id} className="item">
+                <div key={e.id} className="item" onClick={() => open(e)}>
                   <span className="dot" style={{ width: 12, height: 12, background: `var(--${color})` }} />
                   <div className="item-body">
                     <div className="item-title"><span style={{ color: `var(--${color})`, marginRight: 8 }}>{fmtDayMonth(e.due)}</span>{e.title}</div>
@@ -48,7 +54,7 @@ export default function Payments() {
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div className="num">{fmtMoney(e.amount)}</div>
-                    <button className="btn btn-sm btn-primary" style={{ marginTop: 6, boxShadow: 'none' }} onClick={() => setPaying(e)}>Öde</button>
+                    <button className="btn btn-sm btn-primary" style={{ marginTop: 6, boxShadow: 'none' }} onClick={(ev) => { ev.stopPropagation(); setSel({ ...e, paying: true }); }}>Öde</button>
                   </div>
                 </div>
               );
@@ -65,9 +71,9 @@ export default function Payments() {
       {tab === 1 && (
         <div className="list">
           {past.map((e) => (
-            <div key={e.id} className="item">
+            <div key={e.id} className="item" onClick={() => open(e)}>
               <div className="tl-icon"><Ic.Check size={18} /></div>
-              <div className="item-body"><div className="item-title">{e.title}</div><div className="item-sub">Ödendi: {fmtDate(e.paidAt)}</div></div>
+              <div className="item-body"><div className="item-title">{e.title}</div><div className="item-sub">Ödendi: {fmtDate(e.paidAt)}{e.account ? ` · ${ACCOUNT_LABEL[e.account]}` : ''}</div></div>
               <span className="num">{fmtMoney(e.amount)}</span>
             </div>
           ))}
@@ -75,16 +81,32 @@ export default function Payments() {
         </div>
       )}
 
-      <Sheet open={!!paying} onClose={() => setPaying(null)} title={paying ? `${paying.title} · ${fmtMoney(paying.amount)}` : ''}>
+      {/* Öde */}
+      <Sheet open={!!sel?.paying} onClose={() => setSel(null)} title={sel ? `${sel.title} · ${fmtMoney(sel.amount)}` : ''}>
         <div className="field"><label>Hangi hesaptan?</label>
           <Segmented light value={account} onChange={setAccount} options={[{ value: 'nakit', label: 'Nakit' }, { value: 'banka', label: 'Banka' }, { value: 'kart', label: 'Kart' }]} /></div>
-        <button className="btn btn-primary" onClick={confirmPay}>Ödendi Olarak İşaretle</button>
+        <button className="btn btn-primary" onClick={() => { payExpense(sel.id, account); toast(`${sel.title} ödendi`); setSel(null); }}>Ödendi Olarak İşaretle</button>
+      </Sheet>
+
+      {/* Düzenle / sil */}
+      <Sheet open={!!sel && !sel.paying} onClose={() => setSel(null)} title="Ödemeyi Düzenle">
+        <div className="field"><label>Başlık</label><div className="input"><input value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} /></div></div>
+        <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={f.amount} onChange={(e) => setF({ ...f, amount: e.target.value })} /></div></div>
+        <DateField label="Vade" value={f.due} onChange={(v) => setF({ ...f, due: v })} />
+        {sel?.paid && <p className="xs muted" style={{ marginBottom: 12 }}>Bu ödeme {fmtDate(sel.paidAt)} tarihinde {ACCOUNT_LABEL[sel.account] || ''} hesabından ödendi. Tutarı değiştirmek kasayı etkilemez; yanlışsa "Ödenmedi yap" deyip yeniden ödeyin.</p>}
+        <div className="stack">
+          <div className="btn-row">
+            <DangerButton className="btn btn-ghost" message="Ödeme kaydı silinsin mi? Ödendiyse kasa etkisi geri alınır." onConfirm={() => { deleteExpense(sel.id); toast('Silindi'); setSel(null); }}>Sil</DangerButton>
+            <button className="btn btn-primary" onClick={saveEdit}>Kaydet</button>
+          </div>
+          {sel?.paid && <button className="btn btn-ghost" onClick={() => { unpayExpense(sel.id); toast('Ödenmedi olarak işaretlendi'); setSel(null); }}>Ödenmedi Yap (kasaya iade)</button>}
+        </div>
       </Sheet>
 
       <Sheet open={adding} onClose={() => setAdding(false)} title="Yeni Ödeme">
         <div className="field"><label>Başlık</label><div className="input"><input value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} placeholder="Örn: Kira" /></div></div>
         <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={f.amount} onChange={(e) => setF({ ...f, amount: e.target.value })} /></div></div>
-        <div className="field"><label>Vade</label><div className="input"><input type="date" value={f.due} onChange={(e) => setF({ ...f, due: e.target.value })} /></div></div>
+        <DateField label="Vade" value={f.due} onChange={(v) => setF({ ...f, due: v })} />
         <button className="btn btn-primary" onClick={saveNew}>Kaydet</button>
       </Sheet>
     </div>

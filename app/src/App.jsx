@@ -4,6 +4,8 @@ import { StoreProvider } from './store/store';
 import { SyncProvider } from './store/sync';
 import { TabBar, ToastProvider } from './components/ui';
 import Splash from './components/Splash';
+import PinLock from './components/PinLock';
+import Notifications from './pages/Notifications';
 import Home from './pages/Home';
 import Customers from './pages/Customers';
 import CustomerDetail from './pages/CustomerDetail';
@@ -43,6 +45,7 @@ export default function App() {
       <ToastProvider>
         <Router basename={basename}>
           <ScrollTop />
+          <PinLock>
           <div className="app">
             <Routes>
               <Route element={<WithTabs />}>
@@ -56,6 +59,7 @@ export default function App() {
                 <Route path="/daha/ziyaretler" element={<Visits />} />
                 <Route path="/daha/raporlar" element={<Reports />} />
                 <Route path="/daha/ayarlar" element={<Settings />} />
+                <Route path="/bildirimler" element={<Notifications />} />
               </Route>
               <Route path="/musteriler/yeni" element={<CustomerForm />} />
               <Route path="/musteriler/:id/duzenle" element={<CustomerForm />} />
@@ -65,6 +69,7 @@ export default function App() {
               <Route path="*" element={<Home />} />
             </Routes>
           </div>
+          </PinLock>
         </Router>
         {splash && <Splash />}
       </ToastProvider>

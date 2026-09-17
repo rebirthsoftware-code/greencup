@@ -38,8 +38,10 @@ export default function VisitDetail() {
         <div className="muted">{s.lastVisit ? fmtDate(s.lastVisit.date) : 'Henüz ziyaret yok'}</div>
         <div className="small bold" style={{ marginTop: 10 }}>Son Görüşme</div>
         <div className="muted">{lastNote?.note || '-'}</div>
+        {s.plannedVisits.length > 0 && <><div className="small bold" style={{ marginTop: 10 }}>Planlı Ziyaret</div><div className="muted">{s.plannedVisits.map((v) => fmtDate(v.date)).join(', ')}</div></>}
       </div>
-      <div className="sticky-bottom"><Link to={`/islem?tur=visit&musteri=${id}`} className="btn btn-primary">Ziyaret Kaydı Ekle</Link></div>
+      <Link to="/daha/ziyaretler" className="btn btn-ghost" style={{ marginTop: 12 }}>Ziyaret Planla</Link>
+      <div className="sticky-bottom"><Link to={`/islem?tur=visit&musteri=${id}${s.plannedVisits[0] ? `&plan=${s.plannedVisits[0].id}` : ''}`} className="btn btn-primary">Ziyaret Kaydı Ekle</Link></div>
     </div>
   );
 }

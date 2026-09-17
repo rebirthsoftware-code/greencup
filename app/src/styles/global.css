@@ -278,3 +278,35 @@ textarea.input { height: auto; min-height: 92px; padding: 12px 14px; resize: ver
   .page { padding: 0; }
   .card { box-shadow: none; break-inside: avoid; }
 }
+
+/* PIN kilidi */
+.pin-screen { position: fixed; inset: 0; z-index: 300; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
+.pin-dots { display: flex; gap: 12px; margin: 16px 0 6px; }
+.pin-dots span { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--green); }
+.pin-dots span.on { background: var(--green); }
+.pin-pad { display: grid; grid-template-columns: repeat(3, 72px); gap: 12px; margin-top: 10px; }
+.pin-pad button { height: 64px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); font-size: 22px; font-weight: 600; }
+.pin-pad button:active { background: var(--green-light); }
+.pin-pad button:disabled { visibility: hidden; }
+
+/* Ürün satırları (çok ürünlü işlem) */
+.line { display: grid; grid-template-columns: 1fr 78px 92px 28px; gap: 6px; align-items: center; margin-bottom: 8px; }
+.line .input { height: 42px; padding: 0 10px; font-size: 14px; }
+.line .rm { color: var(--text-3); display: grid; place-items: center; height: 42px; }
+
+/* Avatar logo */
+.avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+/* Grafik */
+.chart { width: 100%; height: auto; display: block; }
+.chart-legend { display: flex; gap: 14px; font-size: 12px; color: var(--text-2); margin-top: 6px; }
+.chart-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+/* Bildirim rozeti */
+.icon-btn { position: relative; }
+.icon-btn .badge-dot { position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; border-radius: 9px; background: var(--red); color: #fff; font-size: 11px; font-weight: 800; display: grid; place-items: center; padding: 0 4px; }
+
+/* Satır eylemleri */
+.row-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+.tl-item { cursor: pointer; }
+.tl-meta { font-size: 11.5px; color: var(--text-3); margin-top: 4px; }
