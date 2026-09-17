@@ -8,5 +8,15 @@
   "userName": "Barış Kandemir",
   "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/15",
   "createdAt": "2026-09-17T14:06:04.083Z"
+ },
+ {
+  "endpoint": "https://fcm.googleapis.com/fcm/send/cergi61lz2U:APA91bFMQE6aL8iAsDy3c1A1Sz0MY_Lqs8Jriu_aBMnyOnadMQ4ASozyZVnA-VzkFy8lBQH1SDjdudo5G-sBwrxbPndSkZrjqWox_W9g2yC5p9T29iYBY9uuJe7IRMwMGye0G_rUFO9G",
+  "keys": {
+   "p256dh": "BI6_z0NW70SpHJDNqqiq1zr5NtJmhh8vznCe3tbO-Dz_PaApT71SBo6fqiywJ7BNs7Ha_HpKvgh5spnQaR8I7KA",
+   "auth": "RzDkqk3np4Ea0OhIeGSPdA"
+  },
+  "userName": "Barış Kandemir",
+  "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome",
+  "createdAt": "2026-09-17T14:37:15.309Z"
  }
 ]
