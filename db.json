@@ -1,6 +1,17 @@
 {
  "version": 2,
- "products": [],
+ "products": [
+  {
+   "id": "j46u41wtmu5zwww6",
+   "unit": "adet",
+   "stock": 1000,
+   "price": 0,
+   "createdAt": "2026-09-17T20:42:13.254Z",
+   "name": "14oz Ağır Gramaj Plastik Bardak",
+   "minStock": 0,
+   "updatedAt": "2026-09-17T20:42:13.254Z"
+  }
+ ],
  "customers": [
   {
    "id": "uo7kqubfmu5w4ome",
