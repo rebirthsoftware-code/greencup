@@ -97,13 +97,13 @@ export function SyncProvider({ children }) {
   // Açılışta ve uygulamaya geri dönünce uzağı kontrol et; internet gelince bekleyeni yaz
   useEffect(() => {
     if (!enabled) return;
-    pull();
+    const first = setTimeout(() => pull(), 0);
     let last = Date.now();
     const onVisible = () => { if (document.visibilityState === 'visible' && Date.now() - last > 20000) { last = Date.now(); pull(); } };
     const onOnline = () => { if (metaRef.current.dirty) push(); else pull(); };
     document.addEventListener('visibilitychange', onVisible);
     window.addEventListener('online', onOnline);
-    return () => { document.removeEventListener('visibilitychange', onVisible); window.removeEventListener('online', onOnline); };
+    return () => { clearTimeout(first); document.removeEventListener('visibilitychange', onVisible); window.removeEventListener('online', onOnline); };
   }, [enabled, pull, push]);
 
   const setCfg = useCallback((next) => {
