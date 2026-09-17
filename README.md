@@ -81,7 +81,7 @@ greencup/
 Siteden bağımsız çalışan mobil öncelikli müşteri takip & cari yönetim uygulaması (PWA)
 [`app/`](app/) klasöründedir. Kendi `package.json`'ı vardır; kurulum ve ekran listesi için
 [`app/README.md`](app/README.md) dosyasına bakın.
-Canlı: **https://greencup.vercel.app/app/** (sitenin derlemesiyle birlikte `dist/app/` altına çıkar). Verisi bu reponun `data` dalındaki `db.json` dosyasında tutulur.
+Canlı: **https://greencup.vercel.app/app/** (sitenin derlemesiyle birlikte `dist/app/` altına çıkar). Verisi bu reponun `data` dalındaki `db.json` dosyasında tutulur. `api/notify.js` anlık bildirim aktarıcısıdır (Vercel fonksiyonu; `VAPID_*` ortam değişkenleri gerekir).
 
 ```bash
 cd app && npm install && npm run dev   # http://localhost:5174

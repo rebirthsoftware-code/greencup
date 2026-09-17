@@ -4,6 +4,9 @@ import { useSync, DEFAULT_CFG } from '../store/sync';
 import { testConnection } from '../store/github';
 import { loadDevice, saveDevice } from '../store/storage';
 import { setDevicePin, hasDevicePin } from '../store/pin';
+import { pushSupported, getSubscription, subscribePush, unsubscribePush, sendTestPush, isIOS, isStandalone } from '../store/push';
+import { NOTIFY_API } from '../push-config';
+import { useEffect } from 'react';
 import { PageHeader, Sheet, DangerButton, useToast } from '../components/ui';
 import * as Ic from '../components/Icons';
 
@@ -26,6 +29,17 @@ export default function Settings() {
   const [userName, setUserName] = useState('');
   const [sc, setSc] = useState(sync.cfg || DEFAULT_CFG);
   const [testing, setTesting] = useState(false);
+  const [pushOn, setPushOn] = useState(null); // null: bilinmiyor
+  const [pushBusy, setPushBusy] = useState(false);
+  useEffect(() => { getSubscription().then((s) => setPushOn(!!s)).catch(() => setPushOn(false)); }, []);
+  const enablePush = async () => {
+    if (!sync.enabled) return toast('Önce Bulut Senkron\'u bağlayın (abonelik buluta yazılır)');
+    setPushBusy(true);
+    try { await subscribePush(sync.cfg, activeUser?.name); setPushOn(true); toast('Anlık bildirimler açıldı'); }
+    catch (e) { toast(e.message); } finally { setPushBusy(false); }
+  };
+  const disablePush = async () => { setPushBusy(true); try { await unsubscribePush(sync.cfg); setPushOn(false); toast('Anlık bildirimler kapatıldı'); } catch (e) { toast(e.message); } finally { setPushBusy(false); } };
+  const testPush = async () => { setPushBusy(true); try { await sendTestPush(NOTIFY_API); toast('Test bildirimi gönderildi'); } catch (e) { toast(e.message); } finally { setPushBusy(false); } };
   const setScField = (k) => (e) => setSc({ ...sc, [k]: e.target.value.trim() });
   const setField = (k) => (e) => setF({ ...f, [k]: e.target.value });
 
@@ -74,7 +88,7 @@ export default function Settings() {
         <Row icon={Ic.Lock} label="PIN Kilidi" sub={hasDevicePin() ? 'Açık · bu cihazda' : 'Kapalı'} onClick={() => setSheet('pin')} />
         <Row icon={Ic.Cloud} label="Bulut Senkron (GitHub)" sub={syncLabel} onClick={() => setSheet('sync')} />
         <Row icon={Ic.FileText} label="Yedekleme (JSON)" onClick={() => setSheet('yedek')} />
-        <Row icon={Ic.Bell} label="Bildirimler" sub="Uygulama içi; anlık bildirim için sunucu gerekir" onClick={() => setSheet('bildirim')} />
+        <Row icon={Ic.Bell} label="Anlık Bildirimler" sub={pushOn ? 'Açık · stok azalınca/tükenince' : 'Kapalı'} onClick={() => setSheet('bildirim')} />
         <Row icon={Ic.Info} label="Hakkında" onClick={() => setSheet('hakkinda')} />
       </div>
       <div className="card" style={{ marginTop: 12 }}>
@@ -159,8 +173,17 @@ export default function Settings() {
         </div>
       </Sheet>
 
-      <Sheet open={sheet === 'bildirim'} onClose={() => setSheet(null)} title="Bildirimler">
-        <p className="small muted">Geciken alacaklar, yaklaşan vadeler ve giderler, günün ziyaret planı ve azalan stok, ana sayfadaki zil simgesinde ve Bildirimler ekranında listelenir. Telefona anlık bildirim (uygulama kapalıyken) için bir sunucu gerekir; bu sürümde yoktur.</p>
+      <Sheet open={sheet === 'bildirim'} onClose={() => setSheet(null)} title="Anlık Bildirimler">
+        <p className="small muted" style={{ marginBottom: 10 }}>Bir ürünün satılabilir miktarı uyarı eşiğinin altına düştüğünde veya tükendiğinde, o anda tüm abone telefonlara bildirim gider; uygulama kapalıyken de. Eşiği Stok / Depo'da ürün kartından belirlersiniz (0 = yalnızca tükenince). Geciken alacak, vade ve ziyaret uyarıları uygulama içindeki zil simgesinde görünür.</p>
+        {!pushSupported() && <div className="card small" style={{ marginBottom: 12 }}>Bu tarayıcı anlık bildirimi desteklemiyor.</div>}
+        {isIOS() && !isStandalone() && <div className="card small" style={{ marginBottom: 12, background: 'var(--orange-bg)', borderColor: 'var(--orange-bg)' }}>iPhone'da bildirim için önce Safari'de <b>Paylaş → Ana Ekrana Ekle</b> yapın, sonra uygulamayı ana ekrandan açıp buradan bildirimleri açın.</div>}
+        {!sync.enabled && <div className="card small" style={{ marginBottom: 12 }}>Abonelik buluta yazıldığı için önce <b>Bulut Senkron</b>'u bağlayın.</div>}
+        <div className="stack">
+          {pushOn
+            ? <><button className="btn btn-ghost" onClick={testPush} disabled={pushBusy}>Test Bildirimi Gönder</button><button className="btn btn-ghost" style={{ color: 'var(--red)' }} onClick={disablePush} disabled={pushBusy}>Bildirimleri Kapat</button></>
+            : <button className="btn btn-primary" onClick={enablePush} disabled={pushBusy || !pushSupported()}>{pushBusy ? 'Açılıyor...' : 'Bildirimleri Aç'}</button>}
+        </div>
+        <p className="xs muted" style={{ marginTop: 12 }}>Bildirimi, değişikliği yapan cihaz üretir ve Vercel'deki /api/notify üzerinden tüm abone cihazlara iletilir. Veri girişi yapılan her cihazda Bulut Senkron bağlı olmalıdır.</p>
       </Sheet>
 
       <Sheet open={sheet === 'hakkinda'} onClose={() => setSheet(null)} title="Hakkında">

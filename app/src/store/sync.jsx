@@ -3,6 +3,9 @@ import { useStore } from './store';
 import { normalizeState } from './seed';
 import { mergeStates } from './merge';
 import { fetchDb, pushDb, createDb, GithubError } from './github';
+import { newAlerts } from './alerts';
+import { notifyAll } from './push';
+import { NOTIFY_API } from '../push-config';
 export { DEFAULT_CFG } from './github';
 
 // Senkron ayarları (token dahil) sadece bu cihazda, uygulama verisinden ayrı saklanır.
@@ -100,9 +103,12 @@ export function SyncProvider({ children }) {
   // Yerel değişiklik → kirli işaretle ve kısa gecikmeyle yaz
   useEffect(() => {
     if (seenRef.current === state) return;
+    const prev = seenRef.current;
     seenRef.current = state;
     if (appliedRef.current === state) return;
     if (!enabled) return;
+    // Olaya bağlı anlık bildirimler (yalnızca bu cihazda yapılan değişiklikler için; uzaktan gelenler tekrar bildirilmez)
+    for (const a of newAlerts(prev, state)) notifyAll(cfgRef.current, NOTIFY_API, a).catch(() => {});
     metaRef.current = { ...metaRef.current, dirty: true }; writeJson(META_KEY, metaRef.current);
     const uiTimer = setTimeout(() => setMetaState(metaRef.current), 0);
     clearTimeout(timerRef.current);

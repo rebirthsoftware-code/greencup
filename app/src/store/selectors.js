@@ -1,4 +1,4 @@
-import { daysBetween, today } from '../utils/format';
+import { daysBetween, today } from '../utils/format.js';
 
 const sum = (arr, f = (x) => x) => arr.reduce((a, x) => a + f(x), 0);
 const byDateDesc = (a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : (b.createdAt || '') > (a.createdAt || '') ? 1 : -1);

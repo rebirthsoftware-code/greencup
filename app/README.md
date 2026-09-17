@@ -32,7 +32,28 @@ npm run lint
 | Raporlar | Son 6 ay satış/tahsilat grafiği; cari, stok, kasa, ziyaret, satış, tahsilat raporları; **Excel (CSV) indir** |
 | Ayarlar | Firma bilgileri (adres, VKN, KDV, varsayılan vade, fatura no), **kullanıcılar** (cihaz başına aktif kullanıcı, hareketlerde "kim girdi"), PIN, bulut senkron, JSON yedek, tümünü temizle / örnek veri |
 
-Sunucu gerektirdiği için bu sürümde olmayanlar: şifreli çok kullanıcılı giriş, uygulama kapalıyken telefona anlık bildirim, resmi e-Fatura entegrasyonu.
+Sunucu gerektirdiği için bu sürümde olmayanlar: şifreli çok kullanıcılı giriş, resmi e-Fatura entegrasyonu.
+
+## Anlık bildirimler (Web Push)
+
+Bir ürünün satılabilir miktarı uyarı eşiğinin altına düştüğünde veya tükendiğinde, değişikliği yapan cihaz
+olayı üretir ve Vercel'deki `api/notify.js` üzerinden **tüm abone telefonlara** anında bildirim gider
+(uygulama kapalıyken de). Zamanlanmış görev yoktur; bildirim olaya bağlıdır.
+
+Parçalar:
+- `app/public/sw.js` – `push` ve `notificationclick` olayları.
+- `app/src/store/push.js` – abone ol / kaldır; abonelikler `data` dalındaki `push-subscriptions.json` dosyasına yazılır (GitHub token'ı ile).
+- `app/src/store/alerts.js` – yerel değişiklik sonrası yeni ortaya çıkan durumlar (şimdilik: stok azaldı / tükendi).
+- `api/notify.js` – aktarıcı. `POST {from, title, body, url, tag}`: `from` kayıtlı bir abonelik olmalı (yetki). `GET ?endpoint=` test bildirimi.
+
+Kurulum (bir kez, Vercel panelinde → Settings → Environment Variables):
+- `VAPID_PUBLIC_KEY` = `app/src/push-config.js` içindeki açık anahtar
+- `VAPID_PRIVATE_KEY` = eşleşen özel anahtar (repoya konmaz)
+- `VAPID_SUBJECT` = `mailto:...` (isteğe bağlı)
+
+Sonra her telefonda: Ayarlar → **Anlık Bildirimler** → *Bildirimleri Aç* → *Test Bildirimi Gönder*.
+iPhone'da önce Safari → Paylaş → **Ana Ekrana Ekle**, uygulamayı ana ekrandan açıp sonra bildirimleri açın (iOS 16.4+).
+Uyarı eşiği ürün kartındadır (Stok / Depo → ürüne dokun); 0 ise yalnızca tükenince bildirilir.
 
 ## Canlı adres
 
