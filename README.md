@@ -76,6 +76,17 @@ greencup/
 - **3D product models** — the `modelPath` fields point to placeholder `.glb` files (`/models/...`). They are reserved for a future 3D product viewer and are **not** loaded yet; the catalog currently shows colored placeholders. The only live 3D scene is the hero's falling leaves.
 - **`process_leaf` scripts** — one-off utilities that use Jimp to strip the white background from a source leaf image and export `public/leaf.png` (the texture used by the falling-leaves effect). `process_leaf.cjs` contains a hardcoded local input path and is **not** part of the build — keep it for reference or update the path before re-running.
 
+## 📱 Müşteri Takip Uygulaması
+
+Siteden bağımsız çalışan mobil öncelikli müşteri takip & cari yönetim uygulaması (PWA)
+[`app/`](app/) klasöründedir. Kendi `package.json`'ı vardır; kurulum ve ekran listesi için
+[`app/README.md`](app/README.md) dosyasına bakın.
+Canlı: **https://greencup.vercel.app/app/** (sitenin derlemesiyle birlikte `dist/app/` altına çıkar). Verisi bu reponun `data` dalındaki `db.json` dosyasında tutulur.
+
+```bash
+cd app && npm install && npm run dev   # http://localhost:5174
+```
+
 ## 📜 License
 
 This project is currently private (no license specified). Add a license file if you intend to distribute it.
