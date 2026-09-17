@@ -30,7 +30,7 @@ npm run lint
 | Ziyaretler + ziyaret detayı (ara, yol tarifi, harita) | `/daha/ziyaretler`, `/ziyaret/:id` | ✅ |
 | Fatura görüntüleme / yazdırma | `/fatura/:id` | ✅ |
 | Raporlar | `/daha/raporlar` | ✅ (temel liste) |
-| Ayarlar (profil, firma, yedekleme, sıfırlama) | `/daha/ayarlar` | ✅ |
+| Ayarlar (profil, firma, bulut senkron, yedekleme, tümünü temizle, örnek veri) | `/daha/ayarlar` | ✅ |
 | Bulut senkron (GitHub `data` dalı) | Ayarlar | ✅ |
 | Kullanıcı yönetimi, giriş, anlık bildirim | – | ⏳ |
 
@@ -70,7 +70,7 @@ Ana sayfadaki bulut simgesi durumu gösterir: gri kapalı, yeşil güncel, turun
 
 Bulut senkron kapalıyken tüm veri yalnızca **cihazda** (`localStorage`) tutulur. İlk açılışta `src/store/seed.js` içindeki
 örnek veri yüklenir. Ayarlar > Yedekleme ile JSON yedek alınıp geri yüklenebilir;
-Ayarlar > Verileri Sıfırla ile örnek veriye dönülür.
+Ayarlar > **Tümünü Temizle** ile boş başlanır (ayarlar korunur), **Örnek Veriyi Yükle** ile demo veriye dönülür.
 
 İleride gerçek bir veritabanına geçilirse yalnızca `src/store/github.js` ve `sync.jsx` değişir; ekranlar `useStore()` üzerinden çalıştığı için etkilenmez.
 

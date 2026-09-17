@@ -13,7 +13,7 @@ const Row = ({ icon: Icon, label, onClick, danger }) => (
 );
 
 export default function Settings() {
-  const { state, updateSettings, reset } = useStore();
+  const { state, updateSettings, reset, clearAll } = useStore();
   const sync = useSync();
   const toast = useToast();
   const [sc, setSc] = useState(sync.cfg || DEFAULT_CFG);
@@ -64,7 +64,10 @@ export default function Settings() {
         <Row icon={Ic.Info} label="Hakkında" onClick={() => setSheet('hakkinda')} />
       </div>
       <div className="card" style={{ marginTop: 12 }}>
-        <Row icon={Ic.Trash} label="Verileri Sıfırla (demo veriye dön)" danger onClick={() => { if (confirm('Tüm veriler silinip örnek veri yüklenecek. Emin misiniz?')) { reset(); toast('Veriler sıfırlandı'); } }} />
+        <Row icon={Ic.Trash} label="Tümünü Temizle (boş başla)" danger onClick={() => {
+          if (confirm('Tüm müşteriler, hareketler, ürünler, kasa ve ödemeler silinecek. Bulut senkron açıksa buluttaki veri de temizlenir. Emin misiniz?')) { clearAll(); toast('Tüm veriler temizlendi'); }
+        }} />
+        <Row icon={Ic.Box} label="Örnek Veriyi Yükle" onClick={() => { if (confirm('Mevcut veriler silinip örnek (demo) veri yüklenecek. Emin misiniz?')) { reset(); toast('Örnek veri yüklendi'); } }} />
       </div>
 
       <Sheet open={sheet === 'profil' || sheet === 'firma'} onClose={() => setSheet(null)} title={sheet === 'firma' ? 'Firma Bilgileri' : 'Profil'}>

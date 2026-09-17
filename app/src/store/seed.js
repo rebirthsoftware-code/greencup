@@ -102,3 +102,16 @@ export const makeSeed = () => ({
   expenses: seedExpenses,
   settings: seedSettings,
 });
+
+/** Boş başlangıç: hiç müşteri/ürün/hareket yok, kasa sıfır. Ayarlar korunur. */
+export const makeEmpty = (settings = seedSettings) => ({
+  version: 1,
+  products: [],
+  customers: [],
+  transactions: [],
+  reserved: [],
+  cash: { nakit: 0, banka: 0, kart: 0 },
+  cashMoves: [],
+  expenses: [],
+  settings,
+});
