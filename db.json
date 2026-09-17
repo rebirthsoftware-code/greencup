@@ -1,7 +1,21 @@
 {
- "version": 1,
+ "version": 2,
  "products": [],
- "customers": [],
+ "customers": [
+  {
+   "id": "1qv0k8tvmu5muae8",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-17T14:36:15.776Z",
+   "name": "Özgür",
+   "type": "Cafe & Restaurant",
+   "phone": "5382120317",
+   "city": "",
+   "district": "",
+   "notes": "",
+   "address": "Ggggg",
+   "updatedAt": "2026-09-17T14:36:15.776Z"
+  }
+ ],
  "transactions": [],
  "reserved": [],
  "cash": {
@@ -11,11 +25,24 @@
  },
  "cashMoves": [],
  "expenses": [],
+ "plannedVisits": [],
+ "users": [
+  {
+   "id": "u1",
+   "name": "Barış Kandemir",
+   "role": "Yönetici"
+  }
+ ],
+ "tombstones": [],
  "settings": {
   "userName": "Barış Kandemir",
   "userEmail": "baris@greencup.com.tr",
   "company": "GreenCup Promosyon",
+  "companyAddress": "",
+  "taxNo": "",
   "kdv": 20,
-  "overdueDays": 30
+  "overdueDays": 30,
+  "defaultDueDays": 30,
+  "invoiceSeq": 1
  }
 }
