@@ -18,8 +18,8 @@ export default function BarChart({ data, height = 180 }) {
   return (
     <div>
       <svg className="chart" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Aylık satış ve tahsilat">
-        {[0.5, 1].map((f) => <g key={f}><line x1={padL} x2={W - padR} y1={y(top * f)} y2={y(top * f)} stroke="#E5E9E7" /><text x={padL} y={y(top * f) - 4} fontSize="10" fill="#8E9A94">₺{short(top * f)}</text></g>)}
-        <line x1={padL} x2={W - padR} y1={y(0)} y2={y(0)} stroke="#C9D1CC" />
+        {[0.5, 1].map((f) => <g key={f}><line x1={padL} x2={W - padR} y1={y(top * f)} y2={y(top * f)} stroke="var(--border)" /><text x={padL} y={y(top * f) - 4} fontSize="10" fill="var(--text-3)">₺{short(top * f)}</text></g>)}
+        <line x1={padL} x2={W - padR} y1={y(0)} y2={y(0)} stroke="var(--border)" />
         {data.map((d, i) => {
           const gx = padL + i * groupW + (groupW - barW * SERIES.length - 2) / 2;
           return (
@@ -29,7 +29,7 @@ export default function BarChart({ data, height = 180 }) {
                 const v = d[s.key]; const h = Math.max(0, y(0) - y(v));
                 return <rect key={s.key} x={gx + k * (barW + 2)} y={y(v)} width={barW} height={h} rx={h > 4 ? 4 : 0} fill={s.color} opacity={hover == null || hover === i ? 1 : 0.45} />;
               })}
-              <text x={padL + i * groupW + groupW / 2} y={H - 8} fontSize="11" textAnchor="middle" fill="#5C6B63">{d.label}</text>
+              <text x={padL + i * groupW + groupW / 2} y={H - 8} fontSize="11" textAnchor="middle" fill="var(--text-2)">{d.label}</text>
             </g>
           );
         })}
@@ -37,8 +37,8 @@ export default function BarChart({ data, height = 180 }) {
           const d = data[hover]; const cx = padL + hover * groupW + groupW / 2; const bw = 118; const bx = Math.min(W - padR - bw, Math.max(padL, cx - bw / 2));
           return (
             <g>
-              <rect x={bx} y={2} width={bw} height={40} rx="6" fill="#16211B" />
-              {SERIES.map((s, k) => <text key={s.key} x={bx + 8} y={17 + k * 15} fontSize="11" fill="#fff"><tspan fill={s.color}>■</tspan> {s.label}: {fmtMoney(d[s.key])}</text>)}
+              <rect x={bx} y={2} width={bw} height={40} rx="6" fill="var(--text)" />
+              {SERIES.map((s, k) => <text key={s.key} x={bx + 8} y={17 + k * 15} fontSize="11" fill="var(--bg)"><tspan fill={s.color}>■</tspan> {s.label}: {fmtMoney(d[s.key])}</text>)}
             </g>
           );
         })()}

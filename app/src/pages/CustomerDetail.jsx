@@ -156,7 +156,7 @@ export default function CustomerDetail() {
         right={<Link to={`/musteriler/${id}/duzenle`} className="icon-btn" aria-label="Düzenle"><Ic.Edit size={18} /></Link>} />
 
       <div className="card" style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-        <Avatar customer={customer} size="lg" />
+        <Avatar customer={customer} size="lg" status={s.status} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div className="row"><div style={{ fontSize: 18, fontWeight: 800 }}>{customer.name}</div><StatusBadge status={s.status} /></div>
           <span className="badge badge--aktif" style={{ marginTop: 4 }}>{customer.type}</span>
