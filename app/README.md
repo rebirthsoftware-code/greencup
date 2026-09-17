@@ -31,16 +31,46 @@ npm run lint
 | Fatura görüntüleme / yazdırma | `/fatura/:id` | ✅ |
 | Raporlar | `/daha/raporlar` | ✅ (temel liste) |
 | Ayarlar (profil, firma, yedekleme, sıfırlama) | `/daha/ayarlar` | ✅ |
-| Kullanıcı yönetimi, giriş, anlık bildirim | – | ⏳ sunucu aşaması |
+| Bulut senkron (GitHub `data` dalı) | Ayarlar | ✅ |
+| Kullanıcı yönetimi, giriş, anlık bildirim | – | ⏳ |
 
-## Veri
+## Canlıya alma (Vercel)
 
-Şimdilik tüm veri **cihazda** (`localStorage`) tutulur. İlk açılışta `src/store/seed.js` içindeki
+Uygulama, siteden ayrı bir Vercel projesi olarak yayınlanır:
+
+1. Vercel → **Add New Project** → bu repoyu seçin.
+2. **Root Directory**: `app` (Framework: Vite, build `npm run build`, output `dist` otomatik gelir).
+3. Deploy. Adres `greencup-app.vercel.app` benzeri olur; isterseniz özel alan adı bağlayın.
+
+`app/vercel.json` tüm yolları `index.html`'e yönlendirir (SPA) ve `data` dalına yapılan
+veri commit'lerinin dağıtım tetiklemesini kapatır. Kökteki `vercel.json` aynı şeyi site projesi için yapar.
+
+## Veri: GitHub üzerinde veritabanı
+
+Veriler `localStorage`'da tutulur **ve** GitHub'daki bu repoda, `data` dalındaki `db.json`
+dosyasına senkronize edilir (`src/store/github.js`, `src/store/sync.jsx`). Repo herkese açık
+olduğu için bu dosya da herkese açıktır; bu, bilinçli bir tercihtir.
+
+Kurulum (her cihazda bir kez):
+1. GitHub → Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → *Generate new token*.
+   Repository access: yalnızca `greencup`. Permissions → Repository → **Contents: Read and write**.
+2. Uygulamada Ayarlar → **Bulut Senkron (GitHub)** → token'ı yapıştırın → *Bağlantıyı Test Et* → *Kaydet ve Bağla*.
+3. `data` dalı yoksa uygulama, içinde yalnızca `db.json` olan bağımsız bir dal olarak kendisi oluşturur.
+
+Nasıl çalışır:
+- Her değişiklik 1,5 sn sonra `db.json`'a commit edilir; commit geçmişi değişiklik geçmişidir.
+- Açılışta ve uygulamaya geri dönüldüğünde uzaktaki sürüm kontrol edilir; yerelde bekleyen değişiklik yoksa uzaktaki uygulanır.
+- İki cihaz aynı anda yazarsa son yazan kazanır (sha çakışmasında bir kez yeniden denenir).
+- Çevrimdışıyken değişiklikler cihazda bekler, bağlantı gelince yazılır.
+- Token yalnızca cihazda saklanır, uygulama paketine ve repoya girmez.
+
+Ana sayfadaki bulut simgesi durumu gösterir: gri kapalı, yeşil güncel, turuncu bekleyen değişiklik, kırmızı hata.
+
+Bulut senkron kapalıyken tüm veri yalnızca **cihazda** (`localStorage`) tutulur. İlk açılışta `src/store/seed.js` içindeki
 örnek veri yüklenir. Ayarlar > Yedekleme ile JSON yedek alınıp geri yüklenebilir;
 Ayarlar > Verileri Sıfırla ile örnek veriye dönülür.
 
-Sunucuya (Supabase / Firebase) geçerken sadece `src/store/storage.js` değişir; ekranlar
-`useStore()` üzerinden çalıştığı için etkilenmez.
+İleride gerçek bir veritabanına geçilirse yalnızca `src/store/github.js` ve `sync.jsx` değişir; ekranlar `useStore()` üzerinden çalıştığı için etkilenmez.
 
 ### Veri modeli (özet)
 
@@ -63,7 +93,7 @@ app/
 └── src/
     ├── components/   # Icons, ui (TabBar, PageHeader, Sheet, Toast...), Splash
     ├── pages/        # her ekran bir dosya
-    ├── store/        # seed, storage, store (context), selectors
+    ├── store/        # seed, storage, store (context), selectors, github (API), sync
     ├── styles/       # global.css (tema değişkenleri)
     └── utils/        # format (para, tarih)
 ```

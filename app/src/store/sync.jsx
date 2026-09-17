@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from './store';
-import { fetchDb, pushDb, GithubError } from './github';
+import { makeSeed } from './seed';
+import { fetchDb, pushDb, createDb, GithubError } from './github';
 export { DEFAULT_CFG } from './github';
 
 // Senkron ayarları (token dahil) sadece bu cihazda, uygulama verisinden ayrı saklanır.
@@ -46,6 +47,7 @@ export function SyncProvider({ children }) {
   const push = useCallback(async () => {
     const c = cfgRef.current; if (!c?.token || busyRef.current) return;
     busyRef.current = true; setStatus('syncing'); setError(null);
+    clearTimeout(timerRef.current); // bekleyen gecikmeli yazma varsa bu yazma onu kapsar
     try {
       let sha = metaRef.current.sha;
       try {
@@ -66,15 +68,18 @@ export function SyncProvider({ children }) {
     busyRef.current = true; setStatus('syncing'); setError(null);
     try {
       const remote = await fetchDb(c);
-      if (!remote.data) {                        // dosya yok: ilk kurulum, yereli yükle
-        busyRef.current = false; await push(); return;
+      if (!remote.data) {                        // dosya/dal yok: ilk kurulum, yereli yükle
+        const sha = await createDb(c, stateRef.current);
+        setMeta({ sha, dirty: false, lastSync: new Date().toISOString() }); setStatus('idle');
+        return;
       }
       if (metaRef.current.dirty && !force) {     // yerelde bekleyen değişiklik var: önce onu yaz
         busyRef.current = false; await push(); return;
       }
       if (remote.sha !== metaRef.current.sha || force) {
-        appliedRef.current = remote.data; seenRef.current = remote.data;
-        replaceState(remote.data);
+        const next = { ...makeSeed(), ...remote.data }; // eksik alanlar varsayılanla tamamlanır
+        appliedRef.current = next; seenRef.current = next;
+        replaceState(next);
       }
       setMeta({ sha: remote.sha, dirty: false, lastSync: new Date().toISOString() }); setStatus('idle');
     } catch (e) { fail(e); } finally { busyRef.current = false; }

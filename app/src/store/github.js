@@ -3,7 +3,7 @@
 
 const API = 'https://api.github.com';
 
-export const DEFAULT_CFG = { owner: 'rebirthsoftware-code', repo: 'greencup-data', branch: 'main', path: 'db.json', token: '' };
+export const DEFAULT_CFG = { owner: 'rebirthsoftware-code', repo: 'greencup', branch: 'data', path: 'db.json', token: '' };
 
 const b64encode = (str) => {
   const bytes = new TextEncoder().encode(str);
@@ -64,4 +64,29 @@ export async function testConnection(cfg) {
   const res = await fetch(`${API}/repos/${cfg.owner}/${cfg.repo}`, { headers: headers(cfg.token), cache: 'no-store' });
   const json = await handle(res);
   return { name: json.full_name, private: json.private, canWrite: !!json.permissions?.push, defaultBranch: json.default_branch };
+}
+
+const post = (cfg, path, body) => fetch(`${API}/repos/${cfg.owner}/${cfg.repo}/${path}`, {
+  method: 'POST', headers: { ...headers(cfg.token), 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+}).then(handle);
+
+/** Dal var mı? */
+export async function branchExists(cfg) {
+  const res = await fetch(`${API}/repos/${cfg.owner}/${cfg.repo}/branches/${encodeURIComponent(cfg.branch)}`, { headers: headers(cfg.token), cache: 'no-store' });
+  if (res.status === 404) return false;
+  await handle(res);
+  return true;
+}
+
+/**
+ * Veri dosyasını ilk kez oluşturur. Dal yoksa, içinde yalnızca db.json olan
+ * bağımsız (orphan) bir dal açar; site kodu bu dala karışmaz. Dosyanın blob sha'sını döner.
+ */
+export async function createDb(cfg, data) {
+  if (await branchExists(cfg)) return pushDb(cfg, data, null);
+  const blob = await post(cfg, 'git/blobs', { content: JSON.stringify(data, null, 1), encoding: 'utf-8' });
+  const tree = await post(cfg, 'git/trees', { tree: [{ path: cfg.path, mode: '100644', type: 'blob', sha: blob.sha }] });
+  const commit = await post(cfg, 'git/commits', { message: 'app: veri dalı oluşturuldu', tree: tree.sha, parents: [] });
+  await post(cfg, 'git/refs', { ref: `refs/heads/${cfg.branch}`, sha: commit.sha });
+  return blob.sha;
 }

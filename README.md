@@ -81,6 +81,7 @@ greencup/
 Siteden bağımsız çalışan mobil öncelikli müşteri takip & cari yönetim uygulaması (PWA)
 [`app/`](app/) klasöründedir. Kendi `package.json`'ı vardır; kurulum ve ekran listesi için
 [`app/README.md`](app/README.md) dosyasına bakın.
+Uygulama Vercel'de ayrı proje olarak yayınlanır (Root Directory: `app`); verisi bu reponun `data` dalındaki `db.json` dosyasında tutulur.
 
 ```bash
 cd app && npm install && npm run dev   # http://localhost:5174

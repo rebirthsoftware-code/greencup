@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useStore } from '../store/store';
+import { useSync } from '../store/sync';
 import { dashboard } from '../store/selectors';
 import { fmtMoney, fmtNum } from '../utils/format';
 import * as Ic from '../components/Icons';
@@ -11,6 +12,9 @@ const Quick = ({ to, icon: Icon, label }) => (
 export default function Home() {
   const { state } = useStore();
   const d = dashboard(state);
+  const sync = useSync();
+  const syncColor = !sync.enabled ? 'var(--text-3)' : sync.status === 'error' ? 'var(--red)' : sync.status === 'syncing' || sync.meta.dirty ? 'var(--orange)' : 'var(--green)';
+  const syncTitle = !sync.enabled ? 'Bulut senkron kapalı' : sync.status === 'error' ? `Senkron hatası: ${sync.error}` : sync.status === 'syncing' ? 'Senkronize ediliyor' : sync.meta.dirty ? 'Bekleyen değişiklik' : 'Bulut ile güncel';
   const firstName = state.settings.userName.split(' ')[0];
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Günaydın' : hour < 18 ? 'İyi günler' : 'İyi akşamlar';
@@ -20,6 +24,7 @@ export default function Home() {
       <header className="page-header" style={{ marginBottom: 6 }}>
         <img src="logo-greencup.png" alt="GreenCup" style={{ height: 34 }} />
         <div style={{ flex: 1 }} />
+        <Link to="/daha/ayarlar" className="icon-btn" aria-label={syncTitle} title={syncTitle} style={{ color: syncColor }}><Ic.Cloud size={20} /></Link>
         <Link to="/daha/ayarlar" className="icon-btn" aria-label="Bildirimler"><Ic.Bell size={20} /></Link>
       </header>
 

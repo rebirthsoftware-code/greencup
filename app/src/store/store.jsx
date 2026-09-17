@@ -62,7 +62,7 @@ function reducer(state, action) {
     case 'UPDATE_SETTINGS':
       return { ...state, settings: { ...state.settings, ...action.patch } };
     case 'REPLACE':
-      return action.state && typeof action.state === 'object' ? { ...makeSeed(), ...action.state } : state;
+      return action.state && typeof action.state === 'object' ? action.state : state;
     case 'RESET':
       return makeSeed();
     default:
@@ -82,8 +82,8 @@ export function StoreProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, null, () => loadState() || makeSeed());
   useEffect(() => { saveState(state); }, [state]);
 
-  const api = useMemo(() => ({
-    state,
+  // Eylem fonksiyonları sabittir (dispatch değişmez); sadece state değişir.
+  const actions = useMemo(() => ({
     dispatch,
     addCustomer: (customer) => dispatch({ type: 'ADD_CUSTOMER', customer }),
     updateCustomer: (id, patch) => dispatch({ type: 'UPDATE_CUSTOMER', id, patch }),
@@ -96,7 +96,8 @@ export function StoreProvider({ children }) {
     updateSettings: (patch) => dispatch({ type: 'UPDATE_SETTINGS', patch }),
     reset: () => { clearState(); dispatch({ type: 'RESET' }); },
     replaceState: (state) => dispatch({ type: 'REPLACE', state }),
-  }), [state]);
+  }), []);
+  const api = useMemo(() => ({ state, ...actions }), [state, actions]);
 
   return <StoreCtx.Provider value={api}>{children}</StoreCtx.Provider>;
 }

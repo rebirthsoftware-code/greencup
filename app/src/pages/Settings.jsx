@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useStore } from '../store/store';
+import { useSync, DEFAULT_CFG } from '../store/sync';
+import { testConnection } from '../store/github';
 import { PageHeader, Sheet, useToast } from '../components/ui';
 import * as Ic from '../components/Icons';
 
@@ -12,7 +14,23 @@ const Row = ({ icon: Icon, label, onClick, danger }) => (
 
 export default function Settings() {
   const { state, updateSettings, reset } = useStore();
+  const sync = useSync();
   const toast = useToast();
+  const [sc, setSc] = useState(sync.cfg || DEFAULT_CFG);
+  const [testing, setTesting] = useState(false);
+  const setScField = (k) => (e) => setSc({ ...sc, [k]: e.target.value.trim() });
+
+  const testSync = async () => {
+    setTesting(true);
+    try {
+      const r = await testConnection(sc);
+      toast(r.canWrite ? `Bağlandı: ${r.name}` : `Bağlandı ama yazma izni yok: ${r.name}`);
+    } catch (e) { toast(`Bağlantı hatası: ${e.message}`); } finally { setTesting(false); }
+  };
+  const saveSync = () => { sync.setCfg(sc); toast('Senkron açıldı, veriler yükleniyor...'); setSheet(null); };
+  const removeSync = () => { if (confirm('Bulut bağlantısı kaldırılsın mı? Veriler cihazda kalır.')) { sync.setCfg(null); setSc(DEFAULT_CFG); toast('Bağlantı kaldırıldı'); } };
+  const lastSyncText = sync.meta.lastSync ? new Date(sync.meta.lastSync).toLocaleString('tr-TR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : null;
+  const syncLabel = !sync.enabled ? 'Kapalı' : sync.status === 'syncing' ? 'Senkronize ediliyor...' : sync.status === 'error' ? `Hata: ${sync.error}` : sync.status === 'offline' ? 'Çevrimdışı, bekliyor' : sync.meta.dirty ? 'Bekleyen değişiklik var' : lastSyncText ? `Güncel · ${lastSyncText}` : 'Hazır';
   const [sheet, setSheet] = useState(null);
   const [f, setF] = useState(state.settings);
 
@@ -39,7 +57,8 @@ export default function Settings() {
       <div className="card" style={{ marginTop: 12 }}>
         <Row icon={Ic.Building} label="Firma Bilgileri" onClick={() => setSheet('firma')} />
         <Row icon={Ic.Users} label="Kullanıcı Yönetimi" onClick={() => toast('Çoklu kullanıcı için sunucu bağlantısı gerekiyor (sonraki aşama)')} />
-        <Row icon={Ic.Cloud} label="Yedekleme" onClick={() => setSheet('yedek')} />
+        <Row icon={Ic.Cloud} label={`Bulut Senkron (GitHub) · ${sync.enabled ? (sync.status === 'error' ? 'Hata' : 'Açık') : 'Kapalı'}`} onClick={() => setSheet('sync')} />
+        <Row icon={Ic.FileText} label="Yedekleme (JSON)" onClick={() => setSheet('yedek')} />
         <Row icon={Ic.Bell} label="Bildirim Ayarları" onClick={() => setSheet('bildirim')} />
         <Row icon={Ic.Lock} label="Hesap Ayarları" onClick={() => toast('Giriş sistemi sonraki aşamada eklenecek')} />
         <Row icon={Ic.Info} label="Hakkında" onClick={() => setSheet('hakkinda')} />
@@ -64,8 +83,43 @@ export default function Settings() {
         <button className="btn btn-primary" onClick={saveProfile}>Kaydet</button>
       </Sheet>
 
+      <Sheet open={sheet === 'sync'} onClose={() => setSheet(null)} title="Bulut Senkron (GitHub)">
+        <p className="small muted" style={{ marginBottom: 10 }}>
+          Veriler GitHub'daki repoda, <b>{sc.branch}</b> dalındaki <b>{sc.path}</b> dosyasında saklanır. Her değişiklik otomatik olarak oraya
+          yazılır; başka bir cihazda aynı ayarları girince aynı veri gelir.
+        </p>
+        <div className="card small" style={{ marginBottom: 14, background: 'var(--green-light)', borderColor: 'var(--green-soft)' }}>
+          <div className="bold">Durum: {syncLabel}</div>
+        </div>
+        <div className="grid-2">
+          <div className="field"><label>Kullanıcı / Org</label><div className="input"><input value={sc.owner} onChange={setScField('owner')} autoCapitalize="off" /></div></div>
+          <div className="field"><label>Repo</label><div className="input"><input value={sc.repo} onChange={setScField('repo')} autoCapitalize="off" /></div></div>
+        </div>
+        <div className="grid-2">
+          <div className="field"><label>Dal</label><div className="input"><input value={sc.branch} onChange={setScField('branch')} autoCapitalize="off" /></div></div>
+          <div className="field"><label>Dosya</label><div className="input"><input value={sc.path} onChange={setScField('path')} autoCapitalize="off" /></div></div>
+        </div>
+        <div className="field"><label>Erişim Token'ı</label>
+          <div className="input"><input type="password" value={sc.token} onChange={setScField('token')} placeholder="github_pat_..." autoCapitalize="off" autoComplete="off" /></div>
+          <span className="xs muted">GitHub → Settings → Developer settings → Personal access tokens → Fine-grained → yalnızca bu repo, <b>Contents: Read and write</b>. Token sadece bu cihazda saklanır.</span>
+        </div>
+        <div className="stack">
+          <div className="btn-row">
+            <button className="btn btn-ghost" onClick={testSync} disabled={testing || !sc.token}>{testing ? 'Test ediliyor...' : 'Bağlantıyı Test Et'}</button>
+            <button className="btn btn-primary" onClick={saveSync} disabled={!sc.token || !sc.owner || !sc.repo}>Kaydet ve Bağla</button>
+          </div>
+          {sync.enabled && (
+            <div className="btn-row">
+              <button className="btn btn-ghost" onClick={() => sync.pull({ force: true })}>Buluttan Al</button>
+              <button className="btn btn-ghost" onClick={() => sync.push()}>Buluta Gönder</button>
+            </div>
+          )}
+          {sync.enabled && <button className="btn btn-ghost" style={{ color: 'var(--red)' }} onClick={removeSync}>Bağlantıyı Kaldır</button>}
+        </div>
+      </Sheet>
+
       <Sheet open={sheet === 'yedek'} onClose={() => setSheet(null)} title="Yedekleme">
-        <p className="small muted" style={{ marginBottom: 12 }}>Veriler şu an bu cihazda saklanıyor. JSON olarak yedek alabilir, başka cihazda geri yükleyebilirsiniz.</p>
+        <p className="small muted" style={{ marginBottom: 12 }}>Bulut senkron kapalıysa veriler yalnızca bu cihazda saklanır. JSON olarak yedek alabilir, başka cihazda geri yükleyebilirsiniz.</p>
         <div className="stack">
           <button className="btn btn-primary" onClick={exportJson}>Yedek İndir (JSON)</button>
           <label className="btn btn-ghost">Yedekten Geri Yükle<input type="file" accept="application/json" hidden onChange={importJson} /></label>
