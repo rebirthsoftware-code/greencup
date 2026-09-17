@@ -1,6 +1,17 @@
 {
  "version": 2,
- "products": [],
+ "products": [
+  {
+   "id": "djf86u0tmu5xqy0j",
+   "unit": "adet",
+   "stock": 1,
+   "price": 1,
+   "createdAt": "2026-09-17T19:41:35.539Z",
+   "name": "A",
+   "minStock": 0,
+   "updatedAt": "2026-09-17T19:41:35.539Z"
+  }
+ ],
  "customers": [
   {
    "id": "uo7kqubfmu5w4ome",
