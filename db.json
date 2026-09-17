@@ -1,17 +1,6 @@
 {
  "version": 2,
- "products": [
-  {
-   "id": "6jh35dpjmu5mur2v",
-   "unit": "adet",
-   "stock": 2,
-   "price": 2000,
-   "createdAt": "2026-09-17T14:36:37.399Z",
-   "name": "Bardak",
-   "minStock": 1,
-   "updatedAt": "2026-09-17T14:36:37.399Z"
-  }
- ],
+ "products": [],
  "customers": [
   {
    "id": "nb35yakrmu5t27t0",
@@ -53,6 +42,10 @@
   {
    "id": "tti3b6e2mu5mw9y3",
    "at": "2026-09-17T16:55:00.195Z"
+  },
+  {
+   "id": "6jh35dpjmu5mur2v",
+   "at": "2026-09-17T17:51:21.382Z"
   }
  ],
  "settings": {
