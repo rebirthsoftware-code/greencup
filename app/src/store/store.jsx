@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useReducer } from 'react';
-import { makeSeed } from './seed';
+import { makeSeed, makeEmpty } from './seed';
 import { loadState, saveState, clearState } from './storage';
 import { uid, today } from '../utils/format';
 
@@ -65,6 +65,8 @@ function reducer(state, action) {
       return action.state && typeof action.state === 'object' ? action.state : state;
     case 'RESET':
       return makeSeed();
+    case 'CLEAR':
+      return makeEmpty(state.settings);
     default:
       return state;
   }
@@ -96,6 +98,7 @@ export function StoreProvider({ children }) {
     updateSettings: (patch) => dispatch({ type: 'UPDATE_SETTINGS', patch }),
     reset: () => { clearState(); dispatch({ type: 'RESET' }); },
     replaceState: (state) => dispatch({ type: 'REPLACE', state }),
+    clearAll: () => dispatch({ type: 'CLEAR' }),
   }), []);
   const api = useMemo(() => ({ state, ...actions }), [state, actions]);
 

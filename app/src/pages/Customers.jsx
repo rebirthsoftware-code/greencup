@@ -73,7 +73,7 @@ export default function Customers() {
       </div>
       <div className="list">
         {list.map((s) => <CustomerRow key={s.customer.id} s={s} />)}
-        {list.length === 0 && <Empty>Müşteri bulunamadı.</Empty>}
+        {list.length === 0 && <Empty>{state.customers.length === 0 ? <>Henüz müşteri yok. Sağ üstteki <b>+</b> ile ekleyin.</> : 'Müşteri bulunamadı.'}</Empty>}
       </div>
     </div>
   );

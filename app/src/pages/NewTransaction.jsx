@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { fmtMoney, fmtNum, fmtPrice, today } from '../utils/format';
 import { PageHeader, SelectField, Segmented, Avatar, useToast } from '../components/ui';
@@ -73,7 +73,8 @@ export default function NewTransaction() {
 
         {type === 'sale' && (
           <>
-            <SelectField label="Ürün" value={productId} onChange={setProductId} options={productOpts} />
+            <SelectField label="Ürün" value={productId} onChange={setProductId} options={productOpts} placeholder={state.products.length ? 'Ürün seçin' : 'Henüz ürün yok'} />
+            {state.products.length === 0 && <div className="card small" style={{ marginTop: -8, marginBottom: 16 }}>Önce <Link to="/stok" style={{ color: "var(--green)", fontWeight: 700 }}>Stok / Depo</Link> ekranından ürün ekleyin.</div>}
             <div className="field"><label>Miktar</label>
               <div className="input"><input inputMode="numeric" placeholder="5.000" value={qty} onChange={(e) => setQty(e.target.value.replace(/\D/g, ''))} /><span className="suffix">{product?.unit || 'adet'}</span></div>
               {product && qtyN > product.stock && <span className="xs neg">Stok yetersiz: mevcut {fmtNum(product.stock)} {product.unit}</span>}
