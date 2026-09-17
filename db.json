@@ -1,6 +1,17 @@
 {
  "version": 2,
- "products": [],
+ "products": [
+  {
+   "id": "6jh35dpjmu5mur2v",
+   "unit": "adet",
+   "stock": 2,
+   "price": 2000,
+   "createdAt": "2026-09-17T14:36:37.399Z",
+   "name": "Bardak",
+   "minStock": 1,
+   "updatedAt": "2026-09-17T14:36:37.399Z"
+  }
+ ],
  "customers": [
   {
    "id": "1qv0k8tvmu5muae8",
