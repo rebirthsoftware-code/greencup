@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { asset } from '../utils/asset';
 import { Sheet } from './ui';
 import * as Ic from './Icons';
 import { isIOS, isStandalone } from '../store/push';
@@ -27,7 +28,7 @@ export default function InstallPrompt() {
   return (
     <>
       <div className="install">
-        <img src="icons/icon-192.png" alt="" />
+        <img src={asset('icons/icon-192.png')} alt="" />
         <div className="t"><b>Ana ekrana ekle</b><span>Uygulama gibi açılır, tam ekran çalışır{isIOS() ? ', bildirimler için gerekli' : ''}.</span></div>
         <button className="btn" onClick={install}>{canPrompt ? 'Kur' : 'Nasıl?'}</button>
         <button className="x" onClick={dismiss} aria-label="Kapat"><Ic.X size={18} /></button>

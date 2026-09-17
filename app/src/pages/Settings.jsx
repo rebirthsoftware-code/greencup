@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { asset } from '../utils/asset';
 import { useStore } from '../store/store';
 import { useSync, DEFAULT_CFG } from '../store/sync';
 import { testConnection } from '../store/github';
@@ -188,7 +189,7 @@ export default function Settings() {
 
       <Sheet open={sheet === 'hakkinda'} onClose={() => setSheet(null)} title="Hakkında">
         <div style={{ textAlign: 'center', padding: '8px 0 4px' }}>
-          <img src="logo-greencup.png" alt="GreenCup" style={{ width: 140 }} />
+          <img src={asset('logo-greencup.png')} alt="GreenCup" style={{ width: 140 }} />
           <div className="bold" style={{ marginTop: 10 }}>GreenCup Müşteri Takip</div>
           <div className="small muted">Müşteri Takip & Cari Yönetim Uygulaması · v0.2.0</div>
         </div>
