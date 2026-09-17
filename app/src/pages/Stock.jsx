@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { allSummaries, reservedByProduct } from '../store/selectors';
 import { fmtNum, parseMoney } from '../utils/format';
-import { PageHeader, Avatar, Empty, Sheet, DangerButton, useToast } from '../components/ui';
+import { PageHeader, Avatar, Empty, Sheet, DangerButton, useToast, Tabs } from '../components/ui';
 import * as Ic from '../components/Icons';
 
 export default function Stock() {
@@ -32,10 +32,7 @@ export default function Stock() {
   return (
     <div className="page">
       <PageHeader title="Stok / Depo" back={false} right={<button className="icon-btn" onClick={openNew} aria-label="Ürün ekle"><Ic.Plus size={20} /></button>} />
-      <div className="tabs">
-        <button className={tab === 0 ? 'active' : ''} onClick={() => setTab(0)}>Benim Stokum</button>
-        <button className={tab === 1 ? 'active' : ''} onClick={() => setTab(1)}>Müşteri Malları</button>
-      </div>
+      <Tabs value={tab} onChange={setTab} items={['Benim Stokum', 'Müşteri Malları']} />
       <div className="search"><Ic.Search size={18} /><input placeholder={tab === 0 ? 'Ürün ara...' : 'Müşteri ara...'} value={q} onChange={(e) => setQ(e.target.value)} /></div>
 
       {tab === 0 && (

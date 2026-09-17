@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { customerSummary, METHOD_LABEL, PAYMENT_LABEL, txItems, itemsLabel } from '../store/selectors';
 import { fmtMoney, fmtNum, fmtDate, parseMoney, today } from '../utils/format';
-import { PageHeader, Avatar, StatusBadge, Empty, Sheet, Segmented, DateField, DangerButton, useToast } from '../components/ui';
+import { PageHeader, Avatar, StatusBadge, Empty, Sheet, Segmented, Tabs, DateField, DangerButton, useToast } from '../components/ui';
 import { ItemsEditor } from './NewTransaction';
 import { cleanItem } from '../utils/format';
 import * as Ic from '../components/Icons';
@@ -155,22 +155,28 @@ export default function CustomerDetail() {
       <PageHeader title={tab === 0 ? 'Müşteri Detayı' : customer.name} to="/musteriler"
         right={<Link to={`/musteriler/${id}/duzenle`} className="icon-btn" aria-label="Düzenle"><Ic.Edit size={18} /></Link>} />
 
-      <div className="card" style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-        <Avatar customer={customer} size="lg" status={s.status} />
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="row"><div style={{ fontSize: 18, fontWeight: 800 }}>{customer.name}</div><StatusBadge status={s.status} /></div>
-          <span className="badge badge--aktif" style={{ marginTop: 4 }}>{customer.type}</span>
-          <div className="small muted" style={{ marginTop: 8, display: 'grid', gap: 4 }}>
-            {customer.phone && <a href={`tel:${customer.phone.replace(/\s/g, '')}`} style={{ display: 'flex', gap: 6, alignItems: 'center' }}><Ic.Phone size={14} />{customer.phone}</a>}
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}><Ic.MapPin size={14} />{customer.city}{customer.district ? ` / ${customer.district}` : ''}</div>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}><Ic.Clock size={14} />Son ziyaret: {s.lastVisit ? fmtDate(s.lastVisit.date) : '-'}</div>
+      <div className="cust-hero">
+        <div className="cust-hero-top">
+          <Avatar customer={customer} size="lg" />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div className="display" style={{ fontSize: 20, color: '#fff' }}>{customer.name}</div>
+            <div className="cust-hero-type">{customer.type}{customer.city ? ` · ${customer.city}${customer.district ? ' / ' + customer.district : ''}` : ''}</div>
           </div>
+          <StatusBadge status={s.status} />
+        </div>
+        <div className="cust-hero-balance">
+          <div><span>Kalan Bakiye</span><b>{fmtMoney(s.balance)}</b></div>
+          <div><span>Gecikmiş</span><b>{fmtMoney(s.overdueAmount)}</b></div>
+          <div><span>En Yakın Vade</span><b>{s.nextDue ? fmtDate(s.nextDue) : '-'}</b></div>
+        </div>
+        <div className="cust-hero-actions">
+          {customer.phone && <a href={`tel:${customer.phone.replace(/\s/g, '')}`}><Ic.Phone size={16} />Ara</a>}
+          <Link to={`/ziyaret/${id}`}><Ic.MapPin size={16} />Harita</Link>
+          <button onClick={() => setNoteOpen(true)}><Ic.Note size={16} />Not</button>
         </div>
       </div>
 
-      <div className="tabs" style={{ marginTop: 12 }}>
-        {TABS.map((t, i) => <button key={t} className={i === tab ? 'active' : ''} onClick={() => setTab(i)}>{t}</button>)}
-      </div>
+      <div style={{ marginTop: 12 }}><Tabs value={tab} onChange={setTab} items={TABS} /></div>
 
       {tab === 0 && (
         <>
@@ -179,9 +185,8 @@ export default function CustomerDetail() {
             <div className="row pad"><span className="muted">Toplam Borç</span><span className="num">{fmtMoney(s.totalDebt)}</span></div>
             <div className="row pad"><span className="muted">Ödenen</span><span className="num">{fmtMoney(s.totalPaid)}</span></div>
             <div className="row pad"><span className={`bold ${s.balance > 0 ? 'neg' : 'pos'}`}>Kalan Bakiye</span><span className={`num ${s.balance > 0 ? 'neg' : 'pos'}`} style={{ fontSize: 17 }}>{fmtMoney(s.balance)}</span></div>
-            {s.overdueAmount > 0 && <div className="row pad"><span className="neg bold">Gecikmiş</span><span className="num neg">{fmtMoney(s.overdueAmount)}</span></div>}
-            <div className="row pad"><span className="muted">En Yakın Vade</span><span className="bold">{s.nextDue ? fmtDate(s.nextDue) : '-'}</span></div>
             <div className="row pad"><span className="muted">Son Ödeme</span><span className="bold">{s.lastPayment ? fmtDate(s.lastPayment.date) : '-'}</span></div>
+            <div className="row pad"><span className="muted">Son Ziyaret</span><span className="bold">{s.lastVisit ? fmtDate(s.lastVisit.date) : '-'}</span></div>
           </div>
           {s.plannedVisits.length > 0 && (
             <div className="card" style={{ marginTop: 12 }}>
