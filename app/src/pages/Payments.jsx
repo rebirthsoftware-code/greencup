@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useStore } from '../store/store';
 import { ACCOUNT_LABEL } from '../store/selectors';
 import { fmtMoney, fmtDayMonth, fmtDate, daysBetween, today, parseMoney } from '../utils/format';
-import { PageHeader, Sheet, Segmented, Empty, DateField, DangerButton, useToast } from '../components/ui';
+import { PageHeader, Sheet, Segmented, Empty, DateField, DangerButton, useToast, Tabs } from '../components/ui';
 import * as Ic from '../components/Icons';
 
 export default function Payments() {
@@ -34,10 +34,7 @@ export default function Payments() {
   return (
     <div className="page">
       <PageHeader title="Benim Ödemelerim" to="/daha" right={<button className="icon-btn" onClick={() => { setF({ title: '', amount: '', due: t }); setAdding(true); }} aria-label="Ekle"><Ic.Plus size={20} /></button>} />
-      <div className="tabs">
-        <button className={tab === 0 ? 'active' : ''} onClick={() => setTab(0)}>Yaklaşan Ödemeler</button>
-        <button className={tab === 1 ? 'active' : ''} onClick={() => setTab(1)}>Geçmiş</button>
-      </div>
+      <Tabs value={tab} onChange={setTab} items={['Yaklaşan Ödemeler', 'Geçmiş']} />
 
       {tab === 0 && (
         <>

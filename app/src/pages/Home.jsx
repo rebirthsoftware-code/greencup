@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import { asset } from '../utils/asset';
 import { useStore } from '../store/store';
 import { useSync } from '../store/sync';
-import { dashboard, notifications } from '../store/selectors';
+import { dashboard, notifications, monthlySeries } from '../store/selectors';
 import { fmtMoney, fmtNum } from '../utils/format';
+import { useCountUp } from '../utils/hooks';
 import { loadDevice } from '../store/storage';
+import { asset } from '../utils/asset';
 import * as Ic from '../components/Icons';
 import InstallPrompt from '../components/InstallPrompt';
 
@@ -12,10 +13,26 @@ const Quick = ({ to, icon: Icon, label, tone = '' }) => (
   <Link to={to} className="quick"><span className={`qi ${tone}`}><Icon size={22} /></span><span>{label}</span></Link>
 );
 
+/** Küçük çizgi grafik: son 6 ayın tahsilatı (tek seri, eksensiz). */
+function Sparkline({ data }) {
+  const W = 300, H = 56; const max = Math.max(1, ...data);
+  const pts = data.map((v, i) => [(i / (data.length - 1)) * W, H - 6 - (v / max) * (H - 12)]);
+  const d = pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+  const area = `${d} L${W},${H} L0,${H} Z`;
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="spark" aria-hidden>
+      <path d={area} fill="rgba(255,255,255,.18)" />
+      <path d={d} fill="none" stroke="rgba(255,255,255,.95)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      {pts.length > 0 && <circle cx={pts[pts.length - 1][0]} cy={pts[pts.length - 1][1]} r="4" fill="#fff" />}
+    </svg>
+  );
+}
+
 export default function Home() {
   const { state } = useStore();
   const d = dashboard(state);
   const alerts = notifications(state).filter((n) => n.level !== 'green');
+  const series = monthlySeries(state, 6);
   const sync = useSync();
   const syncColor = !sync.enabled ? 'var(--text-3)' : sync.status === 'error' ? 'var(--red)' : sync.status === 'syncing' || sync.meta.dirty ? 'var(--orange)' : 'var(--green)';
   const syncTitle = !sync.enabled ? 'Bulut senkron kapalı' : sync.status === 'error' ? `Senkron hatası: ${sync.error}` : sync.status === 'syncing' ? 'Senkronize ediliyor' : sync.meta.dirty ? 'Bekleyen değişiklik' : 'Bulut ile güncel';
@@ -23,10 +40,15 @@ export default function Home() {
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Günaydın' : hour < 18 ? 'İyi günler' : 'İyi akşamlar';
   const dateLine = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', weekday: 'long' });
+  const receivable = useCountUp(d.receivable);
+  const cashTotal = useCountUp(d.cashTotal);
+  const overdueAmount = d.overdue.reduce((a, s) => a + s.overdueAmount, 0);
+  const debtors = d.sums.filter((s) => s.balance > 0).length;
+  const thisMonth = series[series.length - 1] || { sales: 0, payments: 0 };
 
   return (
     <div className="page">
-      <header className="page-header" style={{ marginBottom: 6 }}>
+      <header className="page-header home-header">
         <img src={asset('logo-greencup.png')} alt="GreenCup" style={{ height: 34 }} />
         <div style={{ flex: 1 }} />
         <Link to="/daha/ayarlar" className="icon-btn" aria-label={syncTitle} title={syncTitle} style={{ color: syncColor }}><Ic.Cloud size={20} /></Link>
@@ -34,35 +56,30 @@ export default function Home() {
       </header>
 
       <div style={{ marginBottom: 16 }}>
-        <div style={{ fontSize: 18, fontWeight: 800 }}>Hoş geldin {firstName} 👋</div>
+        <div className="display" style={{ fontSize: 22 }}>Hoş geldin {firstName} 👋</div>
         <div className="muted small">{greet}, bugün güzel geçsin. <span className="xs" style={{ color: 'var(--text-3)' }}>· {dateLine}</span></div>
       </div>
       <InstallPrompt />
 
-      <div className="grid-2">
-        <Link to="/musteriler" className="stat">
-          <div className="stat-head"><span className="stat-icon"><Ic.Users size={16} /></span>Müşteriler</div>
-          <div className="stat-value">{fmtNum(state.customers.length)}</div>
-          <div className="stat-sub">Toplam müşteri</div>
-        </Link>
-        <Link to="/musteriler?f=borclu" className="stat">
-          <div className="stat-head"><span className="stat-icon"><Ic.Receipt size={16} /></span>Cari Alacak</div>
-          <div className="stat-value">{fmtMoney(d.receivable)}</div>
-          <div className="stat-sub">{d.overdue.length > 0 ? `${d.overdue.length} müşteride gecikme` : 'Toplam alacak'}</div>
-        </Link>
-        <Link to="/stok" className="stat">
-          <div className="stat-head"><span className="stat-icon"><Ic.Box size={16} /></span>Depo</div>
-          <div className="stat-value">{fmtNum(state.products.length)}</div>
-          <div className="stat-sub">Ürün çeşidi</div>
-        </Link>
-        <Link to="/kasa" className="stat">
-          <div className="stat-head"><span className="stat-icon"><Ic.Wallet size={16} /></span>Kasa</div>
-          <div className="stat-value">{fmtMoney(d.cashTotal)}</div>
-          <div className="stat-sub">Kasa bakiyesi</div>
-        </Link>
+      <Link to="/musteriler?f=borclu" className="hero">
+        <div className="hero-top"><span>Toplam Alacak</span><span className="hero-link">Borçlular <Ic.ChevronRight size={14} /></span></div>
+        <div className="hero-value display">{fmtMoney(Math.round(receivable))}</div>
+        <div className="hero-kpis">
+          <div><b>{fmtMoney(overdueAmount)}</b><span>Gecikmiş</span></div>
+          <div><b>{fmtNum(debtors)}</b><span>Borçlu müşteri</span></div>
+          <div><b>{fmtMoney(thisMonth.payments)}</b><span>Bu ay tahsilat</span></div>
+        </div>
+        <Sparkline data={series.map((m) => m.payments)} />
+        <div className="hero-foot">Son 6 ay tahsilat</div>
+      </Link>
+
+      <div className="tiles">
+        <Link to="/musteriler" className="tile"><span className="qi"><Ic.Users size={18} /></span><b>{fmtNum(state.customers.length)}</b><span>Müşteri</span></Link>
+        <Link to="/stok" className="tile"><span className="qi orange"><Ic.Box size={18} /></span><b>{fmtNum(state.products.length)}</b><span>Ürün çeşidi</span></Link>
+        <Link to="/kasa" className="tile"><span className="qi gold"><Ic.Wallet size={18} /></span><b>{fmtMoney(Math.round(cashTotal))}</b><span>Kasa</span></Link>
       </div>
 
-      <h2 className="section-title">Hızlı İşlemler</h2>
+      <div className="row" style={{ marginTop: 22, marginBottom: 10 }}><h2 className="section-title" style={{ margin: 0 }}>Hızlı İşlemler</h2></div>
       <div className="grid-3">
         <Quick to="/musteriler/yeni" icon={Ic.UserPlus} label="Yeni Müşteri" />
         <Quick to="/islem?tur=sale" icon={Ic.Truck} label="Mal Ver" tone="blue" />
@@ -73,7 +90,7 @@ export default function Home() {
         <Quick to="/islem?tur=visit" icon={Ic.Target} label="Ziyaret Ekle" tone="orange" />
       </div>
 
-      <h2 className="section-title">Bugün</h2>
+      <div className="row" style={{ marginTop: 22, marginBottom: 10 }}><h2 className="section-title" style={{ margin: 0 }}>Bugün</h2><Link to="/bildirimler" className="hero-link" style={{ color: 'var(--green)' }}>Tümü <Ic.ChevronRight size={14} /></Link></div>
       <Link to="/bildirimler" className="card" style={{ display: 'block' }}>
         <div className="alert-row"><span className="dot red" />
           <span>{d.overdue.length > 0 ? <><b>{d.overdue.length}</b> müşterinin ödemesi gecikti</> : 'Geciken ödeme yok'}</span>

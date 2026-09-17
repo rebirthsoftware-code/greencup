@@ -16,20 +16,20 @@ const FILTERS = [
 
 export function CustomerRow({ s, right }) {
   const c = s.customer;
-  const sub = s.balance > 0
-    ? <span className="item-sub neg">{fmtMoney(s.balance)} alacağın var</span>
-    : s.balance < 0
-      ? <span className="item-sub neg">{fmtMoney(-s.balance)} borcun var</span>
-      : <span className="item-sub pos">Borç yok</span>;
   return (
     <Link to={`/musteriler/${c.id}`} className="item">
       <Avatar customer={c} status={s.status} />
       <div className="item-body">
         <div className="item-title">{c.name}</div>
-        {sub}
-        <div className="item-sub">Son ziyaret: {s.lastVisit ? fmtDate(s.lastVisit.date) : '-'}</div>
+        <div className="item-sub">{c.type}{c.city ? ` · ${c.city}` : ''}</div>
+        <div className="item-sub xs">Son ziyaret: {s.lastVisit ? fmtDate(s.lastVisit.date) : '-'}</div>
       </div>
-      {right ?? <StatusBadge status={s.status} />}
+      {right ?? (
+        <div className="item-right">
+          <div className={`num ${s.balance > 0 ? 'neg' : s.balance < 0 ? 'neg' : 'pos'}`} style={{ fontSize: 15 }}>{s.balance === 0 ? 'Borç yok' : fmtMoney(Math.abs(s.balance))}</div>
+          <StatusBadge status={s.status} />
+        </div>
+      )}
     </Link>
   );
 }

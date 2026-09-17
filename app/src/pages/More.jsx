@@ -20,6 +20,7 @@ export default function More() {
         <Ic.ChevronRight size={18} className="muted" />
       </Link>
       <div className="card" style={{ marginTop: 12 }}>
+        <Row to="/kasa" icon={Ic.Wallet} label="Kasa" sub="Nakit, banka, kart; hareketler ve transfer" />
         <Row to="/bildirimler" icon={Ic.Bell} label="Bildirimler" sub="Gecikmeler, vadeler, ziyaretler" />
         <Row to="/daha/odemeler" icon={Ic.Receipt} label="Benim Ödemelerim" sub="Kira, tedarikçi, maaş..." />
         <Row to="/daha/ziyaretler" icon={Ic.Target} label="Ziyaretler" sub="Son ziyaretler ve plan" />

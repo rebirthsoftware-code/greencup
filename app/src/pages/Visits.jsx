@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { allSummaries } from '../store/selectors';
 import { fmtDate, daysBetween, today } from '../utils/format';
-import { PageHeader, Avatar, Empty, Sheet, SelectField, DateField, DangerButton, useToast } from '../components/ui';
+import { PageHeader, Avatar, Empty, Sheet, SelectField, DateField, DangerButton, useToast, Tabs } from '../components/ui';
 import * as Ic from '../components/Icons';
 
 export default function Visits() {
@@ -35,10 +35,7 @@ export default function Visits() {
         <button className="icon-btn" onClick={() => openNew()} aria-label="Ziyaret planla"><Ic.Calendar size={20} /></button>
         <Link to="/islem?tur=visit" className="icon-btn" aria-label="Ziyaret kaydı"><Ic.Plus size={20} /></Link>
       </>} />
-      <div className="tabs">
-        <button className={tab === 0 ? 'active' : ''} onClick={() => setTab(0)}>Son Ziyaretler</button>
-        <button className={tab === 1 ? 'active' : ''} onClick={() => setTab(1)}>Ziyaret Planı</button>
-      </div>
+      <Tabs value={tab} onChange={setTab} items={['Son Ziyaretler', 'Ziyaret Planı']} />
       <div className="search"><Ic.Search size={18} /><input placeholder="Müşteri ara..." value={q} onChange={(e) => setQ(e.target.value)} /></div>
 
       {tab === 0 && (
