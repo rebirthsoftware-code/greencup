@@ -18,5 +18,15 @@
   "userName": "Barış Kandemir",
   "ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome",
   "createdAt": "2026-09-17T14:37:15.309Z"
+ },
+ {
+  "endpoint": "https://web.push.apple.com/QPti3Wn6lGQcobP5cYFiW6-XRpi29SpriEqm5-wtXayVPcEVhgFaacY9sfUY9fCg5eB2huzUqL1N3lgIKBykuHo9IHqSlIv9iZCuwWJhpC7oMegj1wmtv61AJxt4RdlEsl5SO9l3-19yWDnVm6Zf1frc9ceWgmDu4ukFA9xodEQ",
+  "keys": {
+   "p256dh": "BGa8gWqAYZCDqNmyCz6MFwKEdLkQ-N6vHeaBXZxWVwb5Ex-QszJli8CeIfsFZzZ17AtVRz27o8sFAka-zXYDDqo",
+   "auth": "4zvjIEYWrEG1fRbH_ocgMQ"
+  },
+  "userName": "Barış Kandemir",
+  "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0_1 like Mac OS X) AppleWebKit/605.1.15 (K",
+  "createdAt": "2026-09-17T14:45:25.811Z"
  }
 ]
