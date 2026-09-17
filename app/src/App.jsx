@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { StoreProvider } from './store/store';
 import { TabBar, ToastProvider } from './components/ui';
 import Splash from './components/Splash';
@@ -24,6 +24,8 @@ function ScrollTop() {
   return null;
 }
 const WithTabs = () => <><Outlet /><TabBar /></>;
+// Alt klasörde / statik barındırmada (önizleme) hash tabanlı yönlendirme kullan
+const Router = import.meta.env.VITE_HASH_ROUTER ? HashRouter : BrowserRouter;
 
 export default function App() {
   const [splash, setSplash] = useState(() => !sessionStorage.getItem('gc-splash'));
@@ -36,7 +38,7 @@ export default function App() {
   return (
     <StoreProvider>
       <ToastProvider>
-        <BrowserRouter>
+        <Router>
           <ScrollTop />
           <div className="app">
             <Routes>
@@ -60,7 +62,7 @@ export default function App() {
               <Route path="*" element={<Home />} />
             </Routes>
           </div>
-        </BrowserRouter>
+        </Router>
         {splash && <Splash />}
       </ToastProvider>
     </StoreProvider>

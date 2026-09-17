@@ -78,7 +78,7 @@ export default function Settings() {
 
       <Sheet open={sheet === 'hakkinda'} onClose={() => setSheet(null)} title="Hakkında">
         <div style={{ textAlign: 'center', padding: '8px 0 4px' }}>
-          <img src="/icons/icon-192.png" alt="" style={{ width: 64, borderRadius: 16 }} />
+          <img src="icons/icon-192.png" alt="" style={{ width: 64, borderRadius: 16 }} />
           <div className="bold" style={{ marginTop: 10 }}>GreenCup Müşteri Takip</div>
           <div className="small muted">Müşteri Takip & Cari Yönetim Uygulaması · v0.1.0</div>
         </div>
