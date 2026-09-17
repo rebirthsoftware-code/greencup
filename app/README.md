@@ -34,16 +34,18 @@ npm run lint
 | Bulut senkron (GitHub `data` dalı) | Ayarlar | ✅ |
 | Kullanıcı yönetimi, giriş, anlık bildirim | – | ⏳ |
 
-## Canlıya alma (Vercel)
+## Canlı adres
 
-Uygulama, siteden ayrı bir Vercel projesi olarak yayınlanır:
+**https://greencup.vercel.app/app/**
 
-1. Vercel → **Add New Project** → bu repoyu seçin.
-2. **Root Directory**: `app` (Framework: Vite, build `npm run build`, output `dist` otomatik gelir).
-3. Deploy. Adres `greencup-app.vercel.app` benzeri olur; isterseniz özel alan adı bağlayın.
+Uygulama, sitenin mevcut Vercel projesiyle birlikte yayınlanır; ayrı proje gerekmez.
+Kökteki `npm run build`, siteyi derledikten sonra `npm run build:app` ile bu uygulamayı
+`--mode embedded` olarak `dist/app/` altına derler (`base: /app/`). Kökteki `vercel.json`,
+`/app/*` isteklerini `app/index.html`'e yönlendirir (SPA) ve `data` dalına yapılan veri
+commit'lerinin dağıtım tetiklemesini kapatır. `main`'e giden her push canlıyı günceller.
 
-`app/vercel.json` tüm yolları `index.html`'e yönlendirir (SPA) ve `data` dalına yapılan
-veri commit'lerinin dağıtım tetiklemesini kapatır. Kökteki `vercel.json` aynı şeyi site projesi için yapar.
+`app/vercel.json`, uygulamayı ileride ayrı bir Vercel projesi olarak (Root Directory: `app`)
+yayınlamak istenirse hazır durur.
 
 ## Veri: GitHub üzerinde veritabanı
 

@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run build:app",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:app": "npm --prefix app ci --no-audit --no-fund && npm --prefix app run build:embedded"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

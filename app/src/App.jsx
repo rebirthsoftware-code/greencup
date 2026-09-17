@@ -27,6 +27,7 @@ function ScrollTop() {
 const WithTabs = () => <><Outlet /><TabBar /></>;
 // Alt klasörde / statik barındırmada (önizleme) hash tabanlı yönlendirme kullan
 const Router = import.meta.env.VITE_HASH_ROUTER ? HashRouter : BrowserRouter;
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
 
 export default function App() {
   const [splash, setSplash] = useState(() => !sessionStorage.getItem('gc-splash'));
@@ -40,7 +41,7 @@ export default function App() {
     <StoreProvider>
       <SyncProvider>
       <ToastProvider>
-        <Router>
+        <Router basename={basename}>
           <ScrollTop />
           <div className="app">
             <Routes>
