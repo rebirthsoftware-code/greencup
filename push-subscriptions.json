@@ -1,0 +1,12 @@
+[
+ {
+  "endpoint": "https://fcm.googleapis.com/fcm/send/fKHZyAorT_U:APA91bE5NlOussblkeg7rLDRzGnCA8lXYXA9FLgh2z7OvE8H3_8Wsd7FthreLNFNHcxZoGW23d8YOsu69nWHkTQg_cA-l0rL5LOTxCBR8F16dnUSt3iCgerv-jydsJH6qinR1VwfDR_n",
+  "keys": {
+   "p256dh": "BOXSLtUS6JnYbYRKSHkuaT1ML38FuFsF1oHXbbixx-FST9j9M3ZypJo6cjTelI4YYwyrJAh_Gor_5Zo0aBt7dWg",
+   "auth": "iqfYg9B-srahEydRio7Ukg"
+  },
+  "userName": "Barış Kandemir",
+  "ua": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/15",
+  "createdAt": "2026-09-17T14:06:04.083Z"
+ }
+]
