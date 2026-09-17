@@ -14,7 +14,7 @@ self.addEventListener('activate', (e) => {
 });
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
-  if (e.request.method !== 'GET' || url.origin !== self.location.origin) return; // API istekleri (GitHub) dokunulmaz
+  if (e.request.method !== 'GET' || url.origin !== self.location.origin || url.pathname.startsWith('/api/')) return; // API istekleri önbelleklenmez
   e.respondWith(
     fetch(e.request).then((res) => {
       const copy = res.clone();
