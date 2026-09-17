@@ -44,7 +44,7 @@ export default function PinLock({ children }) {
   };
   return (
     <div className="pin-screen">
-      <img src="icons/icon-192.png" alt="" style={{ width: 72, borderRadius: 18 }} />
+      <img src="logo-greencup.png" alt="GreenCup" style={{ width: 150 }} />
       <div className="bold" style={{ fontSize: 18, marginTop: 14 }}>PIN girin</div>
       <div className="pin-dots">{Array.from({ length: pinLen }, (_, i) => <span key={i} className={i < pin.length ? 'on' : ''} />)}</div>
       <div className="xs" style={{ color: 'var(--red)', minHeight: 18 }}>{err}</div>

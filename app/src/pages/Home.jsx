@@ -5,6 +5,7 @@ import { dashboard, notifications } from '../store/selectors';
 import { fmtMoney, fmtNum } from '../utils/format';
 import { loadDevice } from '../store/storage';
 import * as Ic from '../components/Icons';
+import InstallPrompt from '../components/InstallPrompt';
 
 const Quick = ({ to, icon: Icon, label }) => (
   <Link to={to} className="quick"><Icon size={24} /><span>{label}</span></Link>
@@ -34,6 +35,7 @@ export default function Home() {
         <div style={{ fontSize: 18, fontWeight: 800 }}>Hoş geldin {firstName} 👋</div>
         <div className="muted small">{greet}, bugün güzel geçsin.</div>
       </div>
+      <InstallPrompt />
 
       <div className="grid-2">
         <Link to="/musteriler" className="stat">
