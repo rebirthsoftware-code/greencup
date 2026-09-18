@@ -130,6 +130,16 @@
    "name": "16oz Pet Vento",
    "minStock": 0,
    "updatedAt": "2026-09-18T13:25:32.748Z"
+  },
+  {
+   "id": "0zlszhlwmu6zrowm",
+   "unit": "koli",
+   "stock": 5,
+   "price": 0,
+   "createdAt": "2026-09-18T13:25:55.798Z",
+   "name": "Peçete Çaylak",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T13:25:55.798Z"
   }
  ],
  "customers": [
