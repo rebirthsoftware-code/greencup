@@ -120,6 +120,16 @@
    "name": "Taşıma Çantası Cozy",
    "minStock": 0,
    "updatedAt": "2026-09-18T13:24:40.568Z"
+  },
+  {
+   "id": "0ypmkjanmu6zr74c",
+   "unit": "adet",
+   "stock": 8000,
+   "price": 0,
+   "createdAt": "2026-09-18T13:25:32.748Z",
+   "name": "16oz Pet Vento",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T13:25:32.748Z"
   }
  ],
  "customers": [
