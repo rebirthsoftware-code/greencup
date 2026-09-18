@@ -12,9 +12,13 @@ const BRANCH = process.env.DATA_BRANCH || 'data';
 const SUBS_URL = process.env.SUBS_URL || `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/push-subscriptions.json`;
 
 async function readSubs() {
-  const r = await fetch(`${SUBS_URL}?t=${Date.now()}`, { cache: 'no-store' });
+  // Repo özelse GITHUB_TOKEN ile API üzerinden (raw URL çalışmaz); açıksa raw URL yeterli.
+  const token = process.env.GITHUB_TOKEN;
+  const r = token
+    ? await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/push-subscriptions.json?ref=${encodeURIComponent(BRANCH)}`, { cache: 'no-store', headers: { Accept: 'application/vnd.github.raw+json', Authorization: `Bearer ${token}`, 'X-GitHub-Api-Version': '2022-11-28' } })
+    : await fetch(`${SUBS_URL}?t=${Date.now()}`, { cache: 'no-store' });
   if (r.status === 404) return [];
-  if (!r.ok) throw new Error(`abonelik listesi okunamadı: ${r.status}`);
+  if (!r.ok) throw new Error(`abonelik listesi okunamadı: ${r.status}${token ? '' : ' (repo özelse Vercel\'e GITHUB_TOKEN ekleyin)'}`);
   return r.json();
 }
 

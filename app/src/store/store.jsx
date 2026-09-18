@@ -31,7 +31,8 @@ const undoCash = (state, txId, legacy) => {
   const cash = { ...state.cash };
   const ids = new Set(linked.map((m) => m.id));
   for (const m of linked) cash[m.account] = (cash[m.account] || 0) - (m.type === 'in' ? m.amount : -m.amount);
-  return { ...state, cash, cashMoves: state.cashMoves.filter((m) => !ids.has(m.id)) };
+  const at = now();
+  return { ...state, cash, cashMoves: state.cashMoves.filter((m) => !ids.has(m.id)), tombstones: [...state.tombstones, ...linked.map((m) => ({ id: m.id, at }))] };
 };
 const adjustStock = (products, items, sign) => {
   if (!items?.length) return products;
@@ -113,6 +114,10 @@ function reducer(state, action) {
       if (t.type === 'payment') next = cashIn(next, t.method || 'nakit', t.amount, 'Tahsilat', t.id);
       return next;
     }
+    case 'SET_ATTACHMENTS': // yan etkisiz: yalnızca ek listesi
+      return { ...state, transactions: state.transactions.map((t) => (t.id === action.id ? stamp({ ...t, attachments: action.attachments }) : t)) };
+    case 'SET_EXPENSE_ATTACHMENTS':
+      return { ...state, expenses: state.expenses.map((e) => (e.id === action.id ? stamp({ ...e, attachments: action.attachments }) : e)) };
     case 'DELETE_TRANSACTION': {
       const old = state.transactions.find((t) => t.id === action.id);
       if (!old) return state;
@@ -260,6 +265,8 @@ export function StoreProvider({ children }) {
     addTransaction: (tx, planId) => dispatch({ type: 'ADD_TRANSACTION', tx, planId }),
     updateTransaction: (id, patch) => dispatch({ type: 'UPDATE_TRANSACTION', id, patch }),
     deleteTransaction: (id) => dispatch({ type: 'DELETE_TRANSACTION', id }),
+    setAttachments: (id, attachments) => dispatch({ type: 'SET_ATTACHMENTS', id, attachments }),
+    setExpenseAttachments: (id, attachments) => dispatch({ type: 'SET_EXPENSE_ATTACHMENTS', id, attachments }),
     addReserved: (entry) => dispatch({ type: 'ADD_RESERVED', entry }),
     updateReserved: (id, patch) => dispatch({ type: 'UPDATE_RESERVED', id, patch }),
     deleteReserved: (id) => dispatch({ type: 'DELETE_RESERVED', id }),
