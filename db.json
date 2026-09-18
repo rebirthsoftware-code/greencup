@@ -30,6 +30,16 @@
    "name": "14oz Doublewall",
    "minStock": 0,
    "updatedAt": "2026-09-18T07:47:18.596Z"
+  },
+  {
+   "id": "kpfwpaaqmu6npd5g",
+   "unit": "koli",
+   "stock": 2,
+   "price": 0,
+   "createdAt": "2026-09-18T07:48:11.860Z",
+   "name": "Craft Çanta Cozy",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T07:48:11.860Z"
   }
  ],
  "customers": [
