@@ -80,6 +80,16 @@
    "name": "Soğuk klips kapak",
    "minStock": 0,
    "updatedAt": "2026-09-18T07:50:28.154Z"
+  },
+  {
+   "id": "9m4bnnxxmu6nszl0",
+   "unit": "koli",
+   "stock": 4,
+   "price": 0,
+   "createdAt": "2026-09-18T07:51:00.900Z",
+   "name": "16oz Pet Cozy",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T07:51:00.900Z"
   }
  ],
  "customers": [
