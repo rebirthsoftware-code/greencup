@@ -95,11 +95,11 @@
    "id": "7nvexuz0mu6zhwmy",
    "unit": "adet",
    "stock": 4,
-   "price": 0,
+   "price": 1000,
    "createdAt": "2026-09-18T13:18:19.258Z",
    "name": "Islak Mendil Klişesi",
    "minStock": 0,
-   "updatedAt": "2026-09-18T13:18:19.258Z"
+   "updatedAt": "2026-09-18T13:18:28.637Z"
   }
  ],
  "customers": [
