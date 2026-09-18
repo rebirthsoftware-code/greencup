@@ -24,12 +24,12 @@
   {
    "id": "4cof17u9mu6no81w",
    "unit": "koli",
-   "stock": 28,
+   "stock": 30,
    "price": 0,
    "createdAt": "2026-09-18T07:47:18.596Z",
    "name": "14oz Doublewall",
    "minStock": 0,
-   "updatedAt": "2026-09-18T07:47:18.596Z"
+   "updatedAt": "2026-09-18T13:26:38.312Z"
   },
   {
    "id": "kpfwpaaqmu6npd5g",
@@ -222,7 +222,17 @@
   "kart": 0
  },
  "cashMoves": [],
- "expenses": [],
+ "expenses": [
+  {
+   "id": "2xw4f8vfmu74nh60",
+   "paid": false,
+   "createdAt": "2026-09-18T15:42:37.224Z",
+   "title": "Nihat abi kutu parası",
+   "amount": 25000,
+   "due": "2026-09-21",
+   "updatedAt": "2026-09-18T15:42:37.224Z"
+  }
+ ],
  "plannedVisits": [],
  "users": [
   {
