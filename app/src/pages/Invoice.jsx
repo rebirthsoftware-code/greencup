@@ -3,10 +3,11 @@ import { useStore } from '../store/store';
 import { txItems } from '../store/selectors';
 import { fmtMoney, fmtNum, fmtDate, fmtPrice } from '../utils/format';
 import { PageHeader, Avatar, Empty } from '../components/ui';
+import Attachments from '../components/Attachments';
 
 export default function Invoice() {
   const { id } = useParams();
-  const { state } = useStore();
+  const { state, setAttachments } = useStore();
   const t = state.transactions.find((x) => x.id === id);
   const c = t && state.customers.find((x) => x.id === t.customerId);
   if (!t || !c) return <div className="page"><PageHeader title="Fatura" /><Empty>Fatura bulunamadı.</Empty></div>;
@@ -50,6 +51,7 @@ export default function Invoice() {
         <div className="row pad"><span className="bold" style={{ fontSize: 16 }}>Genel Toplam</span><span className="num" style={{ fontSize: 18 }}>{fmtMoney(t.amount + kdv)}</span></div>
       </div>
       {t.note && <div className="card small muted">Not: {t.note}</div>}
+      <div className="card"><div className="card-title">Fatura Belgesi</div><Attachments items={t.attachments || []} onChange={(list) => setAttachments(t.id, list)} folder={`${(t.date || '').slice(0, 4)}/${t.id}`} /></div>
       <p className="xs muted" style={{ marginTop: 10 }}>Bu belge uygulama içi satış özetidir; resmi e-Fatura/e-Arşiv yerine geçmez.</p>
       <div className="stack" style={{ marginTop: 12 }}>
         <button className="btn btn-primary" onClick={() => window.print()}>Yazdır / PDF Olarak Kaydet</button>

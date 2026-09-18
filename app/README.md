@@ -36,6 +36,19 @@ npm run lint
 
 Sunucu gerektirdiği için bu sürümde olmayanlar: şifreli çok kullanıcılı giriş, resmi e-Fatura entegrasyonu.
 
+## Fatura belgeleri (PDF / fotoğraf)
+
+Satışlara (Mal Ver → Fatura Belgesi; müşteri detayı → Faturalar; fatura sayfası) ve giderlere belge eklenir.
+Fotoğraflar 1600 px'e küçültülüp JPEG olarak, PDF'ler olduğu gibi (en fazla 8 MB) `data` dalında
+`belgeler/<yıl>/<işlem id>/` altına yazılır; kayıtta yalnızca yol ve boyut tutulur (`db.json` büyümez).
+Okuma ve yazma her zaman token ile GitHub API üzerinden yapılır; **repo özel olsa da çalışır**.
+Silinen işlemlerin dosyaları repoda kalır (geçmiş için); belge silme ise dosyayı da siler.
+
+## Repoyu özele çevirme
+
+Uygulama ve senkron değişmeden çalışır. Yalnızca bildirim fonksiyonu abonelik listesini raw URL'den okuduğu için
+Vercel'e `GITHUB_TOKEN` (fine-grained, yalnızca bu repo, Contents: Read) ortam değişkeni eklenmeli; varsa API üzerinden okur.
+
 ## Anlık bildirimler (Web Push)
 
 Bir ürünün satılabilir miktarı uyarı eşiğinin altına düştüğünde veya tükendiğinde, değişikliği yapan cihaz

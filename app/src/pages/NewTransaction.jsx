@@ -4,6 +4,10 @@ import { useStore } from '../store/store';
 import { addDays } from '../store/seed';
 import { fmtMoney, fmtNum, fmtPrice, today, parseMoney } from '../utils/format';
 import { PageHeader, SelectField, Segmented, Avatar, DateField, useToast } from '../components/ui';
+import { useSync } from '../store/sync';
+import { prepareFile, uploadAttachment } from '../store/files';
+import { loadDevice } from '../store/storage';
+import { uid } from '../utils/format';
 import * as Ic from '../components/Icons';
 import { cleanItem } from '../utils/format';
 
@@ -56,7 +60,10 @@ export default function NewTransaction() {
   const [params] = useSearchParams();
   const nav = useNavigate();
   const toast = useToast();
-  const { state, addTransaction } = useStore();
+  const { state, addTransaction, setAttachments } = useStore();
+  const sync = useSync();
+  const [pending, setPending] = useState([]); // kaydedilince yüklenecek dosyalar
+  const [saving, setSaving] = useState(false);
   const planId = params.get('plan') || undefined;
 
   const [type, setType] = useState(params.get('tur') || 'sale');
@@ -88,14 +95,23 @@ export default function NewTransaction() {
     (type === 'visit')
   );
 
-  const save = (e) => {
+  const save = async (e) => {
     e.preventDefault();
-    if (!valid) return;
+    if (!valid || saving) return;
     const base = { customerId, date, note: note.trim() || undefined };
     if (type === 'sale') {
-      addTransaction({ ...base, type: 'sale', items: validItems.map(cleanItem), amount: amountN, invoiced, payment,
+      const id = uid();
+      addTransaction({ ...base, id, type: 'sale', items: validItems.map(cleanItem), amount: amountN, invoiced, payment,
         dueDate: payment === 'pesin' ? date : dueDate, paidNow: payment === 'kismi' ? paidNowN : undefined, method });
-      toast('İşlem kaydedildi');
+      if (pending.length && sync?.enabled) {
+        setSaving(true);
+        const added = [];
+        try { for (const f of pending) added.push(await uploadAttachment(sync.cfg, await prepareFile(f), `${date.slice(0, 4)}/${id}`, loadDevice().userName)); }
+        catch (err) { toast(`Belge yüklenemedi: ${err.message}`); }
+        if (added.length) setAttachments(id, added);
+        setSaving(false);
+      }
+      toast(pending.length ? 'İşlem ve belgeler kaydedildi' : 'İşlem kaydedildi');
     } else if (type === 'payment') {
       addTransaction({ ...base, type: 'payment', amount: amountN, method });
       toast('Tahsilat kaydedildi');
@@ -151,6 +167,17 @@ export default function NewTransaction() {
         <div className="field"><label>Not <span className="opt">(isteğe bağlı)</span></label>
           <textarea className="input" placeholder="Örn: Yeni sezon siparişi..." value={note} onChange={(e) => setNote(e.target.value)} /></div>
 
+        {type === 'sale' && (
+          <div className="field"><label>Fatura Belgesi <span className="opt">(PDF veya fotoğraf, isteğe bağlı)</span></label>
+            {pending.length > 0 && <div className="attach-list">{pending.map((f, i) => <div key={i} className="attach-item"><span className="tl-icon"><Ic.FileText size={16} /></span><span className="attach-name"><b>{f.name}</b><span>{Math.round(f.size / 1024)} KB</span></span><button type="button" className="rm" onClick={() => setPending(pending.filter((_, k) => k !== i))} aria-label="Kaldır"><Ic.X size={16} /></button></div>)}</div>}
+            <div className="attach-actions">
+              <label className="btn btn-ghost btn-sm"><Ic.FileText size={15} /> PDF / Dosya ekle<input type="file" accept="application/pdf,image/*" multiple hidden onChange={(e) => { setPending([...pending, ...e.target.files]); e.target.value = ''; }} /></label>
+              <label className="btn btn-ghost btn-sm"><Ic.Target size={15} /> Fotoğraf çek<input type="file" accept="image/*" capture="environment" hidden onChange={(e) => { setPending([...pending, ...e.target.files]); e.target.value = ''; }} /></label>
+            </div>
+            {!sync?.enabled && pending.length > 0 && <span className="xs neg">Belgeler için Bulut Senkron bağlı olmalı; işlem belgesiz kaydedilir.</span>}
+          </div>
+        )}
+
         {customer && type !== 'visit' && amountN > 0 && (
           <div className="card small muted" style={{ marginBottom: 12 }}>
             {type === 'sale'
@@ -160,7 +187,7 @@ export default function NewTransaction() {
         )}
         {type === 'sale' && validItems.length > 0 && <div className="xs muted" style={{ marginBottom: 12 }}>Birim fiyatlar ürün kartından gelir ({validItems.map((i) => `${i.name}: ${fmtPrice(i.unitPrice)}`).join(', ')}); satırda değiştirebilirsiniz.</div>}
 
-        <div className="sticky-bottom"><button className="btn btn-primary" type="submit" disabled={!valid}>Kaydet</button></div>
+        <div className="sticky-bottom"><button className="btn btn-primary" type="submit" disabled={!valid || saving}>{saving ? 'Belgeler yükleniyor...' : 'Kaydet'}</button></div>
       </form>
     </div>
   );

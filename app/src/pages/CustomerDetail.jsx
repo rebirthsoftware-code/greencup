@@ -7,6 +7,7 @@ import { PageHeader, Avatar, StatusBadge, Empty, Sheet, Segmented, Tabs, DateFie
 import { ItemsEditor } from './NewTransaction';
 import { cleanItem } from '../utils/format';
 import * as Ic from '../components/Icons';
+import Attachments from '../components/Attachments';
 
 const TABS = ['Hareketler', 'Ürünler', 'Faturalar', 'Notlar'];
 const TX_FILTERS = [
@@ -40,6 +41,7 @@ export function TxItem({ t, alloc, onClick }) {
           {overdue && <span className="badge badge--gecikmis">Gecikmiş</span>}
           {t.type === 'sale' && !t.fromReserve && <span className={`badge ${t.invoiced ? 'badge--aktif' : 'badge--gecikmis'}`}>{t.invoiced ? `Faturalı${t.invoiceNo ? ' · ' + t.invoiceNo : ''}` : 'Faturasız'}</span>}
           {t.type === 'payment' && <span className="badge badge--blue">{METHOD_LABEL[t.method] || 'Nakit'}</span>}
+          {t.attachments?.length > 0 && <span className="badge badge--neutral"><Ic.FileText size={12} /> {t.attachments.length} belge</span>}
         </div>
       </div>
     </div>
@@ -48,7 +50,7 @@ export function TxItem({ t, alloc, onClick }) {
 
 /** Hareket düzenleme / silme alt sayfası */
 function TxEditor({ tx, onClose }) {
-  const { state, updateTransaction, deleteTransaction } = useStore();
+  const { state, updateTransaction, deleteTransaction, setAttachments } = useStore();
   const toast = useToast();
   const [f, setF] = useState(() => ({ ...tx, items: txItems(tx).map((i) => ({ ...i })), amountStr: String(tx.amount ?? '') }));
   const set = (k) => (v) => setF({ ...f, [k]: v });
@@ -70,6 +72,7 @@ function TxEditor({ tx, onClose }) {
           <div className="field"><label>Fatura</label><Segmented light value={f.invoiced ? 'f' : 'nf'} onChange={(v) => set('invoiced')(v === 'f')} options={[{ value: 'f', label: 'Faturalı' }, { value: 'nf', label: 'Faturasız' }]} /></div>
           <div className="field"><label>Ödeme</label><Segmented light value={f.payment} onChange={set('payment')} options={[{ value: 'vadeli', label: 'Vadeli' }, { value: 'pesin', label: 'Peşin' }, { value: 'kismi', label: 'Kısmi' }]} /></div>
           {f.payment !== 'pesin' && <DateField label="Vade Tarihi" value={f.dueDate || ''} onChange={set('dueDate')} />}
+          <div className="field"><label>Belgeler</label><Attachments items={tx.attachments || []} onChange={(list) => setAttachments(tx.id, list)} folder={`${(tx.date || '').slice(0, 4)}/${tx.id}`} compact /></div>
         </>
       )}
       {f.type === 'payment' && (
@@ -123,7 +126,7 @@ function ReserveSheet({ customerId, entry, onClose }) {
 export default function CustomerDetail() {
   const { id } = useParams();
   const nav = useNavigate();
-  const { state, addTransaction, deleteCustomer } = useStore();
+  const { state, addTransaction, deleteCustomer, setAttachments } = useStore();
   const toast = useToast();
   const customer = state.customers.find((c) => c.id === id);
   const [tab, setTab] = useState(0);
@@ -231,17 +234,22 @@ export default function CustomerDetail() {
       {tab === 2 && (
         <div className="list">
           {invoices.map((t) => (
-            <Link key={t.id} to={`/fatura/${t.id}`} className="item">
-              <div className="tl-icon"><Ic.FileText size={18} /></div>
-              <div className="item-body">
-                <div className="item-title">Fatura {t.invoiceNo ? `No: ${t.invoiceNo}` : ''}</div>
-                <div className="item-sub">{fmtDate(t.date)} · {itemsLabel(t)}</div>
+            <div key={t.id} className="card" style={{ padding: 12 }}>
+              <Link to={`/fatura/${t.id}`} className="row" style={{ gap: 12 }}>
+                <div className="tl-icon"><Ic.FileText size={18} /></div>
+                <div className="item-body">
+                  <div className="item-title">Fatura {t.invoiceNo ? `No: ${t.invoiceNo}` : ''}</div>
+                  <div className="item-sub">{fmtDate(t.date)} · {itemsLabel(t)}</div>
+                </div>
+                <span className="num">{fmtMoney(t.amount)}</span>
+                <Ic.ChevronRight size={18} className="muted" />
+              </Link>
+              <div style={{ marginTop: 10 }}>
+                <Attachments items={t.attachments || []} onChange={(list) => setAttachments(t.id, list)} folder={`${(t.date || '').slice(0, 4)}/${t.id}`} compact />
               </div>
-              <span className="num">{fmtMoney(t.amount)}</span>
-              <Ic.ChevronRight size={18} className="muted" />
-            </Link>
+            </div>
           ))}
-          {invoices.length === 0 && <Empty>Fatura yok.</Empty>}
+          {invoices.length === 0 && <Empty>Faturalı satış yok. Mal verirken "Faturalı" seçin ve belgeyi ekleyin.</Empty>}
         </div>
       )}
 

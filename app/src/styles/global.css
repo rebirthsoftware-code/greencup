@@ -451,3 +451,14 @@ textarea.input { height: auto; min-height: 96px; padding: 12px 14px; resize: ver
 /* iOS: sabit konumlu alt sayfa her zaman sekme çubuğunun üstünde; küçük ekranlarda içerik kaydırılabilir */
 .sheet { max-height: min(86dvh, 86vh); -webkit-overflow-scrolling: touch; }
 .sheet > .btn:last-child, .sheet .btn-row:last-child, .sheet .stack:last-child { margin-bottom: 4px; }
+
+/* ---------- Belgeler (fatura PDF / fotoğraf) ---------- */
+.attach-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+.attach-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border); text-align: left; width: 100%; }
+.attach-item .tl-icon { width: 32px; height: 32px; border-radius: 10px; }
+.attach-name { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.attach-name b { font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.attach-name span { font-size: 11.5px; color: var(--text-3); }
+.attach-item .rm { color: var(--text-3); display: grid; place-items: center; width: 28px; height: 28px; }
+.attach-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.attach-actions .btn.disabled { opacity: .5; pointer-events: none; }

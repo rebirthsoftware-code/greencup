@@ -4,9 +4,10 @@ import { ACCOUNT_LABEL } from '../store/selectors';
 import { fmtMoney, fmtDayMonth, fmtDate, daysBetween, today, parseMoney } from '../utils/format';
 import { PageHeader, Sheet, Segmented, Empty, DateField, DangerButton, useToast, Tabs } from '../components/ui';
 import * as Ic from '../components/Icons';
+import Attachments from '../components/Attachments';
 
 export default function Payments() {
-  const { state, payExpense, unpayExpense, addExpense, updateExpense, deleteExpense } = useStore();
+  const { state, payExpense, unpayExpense, addExpense, updateExpense, deleteExpense, setExpenseAttachments } = useStore();
   const toast = useToast();
   const [tab, setTab] = useState(0);
   const [sel, setSel] = useState(null);     // seçili gider (detay/düzenle)
@@ -70,7 +71,7 @@ export default function Payments() {
           {past.map((e) => (
             <div key={e.id} className="item" onClick={() => open(e)}>
               <div className="tl-icon"><Ic.Check size={18} /></div>
-              <div className="item-body"><div className="item-title">{e.title}</div><div className="item-sub">Ödendi: {fmtDate(e.paidAt)}{e.account ? ` · ${ACCOUNT_LABEL[e.account]}` : ''}</div></div>
+              <div className="item-body"><div className="item-title">{e.title}</div><div className="item-sub">Ödendi: {fmtDate(e.paidAt)}{e.account ? ` · ${ACCOUNT_LABEL[e.account]}` : ''}{e.attachments?.length ? ` · ${e.attachments.length} belge` : ''}</div></div>
               <span className="num">{fmtMoney(e.amount)}</span>
             </div>
           ))}
@@ -90,6 +91,7 @@ export default function Payments() {
         <div className="field"><label>Başlık</label><div className="input"><input value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} /></div></div>
         <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={f.amount} onChange={(e) => setF({ ...f, amount: e.target.value })} /></div></div>
         <DateField label="Vade" value={f.due} onChange={(v) => setF({ ...f, due: v })} />
+        {sel && <div className="field"><label>Fatura / Fiş</label><Attachments items={(state.expenses.find((x) => x.id === sel.id)?.attachments) || []} onChange={(list) => setExpenseAttachments(sel.id, list)} folder={`giderler/${sel.id}`} compact /></div>}
         {sel?.paid && <p className="xs muted" style={{ marginBottom: 12 }}>Bu ödeme {fmtDate(sel.paidAt)} tarihinde {ACCOUNT_LABEL[sel.account] || ''} hesabından ödendi. Tutarı değiştirmek kasayı etkilemez; yanlışsa "Ödenmedi yap" deyip yeniden ödeyin.</p>}
         <div className="stack">
           <div className="btn-row">
