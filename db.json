@@ -50,6 +50,16 @@
    "name": "Baskısız taşıma çantası",
    "minStock": 0,
    "updatedAt": "2026-09-18T07:48:31.823Z"
+  },
+  {
+   "id": "35xp14kxmu6nqu4e",
+   "unit": "adet",
+   "stock": 2500,
+   "price": 0,
+   "createdAt": "2026-09-18T07:49:20.510Z",
+   "name": "12oz Pet baskısız",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T07:49:20.510Z"
   }
  ],
  "customers": [
