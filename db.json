@@ -90,16 +90,6 @@
    "name": "16oz Pet Cozy",
    "minStock": 0,
    "updatedAt": "2026-09-18T07:51:00.900Z"
-  },
-  {
-   "id": "cyqxvoezmu6pyruo",
-   "unit": "adet",
-   "stock": 1,
-   "price": 0,
-   "createdAt": "2026-09-18T08:51:30.048Z",
-   "name": "Nend",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T08:51:30.048Z"
   }
  ],
  "customers": [
@@ -173,6 +163,10 @@
   {
    "id": "31lqnvqymu5zxjqk",
    "at": "2026-09-17T20:43:39.899Z"
+  },
+  {
+   "id": "cyqxvoezmu6pyruo",
+   "at": "2026-09-18T08:51:34.310Z"
   }
  ],
  "settings": {
