@@ -100,6 +100,16 @@
    "name": "Islak Mendil Klişesi",
    "minStock": 0,
    "updatedAt": "2026-09-18T13:18:28.637Z"
+  },
+  {
+   "id": "bq1w7y1lmu6zpkc9",
+   "unit": "adet",
+   "stock": 17000,
+   "price": 0.95,
+   "createdAt": "2026-09-18T13:24:16.569Z",
+   "name": "Sıcak kapak 14oz",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T13:24:16.569Z"
   }
  ],
  "customers": [
