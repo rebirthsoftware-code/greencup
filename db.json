@@ -1,6 +1,17 @@
 {
  "version": 2,
- "products": [],
+ "products": [
+  {
+   "id": "sa21efspmu6nlrqg",
+   "unit": "koli",
+   "stock": 17,
+   "price": 0,
+   "createdAt": "2026-09-18T07:45:24.136Z",
+   "name": "Şeker",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T07:45:24.136Z"
+  }
+ ],
  "customers": [
   {
    "id": "uo7kqubfmu5w4ome",
