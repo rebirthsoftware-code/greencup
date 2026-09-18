@@ -60,6 +60,16 @@
    "name": "12oz Pet baskısız",
    "minStock": 0,
    "updatedAt": "2026-09-18T07:49:20.510Z"
+  },
+  {
+   "id": "t71w84oxmu6nrmcx",
+   "unit": "adet",
+   "stock": 2700,
+   "price": 0,
+   "createdAt": "2026-09-18T07:49:57.105Z",
+   "name": "14oz Doublewall Pana Deria",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T07:49:57.105Z"
   }
  ],
  "customers": [
