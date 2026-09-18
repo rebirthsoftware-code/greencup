@@ -10,6 +10,16 @@
    "name": "Şeker",
    "minStock": 0,
    "updatedAt": "2026-09-18T07:45:24.136Z"
+  },
+  {
+   "id": "7w2meuznmu6nmuma",
+   "unit": "koli",
+   "stock": 5,
+   "price": 0,
+   "createdAt": "2026-09-18T07:46:14.530Z",
+   "name": "Islak mendil 7/12",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T07:46:14.530Z"
   }
  ],
  "customers": [
