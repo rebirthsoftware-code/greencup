@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, createContext, useContext, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { tap } from '../utils/hooks';
 import * as Ic from './Icons';
@@ -108,14 +109,15 @@ export function Sheet({ open, onClose, title, children }) {
     return () => { document.body.style.overflow = prev; };
   }, [open]);
   if (!open) return null;
-  return (
+  return createPortal(
     <div className="sheet-bg" onClick={onClose}>
       <div className="sheet" onClick={(e) => e.stopPropagation()}>
         <div className="handle" />
         {title && <h3>{title}</h3>}
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

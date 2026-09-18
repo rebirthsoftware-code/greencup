@@ -85,9 +85,9 @@ input, textarea, select { outline: none; }
 
 /* ---------- App shell ---------- */
 .app { max-width: 480px; margin: 0 auto; min-height: 100dvh; background: var(--bg); position: relative; }
-.page { padding: calc(12px + var(--safe-t)) 16px calc(var(--tab-h) + 40px + var(--safe-b)); animation: page-in .28s var(--ease) both; }
+.page { padding: calc(12px + var(--safe-t)) 16px calc(var(--tab-h) + 40px + var(--safe-b)); animation: page-in .28s var(--ease); }
 .page--no-tabs { padding-bottom: calc(28px + var(--safe-b)); }
-@keyframes page-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
 @media (display-mode: standalone) { .page { padding-top: calc(16px + var(--safe-t)); } }
 
 .page-header { display: flex; align-items: center; gap: 10px; min-height: 46px; margin-bottom: 14px; }
@@ -221,6 +221,7 @@ textarea.input { height: auto; min-height: 96px; padding: 12px 14px; resize: ver
 .tabbar {
   position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(10px + var(--safe-b));
   width: calc(100% - 24px); max-width: 456px; height: var(--tab-h);
+  background: var(--surface);
   background: color-mix(in srgb, var(--surface) 86%, transparent);
   -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
   border: 1px solid var(--border); border-radius: 22px; box-shadow: var(--shadow);
@@ -280,7 +281,7 @@ textarea.input { height: auto; min-height: 96px; padding: 12px 14px; resize: ver
 .table td.name { font-weight: 600; display: flex; align-items: center; gap: 8px; }
 
 /* ---------- Alt sayfa ---------- */
-.sheet-bg { position: fixed; inset: 0; background: rgba(0,0,0,.42); z-index: 90; display: flex; align-items: flex-end; justify-content: center; animation: fade-in .2s ease; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+.sheet-bg { position: fixed; inset: 0; background: rgba(0,0,0,.42); z-index: 150; display: flex; align-items: flex-end; justify-content: center; animation: fade-in .2s ease; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 .sheet { width: 100%; max-width: 480px; background: var(--surface); border-radius: 24px 24px 0 0; padding: 10px 18px calc(22px + var(--safe-b)); max-height: 86dvh; overflow: auto; animation: sheet-in .32s var(--ease); box-shadow: 0 -10px 40px rgba(0,0,0,.15); }
 @keyframes sheet-in { from { transform: translateY(60px); opacity: 0; } to { transform: none; opacity: 1; } }
@@ -342,7 +343,7 @@ textarea.input { height: auto; min-height: 96px; padding: 12px 14px; resize: ver
 .display, .page-header h1, .section-title, .stat .stat-value, .sheet h3 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.5px; }
 
 /* Yapışkan, bulanık başlık */
-.page-header { position: sticky; top: 0; z-index: 20; margin: 0 -16px 14px; padding: calc(6px + var(--safe-t)) 16px 6px; background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.page-header { position: sticky; top: 0; z-index: 20; margin: 0 -16px 14px; padding: calc(6px + var(--safe-t)) 16px 6px; background: var(--bg); background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
 .page { padding-top: 6px; }
 @media (display-mode: standalone) { .page { padding-top: 6px; } .page-header { padding-top: calc(10px + var(--safe-t)); } }
 
@@ -446,3 +447,7 @@ textarea.input { height: auto; min-height: 96px; padding: 12px 14px; resize: ver
 .month-col span { font-size: 10.5px; color: var(--text-3); }
 /* Ana sayfa başlığı kaydırınca sabit kalmaz (bölüm başlıklarını örtmesin) */
 .home-header { position: static; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; margin-bottom: 8px; }
+
+/* iOS: sabit konumlu alt sayfa her zaman sekme çubuğunun üstünde; küçük ekranlarda içerik kaydırılabilir */
+.sheet { max-height: min(86dvh, 86vh); -webkit-overflow-scrolling: touch; }
+.sheet > .btn:last-child, .sheet .btn-row:last-child, .sheet .stack:last-child { margin-bottom: 4px; }
