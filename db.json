@@ -70,6 +70,16 @@
    "name": "14oz Doublewall Pana Deria",
    "minStock": 0,
    "updatedAt": "2026-09-18T07:49:57.105Z"
+  },
+  {
+   "id": "b5935967mu6nsabe",
+   "unit": "koli",
+   "stock": 11,
+   "price": 0,
+   "createdAt": "2026-09-18T07:50:28.154Z",
+   "name": "Soğuk klips kapak",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T07:50:28.154Z"
   }
  ],
  "customers": [
