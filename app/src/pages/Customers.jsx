@@ -38,7 +38,7 @@ export default function Customers() {
   const { state } = useStore();
   const [params, setParams] = useSearchParams();
   const filter = params.get('f') || 'tumu';
-  const [q, setQ] = useState('');
+  const [q, setQ] = useState(() => params.get('q') || '');
 
   const list = useMemo(() => {
     const sums = allSummaries(state);
