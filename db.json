@@ -110,6 +110,16 @@
    "name": "Sıcak kapak 14oz",
    "minStock": 0,
    "updatedAt": "2026-09-18T13:24:16.569Z"
+  },
+  {
+   "id": "pycd0qcxmu6zq2uw",
+   "unit": "adet",
+   "stock": 1000,
+   "price": 4.5,
+   "createdAt": "2026-09-18T13:24:40.568Z",
+   "name": "Taşıma Çantası Cozy",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T13:24:40.568Z"
   }
  ],
  "customers": [
