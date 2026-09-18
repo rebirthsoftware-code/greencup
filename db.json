@@ -90,6 +90,16 @@
    "name": "16oz Pet Cozy",
    "minStock": 0,
    "updatedAt": "2026-09-18T07:51:00.900Z"
+  },
+  {
+   "id": "7nvexuz0mu6zhwmy",
+   "unit": "adet",
+   "stock": 4,
+   "price": 0,
+   "createdAt": "2026-09-18T13:18:19.258Z",
+   "name": "Islak Mendil Klişesi",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T13:18:19.258Z"
   }
  ],
  "customers": [
