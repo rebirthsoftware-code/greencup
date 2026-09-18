@@ -40,6 +40,16 @@
    "name": "Craft Çanta Cozy",
    "minStock": 0,
    "updatedAt": "2026-09-18T07:48:11.860Z"
+  },
+  {
+   "id": "wtr2jopgmu6npsjz",
+   "unit": "koli",
+   "stock": 12,
+   "price": 0,
+   "createdAt": "2026-09-18T07:48:31.823Z",
+   "name": "Baskısız taşıma çantası",
+   "minStock": 0,
+   "updatedAt": "2026-09-18T07:48:31.823Z"
   }
  ],
  "customers": [
