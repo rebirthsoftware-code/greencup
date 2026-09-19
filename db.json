@@ -1,6 +1,17 @@
 {
  "version": 2,
- "products": [],
+ "products": [
+  {
+   "id": "op9ibw3zmu8ffeyg",
+   "unit": "koli",
+   "stock": 7,
+   "price": 0,
+   "createdAt": "2026-09-19T13:32:03.064Z",
+   "name": "Stick Şeker Cafe YY",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:32:03.064Z"
+  }
+ ],
  "customers": [
   {
    "id": "uo7kqubfmu5w4ome",
