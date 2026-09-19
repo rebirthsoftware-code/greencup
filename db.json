@@ -10,6 +10,16 @@
    "name": "Stick Şeker Cafe YY",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:32:03.064Z"
+  },
+  {
+   "id": "k6jkn7jsmu8fg4zf",
+   "unit": "koli",
+   "stock": 2,
+   "price": 0,
+   "createdAt": "2026-09-19T13:32:36.795Z",
+   "name": "Stick Şeker Cafe Talk",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:32:36.795Z"
   }
  ],
  "customers": [
