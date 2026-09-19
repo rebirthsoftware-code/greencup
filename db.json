@@ -240,6 +240,16 @@
    "name": "Stick Şeker Cozy",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:43:43.860Z"
+  },
+  {
+   "id": "wxc90mrnmu8fvbbr",
+   "unit": "koli",
+   "stock": 11,
+   "price": 0,
+   "createdAt": "2026-09-19T13:44:24.855Z",
+   "name": "95 çap Soğuk kapak",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:44:24.855Z"
   }
  ],
  "customers": [
