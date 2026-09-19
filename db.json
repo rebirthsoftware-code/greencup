@@ -30,6 +30,16 @@
    "name": "7/12 Islak mendil Çaylak Cafe",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:33:09.091Z"
+  },
+  {
+   "id": "zf3wmoasmu8fhawl",
+   "unit": "koli",
+   "stock": 5,
+   "price": 0,
+   "createdAt": "2026-09-19T13:33:31.125Z",
+   "name": "Peçete Çaylak Cafe",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:33:31.125Z"
   }
  ],
  "customers": [
