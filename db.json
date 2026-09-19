@@ -80,6 +80,16 @@
    "name": "16oz soğuk bardak Bırchıll",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:35:33.517Z"
+  },
+  {
+   "id": "envm8x5xmu8fkf6i",
+   "unit": "koli",
+   "stock": 6,
+   "price": 0,
+   "createdAt": "2026-09-19T13:35:56.634Z",
+   "name": "Peçete Vento",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:35:56.634Z"
   }
  ],
  "customers": [
