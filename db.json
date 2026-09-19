@@ -140,6 +140,36 @@
    "name": "16oz Soğuk Bardak Vento",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:39:20.559Z"
+  },
+  {
+   "id": "kz88r7uxmu8fpnb7",
+   "unit": "koli",
+   "stock": 6,
+   "price": 0,
+   "createdAt": "2026-09-19T13:40:00.451Z",
+   "name": "90mm Sıcak Kapak",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:40:00.451Z"
+  },
+  {
+   "id": "nsr0ilmnmu8fqbbg",
+   "unit": "koli",
+   "stock": 10,
+   "price": 0,
+   "createdAt": "2026-09-19T13:40:31.564Z",
+   "name": "14oz Doublewall Cozy",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:40:31.564Z"
+  },
+  {
+   "id": "a0orm106mu8fqswc",
+   "unit": "koli",
+   "stock": 4,
+   "price": 0,
+   "createdAt": "2026-09-19T13:40:54.348Z",
+   "name": "16oz Soğuk Bardak Cozy",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:40:54.348Z"
   }
  ],
  "customers": [
