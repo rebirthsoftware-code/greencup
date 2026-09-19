@@ -180,6 +180,16 @@
    "name": "14oz Soğuk Bardak Goldbeans",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:41:15.896Z"
+  },
+  {
+   "id": "stkgs6v8mu8fsd0l",
+   "unit": "adet",
+   "stock": 2500,
+   "price": 0,
+   "createdAt": "2026-09-19T13:42:07.077Z",
+   "name": "12oz Soğuk bardak Baskısız",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:42:07.077Z"
   }
  ],
  "customers": [
