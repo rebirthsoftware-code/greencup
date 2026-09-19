@@ -110,7 +110,20 @@ function reducer(state, action) {
       let next = undoTx(state, old);
       const t = stamp({ ...old, ...action.patch });
       next = { ...next, transactions: next.transactions.map((x) => (x.id === action.id ? t : x)) };
-      if (t.type === 'sale') next = { ...next, products: adjustStock(next.products, t.items, -1) };
+      if (t.type === 'sale') {
+        next = { ...next, products: adjustStock(next.products, t.items, -1) };
+        // Peşin satışta otomatik oluşturulan tahsilat satışla birlikte güncellenir; vadeliye dönerse kaldırılır
+        const linked = next.transactions.find((x) => x.type === 'payment' && x.saleId === t.id);
+        if (linked && t.payment === 'pesin' && linked.amount !== t.amount) {
+          next = undoCash(next, linked.id, { type: 'in', amount: linked.amount, account: linked.method || 'nakit', title: 'Tahsilat' });
+          const upd = stamp({ ...linked, amount: t.amount, date: t.date });
+          next = { ...next, transactions: next.transactions.map((x) => (x.id === linked.id ? upd : x)) };
+          next = cashIn(next, upd.method || 'nakit', upd.amount, 'Tahsilat', upd.id);
+        } else if (linked && t.payment === 'vadeli') {
+          next = undoCash(next, linked.id, { type: 'in', amount: linked.amount, account: linked.method || 'nakit', title: 'Tahsilat' });
+          next = tomb({ ...next, transactions: next.transactions.filter((x) => x.id !== linked.id) }, linked.id);
+        }
+      }
       if (t.type === 'payment') next = cashIn(next, t.method || 'nakit', t.amount, 'Tahsilat', t.id);
       return next;
     }
@@ -124,6 +137,12 @@ function reducer(state, action) {
       let next = undoTx(state, old);
       next = { ...next, transactions: next.transactions.filter((t) => t.id !== action.id) };
       next = tomb(next, action.id);
+      if (old.type === 'sale') { // satışla birlikte oluşan otomatik tahsilat(lar) da gider
+        for (const p of state.transactions.filter((x) => x.type === 'payment' && x.saleId === old.id)) {
+          next = undoCash(next, p.id, { type: 'in', amount: p.amount, account: p.method || 'nakit', title: 'Tahsilat' });
+          next = tomb({ ...next, transactions: next.transactions.filter((x) => x.id !== p.id) }, p.id);
+        }
+      }
       return next;
     }
 

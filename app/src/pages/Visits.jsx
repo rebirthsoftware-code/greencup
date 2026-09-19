@@ -23,7 +23,8 @@ export default function Visits() {
   const openNew = (customerId = '') => { setF({ customerId, date: t, note: '' }); setPlan('new'); };
   const openEdit = (v) => { setF({ customerId: v.customerId, date: v.date, note: v.note || '' }); setPlan(v); };
   const save = () => {
-    if (!f.customerId || !f.date) return;
+    if (!f.customerId) return toast('Müşteri seçin');
+    if (!f.date) return toast('Tarih seçin');
     if (plan === 'new') { addPlannedVisit({ customerId: f.customerId, date: f.date, note: f.note.trim() }); toast('Ziyaret planlandı'); }
     else { updatePlannedVisit(plan.id, { customerId: f.customerId, date: f.date, note: f.note.trim() }); toast('Plan güncellendi'); }
     setPlan(null);

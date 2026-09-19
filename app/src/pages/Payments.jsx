@@ -23,12 +23,14 @@ export default function Payments() {
   const open = (e) => { setSel(e); setF({ title: e.title, amount: String(e.amount), due: e.due }); };
   const saveNew = () => {
     const amount = parseMoney(f.amount);
-    if (!f.title.trim() || !amount) return;
+    if (!f.title.trim()) return toast('Başlık girin (örn. Kira)');
+    if (!(amount > 0)) return toast('Tutar girin');
     addExpense({ title: f.title.trim(), amount, due: f.due }); toast('Ödeme eklendi'); setAdding(false); setF({ title: '', amount: '', due: t });
   };
   const saveEdit = () => {
     const amount = parseMoney(f.amount);
-    if (!f.title.trim() || !amount) return;
+    if (!f.title.trim()) return toast('Başlık girin');
+    if (!(amount > 0)) return toast('Tutar girin');
     updateExpense(sel.id, { title: f.title.trim(), amount, due: f.due }); toast('Güncellendi'); setSel(null);
   };
 
@@ -106,7 +108,7 @@ export default function Payments() {
         <div className="field"><label>Başlık</label><div className="input"><input value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} placeholder="Örn: Kira" /></div></div>
         <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={f.amount} onChange={(e) => setF({ ...f, amount: e.target.value })} /></div></div>
         <DateField label="Vade" value={f.due} onChange={(v) => setF({ ...f, due: v })} />
-        <button className="btn btn-primary" onClick={saveNew}>Kaydet</button>
+        <button className="btn btn-primary" onClick={saveNew} disabled={!f.title.trim() || !(parseMoney(f.amount) > 0)}>Kaydet</button>
       </Sheet>
     </div>
   );

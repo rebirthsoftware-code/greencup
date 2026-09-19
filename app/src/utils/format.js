@@ -54,7 +54,31 @@ export async function sha256(text) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
-export const parseMoney = (v) => parseFloat(String(v ?? '').replace(/\./g, '').replace(',', '.')) || 0;
+/**
+ * Para/sayı metnini sayıya çevirir. Kurallar:
+ *  - hem nokta hem virgül varsa sonda olan ondalık ayırıcıdır ("1.500,50" → 1500.5, "1,500.50" → 1500.5)
+ *  - yalnızca virgül varsa ondalıktır ("3,7" → 3.7)
+ *  - yalnızca nokta varsa: tek nokta ve ardından 1-2 hane ondalıktır ("3.7", "10.50"); ardından tam 3 hane
+ *    veya birden çok nokta binlik ayırıcıdır ("1.500" → 1500, "1.500.000" → 1500000)
+ */
+export function parseMoney(v) {
+  let s = String(v ?? '').trim().replace(/[₺\s]/g, '');
+  if (!s) return 0;
+  const neg = s.startsWith('-'); s = s.replace(/^[-+]/, '');
+  const dots = (s.match(/\./g) || []).length, commas = (s.match(/,/g) || []).length;
+  if (dots && commas) {
+    s = s.lastIndexOf(',') > s.lastIndexOf('.') ? s.replace(/\./g, '').replace(/,/g, '.') : s.replace(/,/g, '');
+  } else if (commas) {
+    const i = s.lastIndexOf(','); s = s.slice(0, i).replace(/,/g, '') + '.' + s.slice(i + 1);
+  } else if (dots) {
+    const tail = s.slice(s.lastIndexOf('.') + 1);
+    if (dots === 1 && tail.length > 0 && tail.length <= 2) { /* ondalık */ } else s = s.replace(/\./g, '');
+  }
+  const n = parseFloat(s);
+  return Number.isFinite(n) ? (neg ? -n : n) : 0;
+}
+/** Sayıyı giriş kutusu için virgüllü metne çevirir (3.7 → "3,7"). */
+export const toInput = (n) => (n == null || n === '' ? '' : String(n).replace('.', ','));
 
 /** Satır düzenleyicinin geçici alanlarını temizler. */
-export const cleanItem = (i) => { const c = { ...i }; delete c.manual; return c; };
+export const cleanItem = (i) => { const c = { ...i }; delete c.manual; delete c.priceStr; return c; };
