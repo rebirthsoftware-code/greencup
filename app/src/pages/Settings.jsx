@@ -40,7 +40,7 @@ export default function Settings() {
     catch (e) { toast(e.message); } finally { setPushBusy(false); }
   };
   const disablePush = async () => { setPushBusy(true); try { await unsubscribePush(sync.cfg); setPushOn(false); toast('Anlık bildirimler kapatıldı'); } catch (e) { toast(e.message); } finally { setPushBusy(false); } };
-  const testPush = async () => { setPushBusy(true); try { await sendTestPush(NOTIFY_API); toast('Test bildirimi gönderildi'); } catch (e) { toast(e.message); } finally { setPushBusy(false); } };
+  const testPush = async () => { setPushBusy(true); try { await sendTestPush(NOTIFY_API, sync.cfg); toast('Test bildirimi gönderildi'); } catch (e) { toast(e.message); } finally { setPushBusy(false); } };
   const setScField = (k) => (e) => setSc({ ...sc, [k]: e.target.value.trim() });
   const setField = (k) => (e) => setF({ ...f, [k]: e.target.value });
 
@@ -71,7 +71,7 @@ export default function Settings() {
   };
   const importJson = (e) => {
     const file = e.target.files?.[0]; if (!file) return;
-    file.text().then((txt) => { JSON.parse(txt); localStorage.setItem('greencup.app.v1', txt); location.reload(); }).catch(() => toast('Dosya okunamadı'));
+    file.text().then((txt) => { JSON.parse(txt); localStorage.setItem('greencup.app.v1', txt); try { const m = JSON.parse(localStorage.getItem('greencup.sync.meta.v1') || '{}'); localStorage.setItem('greencup.sync.meta.v1', JSON.stringify({ ...m, dirty: true })); } catch { /* noop */ } location.reload(); }).catch(() => toast('Dosya okunamadı'));
   };
 
   return (

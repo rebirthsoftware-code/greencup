@@ -70,24 +70,31 @@ export async function unsubscribePush(cfg) {
   if (cfg?.token) await updateList(cfg, (list) => list.filter((s) => s.endpoint !== endpoint), 'app: bildirim aboneliği kaldırıldı');
 }
 
-/** Sunucudan bu cihaza test bildirimi iste. */
-export async function sendTestPush(apiUrl) {
+/** Sunucudan bu cihaza test bildirimi iste (cihazın GitHub token'ı ile yetkilenir). */
+export async function sendTestPush(apiUrl, cfg) {
   const sub = await getSubscription();
   if (!sub) throw new Error('Önce bildirimleri açın');
-  const r = await fetch(`${apiUrl}?endpoint=${encodeURIComponent(sub.endpoint)}`);
+  if (!cfg?.token) throw new Error('Bulut Senkron bağlı olmalı');
+  const r = await fetch(`${apiUrl}?endpoint=${encodeURIComponent(sub.endpoint)}`, { headers: { Authorization: `Bearer ${cfg.token}` } });
   const j = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(j.error || `Sunucu hatası ${r.status}`);
   if (!j.sent) throw new Error(j.reason || 'Gönderilemedi (abonelik henüz buluta yazılmamış olabilir)');
   return j;
 }
 
-/** Olay bildirimi: tüm abone cihazlara gönderilmek üzere sunucuya ilet. */
+/**
+ * Olay bildirimi: tüm abone cihazlara gönderilmek üzere sunucuya ilet.
+ * Yetki cihazın GitHub token'ıyla; ölü abonelikler (410/404) listeden temizlenir.
+ */
 export async function notifyAll(cfg, apiUrl, payload, { excludeSelf = false } = {}) {
-  let from = (await getSubscription().catch(() => null))?.endpoint;
-  if (!from) { const { list } = await readFile(cfg); from = list[0]?.endpoint; }
-  if (!from) return { sent: 0, reason: 'abone cihaz yok' };
-  const r = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ from, excludeFrom: excludeSelf ? from : undefined, ...payload }) });
+  if (!cfg?.token) return { sent: 0, reason: 'bulut bağlı değil' };
+  const own = (await getSubscription().catch(() => null))?.endpoint;
+  const r = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${cfg.token}` }, body: JSON.stringify({ excludeFrom: excludeSelf && own ? own : undefined, ...payload }) });
   const j = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(j.error || `Sunucu hatası ${r.status}`);
+  if (Array.isArray(j.gone) && j.gone.length) {
+    const dead = new Set(j.gone);
+    await updateList(cfg, (list) => list.filter((s) => !dead.has(s.endpoint)), 'app: ölü bildirim abonelikleri temizlendi').catch(() => {});
+  }
   return j;
 }

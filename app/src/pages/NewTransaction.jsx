@@ -78,7 +78,10 @@ export default function NewTransaction() {
   const [paidNow, setPaidNow] = useState('');
   const [method, setMethod] = useState('nakit');
   const [date, setDate] = useState(today());
-  const [dueDate, setDueDate] = useState(addDays(today(), state.settings.defaultDueDays || 30));
+  const [dueDate, setDueDateRaw] = useState(addDays(today(), state.settings.defaultDueDays || 30));
+  const [dueTouched, setDueTouched] = useState(false);
+  const setDueDate = (v) => { setDueTouched(true); setDueDateRaw(v); };
+  const setDateAndDue = (v) => { setDate(v); if (!dueTouched && v) setDueDateRaw(addDays(v, state.settings.defaultDueDays || 30)); };
   const [note, setNote] = useState('');
 
   const customer = state.customers.find((c) => c.id === customerId);
@@ -166,7 +169,7 @@ export default function NewTransaction() {
             <Segmented value={method} onChange={setMethod} options={[{ value: 'nakit', label: 'Nakit' }, { value: 'banka', label: 'Havale' }, { value: 'kart', label: 'Kart' }]} light /></div>
         )}
 
-        <DateField label="Tarih" value={date} onChange={setDate} />
+        <DateField label="Tarih" value={date} onChange={setDateAndDue} />
         {type === 'sale' && payment !== 'pesin' && <DateField label="Vade Tarihi" value={dueDate} onChange={setDueDate} min={date} />}
 
         <div className="field"><label>Not <span className="opt">(isteğe bağlı)</span></label>
