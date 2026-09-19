@@ -70,6 +70,16 @@
    "name": "14oz Soğuk Bardak Bırchıll",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:35:10.003Z"
+  },
+  {
+   "id": "83m59s0kmu8fjxcd",
+   "unit": "koli",
+   "stock": 2,
+   "price": 0,
+   "createdAt": "2026-09-19T13:35:33.517Z",
+   "name": "16oz soğuk bardak Bırchıll",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:35:33.517Z"
   }
  ],
  "customers": [
