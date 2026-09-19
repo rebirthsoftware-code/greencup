@@ -1,8 +1,10 @@
 const tl = new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 });
+const tl2 = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const num = new Intl.NumberFormat('tr-TR');
 
 export const fmtMoney = (v, sign = false) => {
-  const s = `₺${tl.format(Math.abs(v || 0))}`;
+  const a = Math.abs(v || 0);
+  const s = `₺${Number.isInteger(a) ? tl.format(a) : tl2.format(a)}`;
   if (!sign) return v < 0 ? `-${s}` : s;
   return v > 0 ? `+${s}` : v < 0 ? `-${s}` : s;
 };

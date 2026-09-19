@@ -35,7 +35,9 @@ self.addEventListener('push', (e) => {
 });
 self.addEventListener('notificationclick', (e) => {
   e.notification.close();
-  const url = new URL(e.notification.data?.url || base, self.location.origin).href;
+  let url = new URL(e.notification.data?.url || base, self.location.origin);
+  if (url.origin !== self.location.origin) url = new URL(base, self.location.origin); // başka siteye yönlendirme yok
+  url = url.href;
   e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
     const c = list.find((w) => w.url.startsWith(self.location.origin));
     if (c) { c.navigate(url); return c.focus(); }

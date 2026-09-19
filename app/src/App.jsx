@@ -6,6 +6,7 @@ import { TabBar, ToastProvider } from './components/ui';
 import Splash from './components/Splash';
 import PinLock from './components/PinLock';
 import Notifications from './pages/Notifications';
+import UpdateBanner from './components/UpdateBanner';
 import Home from './pages/Home';
 import Customers from './pages/Customers';
 import CustomerDetail from './pages/CustomerDetail';
@@ -72,6 +73,7 @@ export default function App() {
           </PinLock>
         </Router>
         {splash && <Splash />}
+        <UpdateBanner />
       </ToastProvider>
       </SyncProvider>
     </StoreProvider>
