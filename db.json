@@ -20,6 +20,16 @@
    "name": "Stick Şeker Cafe Talk",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:32:36.795Z"
+  },
+  {
+   "id": "5tvunar9mu8fgtwj",
+   "unit": "koli",
+   "stock": 2,
+   "price": 0,
+   "createdAt": "2026-09-19T13:33:09.091Z",
+   "name": "7/12 Islak mendil Çaylak Cafe",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:33:09.091Z"
   }
  ],
  "customers": [
