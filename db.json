@@ -210,6 +210,16 @@
    "name": "7/12 ıslak mendil Cozy",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:42:51.254Z"
+  },
+  {
+   "id": "cq4ru47wmu8ftnck",
+   "unit": "koli",
+   "stock": 2,
+   "price": 0,
+   "createdAt": "2026-09-19T13:43:07.124Z",
+   "name": "Craft çanta Cozy",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:43:07.124Z"
   }
  ],
  "customers": [
