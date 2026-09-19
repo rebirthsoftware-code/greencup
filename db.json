@@ -42,16 +42,6 @@
    "updatedAt": "2026-09-18T07:48:11.860Z"
   },
   {
-   "id": "wtr2jopgmu6npsjz",
-   "unit": "koli",
-   "stock": 12,
-   "price": 0,
-   "createdAt": "2026-09-18T07:48:31.823Z",
-   "name": "Baskısız taşıma çantası",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T07:48:31.823Z"
-  },
-  {
    "id": "35xp14kxmu6nqu4e",
    "unit": "adet",
    "stock": 2500,
@@ -269,6 +259,10 @@
   {
    "id": "cyqxvoezmu6pyruo",
    "at": "2026-09-18T08:51:34.310Z"
+  },
+  {
+   "id": "wtr2jopgmu6npsjz",
+   "at": "2026-09-19T13:30:58.689Z"
   }
  ],
  "settings": {
