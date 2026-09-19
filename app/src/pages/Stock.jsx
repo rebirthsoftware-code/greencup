@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { allSummaries, reservedByProduct } from '../store/selectors';
 import { fmtNum, parseMoney, toInput } from '../utils/format';
-import { PageHeader, Avatar, Empty, Sheet, DangerButton, useToast, Tabs } from '../components/ui';
+import { PageHeader, Avatar, Empty, Sheet, DangerButton, useToast, Tabs, MoneyInput } from '../components/ui';
 import * as Ic from '../components/Icons';
 
 export default function Stock() {
@@ -83,7 +83,7 @@ export default function Stock() {
           <div className="field"><label>Birim</label><div className="input"><select value={form.unit} onChange={(e) => setForm({ ...form, unit: e.target.value })}>{['adet', 'koli', 'paket', 'kg'].map((u) => <option key={u}>{u}</option>)}</select></div></div>
         </div>
         <div className="grid-2">
-          <div className="field"><label>Birim Fiyat (₺)</label><div className="input"><input inputMode="decimal" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} /></div></div>
+          <div className="field"><label>Birim Fiyat (₺)</label><div className="input"><MoneyInput value={form.price} onChange={(v) => setForm({ ...form, price: v })} /></div></div>
           <div className="field"><label>Uyarı Eşiği</label><div className="input"><input inputMode="numeric" value={form.minStock} onChange={(e) => setForm({ ...form, minStock: e.target.value.replace(/\D/g, '') })} placeholder="0" /></div></div>
         </div>
         <span className="xs muted" style={{ display: 'block', marginTop: -8, marginBottom: 14 }}>Satılabilir miktar eşiğin altına inince bildirim çıkar (0 = kapalı).</span>

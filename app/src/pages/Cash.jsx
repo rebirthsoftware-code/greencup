@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { todayCashMoves, ACCOUNT_LABEL } from '../store/selectors';
 import { fmtMoney, fmtDate, parseMoney } from '../utils/format';
-import { PageHeader, Sheet, Segmented, DangerButton, useToast } from '../components/ui';
+import { PageHeader, Sheet, Segmented, DangerButton, useToast, MoneyInput } from '../components/ui';
 import * as Ic from '../components/Icons';
 
 const ACC = [{ key: 'nakit', label: 'Nakit', icon: Ic.Cash }, { key: 'banka', label: 'Banka', icon: Ic.Bank }, { key: 'kart', label: 'Kart', icon: Ic.Card }];
@@ -78,7 +78,7 @@ export default function Cash() {
         <div className="field"><Segmented value={f.type} onChange={(v) => setF({ ...f, type: v })} options={[{ value: 'in', label: 'Giriş (+)' }, { value: 'out', label: 'Çıkış (−)' }]} /></div>
         <div className="field"><label>Hesap</label><Segmented light value={f.account} onChange={(v) => setF({ ...f, account: v })} options={ACC.map((a) => ({ value: a.key, label: a.label }))} /></div>
         <div className="field"><label>Açıklama</label><div className="input"><input value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} placeholder="Örn: Yakıt" /></div></div>
-        <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={f.amount} onChange={(e) => setF({ ...f, amount: e.target.value })} placeholder="0" /></div></div>
+        <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><MoneyInput value={f.amount} onChange={(v) => setF({ ...f, amount: v })} /></div></div>
         <button className="btn btn-primary" onClick={saveMove} disabled={!f.title.trim() || !(parseMoney(f.amount) > 0)}>Kaydet</button>
         {(!f.title.trim() || !(parseMoney(f.amount) > 0)) && <div className="xs muted" style={{ textAlign: 'center', marginTop: 8 }}>{!f.title.trim() ? 'Açıklama girin' : 'Tutar girin'}</div>}
       </Sheet>
@@ -86,7 +86,7 @@ export default function Cash() {
       <Sheet open={sheet === 'transfer'} onClose={() => setSheet(null)} title="Hesaplar Arası Transfer">
         <div className="field"><label>Nereden</label><Segmented light value={tr.from} onChange={(v) => setTr({ ...tr, from: v })} options={ACC.map((a) => ({ value: a.key, label: a.label }))} /></div>
         <div className="field"><label>Nereye</label><Segmented light value={tr.to} onChange={(v) => setTr({ ...tr, to: v })} options={ACC.map((a) => ({ value: a.key, label: a.label }))} /></div>
-        <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={tr.amount} onChange={(e) => setTr({ ...tr, amount: e.target.value })} placeholder="0" /></div>
+        <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><MoneyInput value={tr.amount} onChange={(v) => setTr({ ...tr, amount: v })} /></div>
           <span className="xs muted">{ACCOUNT_LABEL[tr.from]} bakiyesi: {fmtMoney(state.cash[tr.from])}</span></div>
         <div className="field"><label>Açıklama <span className="opt">(isteğe bağlı)</span></label><div className="input"><input value={tr.note} onChange={(e) => setTr({ ...tr, note: e.target.value })} placeholder="Örn: Bankaya yatırıldı" /></div></div>
         <button className="btn btn-primary" onClick={saveTransfer} disabled={tr.from === tr.to || !parseMoney(tr.amount)}>Transfer Et</button>
