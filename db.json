@@ -2,26 +2,6 @@
  "version": 2,
  "products": [
   {
-   "id": "9m4bnnxxmu6nszl0",
-   "unit": "koli",
-   "stock": 4,
-   "price": 0,
-   "createdAt": "2026-09-18T07:51:00.900Z",
-   "name": "16oz Pet Cozy",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T07:51:00.900Z"
-  },
-  {
-   "id": "7nvexuz0mu6zhwmy",
-   "unit": "adet",
-   "stock": 3,
-   "price": 1000,
-   "createdAt": "2026-09-18T13:18:19.258Z",
-   "name": "Islak Mendil Klişesi",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T13:18:28.637Z"
-  },
-  {
    "id": "bq1w7y1lmu6zpkc9",
    "unit": "adet",
    "stock": 17000,
@@ -221,6 +201,14 @@
   {
    "id": "b5935967mu6nsabe",
    "at": "2026-09-19T13:31:15.436Z"
+  },
+  {
+   "id": "9m4bnnxxmu6nszl0",
+   "at": "2026-09-19T13:31:17.753Z"
+  },
+  {
+   "id": "7nvexuz0mu6zhwmy",
+   "at": "2026-09-19T13:31:20.052Z"
   }
  ],
  "settings": {
