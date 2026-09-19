@@ -82,11 +82,37 @@ export async function branchExists(cfg) {
  * Veri dosyasını ilk kez oluşturur. Dal yoksa, içinde yalnızca db.json olan
  * bağımsız (orphan) bir dal açar; site kodu bu dala karışmaz. Dosyanın blob sha'sını döner.
  */
+export const BRANCH_CONFIG = { path: 'vercel.json', content: JSON.stringify({ ignoreCommand: 'exit 0', git: { deploymentEnabled: { data: false } } }, null, 2) + '\n' };
+
 export async function createDb(cfg, data) {
-  if (await branchExists(cfg)) return pushDb(cfg, data, null);
+  if (await branchExists(cfg)) { const sha = await pushDb(cfg, data, null); await ensureBranchConfig(cfg).catch(() => {}); return sha; }
   const blob = await post(cfg, 'git/blobs', { content: JSON.stringify(data, null, 1), encoding: 'utf-8' });
-  const tree = await post(cfg, 'git/trees', { tree: [{ path: cfg.path, mode: '100644', type: 'blob', sha: blob.sha }] });
+  const cfgBlob = await post(cfg, 'git/blobs', { content: BRANCH_CONFIG.content, encoding: 'utf-8' });
+  const tree = await post(cfg, 'git/trees', { tree: [
+    { path: cfg.path, mode: '100644', type: 'blob', sha: blob.sha },
+    { path: BRANCH_CONFIG.path, mode: '100644', type: 'blob', sha: cfgBlob.sha },
+  ] });
   const commit = await post(cfg, 'git/commits', { message: 'app: veri dalı oluşturuldu', tree: tree.sha, parents: [] });
   await post(cfg, 'git/refs', { ref: `refs/heads/${cfg.branch}`, sha: commit.sha });
   return blob.sha;
+}
+
+/**
+ * Veri dalında vercel.json yoksa ekler: Vercel bu dalı önizleme olarak derlemeye çalışıp
+ * "deployment failed" e-postası göndermesin. Oturumda bir kez kontrol edilir.
+ */
+export async function ensureBranchConfig(cfg) {
+  const key = `gc-branch-cfg:${cfg.owner}/${cfg.repo}/${cfg.branch}`;
+  try { if (sessionStorage.getItem(key)) return false; } catch { /* noop */ }
+  const r = await fetch(`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${BRANCH_CONFIG.path}?ref=${encodeURIComponent(cfg.branch)}`, { headers: headers(cfg.token), cache: 'no-store' });
+  if (r.status === 200) { try { sessionStorage.setItem(key, '1'); } catch { /* noop */ } return false; }
+  if (r.status !== 404) await handle(r);
+  const enc = (str) => { const bytes = new TextEncoder().encode(str); let bin = ''; for (const b of bytes) bin += String.fromCharCode(b); return btoa(bin); };
+  const res = await fetch(`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${BRANCH_CONFIG.path}`, {
+    method: 'PUT', headers: { ...headers(cfg.token), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: 'app: veri dalında Vercel derlemesi kapatıldı', content: enc(BRANCH_CONFIG.content), branch: cfg.branch }),
+  });
+  await handle(res);
+  try { sessionStorage.setItem(key, '1'); } catch { /* noop */ }
+  return true;
 }

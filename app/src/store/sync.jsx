@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { useStore } from './store';
 import { normalizeState } from './seed';
 import { mergeStates } from './merge';
-import { fetchDb, pushDb, createDb, GithubError } from './github';
+import { fetchDb, pushDb, createDb, ensureBranchConfig, GithubError } from './github';
 import { newAlerts } from './alerts';
 import { notifyAll } from './push';
 import { NOTIFY_API } from '../push-config';
@@ -97,6 +97,7 @@ export function SyncProvider({ children }) {
       }
       if (remote.sha !== metaRef.current.sha || force) apply(remote.data);
       setMeta({ sha: remote.sha, dirty: false, lastSync: new Date().toISOString() }); setStatus('idle');
+      ensureBranchConfig(c).catch(() => {});
     } catch (e) { fail(e); } finally { busyRef.current = false; }
   }, [apply, fail, push, setMeta]);
 
