@@ -317,11 +317,20 @@
  ],
  "reserved": [],
  "cash": {
-  "nakit": 4640,
+  "nakit": 4140,
   "banka": 22374.18,
   "kart": 53648.38
  },
  "cashMoves": [
+  {
+   "id": "w45uhug7mu8rew8v",
+   "date": "2026-09-19",
+   "createdAt": "2026-09-19T19:07:34.207Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 500,
+   "title": "Berfin ilaç"
+  },
   {
    "id": "kxctzvatmu8kokzv",
    "date": "2026-09-19",
