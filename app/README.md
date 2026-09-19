@@ -93,7 +93,8 @@ Kurulum (her cihazda bir kez):
 1. GitHub → Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → *Generate new token*.
    Repository access: yalnızca `greencup`. Permissions → Repository → **Contents: Read and write**.
 2. Uygulamada Ayarlar → **Bulut Senkron (GitHub)** → token'ı yapıştırın → *Bağlantıyı Test Et* → *Kaydet ve Bağla*.
-3. `data` dalı yoksa uygulama, içinde yalnızca `db.json` olan bağımsız bir dal olarak kendisi oluşturur.
+3. `data` dalı yoksa uygulama, içinde `db.json` ve bir `vercel.json` (`ignoreCommand: exit 0`) olan bağımsız bir dal olarak kendisi oluşturur;
+   böylece Vercel veri commit'lerini derlemeye çalışmaz. Eski dallara bu dosya ilk açılışta otomatik eklenir.
 
 Nasıl çalışır:
 - Her değişiklik 1,5 sn sonra `db.json`'a commit edilir; commit geçmişi değişiklik geçmişidir.
