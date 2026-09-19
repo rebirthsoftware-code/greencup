@@ -318,10 +318,19 @@
  "reserved": [],
  "cash": {
   "nakit": 4890,
-  "banka": 22874.18,
+  "banka": 22374.18,
   "kart": 53648.38
  },
  "cashMoves": [
+  {
+   "id": "dh27g537mu8kocfo",
+   "date": "2026-09-19",
+   "createdAt": "2026-09-19T15:58:57.780Z",
+   "type": "out",
+   "account": "banka",
+   "amount": 500,
+   "title": "Sueda"
+  },
   {
    "id": "tesc0wvvmu8hn717",
    "date": "2026-09-19",
