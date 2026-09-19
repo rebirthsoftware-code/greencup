@@ -170,6 +170,16 @@
    "name": "16oz Soğuk Bardak Cozy",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:40:54.348Z"
+  },
+  {
+   "id": "hrcu0aekmu8fr9iw",
+   "unit": "koli",
+   "stock": 3,
+   "price": 0,
+   "createdAt": "2026-09-19T13:41:15.896Z",
+   "name": "14oz Soğuk Bardak Goldbeans",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:41:15.896Z"
   }
  ],
  "customers": [
