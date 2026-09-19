@@ -317,11 +317,21 @@
  ],
  "reserved": [],
  "cash": {
-  "nakit": 0,
+  "nakit": 4890,
   "banka": 0,
   "kart": 0
  },
- "cashMoves": [],
+ "cashMoves": [
+  {
+   "id": "19r0b5xumu8hill0",
+   "date": "2026-09-19",
+   "createdAt": "2026-09-19T14:30:30.853Z",
+   "type": "in",
+   "account": "nakit",
+   "amount": 4890,
+   "title": "ATM’den çektim"
+  }
+ ],
  "expenses": [
   {
    "id": "2xw4f8vfmu74nh60",
