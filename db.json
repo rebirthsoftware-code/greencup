@@ -317,11 +317,21 @@
  ],
  "reserved": [],
  "cash": {
-  "nakit": 0,
+  "nakit": 5000,
   "banka": 0,
   "kart": 0
  },
- "cashMoves": [],
+ "cashMoves": [
+  {
+   "id": "zg38dfcumu8h941i",
+   "date": "2026-09-19",
+   "createdAt": "2026-09-19T14:23:08.214Z",
+   "type": "in",
+   "account": "nakit",
+   "amount": 5000,
+   "title": "Cebimde"
+  }
+ ],
  "expenses": [
   {
    "id": "2xw4f8vfmu74nh60",
