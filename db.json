@@ -2,66 +2,6 @@
  "version": 2,
  "products": [
   {
-   "id": "7w2meuznmu6nmuma",
-   "unit": "adet",
-   "stock": 12500,
-   "price": 0.9,
-   "createdAt": "2026-09-18T07:46:14.530Z",
-   "name": "Islak mendil 7/12",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T13:16:46.649Z"
-  },
-  {
-   "id": "4cof17u9mu6no81w",
-   "unit": "koli",
-   "stock": 30,
-   "price": 0,
-   "createdAt": "2026-09-18T07:47:18.596Z",
-   "name": "14oz Doublewall",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T13:26:38.312Z"
-  },
-  {
-   "id": "kpfwpaaqmu6npd5g",
-   "unit": "koli",
-   "stock": 2,
-   "price": 0,
-   "createdAt": "2026-09-18T07:48:11.860Z",
-   "name": "Craft Çanta Cozy",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T07:48:11.860Z"
-  },
-  {
-   "id": "35xp14kxmu6nqu4e",
-   "unit": "adet",
-   "stock": 2500,
-   "price": 0,
-   "createdAt": "2026-09-18T07:49:20.510Z",
-   "name": "12oz Pet baskısız",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T07:49:20.510Z"
-  },
-  {
-   "id": "t71w84oxmu6nrmcx",
-   "unit": "adet",
-   "stock": 2700,
-   "price": 0,
-   "createdAt": "2026-09-18T07:49:57.105Z",
-   "name": "14oz Doublewall Pana Deria",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T07:49:57.105Z"
-  },
-  {
-   "id": "b5935967mu6nsabe",
-   "unit": "koli",
-   "stock": 11,
-   "price": 0,
-   "createdAt": "2026-09-18T07:50:28.154Z",
-   "name": "Soğuk klips kapak",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T07:50:28.154Z"
-  },
-  {
    "id": "9m4bnnxxmu6nszl0",
    "unit": "koli",
    "stock": 4,
@@ -257,6 +197,30 @@
   {
    "id": "sa21efspmu6nlrqg",
    "at": "2026-09-19T13:31:01.503Z"
+  },
+  {
+   "id": "7w2meuznmu6nmuma",
+   "at": "2026-09-19T13:31:03.921Z"
+  },
+  {
+   "id": "4cof17u9mu6no81w",
+   "at": "2026-09-19T13:31:06.000Z"
+  },
+  {
+   "id": "kpfwpaaqmu6npd5g",
+   "at": "2026-09-19T13:31:08.236Z"
+  },
+  {
+   "id": "35xp14kxmu6nqu4e",
+   "at": "2026-09-19T13:31:10.303Z"
+  },
+  {
+   "id": "t71w84oxmu6nrmcx",
+   "at": "2026-09-19T13:31:12.202Z"
+  },
+  {
+   "id": "b5935967mu6nsabe",
+   "at": "2026-09-19T13:31:15.436Z"
   }
  ],
  "settings": {
