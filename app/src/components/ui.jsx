@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { tap } from '../utils/hooks';
 import * as Ic from './Icons';
-import { initials, fmtDate } from '../utils/format';
+import { initials, fmtDate, formatMoneyInput, normalizeMoneyInput } from '../utils/format';
 import { STATUS_LABEL } from '../store/selectors';
 
 /* ---------- Tab bar (ortada yükseltilmiş + düğmesi) ---------- */
@@ -188,4 +188,12 @@ export function DateField({ label, value, onChange, min, max, required }) {
 /* ---------- Onaylı sil düğmesi ---------- */
 export function DangerButton({ onConfirm, message = 'Silinsin mi? Bu işlem geri alınamaz.', children, className = 'btn btn-ghost btn-sm' }) {
   return <button type="button" className={className} style={{ color: 'var(--red)' }} onClick={() => { if (confirm(message)) onConfirm(); }}>{children}</button>;
+}
+
+/* ---------- Tutar girişi (yazarken 13.636,56 biçimler; iPhone'da nokta gerekmez) ---------- */
+export function MoneyInput({ value, onChange, placeholder = '0', autoFocus, id }) {
+  return (
+    <input id={id} inputMode="decimal" autoComplete="off" value={value ?? ''} placeholder={placeholder} autoFocus={autoFocus}
+      onChange={(e) => onChange(formatMoneyInput(e.target.value))} onBlur={() => { const n = normalizeMoneyInput(value ?? ''); if (n !== (value ?? '')) onChange(n); }} />
+  );
 }

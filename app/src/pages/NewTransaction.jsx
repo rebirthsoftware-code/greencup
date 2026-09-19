@@ -3,7 +3,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { addDays } from '../store/seed';
 import { fmtMoney, fmtNum, fmtPrice, today, parseMoney, toInput } from '../utils/format';
-import { PageHeader, SelectField, Segmented, Avatar, DateField, useToast } from '../components/ui';
+import { PageHeader, SelectField, Segmented, Avatar, DateField, useToast, MoneyInput } from '../components/ui';
 import { useSync } from '../store/sync';
 import { prepareFile, uploadAttachment } from '../store/files';
 import { loadDevice } from '../store/storage';
@@ -45,7 +45,7 @@ export function ItemsEditor({ items, onChange, products }) {
               {products.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
             </select></div>
             <div className="input"><input inputMode="numeric" value={r.qty || ''} placeholder="0" onChange={(e) => setRow(i, { qty: parseInt(e.target.value.replace(/\D/g, '') || '0', 10) })} /></div>
-            <div className="input"><input inputMode="decimal" value={r.priceStr ?? toInput(r.unitPrice)} placeholder="0" onChange={(e) => setRow(i, { unitPrice: parseMoney(e.target.value), priceStr: e.target.value, manual: true })} /></div>
+            <div className="input"><MoneyInput value={r.priceStr ?? toInput(r.unitPrice)} onChange={(v) => setRow(i, { unitPrice: parseMoney(v), priceStr: v, manual: true })} /></div>
             <button type="button" className="rm" onClick={() => onChange(items.filter((_, k) => k !== i))} aria-label="Satırı kaldır"><Ic.X size={18} /></button>
             {p && r.qty > p.stock && <div className="xs neg" style={{ gridColumn: '1 / -1', marginTop: -4 }}>Stok yetersiz: {p.name} mevcut {fmtNum(p.stock)} {p.unit}</div>}
           </div>
@@ -152,7 +152,7 @@ export default function NewTransaction() {
               <Segmented value={payment} onChange={setPayment} options={[{ value: 'vadeli', label: 'Vadeli' }, { value: 'pesin', label: 'Peşin' }, { value: 'kismi', label: 'Kısmi' }]} light /></div>
             {payment === 'kismi' && (
               <div className="field"><label>Şimdi Ödenen</label>
-                <div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={paidNow} onChange={(e) => setPaidNow(e.target.value)} placeholder="0" /></div>
+                <div className="input"><span className="suffix">₺</span><MoneyInput value={paidNow} onChange={setPaidNow} /></div>
                 {paidNowN > 0 && amountN > paidNowN && <span className="xs muted">Kalan {fmtMoney(amountN - paidNowN)} vadeye yazılır.</span>}
               </div>
             )}
@@ -161,7 +161,7 @@ export default function NewTransaction() {
 
         {type === 'payment' && (
           <div className="field"><label>Tutar</label>
-            <div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0" autoFocus /></div></div>
+            <div className="input"><span className="suffix">₺</span><MoneyInput value={amount} onChange={setAmount} autoFocus /></div></div>
         )}
 
         {(type === 'payment' || (type === 'sale' && payment !== 'vadeli')) && (

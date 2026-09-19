@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { customerSummary, METHOD_LABEL, PAYMENT_LABEL, txItems, itemsLabel } from '../store/selectors';
-import { fmtMoney, fmtNum, fmtDate, parseMoney, today } from '../utils/format';
-import { PageHeader, Avatar, StatusBadge, Empty, Sheet, Segmented, Tabs, DateField, DangerButton, useToast } from '../components/ui';
+import { fmtMoney, fmtNum, fmtDate, parseMoney, toInput, today } from '../utils/format';
+import { PageHeader, Avatar, StatusBadge, Empty, Sheet, Segmented, Tabs, DateField, DangerButton, useToast, MoneyInput } from '../components/ui';
 import { ItemsEditor } from './NewTransaction';
 import { cleanItem } from '../utils/format';
 import * as Ic from '../components/Icons';
@@ -52,7 +52,7 @@ export function TxItem({ t, alloc, onClick }) {
 function TxEditor({ tx, onClose }) {
   const { state, updateTransaction, deleteTransaction, setAttachments } = useStore();
   const toast = useToast();
-  const [f, setF] = useState(() => ({ ...tx, items: txItems(tx).map((i) => ({ ...i })), amountStr: String(tx.amount ?? '') }));
+  const [f, setF] = useState(() => ({ ...tx, items: txItems(tx).map((i) => ({ ...i })), amountStr: toInput(tx.amount ?? '') }));
   const set = (k) => (v) => setF({ ...f, [k]: v });
   const total = f.type === 'sale' ? f.items.filter((i) => i.productId && i.qty > 0).reduce((a, i) => a + i.amount, 0) : parseMoney(f.amountStr);
   const save = () => {
@@ -77,7 +77,7 @@ function TxEditor({ tx, onClose }) {
       )}
       {f.type === 'payment' && (
         <>
-          <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={f.amountStr} onChange={(e) => set('amountStr')(e.target.value)} /></div></div>
+          <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><MoneyInput value={f.amountStr} onChange={set('amountStr')} /></div></div>
           <div className="field"><label>Yöntem</label><Segmented light value={f.method || 'nakit'} onChange={set('method')} options={[{ value: 'nakit', label: 'Nakit' }, { value: 'banka', label: 'Havale' }, { value: 'kart', label: 'Kart' }]} /></div>
         </>
       )}

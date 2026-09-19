@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useStore } from '../store/store';
 import { ACCOUNT_LABEL } from '../store/selectors';
 import { fmtMoney, fmtDayMonth, fmtDate, daysBetween, today, parseMoney } from '../utils/format';
-import { PageHeader, Sheet, Segmented, Empty, DateField, DangerButton, useToast, Tabs } from '../components/ui';
+import { PageHeader, Sheet, Segmented, Empty, DateField, DangerButton, useToast, Tabs, MoneyInput } from '../components/ui';
 import * as Ic from '../components/Icons';
 import Attachments from '../components/Attachments';
 
@@ -91,7 +91,7 @@ export default function Payments() {
       {/* Düzenle / sil */}
       <Sheet open={!!sel && !sel.paying} onClose={() => setSel(null)} title="Ödemeyi Düzenle">
         <div className="field"><label>Başlık</label><div className="input"><input value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} /></div></div>
-        <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={f.amount} onChange={(e) => setF({ ...f, amount: e.target.value })} /></div></div>
+        <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><MoneyInput value={f.amount} onChange={(v) => setF({ ...f, amount: v })} /></div></div>
         <DateField label="Vade" value={f.due} onChange={(v) => setF({ ...f, due: v })} />
         {sel && <div className="field"><label>Fatura / Fiş</label><Attachments items={(state.expenses.find((x) => x.id === sel.id)?.attachments) || []} onChange={(list) => setExpenseAttachments(sel.id, list)} folder={`giderler/${sel.id}`} compact /></div>}
         {sel?.paid && <p className="xs muted" style={{ marginBottom: 12 }}>Bu ödeme {fmtDate(sel.paidAt)} tarihinde {ACCOUNT_LABEL[sel.account] || ''} hesabından ödendi. Tutarı değiştirmek kasayı etkilemez; yanlışsa "Ödenmedi yap" deyip yeniden ödeyin.</p>}
@@ -106,7 +106,7 @@ export default function Payments() {
 
       <Sheet open={adding} onClose={() => setAdding(false)} title="Yeni Ödeme">
         <div className="field"><label>Başlık</label><div className="input"><input value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} placeholder="Örn: Kira" /></div></div>
-        <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={f.amount} onChange={(e) => setF({ ...f, amount: e.target.value })} /></div></div>
+        <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><MoneyInput value={f.amount} onChange={(v) => setF({ ...f, amount: v })} /></div></div>
         <DateField label="Vade" value={f.due} onChange={(v) => setF({ ...f, due: v })} />
         <button className="btn btn-primary" onClick={saveNew} disabled={!f.title.trim() || !(parseMoney(f.amount) > 0)}>Kaydet</button>
       </Sheet>

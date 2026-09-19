@@ -84,3 +84,34 @@ export const toInput = (n) => (n == null || n === '' ? '' : String(n).replace('.
 
 /** Satır düzenleyicinin geçici alanlarını temizler. */
 export const cleanItem = (i) => { const c = { ...i }; delete c.manual; delete c.priceStr; return c; };
+
+/**
+ * Tutar kutusu için canlı biçimlendirme. Hedef: iPhone'da (klavyede yalnızca virgül) ve
+ * Android'de (nokta da yazılabiliyor) aynı sonuca ulaşmak; "13.636,56" gösterimi.
+ *  - virgül varsa: noktalar binliktir, virgülden sonrası ondalık (en çok 2 hane)
+ *  - virgül yok, tek nokta ve ardında 1-2 hane: "3.7" / "10.50" olduğu gibi bırakılır (yazım sürüyor;
+ *    parseMoney ondalık okur, kutudan çıkınca virgüle çevrilir)
+ *  - nokta ardında tam 3 hane: binlik ("13.636"), yeniden gruplanır
+ *  - gruplanmış sayıdan sonra yazılan nokta ("13.636." / "13.636.5"): ondalık niyeti, virgüle çevrilir
+ */
+export function formatMoneyInput(raw) {
+  const s = String(raw ?? '').replace(/[^\d.,]/g, '');
+  if (!s) return '';
+  const group = (digits) => digits.replace(/[^\d]/g, '').replace(/^0+(?=\d)/, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  if (s.includes(',')) {
+    const i = s.lastIndexOf(',');
+    return `${group(s.slice(0, i)) || '0'},${s.slice(i + 1).replace(/[^\d]/g, '').slice(0, 2)}`;
+  }
+  const dots = (s.match(/\./g) || []).length;
+  if (dots === 0) return group(s);
+  const i = s.lastIndexOf('.'); const tail = s.slice(i + 1);
+  if (dots === 1) {
+    if (tail.length === 0) return s;                 // "13." yazılıyor: bekle
+    if (tail.length <= 2) return s.replace(/^0+(?=\d)/, ''); // "3.7", "10.50": olduğu gibi
+    return group(s);                                 // "1.500" / "1.5000": binlik
+  }
+  if (tail.length === 3) return group(s);            // "13.636" yeniden gruplama
+  return `${group(s.slice(0, i)) || '0'},${tail.replace(/[^\d]/g, '').slice(0, 2)}`; // "13.636." / "13.636.5"
+}
+/** Kutudan çıkınca "3.7" → "3,7" (ondalık nokta virgüle). */
+export const normalizeMoneyInput = (v) => (v && !v.includes(',') && /^\d+\.\d{1,2}$/.test(v) ? v.replace('.', ',') : v);
