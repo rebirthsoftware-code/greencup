@@ -110,6 +110,16 @@
    "name": "Stick Şeker Vento",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:37:44.847Z"
+  },
+  {
+   "id": "oddrhe7lmu8fnori",
+   "unit": "koli",
+   "stock": 20,
+   "price": 0,
+   "createdAt": "2026-09-19T13:38:29.022Z",
+   "name": "16oz Doublewall Vento",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:38:29.022Z"
   }
  ],
  "customers": [
