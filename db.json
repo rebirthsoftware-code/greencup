@@ -317,11 +317,20 @@
  ],
  "reserved": [],
  "cash": {
-  "nakit": 4890,
+  "nakit": 4640,
   "banka": 22374.18,
   "kart": 53648.38
  },
  "cashMoves": [
+  {
+   "id": "kxctzvatmu8kokzv",
+   "date": "2026-09-19",
+   "createdAt": "2026-09-19T15:59:08.875Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 250,
+   "title": "Yemek"
+  },
   {
    "id": "dh27g537mu8kocfo",
    "date": "2026-09-19",
