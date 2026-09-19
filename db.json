@@ -200,6 +200,16 @@
    "name": "Taşıma Çantası Ceraft Baskısız",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:42:29.279Z"
+  },
+  {
+   "id": "bsc6e9fwmu8ftb3q",
+   "unit": "koli",
+   "stock": 4,
+   "price": 0,
+   "createdAt": "2026-09-19T13:42:51.254Z",
+   "name": "7/12 ıslak mendil Cozy",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:42:51.254Z"
   }
  ],
  "customers": [
