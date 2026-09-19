@@ -100,6 +100,16 @@
    "name": "7/12 Islak mendil Vento",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:36:43.807Z"
+  },
+  {
+   "id": "woo4ngqfmu8fmqof",
+   "unit": "koli",
+   "stock": 8,
+   "price": 0,
+   "createdAt": "2026-09-19T13:37:44.847Z",
+   "name": "Stick Şeker Vento",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:37:44.847Z"
   }
  ],
  "customers": [
