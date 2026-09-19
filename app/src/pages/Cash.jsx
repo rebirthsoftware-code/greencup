@@ -20,13 +20,15 @@ export default function Cash() {
 
   const saveMove = () => {
     const amount = parseMoney(f.amount);
-    if (!amount || !f.title.trim()) return;
+    if (!f.title.trim()) return toast('Açıklama girin (örn. Yakıt)');
+    if (!(amount > 0)) return toast('Tutar sıfırdan büyük olmalı');
     addCashMove({ type: f.type, account: f.account, amount, title: f.title.trim() });
     toast('Kasa hareketi eklendi'); setSheet(null); setF({ type: 'out', account: 'nakit', amount: '', title: '' });
   };
   const saveTransfer = () => {
     const amount = parseMoney(tr.amount);
-    if (!amount || tr.from === tr.to) return;
+    if (tr.from === tr.to) return toast('Aynı hesaba transfer olmaz');
+    if (!(amount > 0)) return toast('Tutar girin');
     transferCash(tr.from, tr.to, amount, tr.note.trim() || undefined);
     toast('Transfer yapıldı'); setSheet(null); setTr({ from: 'nakit', to: 'banka', amount: '', note: '' });
   };
@@ -77,7 +79,8 @@ export default function Cash() {
         <div className="field"><label>Hesap</label><Segmented light value={f.account} onChange={(v) => setF({ ...f, account: v })} options={ACC.map((a) => ({ value: a.key, label: a.label }))} /></div>
         <div className="field"><label>Açıklama</label><div className="input"><input value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} placeholder="Örn: Yakıt" /></div></div>
         <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><input inputMode="decimal" value={f.amount} onChange={(e) => setF({ ...f, amount: e.target.value })} placeholder="0" /></div></div>
-        <button className="btn btn-primary" onClick={saveMove}>Kaydet</button>
+        <button className="btn btn-primary" onClick={saveMove} disabled={!f.title.trim() || !(parseMoney(f.amount) > 0)}>Kaydet</button>
+        {(!f.title.trim() || !(parseMoney(f.amount) > 0)) && <div className="xs muted" style={{ textAlign: 'center', marginTop: 8 }}>{!f.title.trim() ? 'Açıklama girin' : 'Tutar girin'}</div>}
       </Sheet>
 
       <Sheet open={sheet === 'transfer'} onClose={() => setSheet(null)} title="Hesaplar Arası Transfer">

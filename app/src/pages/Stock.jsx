@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { allSummaries, reservedByProduct } from '../store/selectors';
-import { fmtNum, parseMoney } from '../utils/format';
+import { fmtNum, parseMoney, toInput } from '../utils/format';
 import { PageHeader, Avatar, Empty, Sheet, DangerButton, useToast, Tabs } from '../components/ui';
 import * as Ic from '../components/Icons';
 
@@ -21,10 +21,10 @@ export default function Stock() {
   const usedIn = (id) => state.transactions.filter((t) => t.type === 'sale' && (t.items || []).some((i) => i.productId === id)).length;
 
   const openNew = () => { setForm({ name: '', stock: '', price: '', minStock: '', unit: 'adet' }); setEdit('new'); };
-  const openEdit = (p) => { setForm({ name: p.name, stock: String(p.stock ?? ''), price: String(p.price ?? ''), minStock: String(p.minStock ?? ''), unit: p.unit || 'adet' }); setEdit(p); };
+  const openEdit = (p) => { setForm({ name: p.name, stock: String(p.stock ?? ''), price: toInput(p.price ?? ''), minStock: String(p.minStock ?? ''), unit: p.unit || 'adet' }); setEdit(p); };
   const save = () => {
     const data = { name: form.name.trim(), stock: parseInt(form.stock || '0', 10), price: parseMoney(form.price), minStock: parseInt(form.minStock || '0', 10), unit: form.unit || 'adet' };
-    if (!data.name) return;
+    if (!data.name) return toast('Ürün adı girin');
     if (edit === 'new') { addProduct(data); toast('Ürün eklendi'); } else { updateProduct(edit.id, data); toast('Ürün güncellendi'); }
     setEdit(null);
   };

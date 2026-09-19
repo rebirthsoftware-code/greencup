@@ -23,7 +23,7 @@ export default function CustomerForm() {
   const save = (e) => {
     e.preventDefault();
     const data = { ...f, name: f.name.trim(), tag: (f.tag || '').trim().toLocaleUpperCase('tr-TR') || undefined };
-    if (!data.name) return;
+    if (!data.name) return toast('Firma / müşteri adı girin');
     if (existing) { updateCustomer(id, data); toast('Müşteri güncellendi'); nav(-1); }
     else { addCustomer(data); toast('Müşteri eklendi'); nav('/musteriler'); }
   };

@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { addDays } from '../store/seed';
-import { fmtMoney, fmtNum, fmtPrice, today, parseMoney } from '../utils/format';
+import { fmtMoney, fmtNum, fmtPrice, today, parseMoney, toInput } from '../utils/format';
 import { PageHeader, SelectField, Segmented, Avatar, DateField, useToast } from '../components/ui';
 import { useSync } from '../store/sync';
 import { prepareFile, uploadAttachment } from '../store/files';
@@ -23,14 +23,14 @@ export function ItemsEditor({ items, onChange, products }) {
     const r = next[i];
     if (patch.productId !== undefined) {
       const p = products.find((x) => x.id === patch.productId);
-      if (p) { r.name = p.name; r.unit = p.unit; if (!r.manual) r.unitPrice = p.price; }
+      if (p) { r.name = p.name; r.unit = p.unit; if (!r.manual) { r.unitPrice = p.price; r.priceStr = toInput(p.price); } }
     }
     r.amount = Math.round((r.qty || 0) * (r.unitPrice || 0) * 100) / 100;
     onChange(next);
   };
   const add = () => {
     const p = products.find((x) => !items.some((r) => r.productId === x.id)) || products[0];
-    onChange([...items, { productId: p?.id || '', name: p?.name || '', unit: p?.unit || 'adet', qty: 0, unitPrice: p?.price || 0, amount: 0 }]);
+    onChange([...items, { productId: p?.id || '', name: p?.name || '', unit: p?.unit || 'adet', qty: 0, unitPrice: p?.price || 0, priceStr: toInput(p?.price || 0), amount: 0 }]);
   };
   return (
     <div className="field">
@@ -45,7 +45,7 @@ export function ItemsEditor({ items, onChange, products }) {
               {products.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
             </select></div>
             <div className="input"><input inputMode="numeric" value={r.qty || ''} placeholder="0" onChange={(e) => setRow(i, { qty: parseInt(e.target.value.replace(/\D/g, '') || '0', 10) })} /></div>
-            <div className="input"><input inputMode="decimal" value={r.unitPrice ?? ''} placeholder="0" onChange={(e) => setRow(i, { unitPrice: parseMoney(e.target.value), manual: true })} /></div>
+            <div className="input"><input inputMode="decimal" value={r.priceStr ?? toInput(r.unitPrice)} placeholder="0" onChange={(e) => setRow(i, { unitPrice: parseMoney(e.target.value), priceStr: e.target.value, manual: true })} /></div>
             <button type="button" className="rm" onClick={() => onChange(items.filter((_, k) => k !== i))} aria-label="Satırı kaldır"><Ic.X size={18} /></button>
             {p && r.qty > p.stock && <div className="xs neg" style={{ gridColumn: '1 / -1', marginTop: -4 }}>Stok yetersiz: {p.name} mevcut {fmtNum(p.stock)} {p.unit}</div>}
           </div>
@@ -89,6 +89,11 @@ export default function NewTransaction() {
   const amountN = type === 'sale' ? total : parseMoney(amount);
   const paidNowN = parseMoney(paidNow);
 
+  const missing = !customerId ? 'Müşteri seçin'
+    : type === 'sale' && validItems.length === 0 ? 'En az bir ürün ve miktar girin'
+    : type === 'sale' && amountN <= 0 ? 'Tutar sıfır olamaz (birim fiyat girin)'
+    : type === 'sale' && payment === 'kismi' && !(paidNowN > 0 && paidNowN < amountN) ? 'Kısmi ödemede "şimdi ödenen" sıfırdan büyük ve toplamdan küçük olmalı'
+    : type === 'payment' && amountN <= 0 ? 'Tahsilat tutarı girin' : '';
   const valid = customerId && (
     (type === 'sale' && validItems.length > 0 && amountN > 0 && (payment !== 'kismi' || (paidNowN > 0 && paidNowN < amountN))) ||
     (type === 'payment' && amountN > 0) ||
@@ -187,7 +192,10 @@ export default function NewTransaction() {
         )}
         {type === 'sale' && validItems.length > 0 && <div className="xs muted" style={{ marginBottom: 12 }}>Birim fiyatlar ürün kartından gelir ({validItems.map((i) => `${i.name}: ${fmtPrice(i.unitPrice)}`).join(', ')}); satırda değiştirebilirsiniz.</div>}
 
-        <div className="sticky-bottom"><button className="btn btn-primary" type="submit" disabled={!valid || saving}>{saving ? 'Belgeler yükleniyor...' : 'Kaydet'}</button></div>
+        <div className="sticky-bottom">
+          {missing && <div className="xs" style={{ color: 'var(--orange)', textAlign: 'center', marginBottom: 8, fontWeight: 600 }}>{missing}</div>}
+          <button className="btn btn-primary" type="submit" disabled={!valid || saving}>{saving ? 'Belgeler yükleniyor...' : 'Kaydet'}</button>
+        </div>
       </form>
     </div>
   );

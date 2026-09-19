@@ -261,7 +261,7 @@ textarea.input { height: auto; min-height: 96px; padding: 12px 14px; resize: ver
 /* ---------- Boş durum, bildirim ---------- */
 .empty { text-align: center; padding: 44px 16px; color: var(--text-3); font-size: 14px; line-height: 1.6; }
 .empty b { color: var(--text-2); }
-.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--tab-h) + var(--safe-b) + 26px); background: var(--text); color: var(--bg); padding: 11px 18px; border-radius: 999px; font-size: 13.5px; font-weight: 600; z-index: 100; box-shadow: var(--shadow); animation: toast-in .25s var(--ease); max-width: calc(100% - 32px); text-align: center; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--tab-h) + var(--safe-b) + 26px); background: var(--text); color: var(--bg); padding: 11px 18px; border-radius: 999px; font-size: 13.5px; font-weight: 600; z-index: 250; box-shadow: var(--shadow); animation: toast-in .25s var(--ease); max-width: calc(100% - 32px); text-align: center; }
 @keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
 
 /* ---------- Açılış ---------- */
