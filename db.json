@@ -40,6 +40,16 @@
    "name": "Peçete Çaylak Cafe",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:33:31.125Z"
+  },
+  {
+   "id": "3683vjhpmu8fhvbq",
+   "unit": "koli",
+   "stock": 3,
+   "price": 0,
+   "createdAt": "2026-09-19T13:33:57.590Z",
+   "name": "Düz deliksiz soğuk kapak",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:33:57.590Z"
   }
  ],
  "customers": [
