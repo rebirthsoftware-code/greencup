@@ -319,9 +319,18 @@
  "cash": {
   "nakit": 4890,
   "banka": 0,
-  "kart": 0
+  "kart": 53648.38
  },
  "cashMoves": [
+  {
+   "id": "z0iv3uyomu8hl68h",
+   "date": "2026-09-19",
+   "createdAt": "2026-09-19T14:32:30.929Z",
+   "type": "in",
+   "account": "kart",
+   "amount": 53648.38,
+   "title": "Kredi Kartı"
+  },
   {
    "id": "19r0b5xumu8hill0",
    "date": "2026-09-19",
