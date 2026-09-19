@@ -1,57 +1,6 @@
 {
  "version": 2,
- "products": [
-  {
-   "id": "bq1w7y1lmu6zpkc9",
-   "unit": "adet",
-   "stock": 17000,
-   "price": 0.95,
-   "createdAt": "2026-09-18T13:24:16.569Z",
-   "name": "Sıcak kapak 14oz",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T13:24:16.569Z"
-  },
-  {
-   "id": "pycd0qcxmu6zq2uw",
-   "unit": "adet",
-   "stock": 1000,
-   "price": 4.5,
-   "createdAt": "2026-09-18T13:24:40.568Z",
-   "name": "Taşıma Çantası Cozy",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T13:24:40.568Z"
-  },
-  {
-   "id": "0ypmkjanmu6zr74c",
-   "unit": "adet",
-   "stock": 8000,
-   "price": 0,
-   "createdAt": "2026-09-18T13:25:32.748Z",
-   "name": "16oz Pet Vento",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T13:25:32.748Z"
-  },
-  {
-   "id": "0zlszhlwmu6zrowm",
-   "unit": "koli",
-   "stock": 5,
-   "price": 0,
-   "createdAt": "2026-09-18T13:25:55.798Z",
-   "name": "Peçete Çaylak",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T13:25:55.798Z"
-  },
-  {
-   "id": "5lflyw38mu6zscz9",
-   "unit": "adet",
-   "stock": 3000,
-   "price": 0,
-   "createdAt": "2026-09-18T13:26:26.997Z",
-   "name": "Deliksiz 95 çap kapak plastik",
-   "minStock": 0,
-   "updatedAt": "2026-09-18T13:26:26.997Z"
-  }
- ],
+ "products": [],
  "customers": [
   {
    "id": "uo7kqubfmu5w4ome",
@@ -209,6 +158,26 @@
   {
    "id": "7nvexuz0mu6zhwmy",
    "at": "2026-09-19T13:31:20.052Z"
+  },
+  {
+   "id": "bq1w7y1lmu6zpkc9",
+   "at": "2026-09-19T13:31:24.586Z"
+  },
+  {
+   "id": "pycd0qcxmu6zq2uw",
+   "at": "2026-09-19T13:31:26.636Z"
+  },
+  {
+   "id": "0ypmkjanmu6zr74c",
+   "at": "2026-09-19T13:31:28.617Z"
+  },
+  {
+   "id": "0zlszhlwmu6zrowm",
+   "at": "2026-09-19T13:31:30.586Z"
+  },
+  {
+   "id": "5lflyw38mu6zscz9",
+   "at": "2026-09-19T13:31:32.869Z"
   }
  ],
  "settings": {
