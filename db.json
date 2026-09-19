@@ -318,10 +318,19 @@
  "reserved": [],
  "cash": {
   "nakit": 4890,
-  "banka": 0,
+  "banka": 22874.18,
   "kart": 53648.38
  },
  "cashMoves": [
+  {
+   "id": "tesc0wvvmu8hn717",
+   "date": "2026-09-19",
+   "createdAt": "2026-09-19T14:34:05.276Z",
+   "type": "in",
+   "account": "banka",
+   "amount": 22874.18,
+   "title": "Hesapta"
+  },
   {
    "id": "z0iv3uyomu8hl68h",
    "date": "2026-09-19",
