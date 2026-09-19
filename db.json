@@ -190,6 +190,16 @@
    "name": "12oz Soğuk bardak Baskısız",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:42:07.077Z"
+  },
+  {
+   "id": "grazkl9cmu8fsu5b",
+   "unit": "koli",
+   "stock": 12,
+   "price": 0,
+   "createdAt": "2026-09-19T13:42:29.279Z",
+   "name": "Taşıma Çantası Ceraft Baskısız",
+   "minStock": 0,
+   "updatedAt": "2026-09-19T13:42:29.279Z"
   }
  ],
  "customers": [
