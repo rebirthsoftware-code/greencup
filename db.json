@@ -329,7 +329,16 @@
    "method": "nakit"
   }
  ],
- "reserved": [],
+ "reserved": [
+  {
+   "id": "l6v0i0gomu9t1sls",
+   "createdAt": "2026-09-20T12:41:08.368Z",
+   "customerId": "eq1gb157mu9sxuwm",
+   "productId": "7hnb32limu8figey",
+   "qty": 2,
+   "updatedAt": "2026-09-20T12:41:08.368Z"
+  }
+ ],
  "cash": {
   "nakit": 3360,
   "banka": 22374.18,
