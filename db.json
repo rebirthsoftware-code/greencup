@@ -317,11 +317,20 @@
  ],
  "reserved": [],
  "cash": {
-  "nakit": 3540,
+  "nakit": 3360,
   "banka": 22374.18,
   "kart": 53648.38
  },
  "cashMoves": [
+  {
+   "id": "vlipqjxsmu9pas3w",
+   "date": "2026-09-20",
+   "createdAt": "2026-09-20T10:56:09.164Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 180,
+   "title": "Kahve"
+  },
   {
    "id": "ewbiuh1nmu8rjrcl",
    "date": "2026-09-19",
