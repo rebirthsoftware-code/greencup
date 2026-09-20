@@ -358,9 +358,18 @@
  "cash": {
   "nakit": 2150,
   "banka": 22374.18,
-  "kart": 53648.38
+  "kart": 52313.38
  },
  "cashMoves": [
+  {
+   "id": "e77a75yfmua41b3y",
+   "date": "2026-09-20",
+   "createdAt": "2026-09-20T17:48:41.470Z",
+   "type": "out",
+   "account": "kart",
+   "amount": 1335,
+   "title": "Coho labs"
+  },
   {
    "id": "652gnfqnmua0rdzf",
    "date": "2026-09-20",
