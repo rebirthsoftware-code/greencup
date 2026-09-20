@@ -331,6 +331,14 @@
  ],
  "reserved": [
   {
+   "id": "1t0qs9cnmu9t22e4",
+   "createdAt": "2026-09-20T12:41:21.053Z",
+   "customerId": "eq1gb157mu9sxuwm",
+   "productId": "oz4hr1m4mu8fjf77",
+   "qty": 2,
+   "updatedAt": "2026-09-20T12:41:21.053Z"
+  },
+  {
    "id": "l6v0i0gomu9t1sls",
    "createdAt": "2026-09-20T12:41:08.368Z",
    "customerId": "eq1gb157mu9sxuwm",
