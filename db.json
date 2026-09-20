@@ -254,6 +254,19 @@
  ],
  "customers": [
   {
+   "id": "eq1gb157mu9sxuwm",
+   "color": "#7A4B2B",
+   "createdAt": "2026-09-20T12:38:04.726Z",
+   "name": "Bırchıll Marina",
+   "type": "Cafe & Restaurant",
+   "phone": "05350490158",
+   "city": "",
+   "district": "Kozlu",
+   "notes": "",
+   "address": "Kozlu sahil",
+   "updatedAt": "2026-09-20T12:38:04.727Z"
+  },
+  {
    "id": "uo7kqubfmu5w4ome",
    "color": "#0E6B3F",
    "createdAt": "2026-09-17T18:56:17.318Z",
