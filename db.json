@@ -324,8 +324,9 @@
    "customerId": "5z17vspwmub2d4nc",
    "type": "debt",
    "amount": 41325,
-   "dueDate": "2026-09-21",
-   "note": "Açılış bakiyesi (devir)"
+   "dueDate": "2026-09-24",
+   "note": "Açılış bakiyesi (devir)",
+   "updatedAt": "2026-09-21T09:55:37.649Z"
   },
   {
    "id": "0gsugmebmub261yh",
