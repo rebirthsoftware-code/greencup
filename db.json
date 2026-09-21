@@ -354,37 +354,6 @@
    "type": "debt",
    "amount": 49000,
    "dueDate": "2026-10-05"
-  },
-  {
-   "id": "eh2z4jdfmu6ziztu",
-   "date": "2026-09-18",
-   "createdAt": "2026-09-18T13:19:10.052Z",
-   "customerId": "nb35yakrmu5t27t0",
-   "note": "Teslim edilmedi. Siparişi alındı",
-   "type": "sale",
-   "items": [
-    {
-     "productId": "7w2meuznmu6nmuma",
-     "name": "Islak mendil 7/12",
-     "unit": "adet",
-     "qty": 10000,
-     "unitPrice": 0.9,
-     "amount": 9000
-    },
-    {
-     "productId": "7nvexuz0mu6zhwmy",
-     "name": "Islak Mendil Klişesi",
-     "unit": "adet",
-     "qty": 1,
-     "unitPrice": 1000,
-     "amount": 1000
-    }
-   ],
-   "amount": 10000,
-   "invoiced": false,
-   "payment": "vadeli",
-   "dueDate": "2026-10-02",
-   "method": "nakit"
   }
  ],
  "reserved": [
@@ -676,6 +645,10 @@
   {
    "id": "83m59s0kmu8fjxcd",
    "at": "2026-09-21T09:41:12.560Z"
+  },
+  {
+   "id": "eh2z4jdfmu6ziztu",
+   "at": "2026-09-21T09:54:11.780Z"
   }
  ],
  "settings": {
