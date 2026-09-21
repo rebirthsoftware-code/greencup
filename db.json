@@ -224,6 +224,18 @@
  ],
  "customers": [
   {
+   "id": "k0g0wjfsmub2ppuo",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-21T09:59:27.271Z",
+   "name": "Goldbeans",
+   "type": "Cafe & Restaurant",
+   "phone": "05414666174",
+   "city": "Bartın",
+   "district": "Merkez",
+   "notes": "",
+   "updatedAt": "2026-09-21T09:59:27.271Z"
+  },
+  {
    "id": "8bfqvphsmub2ok0d",
    "color": "#0E6B3F",
    "createdAt": "2026-09-21T09:58:33.047Z",
@@ -320,6 +332,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "ru6jugw1mub2ppuv",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T09:59:27.271Z",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "type": "debt",
+   "amount": 80000,
+   "dueDate": "2026-09-21",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "sepp9w1ymub2f7wj",
    "date": "2026-09-21",
