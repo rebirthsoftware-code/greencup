@@ -224,6 +224,18 @@
  ],
  "customers": [
   {
+   "id": "3rxqfynxmubhkook",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-21T16:55:26.719Z",
+   "name": "HAZERAN CAFE",
+   "type": "Cafe & Restaurant",
+   "phone": "05307998567",
+   "city": "Zonguldak ",
+   "district": "Kozlu",
+   "notes": "",
+   "updatedAt": "2026-09-21T16:55:26.719Z"
+  },
+  {
    "id": "k0g0wjfsmub2ppuo",
    "color": "#0E6B3F",
    "createdAt": "2026-09-21T09:59:27.271Z",
@@ -332,6 +344,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "m2lts3d2mubhkoov",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T16:55:26.720Z",
+   "customerId": "3rxqfynxmubhkook",
+   "type": "debt",
+   "amount": 45400,
+   "dueDate": "2026-09-21",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "xqzhn65jmubhj1jb",
    "date": "2026-09-21",
