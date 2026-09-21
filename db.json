@@ -224,6 +224,18 @@
  ],
  "customers": [
   {
+   "id": "oavj5j2bmubhngtp",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-21T16:57:36.499Z",
+   "name": "GERMİA",
+   "type": "Cafe & Restaurant",
+   "phone": "05334622067",
+   "city": "Zonguldak ",
+   "district": "Çaycuma",
+   "notes": "",
+   "updatedAt": "2026-09-21T16:57:36.499Z"
+  },
+  {
    "id": "3rxqfynxmubhkook",
    "color": "#0E6B3F",
    "createdAt": "2026-09-21T16:55:26.719Z",
@@ -344,6 +356,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "o8md2d0gmubhngtv",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T16:57:36.499Z",
+   "customerId": "oavj5j2bmubhngtp",
+   "type": "debt",
+   "amount": 20400,
+   "dueDate": "2026-09-21",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "m2lts3d2mubhkoov",
    "date": "2026-09-21",
