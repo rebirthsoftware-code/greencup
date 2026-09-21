@@ -52,16 +52,6 @@
    "updatedAt": "2026-09-19T13:33:57.590Z"
   },
   {
-   "id": "83m59s0kmu8fjxcd",
-   "unit": "koli",
-   "stock": 0,
-   "price": 0,
-   "createdAt": "2026-09-19T13:35:33.517Z",
-   "name": "16oz soğuk bardak Bırchıll",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:35:33.517Z"
-  },
-  {
    "id": "envm8x5xmu8fkf6i",
    "unit": "koli",
    "stock": 6,
@@ -334,7 +324,7 @@
    "customerId": "eq1gb157mu9sxuwm",
    "productId": "83m59s0kmu8fjxcd",
    "qty": 2,
-   "updatedAt": "2026-09-20T12:41:27.617Z",
+   "updatedAt": "2026-09-21T09:41:12.560Z",
    "name": "16oz soğuk bardak Bırchıll",
    "unit": "koli"
   },
@@ -603,6 +593,10 @@
   {
    "id": "7hnb32limu8figey",
    "at": "2026-09-21T09:41:09.345Z"
+  },
+  {
+   "id": "83m59s0kmu8fjxcd",
+   "at": "2026-09-21T09:41:12.560Z"
   }
  ],
  "settings": {
