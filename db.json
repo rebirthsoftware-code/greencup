@@ -224,6 +224,19 @@
  ],
  "customers": [
   {
+   "id": "5z17vspwmub2d4nc",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-21T09:49:39.931Z",
+   "name": "Tuin Cafe",
+   "type": "Cafe & Restaurant",
+   "phone": "05386349520",
+   "city": "Zonguldak ",
+   "district": "Çaycuma",
+   "notes": "",
+   "address": "Kayıkçılar mevkii",
+   "updatedAt": "2026-09-21T09:49:39.931Z"
+  },
+  {
    "id": "bogxbxuwmub261y2",
    "color": "#0E6B3F",
    "createdAt": "2026-09-21T09:44:09.833Z",
@@ -281,6 +294,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "2qi6el4cmub2d4nv",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T09:49:39.932Z",
+   "customerId": "5z17vspwmub2d4nc",
+   "type": "debt",
+   "amount": 41325,
+   "dueDate": "2026-09-21",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "0gsugmebmub261yh",
    "date": "2026-09-21",
