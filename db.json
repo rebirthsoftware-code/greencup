@@ -472,11 +472,20 @@
  ],
  "production": [],
  "cash": {
-  "nakit": -23460,
+  "nakit": -24260,
   "banka": 22374.18,
   "kart": 51803.38
  },
  "cashMoves": [
+  {
+   "id": "2fu77ylimubler90",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T18:42:48.564Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 800,
+   "title": "Berber"
+  },
   {
    "id": "a2atoclbmublem3v",
    "date": "2026-09-21",
