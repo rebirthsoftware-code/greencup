@@ -24,9 +24,9 @@ npm run lint
 | Ana menü | Özet kartlar, hızlı işlemler, "Bugün" özeti, bildirim rozeti, bulut durumu |
 | Bildirimler | Geciken alacaklar, yaklaşan vadeler/giderler, günün ziyaret planı, uzun süredir gidilmeyenler, azalan stok |
 | Müşteriler | Arama, filtre; logo yükleme; müşteri düzenleme ve silme (hareketleriyle birlikte) |
-| Müşteri detayı | Cari durum (FIFO ile açık/gecikmiş tutar, en yakın vade), hareketler (dokunarak düzenle/sil), ürünler, depodaki rezerve mallar (ekle, teslim et), faturalar, notlar, planlı ziyaretler |
-| Yeni işlem | **Çok ürünlü** mal verme (satır başına miktar ve birim fiyat), vade tarihi, faturalı/faturasız, vadeli/peşin/kısmi; tahsilat; ziyaret |
-| Stok / Depo | Ürün ekle/düzenle/sil, birim, uyarı eşiği; rezerve müşteri kayıtlarından türetilir |
+| Müşteri detayı | Cari durum (FIFO ile açık/gecikmiş tutar, en yakın vade), hareketler (dokunarak düzenle/sil), ürünler, **depodaki müşteri malları** ve **üretimdekiler** (ekle, depoya al, teslim et), faturalar, notlar, planlı ziyaretler |
+| Yeni işlem | **Çok ürünlü** mal verme (satır başına miktar ve birim fiyat), vade tarihi, faturalı/faturasız, vadeli/peşin/kısmi; **Borç Ekle** (mal girmeden bakiyeye borç, örn. devir); tahsilat; ziyaret. Yeni müşteride **açılış bakiyesi** |
+| Stok / Depo | **Stoğum**: yalnızca kendi satılabilir ürünleriniz (ekle/düzenle/sil, birim, uyarı eşiği; ürünü müşteri malına taşı). **Müşteri Malları**: depoda müşteriye ait mallar, stoktan ayrı (teslim et, isteğe bağlı tutarla borç yaz). **Üretimde**: müşteri için üretilen siparişler (teslim tarihi, depoya al, doğrudan teslim) |
 | Kasa | Nakit/banka/kart, hareket ekle/sil, **hesaplar arası transfer** |
 | Benim ödemelerim | Ekle, düzenle, sil, öde / ödenmedi yap |
 | Ziyaretler | Son ziyaretler; **ziyaret planı** (tarih ata, yapıldı olarak kapat), öneriler |
@@ -115,8 +115,9 @@ Ayarlar > **Tümünü Temizle** ile boş başlanır (ayarlar korunur), **Örnek 
 
 - `customers` – müşteri (ad, tür, telefon, il/ilçe, adres, renk, kısaltma, logo)
 - `products` – ürün (mevcut stok, birim, birim fiyat, uyarı eşiği)
-- `transactions` – hareket: `sale` (mal verildi; `items[]`, `dueDate`), `payment` (tahsilat), `visit`, `note`; `by` = giren kullanıcı
-- `reserved` – depoda müşteriye ait ürünler
+- `transactions` – hareket: `sale` (mal verildi; `items[]`, `dueDate`; `fromReserve` = müşteri malı teslimi, stoğu etkilemez), `debt` (elle borç / devir), `payment` (tahsilat), `visit`, `note`; `by` = giren kullanıcı
+- `reserved` – depoda müşteriye ait mallar (`productId` veya serbest `name`/`unit`); sizin stoğunuzdan **ayrı** tutulur
+- `production` – müşteri için üretimde olan mallar (`dueDate` tahmini teslim)
 - `cash` / `cashMoves` – kasa hesapları ve hareketleri (`txId` ile hareketlere bağlı, `transferId` ile transfer çiftleri)
 - `expenses` – benim ödemelerim
 - `plannedVisits` – ziyaret planı
@@ -124,7 +125,7 @@ Ayarlar > **Tümünü Temizle** ile boş başlanır (ayarlar korunur), **Örnek 
 - `tombstones` – silinen kayıt id'leri (birleştirme için)
 - `settings` – firma, KDV, varsayılan vade, gecikme eşiği, fatura sırası
 
-Eski tek ürünlü kayıtlar açılışta `items` biçimine çevrilir (`normalizeState`).
+Eski tek ürünlü kayıtlar açılışta `items` biçimine çevrilir (`normalizeState`). Şema v3'te müşteri malları stoktan ayrıldı: eski (v2) veride rezerve miktarlar ürün stoğundan bir kez düşülür (eski "satılabilir" = yeni stok).
 
 Müşteri bakiyesi, durumu (Aktif / Takipte / Gecikmiş) ve müşterideki ürünler hareketlerden
 türetilir (`src/store/selectors.js`).

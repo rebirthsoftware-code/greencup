@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { useSync } from '../store/sync';
-import { dashboard, notifications, monthlySeries, reservedByProduct, itemsLabel } from '../store/selectors';
+import { dashboard, notifications, monthlySeries, lowStockProducts, itemsLabel, txTitle } from '../store/selectors';
 import { fmtMoney, fmtNum, fmtDate, daysBetween, today } from '../utils/format';
 import { useCountUp } from '../utils/hooks';
 import { loadDevice } from '../store/storage';
@@ -46,8 +46,7 @@ export default function Home() {
   const overdue = [...d.overdue].sort((a, b) => b.overdueAmount - a.overdueAmount).slice(0, 3);
   const visitsToday = d.visitsToday.map((v) => ({ ...v, customer: state.customers.find((c) => c.id === v.customerId) })).filter((v) => v.customer).slice(0, 3);
   const expensesDue = d.expensesDue.slice(0, 3);
-  const resv = reservedByProduct(state);
-  const lowStock = state.products.filter((p) => { const s = (p.stock || 0) - (resv[p.id] || 0); return s <= 0 || (p.minStock > 0 && s <= p.minStock); }).slice(0, 3);
+  const lowStock = lowStockProducts(state).slice(0, 3);
   const dueSoon = d.dueSoon.slice(0, 3);
   const nothingToday = overdue.length + visitsToday.length + expensesDue.length + lowStock.length + dueSoon.length === 0;
 
@@ -184,11 +183,11 @@ export default function Home() {
         {lowStock.length > 0 && (
           <div className="card">
             <div className="today-head"><span className="dot orange" /><span className="bold">Stok azaldı</span></div>
-            {lowStock.map((p) => { const s = (p.stock || 0) - (resv[p.id] || 0); return (
+            {lowStock.map((p) => { const s = p.stock || 0; return (
               <div key={p.id} className="today-row">
                 <Link to="/stok" className="today-main">
                   <span className="tl-icon" style={{ width: 36, height: 36, background: 'var(--orange-bg)', color: 'var(--orange)' }}><Ic.Box size={16} /></span>
-                  <span className="today-text"><b>{p.name}</b><span>{s <= 0 ? 'Tükendi' : `Satılabilir ${fmtNum(s)} ${p.unit}${p.minStock ? ` · eşik ${fmtNum(p.minStock)}` : ''}`}</span></span>
+                  <span className="today-text"><b>{p.name}</b><span>{s <= 0 ? 'Tükendi' : `${fmtNum(s)} ${p.unit} kaldı${p.minStock ? ` · eşik ${fmtNum(p.minStock)}` : ''}`}</span></span>
                 </Link>
               </div>
             ); })}
@@ -215,15 +214,15 @@ export default function Home() {
       <Section title="Son Hareketler" to="/musteriler">
         <div className="card" style={{ padding: '4px 14px' }}>
           {recent.map((x) => {
-            const Icon = x.type === 'sale' ? Ic.Truck : x.type === 'payment' ? Ic.Cash : Ic.Target;
+            const Icon = x.type === 'sale' ? Ic.Truck : x.type === 'debt' ? Ic.Receipt : x.type === 'payment' ? Ic.Cash : Ic.Target;
             const cls = x.type === 'payment' ? 'pay' : x.type === 'visit' ? 'visit' : '';
             return (
               <Link key={x.id} to={`/musteriler/${x.customerId}`} className="today-row">
                 <span className="today-main">
                   <span className={`tl-icon ${cls}`} style={{ width: 36, height: 36 }}><Icon size={16} /></span>
-                  <span className="today-text"><b>{x.customer.name}</b><span>{fmtDate(x.date)} · {x.type === 'sale' ? (x.fromReserve ? 'Rezerveden teslim' : itemsLabel(x)) : x.type === 'payment' ? 'Tahsilat' : 'Ziyaret'}{x.by ? ` · ${x.by}` : ''}</span></span>
+                  <span className="today-text"><b>{x.customer.name}</b><span>{fmtDate(x.date)} · {x.type === 'sale' ? (x.fromReserve ? `Müşteri malı teslim · ${itemsLabel(x)}` : itemsLabel(x)) : txTitle(x)}{x.by ? ` · ${x.by}` : ''}</span></span>
                 </span>
-                {x.amount != null && !x.fromReserve && <span className={`num ${x.type === 'payment' ? 'pos' : ''}`}>{x.type === 'payment' ? '+' : ''}{fmtMoney(x.amount)}</span>}
+                {x.amount > 0 && <span className={`num ${x.type === 'payment' ? 'pos' : ''}`}>{x.type === 'payment' ? '+' : ''}{fmtMoney(x.amount)}</span>}
               </Link>
             );
           })}

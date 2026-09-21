@@ -4,7 +4,7 @@
 //  - bir tarafta silinmiş (tombstone) kayıt diğer tarafta geri gelmez
 //  - kasa bakiyesi: buluttaki bakiye + yalnızca yerelde olan kasa hareketleri
 //  - ayarlar: updatedAt geç olan
-const LISTS = ['products', 'customers', 'transactions', 'reserved', 'cashMoves', 'expenses', 'plannedVisits', 'users'];
+const LISTS = ['products', 'customers', 'transactions', 'reserved', 'production', 'cashMoves', 'expenses', 'plannedVisits', 'users'];
 
 const later = (a, b) => ((a?.updatedAt || a?.createdAt || '') >= (b?.updatedAt || b?.createdAt || '') ? a : b);
 
@@ -42,7 +42,7 @@ export function mergeStates(local, remote) {
   out.settings = later(local.settings, remote.settings) === local.settings ? { ...remote.settings, ...local.settings } : { ...local.settings, ...remote.settings };
   // Ürün stoğu: kayıt olarak geç düzenlenen taraf esas alınır (eşitlikte bulut), sonra
   // yalnızca diğer tarafta yapılan satışlar düşülür ve diğer tarafta silinen satışlar geri eklenir.
-  const qtyIn = (txs, productId) => txs.filter((t) => t.type === 'sale').flatMap((t) => t.items || []).filter((i) => i.productId === productId).reduce((a, i) => a + i.qty, 0);
+  const qtyIn = (txs, productId) => txs.filter((t) => t.type === 'sale' && !t.fromReserve).flatMap((t) => t.items || []).filter((i) => i.productId === productId).reduce((a, i) => a + i.qty, 0);
   const localTxIds = new Set((local.transactions || []).map((t) => t.id));
   const remoteTxIds = new Set((remote.transactions || []).map((t) => t.id));
   const localTomb = new Set((local.tombstones || []).map((t) => t.id));

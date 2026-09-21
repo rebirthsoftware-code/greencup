@@ -27,9 +27,10 @@ export function customerSummary(state, customer) {
   const t0 = today();
   const txs = state.transactions.filter((t) => t.customerId === customer.id).sort(byDateDesc);
   const sales = txs.filter((t) => t.type === 'sale');
+  const debts = txs.filter((t) => t.type === 'sale' || t.type === 'debt'); // borç doğuran hareketler (mal + elle borç)
   const payments = txs.filter((t) => t.type === 'payment');
 
-  const totalDebt = sum(sales, (t) => t.amount);
+  const totalDebt = sum(debts, (t) => t.amount);
   const totalPaid = sum(payments, (t) => t.amount);
   const balance = totalDebt - totalPaid;
 
@@ -37,7 +38,7 @@ export function customerSummary(state, customer) {
   const lastVisit = txs.find((t) => t.type === 'visit');
   const lastSale = sales[0];
 
-  const { allocations } = allocate(sales, payments);
+  const { allocations } = allocate(debts, payments);
   const openSales = allocations.filter((a) => a.open > 0);
   const overdueSales = openSales.filter((a) => {
     const due = a.sale.dueDate || (a.sale.date && daysBetween(a.sale.date, t0) >= state.settings.overdueDays ? a.sale.date : null);
@@ -59,24 +60,35 @@ export function customerSummary(state, customer) {
   }
   const products = Object.values(productsMap);
 
-  const reserved = state.reserved.filter((r) => r.customerId === customer.id).map((r) => ({
-    ...r, name: state.products.find((p) => p.id === r.productId)?.name || r.productId,
-  }));
+  const reserved = state.reserved.filter((r) => r.customerId === customer.id).map((r) => goodsView(state, r));
+  const production = state.production.filter((r) => r.customerId === customer.id).map((r) => goodsView(state, r)).sort((a, b) => ((a.dueDate || '9') < (b.dueDate || '9') ? -1 : 1));
   const plannedVisits = state.plannedVisits.filter((v) => v.customerId === customer.id && !v.done).sort((a, b) => (a.date < b.date ? -1 : 1));
 
-  return { customer, txs, totalDebt, totalPaid, balance, status, lastPayment, lastVisit, lastSale, products, reserved, allocations, openSales, overdueSales, overdueAmount, nextDue, plannedVisits };
+  return { customer, txs, totalDebt, totalPaid, balance, status, lastPayment, lastVisit, lastSale, products, reserved, production, allocations, openSales, overdueSales, overdueAmount, nextDue, plannedVisits };
 }
 
 export function allSummaries(state) {
   return state.customers.map((c) => customerSummary(state, c));
 }
 
-/** Ürün bazında rezerve toplamı (depoda müşterilere ait). */
-export function reservedByProduct(state) {
-  const m = {};
-  for (const r of state.reserved) m[r.productId] = (m[r.productId] || 0) + r.qty;
-  return m;
+/** Müşteri malı kaydı: ad ve birim (ürün kartına bağlıysa oradan güncel adı alır). */
+export const goodsView = (state, r) => {
+  const p = r.productId ? state.products.find((x) => x.id === r.productId) : null;
+  return { ...r, name: p?.name || r.name || 'Ürün', unit: p?.unit || r.unit || 'adet' };
+};
+
+/** Müşteri malları (depoda ve üretimde) müşteriye göre gruplu; Stok ekranı için. */
+export function goodsByCustomer(state, key = 'reserved') {
+  const out = [];
+  for (const c of state.customers) {
+    const items = state[key].filter((r) => r.customerId === c.id).map((r) => goodsView(state, r));
+    if (items.length) out.push({ customer: c, items, total: sum(items, (r) => r.qty || 0) });
+  }
+  return out.sort((a, b) => a.customer.name.localeCompare(b.customer.name, 'tr'));
 }
+
+/** Düşük stok: stoğu eşiğin altında olan ürünler (0 = eşik kapalı; stok sıfırsa yine sayılır). */
+export const lowStockProducts = (state) => state.products.filter((p) => (p.stock || 0) <= 0 || (p.minStock > 0 && (p.stock || 0) <= p.minStock));
 
 /** Bildirimler: geciken alacaklar, yaklaşan vadeler, yaklaşan giderler, bugünkü ziyaret planı, uzun süredir ziyaret edilmeyenler, düşük stok. */
 export function notifications(state) {
@@ -96,8 +108,11 @@ export function notifications(state) {
     if (c) out.push({ kind: 'visit', level: v.date < t ? 'orange' : 'green', customerId: c.id, title: `Ziyaret: ${c.name}`, sub: v.date < t ? 'Planlanan tarih geçti' : 'Bugün planlı', to: `/ziyaret/${c.id}`, sort: 2 });
   }
   for (const s of sums) if (!s.lastVisit || daysBetween(s.lastVisit.date, t) >= 30) out.push({ kind: 'novisit', level: 'green', customerId: s.customer.id, title: `${s.customer.name} uzun süredir ziyaret edilmedi`, sub: s.lastVisit ? `${daysBetween(s.lastVisit.date, t)} gün önce` : 'Hiç ziyaret yok', sort: 3 });
-  const resv = reservedByProduct(state);
-  for (const p of state.products) { const sellable = (p.stock || 0) - (resv[p.id] || 0); if (sellable <= (p.minStock ?? 0) && (p.minStock ?? 0) > 0) out.push({ kind: 'stock', level: 'orange', title: `Stok azaldı: ${p.name}`, sub: `Satılabilir ${fmtQty(sellable)} ${p.unit}`, to: '/stok', sort: 2 }); }
+  for (const p of state.products) if ((p.minStock ?? 0) > 0 && (p.stock || 0) <= p.minStock) out.push({ kind: 'stock', level: 'orange', title: `Stok azaldı: ${p.name}`, sub: `${fmtQty(p.stock)} ${p.unit} kaldı`, to: '/stok', sort: 2 });
+  for (const r of state.production) if (r.dueDate && r.dueDate <= t) {
+    const c = state.customers.find((x) => x.id === r.customerId);
+    if (c) out.push({ kind: 'production', level: 'orange', customerId: c.id, title: `Üretim teslim tarihi geldi: ${c.name}`, sub: `${fmtQty(r.qty)} ${r.unit || 'adet'} ${goodsView(state, r).name}`, to: '/stok?tab=2', sort: 2 });
+  }
   return out.sort((a, b) => a.sort - b.sort);
 }
 
@@ -136,6 +151,9 @@ export function monthlySeries(state, months = 6) {
 }
 
 export const STATUS_LABEL = { gecikmis: 'Gecikmiş', takipte: 'Takipte', aktif: 'Aktif' };
+export const TX_TITLE = { sale: 'Mal Verildi', debt: 'Borç Kaydı', payment: 'Tahsilat', visit: 'Ziyaret', note: 'Not' };
+/** Hareket başlığı (müşteri malı teslimi ayrı adlandırılır). */
+export const txTitle = (t) => (t.fromReserve ? 'Müşteri Malı Teslim' : TX_TITLE[t.type] || t.type);
 export const PAYMENT_LABEL = { vadeli: 'Vadeli', pesin: 'Peşin', kismi: 'Kısmi' };
 export const METHOD_LABEL = { nakit: 'Nakit', banka: 'Havale', kart: 'Kart' };
 export const ACCOUNT_LABEL = { nakit: 'Nakit', banka: 'Banka', kart: 'Kart' };

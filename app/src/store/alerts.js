@@ -1,15 +1,12 @@
 // Olaya bağlı bildirimler: bir yerel değişiklik sonrasında yeni ortaya çıkan durumlar.
-import { reservedByProduct } from './selectors';
-
 const fmt = (n) => new Intl.NumberFormat('tr-TR').format(n || 0);
 
-/** Satılabilir miktarı eşiğin altında (veya sıfırda) olan ürün id'leri. */
+/** Stoğu eşiğin altında (veya sıfırda) olan ürün id'leri. */
 export function lowStockIds(state) {
-  const resv = reservedByProduct(state);
   const out = new Set();
   for (const p of state.products) {
-    const sellable = (p.stock || 0) - (resv[p.id] || 0);
-    if (sellable <= 0 || (p.minStock > 0 && sellable <= p.minStock)) out.add(p.id);
+    const stock = p.stock || 0;
+    if (stock <= 0 || (p.minStock > 0 && stock <= p.minStock)) out.add(p.id);
   }
   return out;
 }
@@ -19,13 +16,12 @@ export function stockAlerts(prev, next) {
   if (!prev || !next || prev === next) return [];
   const before = lowStockIds(prev);
   const after = lowStockIds(next);
-  const resv = reservedByProduct(next);
   return next.products.filter((p) => after.has(p.id) && !before.has(p.id)).map((p) => {
-    const sellable = (p.stock || 0) - (resv[p.id] || 0);
+    const stock = p.stock || 0;
     return {
       tag: `stock-${p.id}`,
-      title: sellable <= 0 ? `Stok tükendi: ${p.name}` : `Stok azaldı: ${p.name}`,
-      body: sellable <= 0 ? `Satılabilir ${p.name} kalmadı.` : `Satılabilir ${fmt(sellable)} ${p.unit || 'adet'} kaldı${p.minStock ? ` (eşik ${fmt(p.minStock)})` : ''}.`,
+      title: stock <= 0 ? `Stok tükendi: ${p.name}` : `Stok azaldı: ${p.name}`,
+      body: stock <= 0 ? `Depoda ${p.name} kalmadı.` : `${fmt(stock)} ${p.unit || 'adet'} kaldı${p.minStock ? ` (eşik ${fmt(p.minStock)})` : ''}.`,
       url: '/app/stok',
     };
   });

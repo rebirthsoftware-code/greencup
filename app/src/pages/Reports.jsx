@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useStore } from '../store/store';
-import { allSummaries, monthlySeries, itemsLabel, reservedByProduct, ACCOUNT_LABEL, STATUS_LABEL, METHOD_LABEL } from '../store/selectors';
+import { allSummaries, monthlySeries, itemsLabel, goodsByCustomer, ACCOUNT_LABEL, STATUS_LABEL, METHOD_LABEL } from '../store/selectors';
 import { fmtMoney, fmtNum, fmtDate, today, downloadCsv } from '../utils/format';
 import { PageHeader, DateField } from '../components/ui';
 import BarChart from '../components/BarChart';
@@ -11,6 +11,7 @@ const KINDS = [
   { key: 'cari', label: 'Cari Raporu', icon: Ic.Receipt }, { key: 'stok', label: 'Stok Raporu', icon: Ic.Box },
   { key: 'kasa', label: 'Kasa Raporu', icon: Ic.Wallet }, { key: 'ziyaret', label: 'Ziyaret Raporu', icon: Ic.Target },
   { key: 'satis', label: 'Satış Raporu', icon: Ic.BarChart }, { key: 'tahsilat', label: 'Tahsilat Raporu', icon: Ic.Cash },
+  { key: 'mal', label: 'Müşteri Malları', icon: Ic.Cup },
 ];
 const monthStart = () => today().slice(0, 8) + '01';
 
@@ -27,7 +28,6 @@ export default function Reports() {
     const inRange = (d) => d >= from && d <= to;
     const tx = state.transactions.filter((t) => inRange(t.date));
     const name = (id) => state.customers.find((c) => c.id === id)?.name || '-';
-    const resv = reservedByProduct(state);
     switch (kind) {
       case 'cari': {
         const sums = allSummaries(state).filter((s) => s.balance !== 0).sort((a, b) => b.balance - a.balance);
@@ -36,9 +36,15 @@ export default function Reports() {
           money: [2, 3, 4, 6], total: sums.reduce((a, s) => a + s.balance, 0) };
       }
       case 'stok':
-        return { head: ['Ürün', 'Mevcut', 'Rezerve', 'Satılabilir', 'Birim Fiyat', 'Stok Değeri'],
-          rows: state.products.map((p) => [p.name, p.stock || 0, resv[p.id] || 0, (p.stock || 0) - (resv[p.id] || 0), p.price || 0, Math.round((p.stock || 0) * (p.price || 0))]),
+        return { head: ['Ürün', 'Mevcut', 'Birim', 'Uyarı Eşiği', 'Birim Fiyat', 'Stok Değeri'],
+          rows: state.products.map((p) => [p.name, p.stock || 0, p.unit || 'adet', p.minStock || 0, p.price || 0, Math.round((p.stock || 0) * (p.price || 0))]),
           money: [4, 5], total: state.products.reduce((a, p) => a + Math.round((p.stock || 0) * (p.price || 0)), 0) };
+      case 'mal': {
+        const rows = [];
+        for (const g of goodsByCustomer(state, 'reserved')) for (const r of g.items) rows.push([g.customer.name, r.name, 'Depoda', '', `${fmtNum(r.qty)} ${r.unit}`]);
+        for (const g of goodsByCustomer(state, 'production')) for (const r of g.items) rows.push([g.customer.name, r.name, 'Üretimde', r.dueDate ? fmtDate(r.dueDate) : '', `${fmtNum(r.qty)} ${r.unit}`]);
+        return { head: ['Müşteri', 'Ürün', 'Durum', 'Teslim Tarihi', 'Miktar'], rows, money: [], count: rows.length };
+      }
       case 'kasa': {
         const moves = state.cashMoves.filter((m) => inRange(m.date));
         return { head: ['Tarih', 'Açıklama', 'Hesap', 'Giren', 'Kullanıcı', 'Tutar'],
@@ -50,9 +56,9 @@ export default function Reports() {
         return { head: ['Tarih', 'Müşteri', 'Kullanıcı', 'Not'], rows: v.map((t) => [fmtDate(t.date), name(t.customerId), t.by || '', t.note || '']), money: [], count: v.length };
       }
       case 'satis': {
-        const s = tx.filter((t) => t.type === 'sale' && !t.fromReserve);
+        const s = tx.filter((t) => (t.type === 'sale' && (!t.fromReserve || t.amount > 0)) || t.type === 'debt');
         return { head: ['Tarih', 'Müşteri', 'Ürünler', 'Fatura', 'Ödeme', 'Vade', 'Tutar'],
-          rows: s.map((t) => [fmtDate(t.date), name(t.customerId), itemsLabel(t), t.invoiced ? (t.invoiceNo || 'Faturalı') : 'Faturasız', t.payment, t.dueDate ? fmtDate(t.dueDate) : '', t.amount]),
+          rows: s.map((t) => [fmtDate(t.date), name(t.customerId), t.type === 'debt' ? `Borç kaydı${t.note ? ': ' + t.note : ''}` : itemsLabel(t), t.invoiced ? (t.invoiceNo || 'Faturalı') : 'Faturasız', t.payment || '', t.dueDate ? fmtDate(t.dueDate) : '', t.amount]),
           money: [6], total: s.reduce((a, t) => a + t.amount, 0) };
       }
       case 'tahsilat': {
