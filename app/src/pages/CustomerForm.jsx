@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store/store';
-import { resizeImage } from '../utils/format';
-import { PageHeader, Avatar, DangerButton, useToast } from '../components/ui';
+import { resizeImage, parseMoney, uid, today } from '../utils/format';
+import { PageHeader, Avatar, DangerButton, useToast, MoneyInput } from '../components/ui';
 
 const COLORS = ['#0E6B3F', '#1A1A1A', '#3B2A1E', '#7A4B2B', '#1F2A3A', '#22335A', '#8B1E3F', '#C28F27'];
 const TYPES = ['Cafe & Restaurant', 'Coffee Shop', 'Cafe', 'Restaurant', 'Kurumsal', 'Bayi', 'Diğer'];
@@ -11,7 +11,8 @@ export default function CustomerForm() {
   const { id } = useParams();
   const nav = useNavigate();
   const toast = useToast();
-  const { state, addCustomer, updateCustomer, deleteCustomer } = useStore();
+  const { state, addCustomer, updateCustomer, deleteCustomer, addTransaction } = useStore();
+  const [opening, setOpening] = useState('');
   const existing = id ? state.customers.find((c) => c.id === id) : null;
   const [f, setF] = useState(existing || { name: '', type: TYPES[0], phone: '', city: '', district: '', color: COLORS[0], tag: '', notes: '' });
   const set = (k) => (e) => setF({ ...f, [k]: e.target.value });
@@ -25,7 +26,13 @@ export default function CustomerForm() {
     const data = { ...f, name: f.name.trim(), tag: (f.tag || '').trim().toLocaleUpperCase('tr-TR') || undefined };
     if (!data.name) return toast('Firma / müşteri adı girin');
     if (existing) { updateCustomer(id, data); toast('Müşteri güncellendi'); nav(-1); }
-    else { addCustomer(data); toast('Müşteri eklendi'); nav('/musteriler'); }
+    else {
+      const cid = uid();
+      addCustomer({ ...data, id: cid });
+      const open = parseMoney(opening);
+      if (open > 0) addTransaction({ customerId: cid, type: 'debt', amount: open, date: today(), dueDate: today(), note: 'Açılış bakiyesi (devir)' });
+      toast(open > 0 ? 'Müşteri ve açılış borcu eklendi' : 'Müşteri eklendi'); nav(`/musteriler/${cid}`);
+    }
   };
 
   return (
@@ -61,6 +68,11 @@ export default function CustomerForm() {
             ))}
           </div>
         </div>
+        {!existing && (
+          <div className="field"><label>Açılış Bakiyesi <span className="opt">(mevcut borcu varsa)</span></label>
+            <div className="input"><span className="suffix">₺</span><MoneyInput value={opening} onChange={setOpening} /></div>
+            <span className="xs muted">Müşterinin size şu an olan borcu. "Borç Kaydı" olarak cariye yazılır; sonradan Yeni İşlem &gt; Borç Ekle ile de girebilirsiniz.</span></div>
+        )}
         {existing && (
           <div style={{ textAlign: 'center', margin: '8px 0 16px' }}>
             <DangerButton className="btn btn-ghost" message={`${existing.name} ve tüm hareketleri silinecek. Emin misiniz?`} onConfirm={() => { deleteCustomer(id); toast('Müşteri silindi'); nav('/musteriler', { replace: true }); }}>Müşteriyi Sil</DangerButton>

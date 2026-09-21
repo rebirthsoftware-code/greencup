@@ -44,10 +44,35 @@ const adjustStock = (products, items, sign) => {
   });
 };
 const tomb = (state, id) => ({ ...state, tombstones: [...state.tombstones, { id, at: now() }] });
+/** Satışın stok etkisi: müşteri malı teslimleri (fromReserve) benim stoğumu etkilemez. */
+const saleStock = (products, t, sign) => (t.fromReserve ? products : adjustStock(products, t.items, sign));
+/** Müşteri malı (depo/üretim) teslim hareketi: stok düşmez; tutar girildiyse cariye vadeli borç yazılır. */
+const deliveryTx = (g, qty, { amount = 0, dueDate, note } = {}) => ({
+  id: uid(), customerId: g.customerId, type: 'sale', date: today(), by: by(), createdAt: now(), fromReserve: true,
+  items: [{ productId: g.productId || undefined, name: g.name, unit: g.unit || 'adet', qty, unitPrice: amount > 0 ? Math.round((amount / qty) * 100) / 100 : 0, amount }],
+  amount, invoiced: false, payment: amount > 0 ? 'vadeli' : 'pesin', dueDate: amount > 0 ? (dueDate || today()) : today(), note,
+});
+/** Aynı müşteri + aynı ürün için depodaki kaydı bulur (ürün id'si ya da ad ile). */
+const sameGoods = (a, b) => a.customerId === b.customerId && (a.productId && b.productId ? a.productId === b.productId : (a.name || '').trim().toLocaleLowerCase('tr-TR') === (b.name || '').trim().toLocaleLowerCase('tr-TR'));
+/** Depodaki müşteri mallarına miktar ekler (kayıt varsa üstüne yazar, yoksa açar). */
+const addToReserved = (state, g, qty) => {
+  const ex = state.reserved.find((r) => sameGoods(r, g));
+  if (ex) return { ...state, reserved: state.reserved.map((r) => (r.id === ex.id ? stamp({ ...r, qty: (r.qty || 0) + qty }) : r)) };
+  return { ...state, reserved: [stamp({ id: uid(), createdAt: now(), customerId: g.customerId, productId: g.productId || undefined, name: g.name, unit: g.unit || 'adet', qty }), ...state.reserved] };
+};
+/** Listeden miktar düşer; sıfıra inerse kaydı siler (tombstone ile). */
+const takeFrom = (state, key, id, qty) => {
+  const r = state[key].find((x) => x.id === id);
+  if (!r) return state;
+  const left = r.qty - qty;
+  return left > 0
+    ? { ...state, [key]: state[key].map((x) => (x.id === id ? stamp({ ...x, qty: left }) : x)) }
+    : tomb({ ...state, [key]: state[key].filter((x) => x.id !== id) }, id);
+};
 
 /** Satış eklendiğinde yan etkiler: stok düşer, peşin/kısmi ödeme kasaya girer. */
 function applySale(state, t) {
-  let next = { ...state, products: adjustStock(state.products, t.items, -1) };
+  let next = { ...state, products: saleStock(state.products, t, -1) };
   const paid = t.payment === 'pesin' ? t.amount : t.payment === 'kismi' ? (t.paidNow || 0) : 0;
   if (paid > 0) {
     const pay = { id: uid(), customerId: t.customerId, type: 'payment', date: t.date, amount: paid, method: t.method || 'nakit', saleId: t.id, by: t.by, createdAt: t.createdAt };
@@ -58,7 +83,7 @@ function applySale(state, t) {
 }
 function undoTx(state, t) {
   let next = state;
-  if (t.type === 'sale') next = { ...next, products: adjustStock(next.products, t.items, +1) };
+  if (t.type === 'sale') next = { ...next, products: saleStock(next.products, t, +1) };
   if (t.type === 'payment') next = undoCash(next, t.id, { type: 'in', amount: t.amount, account: t.method || 'nakit', title: 'Tahsilat' });
   return next;
 }
@@ -75,12 +100,14 @@ function reducer(state, action) {
       const ids = [];
       for (const t of state.transactions) if (t.customerId === action.id) { next = undoTx(next, t); ids.push(t.id); }
       for (const r of state.reserved) if (r.customerId === action.id) ids.push(r.id);
+      for (const r of state.production) if (r.customerId === action.id) ids.push(r.id);
       for (const v of state.plannedVisits) if (v.customerId === action.id) ids.push(v.id);
       next = {
         ...next,
         customers: next.customers.filter((c) => c.id !== action.id),
         transactions: next.transactions.filter((t) => t.customerId !== action.id),
         reserved: next.reserved.filter((r) => r.customerId !== action.id),
+        production: next.production.filter((r) => r.customerId !== action.id),
         plannedVisits: next.plannedVisits.filter((v) => v.customerId !== action.id),
       };
       for (const id of [action.id, ...ids]) next = tomb(next, id);
@@ -111,7 +138,7 @@ function reducer(state, action) {
       const t = stamp({ ...old, ...action.patch });
       next = { ...next, transactions: next.transactions.map((x) => (x.id === action.id ? t : x)) };
       if (t.type === 'sale') {
-        next = { ...next, products: adjustStock(next.products, t.items, -1) };
+        next = { ...next, products: saleStock(next.products, t, -1) };
         // Peşin satışta otomatik oluşturulan tahsilat satışla birlikte güncellenir; vadeliye dönerse kaldırılır
         const linked = next.transactions.find((x) => x.type === 'payment' && x.saleId === t.id);
         if (linked && t.payment === 'pesin' && linked.amount !== t.amount) {
@@ -154,20 +181,46 @@ function reducer(state, action) {
     case 'DELETE_RESERVED':
       return tomb({ ...state, reserved: state.reserved.filter((r) => r.id !== action.id) }, action.id);
     case 'DELIVER_RESERVED': {
-      // Rezervden teslim: rezerve düşer, stok düşer, müşteriye "rezerveden teslim" hareketi yazılır (bedeli daha önce alınmış)
+      // Depodaki müşteri malını teslim: kayıt düşer, benim stoğum değişmez; tutar girildiyse cariye vadeli borç yazılır
       const r = state.reserved.find((x) => x.id === action.id);
       if (!r) return state;
       const qty = Math.min(action.qty, r.qty);
-      const p = state.products.find((x) => x.id === r.productId);
-      const t = { id: uid(), customerId: r.customerId, type: 'sale', date: today(), by: by(), createdAt: now(), fromReserve: true,
-        items: [{ productId: r.productId, name: p?.name || r.productId, unit: p?.unit || 'adet', qty, unitPrice: 0, amount: 0 }],
-        amount: 0, invoiced: false, payment: 'pesin', note: action.note || 'Rezerveden teslim' };
-      let next = { ...state, transactions: [t, ...state.transactions], products: adjustStock(state.products, t.items, -1) };
-      const left = r.qty - qty;
-      next = left > 0
-        ? { ...next, reserved: next.reserved.map((x) => (x.id === r.id ? stamp({ ...x, qty: left }) : x)) }
-        : tomb({ ...next, reserved: next.reserved.filter((x) => x.id !== r.id) }, r.id);
-      return next;
+      if (!(qty > 0)) return state;
+      const t = deliveryTx(r, qty, { amount: action.amount || 0, dueDate: action.dueDate, note: action.note || 'Depodan teslim' });
+      return takeFrom({ ...state, transactions: [t, ...state.transactions] }, 'reserved', r.id, qty);
+    }
+    case 'PRODUCT_TO_CUSTOMER': {
+      // Ürün kartı aslında bir müşteriye aitse: stoktaki miktar müşteri malına taşınır, ürün kartı silinir
+      const p = state.products.find((x) => x.id === action.id);
+      const c = state.customers.find((x) => x.id === action.customerId);
+      if (!p || !c) return state;
+      let next = addToReserved(state, { customerId: c.id, productId: undefined, name: p.name, unit: p.unit || 'adet' }, p.stock || 0);
+      return tomb({ ...next, products: next.products.filter((x) => x.id !== p.id) }, p.id);
+    }
+
+    /* ---- üretimde (müşteri için üretilen mallar) ---- */
+    case 'ADD_PRODUCTION':
+      return { ...state, production: [stamp({ id: uid(), createdAt: now(), unit: 'adet', ...action.entry }), ...state.production] };
+    case 'UPDATE_PRODUCTION':
+      return { ...state, production: state.production.map((r) => (r.id === action.id ? stamp({ ...r, ...action.patch }) : r)) };
+    case 'DELETE_PRODUCTION':
+      return tomb({ ...state, production: state.production.filter((r) => r.id !== action.id) }, action.id);
+    case 'PRODUCTION_TO_STOCK': {
+      // Üretim bitti, depoya geldi: üretim kaydından düşer, depodaki müşteri malına eklenir
+      const r = state.production.find((x) => x.id === action.id);
+      if (!r) return state;
+      const qty = Math.min(action.qty, r.qty);
+      if (!(qty > 0)) return state;
+      return takeFrom(addToReserved(state, r, qty), 'production', r.id, qty);
+    }
+    case 'PRODUCTION_DELIVER': {
+      // Üretimden doğrudan müşteriye teslim (depoya uğramadan)
+      const r = state.production.find((x) => x.id === action.id);
+      if (!r) return state;
+      const qty = Math.min(action.qty, r.qty);
+      if (!(qty > 0)) return state;
+      const t = deliveryTx(r, qty, { amount: action.amount || 0, dueDate: action.dueDate, note: action.note || 'Üretimden teslim' });
+      return takeFrom({ ...state, transactions: [t, ...state.transactions] }, 'production', r.id, qty);
     }
 
     /* ---- giderler ---- */
@@ -289,7 +342,13 @@ export function StoreProvider({ children }) {
     addReserved: (entry) => dispatch({ type: 'ADD_RESERVED', entry }),
     updateReserved: (id, patch) => dispatch({ type: 'UPDATE_RESERVED', id, patch }),
     deleteReserved: (id) => dispatch({ type: 'DELETE_RESERVED', id }),
-    deliverReserved: (id, qty, note) => dispatch({ type: 'DELIVER_RESERVED', id, qty, note }),
+    deliverReserved: (id, qty, opts) => dispatch({ type: 'DELIVER_RESERVED', id, qty, ...(opts || {}) }),
+    productToCustomer: (id, customerId) => dispatch({ type: 'PRODUCT_TO_CUSTOMER', id, customerId }),
+    addProduction: (entry) => dispatch({ type: 'ADD_PRODUCTION', entry }),
+    updateProduction: (id, patch) => dispatch({ type: 'UPDATE_PRODUCTION', id, patch }),
+    deleteProduction: (id) => dispatch({ type: 'DELETE_PRODUCTION', id }),
+    productionToStock: (id, qty) => dispatch({ type: 'PRODUCTION_TO_STOCK', id, qty }),
+    productionDeliver: (id, qty, opts) => dispatch({ type: 'PRODUCTION_DELIVER', id, qty, ...(opts || {}) }),
     addExpense: (expense) => dispatch({ type: 'ADD_EXPENSE', expense }),
     updateExpense: (id, patch) => dispatch({ type: 'UPDATE_EXPENSE', id, patch }),
     deleteExpense: (id) => dispatch({ type: 'DELETE_EXPENSE', id }),

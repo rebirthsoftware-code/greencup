@@ -1,38 +1,40 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store/store';
-import { customerSummary, METHOD_LABEL, PAYMENT_LABEL, txItems, itemsLabel } from '../store/selectors';
+import { customerSummary, METHOD_LABEL, PAYMENT_LABEL, txItems, itemsLabel, TX_TITLE, txTitle } from '../store/selectors';
 import { fmtMoney, fmtNum, fmtDate, parseMoney, toInput, today } from '../utils/format';
 import { PageHeader, Avatar, StatusBadge, Empty, Sheet, Segmented, Tabs, DateField, DangerButton, useToast, MoneyInput } from '../components/ui';
 import { ItemsEditor } from './NewTransaction';
 import { cleanItem } from '../utils/format';
 import * as Ic from '../components/Icons';
 import Attachments from '../components/Attachments';
+import GoodsSheet from '../components/GoodsSheets';
 
 const TABS = ['Hareketler', 'Ürünler', 'Faturalar', 'Notlar'];
 const TX_FILTERS = [
-  { key: 'tumu', label: 'Tümü' }, { key: 'sale', label: 'Mal Verildi' },
+  { key: 'tumu', label: 'Tümü' }, { key: 'sale', label: 'Mal Verildi' }, { key: 'debt', label: 'Borç' },
   { key: 'payment', label: 'Tahsilat' }, { key: 'visit', label: 'Ziyaret' }, { key: 'note', label: 'Not' },
 ];
-const TITLE = { sale: 'Mal Verildi', payment: 'Tahsilat', visit: 'Ziyaret', note: 'Not' };
+const TITLE = TX_TITLE;
 
 export function TxItem({ t, alloc, onClick }) {
-  const Icon = t.type === 'sale' ? Ic.Truck : t.type === 'payment' ? Ic.Cash : t.type === 'visit' ? Ic.Target : Ic.Note;
+  const Icon = t.type === 'sale' ? (t.fromReserve ? Ic.Box : Ic.Truck) : t.type === 'debt' ? Ic.Receipt : t.type === 'payment' ? Ic.Cash : t.type === 'visit' ? Ic.Target : Ic.Note;
   const cls = t.type === 'payment' ? 'pay' : t.type === 'visit' ? 'visit' : t.type === 'note' ? 'note' : '';
-  const overdue = t.type === 'sale' && alloc?.open > 0 && t.dueDate && t.dueDate < today();
+  const owes = (t.type === 'sale' || t.type === 'debt') && t.amount > 0;
+  const overdue = owes && alloc?.open > 0 && t.dueDate && t.dueDate < today();
   return (
     <div className="tl-item" onClick={onClick}>
       <div className={`tl-icon ${cls}`}><Icon size={18} /></div>
       <div className="tl-body">
         <div className="tl-head">
-          <div><span className="tl-date">{fmtDate(t.date)}</span><span className="tl-title">{t.fromReserve ? 'Rezerveden Teslim' : TITLE[t.type]}</span></div>
-          {t.amount != null && !t.fromReserve && <span className={`num ${t.type === 'payment' ? 'pos' : ''}`}>{fmtMoney(t.amount)}</span>}
+          <div><span className="tl-date">{fmtDate(t.date)}</span><span className="tl-title">{txTitle(t)}</span></div>
+          {(t.amount > 0 || (t.type === 'payment' && t.amount != null)) && <span className={`num ${t.type === 'payment' ? 'pos' : ''}`}>{fmtMoney(t.amount)}</span>}
         </div>
         {t.type === 'sale' && <div className="tl-sub">{itemsLabel(t)}</div>}
         {t.note && <div className="tl-sub">{t.type === 'visit' ? 'Not: ' : ''}{t.note}</div>}
-        {t.type === 'sale' && !t.fromReserve && (
+        {owes && (
           <div className="tl-meta">
-            {t.dueDate && t.payment !== 'pesin' ? `Vade: ${fmtDate(t.dueDate)}` : PAYMENT_LABEL[t.payment] || ''}
+            {t.dueDate && t.payment !== 'pesin' ? `Vade: ${fmtDate(t.dueDate)}` : PAYMENT_LABEL[t.payment] || (t.type === 'debt' ? 'Borç' : '')}
             {alloc && alloc.open > 0 ? ` · Açık: ${fmtMoney(alloc.open)}` : alloc ? ' · Ödendi' : ''}
           </div>
         )}
@@ -54,16 +56,18 @@ function TxEditor({ tx, onClose }) {
   const toast = useToast();
   const [f, setF] = useState(() => ({ ...tx, items: txItems(tx).map((i) => ({ ...i })), amountStr: toInput(tx.amount ?? '') }));
   const set = (k) => (v) => setF({ ...f, [k]: v });
-  const total = f.type === 'sale' ? f.items.filter((i) => i.productId && i.qty > 0).reduce((a, i) => a + i.amount, 0) : parseMoney(f.amountStr);
+  const total = f.type === 'sale' && !tx.fromReserve ? f.items.filter((i) => i.productId && i.qty > 0).reduce((a, i) => a + i.amount, 0) : parseMoney(f.amountStr);
   const save = () => {
     const patch = { date: f.date, note: f.note?.trim() || undefined };
-    if (f.type === 'sale') Object.assign(patch, { items: f.items.filter((i) => i.productId && i.qty > 0).map(cleanItem), amount: total, invoiced: f.invoiced, payment: f.payment, dueDate: f.dueDate });
+    if (f.type === 'sale' && !tx.fromReserve) Object.assign(patch, { items: f.items.filter((i) => i.productId && i.qty > 0).map(cleanItem), amount: total, invoiced: f.invoiced, payment: f.payment, dueDate: f.dueDate });
+    if (f.type === 'sale' && tx.fromReserve) Object.assign(patch, { amount: total, payment: total > 0 ? 'vadeli' : 'pesin', dueDate: total > 0 ? (f.dueDate || f.date) : f.date, items: f.items.map((i) => ({ ...i, amount: total, unitPrice: i.qty ? Math.round((total / i.qty) * 100) / 100 : 0 })) });
     if (f.type === 'payment') Object.assign(patch, { amount: total, method: f.method });
-    if ((f.type === 'sale' || f.type === 'payment') && !(total > 0) && !tx.fromReserve) return toast('Tutar sıfır olamaz');
+    if (f.type === 'debt') Object.assign(patch, { amount: total, dueDate: f.dueDate || f.date });
+    if ((f.type === 'sale' || f.type === 'payment' || f.type === 'debt') && !(total > 0) && !tx.fromReserve) return toast('Tutar sıfır olamaz');
     updateTransaction(tx.id, patch); toast('Güncellendi'); onClose();
   };
   return (
-    <Sheet open onClose={onClose} title={`${TITLE[tx.type]} · Düzenle`}>
+    <Sheet open onClose={onClose} title={`${txTitle(tx)} · Düzenle`}>
       <DateField label="Tarih" value={f.date} onChange={set('date')} />
       {f.type === 'sale' && !tx.fromReserve && (
         <>
@@ -73,6 +77,19 @@ function TxEditor({ tx, onClose }) {
           <div className="field"><label>Ödeme</label><Segmented light value={f.payment} onChange={set('payment')} options={[{ value: 'vadeli', label: 'Vadeli' }, { value: 'pesin', label: 'Peşin' }, { value: 'kismi', label: 'Kısmi' }]} /></div>
           {f.payment !== 'pesin' && <DateField label="Vade Tarihi" value={f.dueDate || ''} onChange={set('dueDate')} />}
           <div className="field"><label>Belgeler</label><Attachments items={tx.attachments || []} onChange={(list) => setAttachments(tx.id, list)} folder={`${(tx.date || '').slice(0, 4)}/${tx.id}`} compact /></div>
+        </>
+      )}
+      {f.type === 'sale' && tx.fromReserve && (
+        <>
+          <div className="card small muted" style={{ marginBottom: 12 }}>{itemsLabel(tx)} · müşteri malı teslimi (stoğunuzu etkilemez)</div>
+          <div className="field"><label>Tutar <span className="opt">(0 = bedelsiz teslim)</span></label><div className="input"><span className="suffix">₺</span><MoneyInput value={f.amountStr} onChange={set('amountStr')} /></div></div>
+          {total > 0 && <DateField label="Vade Tarihi" value={f.dueDate || ''} onChange={set('dueDate')} />}
+        </>
+      )}
+      {f.type === 'debt' && (
+        <>
+          <div className="field"><label>Borç Tutarı</label><div className="input"><span className="suffix">₺</span><MoneyInput value={f.amountStr} onChange={set('amountStr')} /></div></div>
+          <DateField label="Vade Tarihi" value={f.dueDate || ''} onChange={set('dueDate')} />
         </>
       )}
       {f.type === 'payment' && (
@@ -90,39 +107,6 @@ function TxEditor({ tx, onClose }) {
   );
 }
 
-/** Rezerve ekle / teslim et alt sayfası */
-function ReserveSheet({ customerId, entry, onClose }) {
-  const { state, addReserved, deliverReserved, deleteReserved, updateReserved } = useStore();
-  const toast = useToast();
-  const [productId, setProductId] = useState(entry?.productId || state.products[0]?.id || '');
-  const [qty, setQty] = useState('');
-  const n = parseInt(qty || '0', 10);
-  const p = state.products.find((x) => x.id === productId);
-  if (!entry) {
-    return (
-      <Sheet open onClose={onClose} title="Depoya Rezerve Ekle">
-        <p className="small muted" style={{ marginBottom: 10 }}>Müşteriye ait olup depoda beklettiğiniz mal. Stoktan düşülmez, satılabilir miktardan ayrılır.</p>
-        <div className="field"><label>Ürün</label><div className="input"><select value={productId} onChange={(e) => setProductId(e.target.value)}>{state.products.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}</select></div></div>
-        <div className="field"><label>Miktar</label><div className="input"><input inputMode="numeric" value={qty} onChange={(e) => setQty(e.target.value.replace(/\D/g, ''))} placeholder="0" /><span className="suffix">{p?.unit || 'adet'}</span></div></div>
-        <button className="btn btn-primary" disabled={!productId || n <= 0} onClick={() => { addReserved({ customerId, productId, qty: n }); toast('Rezerve eklendi'); onClose(); }}>Kaydet</button>
-      </Sheet>
-    );
-  }
-  return (
-    <Sheet open onClose={onClose} title={`${entry.name} · ${fmtNum(entry.qty)} adet rezerve`}>
-      <div className="field"><label>Teslim edilecek miktar</label><div className="input"><input inputMode="numeric" value={qty} onChange={(e) => setQty(e.target.value.replace(/\D/g, ''))} placeholder={String(entry.qty)} /><span className="suffix">adet</span></div>
-        <span className="xs muted">Teslim edilen miktar stoktan ve rezerveden düşer, müşteri hareketlerine "Rezerveden Teslim" yazılır.</span></div>
-      <div className="stack">
-        <button className="btn btn-primary" disabled={n <= 0 || n > entry.qty} onClick={() => { deliverReserved(entry.id, n); toast('Teslim edildi'); onClose(); }}>Teslim Et</button>
-        <div className="btn-row">
-          <button className="btn btn-ghost" disabled={n <= 0} onClick={() => { updateReserved(entry.id, { qty: n }); toast('Miktar güncellendi'); onClose(); }}>Miktarı {n > 0 ? fmtNum(n) : '…'} yap</button>
-          <DangerButton className="btn btn-ghost" message="Rezerve kaydı silinsin mi?" onConfirm={() => { deleteReserved(entry.id); toast('Silindi'); onClose(); }}>Sil</DangerButton>
-        </div>
-      </div>
-    </Sheet>
-  );
-}
-
 export default function CustomerDetail() {
   const { id } = useParams();
   const nav = useNavigate();
@@ -134,7 +118,7 @@ export default function CustomerDetail() {
   const [noteOpen, setNoteOpen] = useState(false);
   const [note, setNote] = useState('');
   const [editTx, setEditTx] = useState(null);
-  const [reserve, setReserve] = useState(null); // null | 'new' | entry
+  const [goods, setGoods] = useState(null); // null | { kind: 'reserved'|'production', entry|null }
 
   if (!customer) return <div className="page"><PageHeader title="Müşteri" /><Empty>Müşteri bulunamadı.</Empty></div>;
   const s = customerSummary(state, customer);
@@ -219,14 +203,24 @@ export default function CustomerDetail() {
             {s.products.length === 0 && <div className="muted small">Henüz ürün verilmedi.</div>}
           </div>
           <div className="card">
-            <div className="row" style={{ marginBottom: 6 }}><div className="card-title" style={{ margin: 0 }}>Depoda Müşteriye Ait Ürünler</div><button className="btn btn-sm btn-ghost" onClick={() => setReserve('new')} disabled={state.products.length === 0}><Ic.Plus size={14} /> Ekle</button></div>
+            <div className="row" style={{ marginBottom: 6 }}><div className="card-title" style={{ margin: 0 }}>Depoda Müşteriye Ait Mallar</div><button className="btn btn-sm btn-ghost" onClick={() => setGoods({ kind: 'reserved', entry: null })}><Ic.Plus size={14} /> Ekle</button></div>
             {s.reserved.map((r) => (
-              <button key={r.id} className="row pad" style={{ width: '100%', textAlign: 'left' }} onClick={() => setReserve(r)}>
+              <button key={r.id} className="row pad" style={{ width: '100%', textAlign: 'left' }} onClick={() => setGoods({ kind: 'reserved', entry: r })}>
                 <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}><Ic.Box size={16} style={{ color: 'var(--gold)' }} />{r.name}</span>
-                <span className="num">{fmtNum(r.qty)} adet <Ic.ChevronRight size={14} className="muted" /></span>
+                <span className="num">{fmtNum(r.qty)} {r.unit} <Ic.ChevronRight size={14} className="muted" /></span>
               </button>
             ))}
-            {s.reserved.length === 0 && <div className="muted small">Depoda rezerve ürün yok.</div>}
+            {s.reserved.length === 0 && <div className="muted small">Depoda müşteriye ait mal yok. Sizin stoğunuzdan ayrı tutulur.</div>}
+          </div>
+          <div className="card">
+            <div className="row" style={{ marginBottom: 6 }}><div className="card-title" style={{ margin: 0 }}>Üretimde</div><button className="btn btn-sm btn-ghost" onClick={() => setGoods({ kind: 'production', entry: null })}><Ic.Plus size={14} /> Ekle</button></div>
+            {s.production.map((r) => (
+              <button key={r.id} className="row pad" style={{ width: '100%', textAlign: 'left' }} onClick={() => setGoods({ kind: 'production', entry: r })}>
+                <span style={{ display: 'flex', gap: 8, alignItems: 'center', minWidth: 0 }}><Ic.Box size={16} style={{ color: 'var(--blue)', flexShrink: 0 }} /><span><span style={{ display: 'block' }}>{r.name}</span>{r.dueDate && <span className={`xs ${r.dueDate <= today() ? 'neg' : 'muted'}`}>Teslim: {fmtDate(r.dueDate)}</span>}</span></span>
+                <span className="num" style={{ flexShrink: 0 }}>{fmtNum(r.qty)} {r.unit} <Ic.ChevronRight size={14} className="muted" /></span>
+              </button>
+            ))}
+            {s.production.length === 0 && <div className="muted small">Üretimde mal yok.</div>}
           </div>
         </>
       )}
@@ -275,7 +269,7 @@ export default function CustomerDetail() {
         <button className="btn btn-primary" style={{ marginTop: 12 }} onClick={saveNote} disabled={!note.trim()}>Kaydet</button>
       </Sheet>
       {editTx && <TxEditor tx={editTx} onClose={() => setEditTx(null)} />}
-      {reserve && <ReserveSheet customerId={id} entry={reserve === 'new' ? null : reserve} onClose={() => setReserve(null)} />}
+      {goods && <GoodsSheet kind={goods.kind} customerId={id} entry={goods.entry} onClose={() => setGoods(null)} />}
     </div>
   );
 }

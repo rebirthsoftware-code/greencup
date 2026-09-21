@@ -12,9 +12,9 @@ import * as Ic from '../components/Icons';
 import { cleanItem } from '../utils/format';
 
 const TYPES = [
-  { value: 'sale', label: 'Mal Ver' }, { value: 'payment', label: 'Tahsilat' }, { value: 'visit', label: 'Ziyaret' },
+  { value: 'sale', label: 'Mal Ver' }, { value: 'debt', label: 'Borç Ekle' }, { value: 'payment', label: 'Tahsilat' }, { value: 'visit', label: 'Ziyaret' },
 ];
-const TITLES = { sale: 'Mal Ver / Yeni İşlem', payment: 'Tahsilat Gir', visit: 'Ziyaret Kaydı' };
+const TITLES = { sale: 'Mal Ver / Yeni İşlem', debt: 'Borç Ekle', payment: 'Tahsilat Gir', visit: 'Ziyaret Kaydı' };
 
 /** Çok ürünlü satır düzenleyici (yeni işlem ve düzenleme ekranlarında ortak). */
 export function ItemsEditor({ items, onChange, products }) {
@@ -96,10 +96,12 @@ export default function NewTransaction() {
     : type === 'sale' && validItems.length === 0 ? 'En az bir ürün ve miktar girin'
     : type === 'sale' && amountN <= 0 ? 'Tutar sıfır olamaz (birim fiyat girin)'
     : type === 'sale' && payment === 'kismi' && !(paidNowN > 0 && paidNowN < amountN) ? 'Kısmi ödemede "şimdi ödenen" sıfırdan büyük ve toplamdan küçük olmalı'
-    : type === 'payment' && amountN <= 0 ? 'Tahsilat tutarı girin' : '';
+    : type === 'payment' && amountN <= 0 ? 'Tahsilat tutarı girin'
+    : type === 'debt' && amountN <= 0 ? 'Borç tutarı girin' : '';
   const valid = customerId && (
     (type === 'sale' && validItems.length > 0 && amountN > 0 && (payment !== 'kismi' || (paidNowN > 0 && paidNowN < amountN))) ||
     (type === 'payment' && amountN > 0) ||
+    (type === 'debt' && amountN > 0) ||
     (type === 'visit')
   );
 
@@ -123,6 +125,9 @@ export default function NewTransaction() {
     } else if (type === 'payment') {
       addTransaction({ ...base, type: 'payment', amount: amountN, method });
       toast('Tahsilat kaydedildi');
+    } else if (type === 'debt') {
+      addTransaction({ ...base, type: 'debt', amount: amountN, dueDate });
+      toast('Borç kaydedildi');
     } else {
       addTransaction({ ...base, type: 'visit', note: note.trim() || 'Ziyaret yapıldı.' }, planId);
       toast('Ziyaret kaydedildi');
@@ -163,6 +168,13 @@ export default function NewTransaction() {
           <div className="field"><label>Tutar</label>
             <div className="input"><span className="suffix">₺</span><MoneyInput value={amount} onChange={setAmount} autoFocus /></div></div>
         )}
+        {type === 'debt' && (
+          <>
+            <div className="card small" style={{ marginBottom: 14 }}>Mal girişi yapmadan müşterinin bakiyesine borç ekler (örn. eski defterden devir, önceki alacak). Stok ve kasa değişmez; borç vadesi geçince gecikmiş sayılır.</div>
+            <div className="field"><label>Borç Tutarı</label>
+              <div className="input"><span className="suffix">₺</span><MoneyInput value={amount} onChange={setAmount} autoFocus /></div></div>
+          </>
+        )}
 
         {(type === 'payment' || (type === 'sale' && payment !== 'vadeli')) && (
           <div className="field"><label>Ödeme Yöntemi</label>
@@ -170,10 +182,10 @@ export default function NewTransaction() {
         )}
 
         <DateField label="Tarih" value={date} onChange={setDateAndDue} />
-        {type === 'sale' && payment !== 'pesin' && <DateField label="Vade Tarihi" value={dueDate} onChange={setDueDate} min={date} />}
+        {((type === 'sale' && payment !== 'pesin') || type === 'debt') && <DateField label="Vade Tarihi" value={dueDate} onChange={setDueDate} min={date} />}
 
         <div className="field"><label>Not <span className="opt">(isteğe bağlı)</span></label>
-          <textarea className="input" placeholder="Örn: Yeni sezon siparişi..." value={note} onChange={(e) => setNote(e.target.value)} /></div>
+          <textarea className="input" placeholder={type === 'debt' ? 'Örn: Eski defterden devir bakiyesi' : 'Örn: Yeni sezon siparişi...'} value={note} onChange={(e) => setNote(e.target.value)} /></div>
 
         {type === 'sale' && (
           <div className="field"><label>Fatura Belgesi <span className="opt">(PDF veya fotoğraf, isteğe bağlı)</span></label>
@@ -190,6 +202,7 @@ export default function NewTransaction() {
           <div className="card small muted" style={{ marginBottom: 12 }}>
             {type === 'sale'
               ? `${customer.name} için ${validItems.length} kalem, ${fmtMoney(amountN)}: ${payment === 'pesin' ? 'peşin tahsil edilecek' : payment === 'kismi' ? `${fmtMoney(paidNowN)} şimdi, kalanı vadeye` : `vade ${dueDate.split('-').reverse().join('.')}`}.`
+              : type === 'debt' ? `${customer.name} bakiyesine ${fmtMoney(amountN)} borç eklenecek (vade ${dueDate.split('-').reverse().join('.')}).`
               : `${customer.name} carisinden ${fmtMoney(amountN)} düşülecek, kasaya eklenecek.`}
           </div>
         )}

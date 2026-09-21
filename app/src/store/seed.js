@@ -1,7 +1,7 @@
 // Örnek (demo) veri ve durum şeması yardımcıları.
 // Uygulama ilk açılışta bu veriyle başlar; Ayarlar > Tümünü Temizle ile boş başlanır.
 
-export const STATE_VERSION = 2;
+export const STATE_VERSION = 3;
 
 export const seedProducts = [
   { id: 'p-7oz-karton',   name: '7oz Karton',      stock: 25000, unit: 'adet', price: 2.9 },
@@ -124,6 +124,7 @@ export const makeSeed = () => ({
   customers: seedCustomers,
   transactions: seedTransactions,
   reserved: seedReserved,
+  production: [],
   cash: seedCash,
   cashMoves: seedCashMoves,
   expenses: seedExpenses,
@@ -140,6 +141,7 @@ export const makeEmpty = (settings = seedSettings, users = seedUsers) => ({
   customers: [],
   transactions: [],
   reserved: [],
+  production: [],
   cash: { nakit: 0, banka: 0, kart: 0 },
   cashMoves: [],
   expenses: [],
@@ -157,7 +159,7 @@ export function normalizeState(raw) {
   if (!raw || typeof raw !== 'object') return null;
   const base = makeEmpty();
   const s = { ...base, ...raw, settings: { ...seedSettings, ...(raw.settings || {}) } };
-  for (const k of ['products', 'customers', 'transactions', 'reserved', 'cashMoves', 'expenses', 'plannedVisits', 'users', 'tombstones']) {
+  for (const k of ['products', 'customers', 'transactions', 'reserved', 'production', 'cashMoves', 'expenses', 'plannedVisits', 'users', 'tombstones']) {
     if (!Array.isArray(s[k])) s[k] = [];
   }
   s.cash = { nakit: 0, banka: 0, kart: 0, ...(raw.cash || {}) };
@@ -168,6 +170,17 @@ export function normalizeState(raw) {
     return { ...t, items: [{ productId: t.productId, name: t.productName || p?.name || t.productId, unit: p?.unit || 'adet', qty, unitPrice: qty ? +((t.amount || 0) / qty).toFixed(2) : 0, amount: t.amount || 0 }] };
   });
   s.reserved = s.reserved.map((r, i) => (r.id ? r : { ...r, id: `r-${r.customerId}-${r.productId}-${i}` }));
+  // v3: müşteri malları benim stoğumdan ayrıldı. Eski şemada rezerve, ürün stoğunun içindeydi
+  // (satılabilir = stok − rezerve); yeni şemada ürün stoğu yalnızca benim malımdır.
+  if ((raw.version || 0) < 3 && s.reserved.length) {
+    const resv = {};
+    for (const r of s.reserved) if (r.productId) resv[r.productId] = (resv[r.productId] || 0) + (r.qty || 0);
+    s.products = s.products.map((p) => (resv[p.id] ? { ...p, stock: Math.max(0, (p.stock || 0) - resv[p.id]) } : p));
+  }
+  // Müşteri malı kayıtlarında ad ve birim ürün kartından kopyalanır (ürün silinse de görünür kalsın)
+  const fill = (r) => { const p = s.products.find((x) => x.id === r.productId); return r.name && r.unit ? r : { ...r, name: r.name || p?.name || r.productId || 'Ürün', unit: r.unit || p?.unit || 'adet' }; };
+  s.reserved = s.reserved.map(fill);
+  s.production = s.production.map(fill);
   if (s.users.length === 0) s.users = [{ id: 'u1', name: s.settings.userName || 'Kullanıcı', role: 'Yönetici' }];
   s.version = STATE_VERSION;
   return s;
