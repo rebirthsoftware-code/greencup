@@ -224,6 +224,19 @@
  ],
  "customers": [
   {
+   "id": "bogxbxuwmub261y2",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-21T09:44:09.833Z",
+   "name": "Arel Pastanesi",
+   "type": "Cafe & Restaurant",
+   "phone": "05355646742",
+   "city": "",
+   "district": "Kozlu",
+   "notes": "",
+   "address": "Fatih sitesi",
+   "updatedAt": "2026-09-21T09:44:09.833Z"
+  },
+  {
    "id": "eq1gb157mu9sxuwm",
    "color": "#7A4B2B",
    "createdAt": "2026-09-20T12:38:04.726Z",
@@ -267,6 +280,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "0gsugmebmub261yh",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T09:44:09.833Z",
+   "customerId": "bogxbxuwmub261y2",
+   "type": "debt",
+   "amount": 26800,
+   "dueDate": "2026-09-21",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "tjiaeru7mub1z0do",
    "date": "2026-09-21",
