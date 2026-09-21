@@ -52,16 +52,6 @@
    "updatedAt": "2026-09-19T13:33:57.590Z"
   },
   {
-   "id": "7hnb32limu8figey",
-   "unit": "koli",
-   "stock": 0,
-   "price": 0,
-   "createdAt": "2026-09-19T13:34:24.922Z",
-   "name": "14oz Doublewall Bırchıll",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:34:24.922Z"
-  },
-  {
    "id": "83m59s0kmu8fjxcd",
    "unit": "koli",
    "stock": 0,
@@ -364,7 +354,7 @@
    "customerId": "eq1gb157mu9sxuwm",
    "productId": "7hnb32limu8figey",
    "qty": 2,
-   "updatedAt": "2026-09-20T12:41:08.368Z",
+   "updatedAt": "2026-09-21T09:41:09.345Z",
    "name": "14oz Doublewall Bırchıll",
    "unit": "koli"
   }
@@ -609,6 +599,10 @@
   {
    "id": "oz4hr1m4mu8fjf77",
    "at": "2026-09-21T09:41:05.902Z"
+  },
+  {
+   "id": "7hnb32limu8figey",
+   "at": "2026-09-21T09:41:09.345Z"
   }
  ],
  "settings": {
