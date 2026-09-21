@@ -333,6 +333,15 @@
  ],
  "transactions": [
   {
+   "id": "xqzhn65jmubhj1jb",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T16:54:10.056Z",
+   "customerId": "8bfqvphsmub2ok0d",
+   "type": "debt",
+   "amount": 38000,
+   "dueDate": "2026-10-10"
+  },
+  {
    "id": "ru6jugw1mub2ppuv",
    "date": "2026-09-21",
    "createdAt": "2026-09-21T09:59:27.271Z",
