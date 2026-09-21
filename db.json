@@ -224,6 +224,19 @@
  ],
  "customers": [
   {
+   "id": "8bfqvphsmub2ok0d",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-21T09:58:33.047Z",
+   "name": "Sowilo",
+   "type": "Cafe & Restaurant",
+   "phone": "05321202113",
+   "city": "Zonguldak ",
+   "district": "Ereğli",
+   "notes": "",
+   "address": "Erdemir Caddesi",
+   "updatedAt": "2026-09-21T09:58:33.047Z"
+  },
+  {
    "id": "ovd1cvujmub2f7wc",
    "color": "#0E6B3F",
    "createdAt": "2026-09-21T09:51:17.443Z",
