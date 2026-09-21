@@ -474,9 +474,18 @@
  "cash": {
   "nakit": -23460,
   "banka": 22374.18,
-  "kart": 52313.38
+  "kart": 51803.38
  },
  "cashMoves": [
+  {
+   "id": "a2atoclbmublem3v",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T18:42:41.899Z",
+   "type": "out",
+   "account": "kart",
+   "amount": 510,
+   "title": "Kahve"
+  },
   {
    "id": "4xdt8q6cmub4ilba",
    "date": "2026-09-21",
