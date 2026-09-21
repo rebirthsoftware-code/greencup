@@ -417,11 +417,20 @@
  ],
  "production": [],
  "cash": {
-  "nakit": 1540,
+  "nakit": -23460,
   "banka": 22374.18,
   "kart": 52313.38
  },
  "cashMoves": [
+  {
+   "id": "4xdt8q6cmub4ilba",
+   "date": "2026-09-21",
+   "type": "out",
+   "amount": 25000,
+   "title": "Nihat abi kutu parası",
+   "account": "nakit",
+   "txId": "2xw4f8vfmu74nh60"
+  },
   {
    "id": "v97slrb9mub26xpx",
    "date": "2026-09-21",
@@ -543,12 +552,14 @@
  "expenses": [
   {
    "id": "2xw4f8vfmu74nh60",
-   "paid": false,
+   "paid": true,
    "createdAt": "2026-09-18T15:42:37.224Z",
    "title": "Nihat abi kutu parası",
    "amount": 25000,
    "due": "2026-09-21",
-   "updatedAt": "2026-09-18T15:42:37.224Z"
+   "updatedAt": "2026-09-21T10:49:54.021Z",
+   "paidAt": "2026-09-21",
+   "account": "nakit"
   }
  ],
  "plannedVisits": [],
