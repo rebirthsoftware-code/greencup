@@ -224,6 +224,19 @@
  ],
  "customers": [
   {
+   "id": "ovd1cvujmub2f7wc",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-21T09:51:17.443Z",
+   "name": "Yeşilçam Cafe",
+   "type": "Cafe & Restaurant",
+   "phone": "05348985759",
+   "city": "Zonguldak ",
+   "district": "Merkez",
+   "notes": "",
+   "address": "İncivez",
+   "updatedAt": "2026-09-21T09:51:17.443Z"
+  },
+  {
    "id": "5z17vspwmub2d4nc",
    "color": "#0E6B3F",
    "createdAt": "2026-09-21T09:49:39.931Z",
@@ -294,6 +307,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "sepp9w1ymub2f7wj",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T09:51:17.443Z",
+   "customerId": "ovd1cvujmub2f7wc",
+   "type": "debt",
+   "amount": 11650,
+   "dueDate": "2026-09-21",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "2qi6el4cmub2d4nv",
    "date": "2026-09-21",
