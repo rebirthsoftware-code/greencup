@@ -1,5 +1,5 @@
 {
- "version": 2,
+ "version": 3,
  "products": [
   {
    "id": "op9ibw3zmu8ffeyg",
@@ -54,7 +54,7 @@
   {
    "id": "7hnb32limu8figey",
    "unit": "koli",
-   "stock": 2,
+   "stock": 0,
    "price": 0,
    "createdAt": "2026-09-19T13:34:24.922Z",
    "name": "14oz Doublewall Bırchıll",
@@ -64,7 +64,7 @@
   {
    "id": "oz4hr1m4mu8fjf77",
    "unit": "koli",
-   "stock": 2,
+   "stock": 0,
    "price": 0,
    "createdAt": "2026-09-19T13:35:10.003Z",
    "name": "14oz Soğuk Bardak Bırchıll",
@@ -74,7 +74,7 @@
   {
    "id": "83m59s0kmu8fjxcd",
    "unit": "koli",
-   "stock": 2,
+   "stock": 0,
    "price": 0,
    "createdAt": "2026-09-19T13:35:33.517Z",
    "name": "16oz soğuk bardak Bırchıll",
@@ -298,6 +298,15 @@
  ],
  "transactions": [
   {
+   "id": "k2meq0dpmub1xzyq",
+   "date": "2026-09-21",
+   "createdAt": "2026-09-21T09:37:54.002Z",
+   "customerId": "nb35yakrmu5t27t0",
+   "type": "debt",
+   "amount": 49000,
+   "dueDate": "2026-10-05"
+  },
+  {
    "id": "eh2z4jdfmu6ziztu",
    "date": "2026-09-18",
    "createdAt": "2026-09-18T13:19:10.052Z",
@@ -336,7 +345,9 @@
    "customerId": "eq1gb157mu9sxuwm",
    "productId": "83m59s0kmu8fjxcd",
    "qty": 2,
-   "updatedAt": "2026-09-20T12:41:27.617Z"
+   "updatedAt": "2026-09-20T12:41:27.617Z",
+   "name": "16oz soğuk bardak Bırchıll",
+   "unit": "koli"
   },
   {
    "id": "1t0qs9cnmu9t22e4",
@@ -344,7 +355,9 @@
    "customerId": "eq1gb157mu9sxuwm",
    "productId": "oz4hr1m4mu8fjf77",
    "qty": 2,
-   "updatedAt": "2026-09-20T12:41:21.053Z"
+   "updatedAt": "2026-09-20T12:41:21.053Z",
+   "name": "14oz Soğuk Bardak Bırchıll",
+   "unit": "koli"
   },
   {
    "id": "l6v0i0gomu9t1sls",
@@ -352,9 +365,12 @@
    "customerId": "eq1gb157mu9sxuwm",
    "productId": "7hnb32limu8figey",
    "qty": 2,
-   "updatedAt": "2026-09-20T12:41:08.368Z"
+   "updatedAt": "2026-09-20T12:41:08.368Z",
+   "name": "14oz Doublewall Bırchıll",
+   "unit": "koli"
   }
  ],
+ "production": [],
  "cash": {
   "nakit": 1840,
   "banka": 22374.18,
