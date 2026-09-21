@@ -555,9 +555,9 @@
    "paid": true,
    "createdAt": "2026-09-18T15:42:37.224Z",
    "title": "Nihat abi kutu parası",
-   "amount": 25000,
+   "amount": 22000,
    "due": "2026-09-21",
-   "updatedAt": "2026-09-21T10:49:54.021Z",
+   "updatedAt": "2026-09-21T10:50:13.115Z",
    "paidAt": "2026-09-21",
    "account": "nakit"
   }
