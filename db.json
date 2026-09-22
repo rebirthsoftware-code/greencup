@@ -224,6 +224,19 @@
  ],
  "customers": [
   {
+   "id": "n8akxb7amucns7uj",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-22T12:37:02.018Z",
+   "name": "CAFE YY",
+   "type": "Cafe & Restaurant",
+   "phone": "05343191414",
+   "city": "Zonguldak ",
+   "district": "Merkez",
+   "notes": "",
+   "address": "Site",
+   "updatedAt": "2026-09-22T12:37:02.018Z"
+  },
+  {
    "id": "8hsrjmpumucnpz8t",
    "color": "#0E6B3F",
    "createdAt": "2026-09-22T12:35:17.560Z",
