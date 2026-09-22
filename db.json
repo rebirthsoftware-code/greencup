@@ -214,6 +214,19 @@
  ],
  "customers": [
   {
+   "id": "8k6q25l9mucntoaa",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-22T12:38:09.976Z",
+   "name": "ÇAYLAK CAFE",
+   "type": "Cafe & Restaurant",
+   "phone": "05423847467",
+   "city": "Zonguldak ",
+   "district": "Merkez",
+   "notes": "",
+   "address": "İncivez",
+   "updatedAt": "2026-09-22T12:38:09.977Z"
+  },
+  {
    "id": "n8akxb7amucns7uj",
    "color": "#0E6B3F",
    "createdAt": "2026-09-22T12:37:02.018Z",
