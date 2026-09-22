@@ -122,16 +122,6 @@
    "updatedAt": "2026-09-19T13:40:31.564Z"
   },
   {
-   "id": "a0orm106mu8fqswc",
-   "unit": "koli",
-   "stock": 4,
-   "price": 0,
-   "createdAt": "2026-09-19T13:40:54.348Z",
-   "name": "16oz Soğuk Bardak Cozy",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:40:54.348Z"
-  },
-  {
    "id": "hrcu0aekmu8fr9iw",
    "unit": "koli",
    "stock": 3,
@@ -460,6 +450,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "t4kc1q6tmucnw3w7",
+   "createdAt": "2026-09-22T12:40:03.511Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "name": "16oz Soğuk Bardak Cozy",
+   "unit": "koli",
+   "qty": 4,
+   "updatedAt": "2026-09-22T12:40:03.511Z"
+  },
   {
    "id": "y8aqtvukmucnw07b",
    "createdAt": "2026-09-22T12:39:58.727Z",
@@ -864,6 +863,10 @@
   {
    "id": "cq4ru47wmu8ftnck",
    "at": "2026-09-22T12:39:58.728Z"
+  },
+  {
+   "id": "a0orm106mu8fqswc",
+   "at": "2026-09-22T12:40:03.511Z"
   }
  ],
  "settings": {
