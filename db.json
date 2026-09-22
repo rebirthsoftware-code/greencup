@@ -144,6 +144,19 @@
  ],
  "customers": [
   {
+   "id": "0zbnwqolmucnxnjz",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-22T12:41:15.651Z",
+   "name": "VENTO",
+   "type": "Cafe",
+   "phone": "05324420802",
+   "city": "Zonguldak’a ",
+   "district": "Merkez",
+   "notes": "",
+   "address": "Valilik karşısı",
+   "updatedAt": "2026-09-22T12:41:15.651Z"
+  },
+  {
    "id": "0cy6o7y5mucnvmjg",
    "color": "#0E6B3F",
    "createdAt": "2026-09-22T12:39:41.029Z",
