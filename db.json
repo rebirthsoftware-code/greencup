@@ -588,6 +588,16 @@
  ],
  "production": [
   {
+   "id": "b2pe3klamucom9su",
+   "createdAt": "2026-09-22T13:00:24.222Z",
+   "unit": "adet",
+   "customerId": "8bfqvphsmub2ok0d",
+   "name": "Baskılı pipet",
+   "qty": 10000,
+   "dueDate": "2026-10-15",
+   "updatedAt": "2026-09-22T13:00:24.222Z"
+  },
+  {
    "id": "1kasxpicmucoloos",
    "createdAt": "2026-09-22T12:59:56.860Z",
    "unit": "adet",
