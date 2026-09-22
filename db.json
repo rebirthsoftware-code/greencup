@@ -112,16 +112,6 @@
    "updatedAt": "2026-09-19T13:40:00.451Z"
   },
   {
-   "id": "hrcu0aekmu8fr9iw",
-   "unit": "koli",
-   "stock": 3,
-   "price": 0,
-   "createdAt": "2026-09-19T13:41:15.896Z",
-   "name": "14oz Soğuk Bardak Goldbeans",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:41:15.896Z"
-  },
-  {
    "id": "stkgs6v8mu8fsd0l",
    "unit": "adet",
    "stock": 2500,
@@ -420,6 +410,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "edga3x73mucnwm44",
+   "createdAt": "2026-09-22T12:40:27.124Z",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "name": "14oz Soğuk Bardak Goldbeans",
+   "unit": "koli",
+   "qty": 3,
+   "updatedAt": "2026-09-22T12:40:27.124Z"
+  },
   {
    "id": "3mvtytk5mucnwfxh",
    "createdAt": "2026-09-22T12:40:19.109Z",
@@ -876,6 +875,10 @@
   {
    "id": "x7scpdznmu8ftzwy",
    "at": "2026-09-22T12:40:19.109Z"
+  },
+  {
+   "id": "hrcu0aekmu8fr9iw",
+   "at": "2026-09-22T12:40:27.124Z"
   }
  ],
  "settings": {
