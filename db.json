@@ -588,6 +588,16 @@
  ],
  "production": [
   {
+   "id": "pq6ctkdsmuconeok",
+   "createdAt": "2026-09-22T13:01:17.204Z",
+   "unit": "kg",
+   "customerId": "8bfqvphsmub2ok0d",
+   "name": "Yağlı Kağıt",
+   "qty": 100,
+   "dueDate": "2026-10-15",
+   "updatedAt": "2026-09-22T13:01:17.204Z"
+  },
+  {
    "id": "9kzkcyj8mucomy2e",
    "createdAt": "2026-09-22T13:00:55.670Z",
    "unit": "koli",
