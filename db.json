@@ -588,6 +588,17 @@
  ],
  "production": [
   {
+   "id": "pn6ut6ufmucoh82l",
+   "createdAt": "2026-09-22T12:56:28.701Z",
+   "unit": "koli",
+   "customerId": "js3verinmucog3oa",
+   "name": "7/12 Islak mendil",
+   "qty": 4,
+   "note": "Tasarım bekleniyor",
+   "dueDate": "2026-10-10",
+   "updatedAt": "2026-09-22T12:56:28.701Z"
+  },
+  {
    "id": "gmb3kde8mucoex9o",
    "createdAt": "2026-09-22T12:54:41.388Z",
    "unit": "adet",
