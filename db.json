@@ -573,7 +573,18 @@
    "unit": "koli"
   }
  ],
- "production": [],
+ "production": [
+  {
+   "id": "gmb3kde8mucoex9o",
+   "createdAt": "2026-09-22T12:54:41.388Z",
+   "unit": "adet",
+   "customerId": "ctf5htz2mucodty7",
+   "name": "14oz Doublewall",
+   "qty": 3000,
+   "dueDate": "2026-09-22",
+   "updatedAt": "2026-09-22T12:54:41.388Z"
+  }
+ ],
  "cash": {
   "nakit": -19790,
   "banka": 22374.18,
