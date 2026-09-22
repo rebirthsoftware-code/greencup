@@ -162,16 +162,6 @@
    "updatedAt": "2026-09-19T13:42:29.279Z"
   },
   {
-   "id": "bsc6e9fwmu8ftb3q",
-   "unit": "koli",
-   "stock": 4,
-   "price": 0,
-   "createdAt": "2026-09-19T13:42:51.254Z",
-   "name": "7/12 ıslak mendil Cozy",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:42:51.254Z"
-  },
-  {
    "id": "cq4ru47wmu8ftnck",
    "unit": "koli",
    "stock": 2,
@@ -480,6 +470,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "4m7as0vymucnvxjz",
+   "createdAt": "2026-09-22T12:39:55.295Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "name": "7/12 ıslak mendil Cozy",
+   "unit": "koli",
+   "qty": 4,
+   "updatedAt": "2026-09-22T12:39:55.295Z"
+  },
   {
    "id": "8qczqrismucnsfj1",
    "createdAt": "2026-09-22T12:37:11.965Z",
@@ -858,6 +857,10 @@
   {
    "id": "op9ibw3zmu8ffeyg",
    "at": "2026-09-22T12:37:11.966Z"
+  },
+  {
+   "id": "bsc6e9fwmu8ftb3q",
+   "at": "2026-09-22T12:39:55.295Z"
   }
  ],
  "settings": {
