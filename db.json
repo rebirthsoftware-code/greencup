@@ -52,16 +52,6 @@
    "updatedAt": "2026-09-19T13:35:56.634Z"
   },
   {
-   "id": "z7fzbiopmu8flfkv",
-   "unit": "koli",
-   "stock": 3,
-   "price": 0,
-   "createdAt": "2026-09-19T13:36:43.807Z",
-   "name": "7/12 Islak mendil Vento",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:36:43.807Z"
-  },
-  {
    "id": "woo4ngqfmu8fmqof",
    "unit": "koli",
    "stock": 8,
@@ -393,6 +383,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "a0pfmtt0mucnxx1f",
+   "createdAt": "2026-09-22T12:41:27.939Z",
+   "customerId": "0zbnwqolmucnxnjz",
+   "name": "7/12 Islak mendil Vento",
+   "unit": "koli",
+   "qty": 3,
+   "updatedAt": "2026-09-22T12:41:27.939Z"
+  },
   {
    "id": "ar2avehmmucnxuv8",
    "createdAt": "2026-09-22T12:41:25.124Z",
@@ -901,6 +900,10 @@
   {
    "id": "zo5hoda1mu8fo95c",
    "at": "2026-09-22T12:41:25.124Z"
+  },
+  {
+   "id": "z7fzbiopmu8flfkv",
+   "at": "2026-09-22T12:41:27.939Z"
   }
  ],
  "settings": {
