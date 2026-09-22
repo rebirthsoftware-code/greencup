@@ -152,16 +152,6 @@
    "updatedAt": "2026-09-19T13:43:23.410Z"
   },
   {
-   "id": "rbzihdh9mu8fufp0",
-   "unit": "koli",
-   "stock": 10,
-   "price": 0,
-   "createdAt": "2026-09-19T13:43:43.860Z",
-   "name": "Stick Şeker Cozy",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:43:43.860Z"
-  },
-  {
    "id": "wxc90mrnmu8fvbbr",
    "unit": "koli",
    "stock": 11,
@@ -440,6 +430,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "wwoqeixvmucnw9pg",
+   "createdAt": "2026-09-22T12:40:11.044Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "name": "Stick Şeker Cozy",
+   "unit": "koli",
+   "qty": 10,
+   "updatedAt": "2026-09-22T12:40:11.044Z"
+  },
   {
    "id": "knt4yf2xmucnw67i",
    "createdAt": "2026-09-22T12:40:06.510Z",
@@ -870,6 +869,10 @@
   {
    "id": "nsr0ilmnmu8fqbbg",
    "at": "2026-09-22T12:40:06.510Z"
+  },
+  {
+   "id": "rbzihdh9mu8fufp0",
+   "at": "2026-09-22T12:40:11.044Z"
   }
  ],
  "settings": {
