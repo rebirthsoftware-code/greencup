@@ -472,11 +472,20 @@
  ],
  "production": [],
  "cash": {
-  "nakit": -16510,
+  "nakit": -19340,
   "banka": 22374.18,
   "kart": 50493.38
  },
  "cashMoves": [
+  {
+   "id": "mka5h1homucgrmlt",
+   "date": "2026-09-22",
+   "createdAt": "2026-09-22T09:20:37.169Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 2830,
+   "title": "50 Euro"
+  },
   {
    "id": "abfmovd5mucgrba1",
    "date": "2026-09-22",
