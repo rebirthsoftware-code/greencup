@@ -612,6 +612,16 @@
  ],
  "production": [
   {
+   "id": "hx79ol42mucqj68r",
+   "createdAt": "2026-09-22T13:53:58.875Z",
+   "unit": "adet",
+   "customerId": "dgj1ozdumucozila",
+   "name": "Craft Çanta Baskılı",
+   "qty": 500,
+   "dueDate": "2026-10-14",
+   "updatedAt": "2026-09-22T13:53:58.875Z"
+  },
+  {
    "id": "zxbd9f4xmucqijwu",
    "createdAt": "2026-09-22T13:53:29.934Z",
    "unit": "koli",
