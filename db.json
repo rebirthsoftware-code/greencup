@@ -72,16 +72,6 @@
    "updatedAt": "2026-09-19T13:37:44.847Z"
   },
   {
-   "id": "zo5hoda1mu8fo95c",
-   "unit": "koli",
-   "stock": 18,
-   "price": 0,
-   "createdAt": "2026-09-19T13:38:55.440Z",
-   "name": "14oz Doublewall Vento",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:38:55.441Z"
-  },
-  {
    "id": "kz88r7uxmu8fpnb7",
    "unit": "koli",
    "stock": 6,
@@ -403,6 +393,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "ar2avehmmucnxuv8",
+   "createdAt": "2026-09-22T12:41:25.124Z",
+   "customerId": "0zbnwqolmucnxnjz",
+   "name": "14oz Doublewall Vento",
+   "unit": "koli",
+   "qty": 18,
+   "updatedAt": "2026-09-22T12:41:25.124Z"
+  },
   {
    "id": "9cc0p42tmucnxsm8",
    "createdAt": "2026-09-22T12:41:22.208Z",
@@ -898,6 +897,10 @@
   {
    "id": "m522p84nmu8fosj3",
    "at": "2026-09-22T12:41:22.208Z"
+  },
+  {
+   "id": "zo5hoda1mu8fo95c",
+   "at": "2026-09-22T12:41:25.124Z"
   }
  ],
  "settings": {
