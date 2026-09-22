@@ -12,16 +12,6 @@
    "updatedAt": "2026-09-19T13:32:36.795Z"
   },
   {
-   "id": "zf3wmoasmu8fhawl",
-   "unit": "koli",
-   "stock": 5,
-   "price": 0,
-   "createdAt": "2026-09-19T13:33:31.125Z",
-   "name": "Peçete Çaylak Cafe",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:33:31.125Z"
-  },
-  {
    "id": "3683vjhpmu8fhvbq",
    "unit": "koli",
    "stock": 3,
@@ -363,6 +353,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "stpg5ym8mucnycaw",
+   "createdAt": "2026-09-22T12:41:47.720Z",
+   "customerId": "8k6q25l9mucntoaa",
+   "name": "Peçete Çaylak Cafe",
+   "unit": "koli",
+   "qty": 5,
+   "updatedAt": "2026-09-22T12:41:47.720Z"
+  },
   {
    "id": "6araxfubmucny842",
    "createdAt": "2026-09-22T12:41:42.290Z",
@@ -910,6 +909,10 @@
   {
    "id": "woo4ngqfmu8fmqof",
    "at": "2026-09-22T12:41:42.290Z"
+  },
+  {
+   "id": "zf3wmoasmu8fhawl",
+   "at": "2026-09-22T12:41:47.720Z"
   }
  ],
  "settings": {
