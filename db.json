@@ -50,6 +50,16 @@
    "name": "95 çap Soğuk kapak",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:44:24.855Z"
+  },
+  {
+   "id": "3oos1e95muco1875",
+   "unit": "adet",
+   "stock": 20000,
+   "price": 0.4,
+   "createdAt": "2026-09-22T12:44:02.369Z",
+   "name": "Stick şeker zerno",
+   "minStock": 0,
+   "updatedAt": "2026-09-22T12:44:02.369Z"
   }
  ],
  "customers": [
