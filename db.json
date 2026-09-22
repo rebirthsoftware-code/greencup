@@ -162,16 +162,6 @@
    "updatedAt": "2026-09-19T13:42:29.279Z"
   },
   {
-   "id": "cq4ru47wmu8ftnck",
-   "unit": "koli",
-   "stock": 2,
-   "price": 0,
-   "createdAt": "2026-09-19T13:43:07.124Z",
-   "name": "Craft çanta Cozy",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:43:07.124Z"
-  },
-  {
    "id": "x7scpdznmu8ftzwy",
    "unit": "koli",
    "stock": 10,
@@ -470,6 +460,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "y8aqtvukmucnw07b",
+   "createdAt": "2026-09-22T12:39:58.727Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "name": "Craft çanta Cozy",
+   "unit": "koli",
+   "qty": 2,
+   "updatedAt": "2026-09-22T12:39:58.727Z"
+  },
   {
    "id": "4m7as0vymucnvxjz",
    "createdAt": "2026-09-22T12:39:55.295Z",
@@ -861,6 +860,10 @@
   {
    "id": "bsc6e9fwmu8ftb3q",
    "at": "2026-09-22T12:39:55.295Z"
+  },
+  {
+   "id": "cq4ru47wmu8ftnck",
+   "at": "2026-09-22T12:39:58.728Z"
   }
  ],
  "settings": {
