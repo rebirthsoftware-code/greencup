@@ -42,16 +42,6 @@
    "updatedAt": "2026-09-19T13:35:56.634Z"
   },
   {
-   "id": "woo4ngqfmu8fmqof",
-   "unit": "koli",
-   "stock": 8,
-   "price": 0,
-   "createdAt": "2026-09-19T13:37:44.847Z",
-   "name": "Stick Şeker Vento",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:37:44.847Z"
-  },
-  {
    "id": "kz88r7uxmu8fpnb7",
    "unit": "koli",
    "stock": 6,
@@ -373,6 +363,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "6araxfubmucny842",
+   "createdAt": "2026-09-22T12:41:42.290Z",
+   "customerId": "0zbnwqolmucnxnjz",
+   "name": "Stick Şeker Vento",
+   "unit": "koli",
+   "qty": 8,
+   "updatedAt": "2026-09-22T12:41:42.290Z"
+  },
   {
    "id": "k6qhz9h1mucny4y6",
    "createdAt": "2026-09-22T12:41:38.190Z",
@@ -907,6 +906,10 @@
   {
    "id": "5tvunar9mu8fgtwj",
    "at": "2026-09-22T12:41:38.190Z"
+  },
+  {
+   "id": "woo4ngqfmu8fmqof",
+   "at": "2026-09-22T12:41:42.290Z"
   }
  ],
  "settings": {
