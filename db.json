@@ -224,6 +224,18 @@
  ],
  "customers": [
   {
+   "id": "8hsrjmpumucnpz8t",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-22T12:35:17.560Z",
+   "name": "ZERNO",
+   "type": "Cafe & Restaurant",
+   "phone": "05461310620",
+   "city": "Zonguldak",
+   "district": "Alaplı",
+   "notes": "",
+   "updatedAt": "2026-09-22T12:35:17.561Z"
+  },
+  {
    "id": "oavj5j2bmubhngtp",
    "color": "#0E6B3F",
    "createdAt": "2026-09-21T16:57:36.499Z",
