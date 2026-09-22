@@ -12,16 +12,6 @@
    "updatedAt": "2026-09-19T13:32:36.795Z"
   },
   {
-   "id": "5tvunar9mu8fgtwj",
-   "unit": "koli",
-   "stock": 2,
-   "price": 0,
-   "createdAt": "2026-09-19T13:33:09.091Z",
-   "name": "7/12 Islak mendil Çaylak Cafe",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:33:09.091Z"
-  },
-  {
    "id": "zf3wmoasmu8fhawl",
    "unit": "koli",
    "stock": 5,
@@ -383,6 +373,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "k6qhz9h1mucny4y6",
+   "createdAt": "2026-09-22T12:41:38.190Z",
+   "customerId": "8k6q25l9mucntoaa",
+   "name": "7/12 Islak mendil Çaylak Cafe",
+   "unit": "koli",
+   "qty": 2,
+   "updatedAt": "2026-09-22T12:41:38.190Z"
+  },
   {
    "id": "a0pfmtt0mucnxx1f",
    "createdAt": "2026-09-22T12:41:27.939Z",
@@ -904,6 +903,10 @@
   {
    "id": "z7fzbiopmu8flfkv",
    "at": "2026-09-22T12:41:27.939Z"
+  },
+  {
+   "id": "5tvunar9mu8fgtwj",
+   "at": "2026-09-22T12:41:38.190Z"
   }
  ],
  "settings": {
