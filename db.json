@@ -621,6 +621,15 @@
  ],
  "production": [
   {
+   "id": "0em66b5jmucqmqq0",
+   "createdAt": "2026-09-22T13:56:45.384Z",
+   "unit": "koli",
+   "customerId": "dgj1ozdumucozila",
+   "name": "90mm Sıcak Kapak",
+   "qty": 4,
+   "updatedAt": "2026-09-22T13:56:45.384Z"
+  },
+  {
    "id": "hx79ol42mucqj68r",
    "createdAt": "2026-09-22T13:53:58.875Z",
    "unit": "adet",
