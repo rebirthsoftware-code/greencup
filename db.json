@@ -22,16 +22,6 @@
    "updatedAt": "2026-09-19T13:33:57.590Z"
   },
   {
-   "id": "envm8x5xmu8fkf6i",
-   "unit": "koli",
-   "stock": 6,
-   "price": 0,
-   "createdAt": "2026-09-19T13:35:56.634Z",
-   "name": "Peçete Vento",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:35:56.634Z"
-  },
-  {
    "id": "kz88r7uxmu8fpnb7",
    "unit": "koli",
    "stock": 6,
@@ -353,6 +343,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "7vc6ibzzmucnyg5u",
+   "createdAt": "2026-09-22T12:41:52.722Z",
+   "customerId": "0zbnwqolmucnxnjz",
+   "name": "Peçete Vento",
+   "unit": "koli",
+   "qty": 6,
+   "updatedAt": "2026-09-22T12:41:52.722Z"
+  },
   {
    "id": "stpg5ym8mucnycaw",
    "createdAt": "2026-09-22T12:41:47.720Z",
@@ -913,6 +912,10 @@
   {
    "id": "zf3wmoasmu8fhawl",
    "at": "2026-09-22T12:41:47.720Z"
+  },
+  {
+   "id": "envm8x5xmu8fkf6i",
+   "at": "2026-09-22T12:41:52.722Z"
   }
  ],
  "settings": {
