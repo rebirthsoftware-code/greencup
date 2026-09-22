@@ -54,6 +54,19 @@
  ],
  "customers": [
   {
+   "id": "js3verinmucog3oa",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-22T12:55:36.353Z",
+   "name": "Mamichef Tantunu",
+   "type": "Restaurant",
+   "phone": "05300940253",
+   "city": "Zonguldak ",
+   "district": "Merkez",
+   "notes": "",
+   "address": "Site",
+   "updatedAt": "2026-09-22T12:55:36.353Z"
+  },
+  {
    "id": "ctf5htz2mucodty7",
    "color": "#0E6B3F",
    "createdAt": "2026-09-22T12:53:50.443Z",
