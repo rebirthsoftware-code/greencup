@@ -588,6 +588,16 @@
  ],
  "production": [
   {
+   "id": "9kzkcyj8mucomy2e",
+   "createdAt": "2026-09-22T13:00:55.670Z",
+   "unit": "koli",
+   "customerId": "8bfqvphsmub2ok0d",
+   "name": "Stick Şeker",
+   "qty": 10,
+   "dueDate": "2026-10-15",
+   "updatedAt": "2026-09-22T13:00:55.670Z"
+  },
+  {
    "id": "b2pe3klamucom9su",
    "createdAt": "2026-09-22T13:00:24.222Z",
    "unit": "adet",
