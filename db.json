@@ -588,6 +588,16 @@
  ],
  "production": [
   {
+   "id": "7fwug11jmucoqafh",
+   "createdAt": "2026-09-22T13:03:31.661Z",
+   "unit": "adet",
+   "customerId": "8bfqvphsmub2ok0d",
+   "name": "11/6,5 Peçete Baskılı",
+   "qty": 48000,
+   "dueDate": "2026-10-15",
+   "updatedAt": "2026-09-22T13:03:31.661Z"
+  },
+  {
    "id": "x49i8w4dmucooag2",
    "createdAt": "2026-09-22T13:01:58.370Z",
    "unit": "adet",
