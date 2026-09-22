@@ -472,11 +472,20 @@
  ],
  "production": [],
  "cash": {
-  "nakit": -24260,
+  "nakit": -16510,
   "banka": 22374.18,
   "kart": 50493.38
  },
  "cashMoves": [
+  {
+   "id": "abfmovd5mucgrba1",
+   "date": "2026-09-22",
+   "createdAt": "2026-09-22T09:20:22.489Z",
+   "type": "in",
+   "account": "nakit",
+   "amount": 7750,
+   "title": "Berfin kart"
+  },
   {
    "id": "5x5gry2nmubm87kb",
    "date": "2026-09-21",
