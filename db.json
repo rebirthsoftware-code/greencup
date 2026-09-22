@@ -214,6 +214,18 @@
  ],
  "customers": [
   {
+   "id": "0cy6o7y5mucnvmjg",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-22T12:39:41.029Z",
+   "name": "COZY ROASTERY",
+   "type": "Cafe & Restaurant",
+   "phone": "05397018915",
+   "city": "Zonguldak ",
+   "district": "Ereğli",
+   "notes": "",
+   "updatedAt": "2026-09-22T12:39:41.029Z"
+  },
+  {
    "id": "8k6q25l9mucntoaa",
    "color": "#0E6B3F",
    "createdAt": "2026-09-22T12:38:09.976Z",
