@@ -54,6 +54,18 @@
  ],
  "customers": [
   {
+   "id": "dgj1ozdumucozila",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-22T13:10:42.149Z",
+   "name": "The Tios",
+   "type": "Cafe",
+   "phone": "05417676734",
+   "city": "Zonguldak",
+   "district": "Filyos",
+   "notes": "",
+   "updatedAt": "2026-09-22T13:10:42.149Z"
+  },
+  {
    "id": "js3verinmucog3oa",
    "color": "#0E6B3F",
    "createdAt": "2026-09-22T12:55:36.353Z",
