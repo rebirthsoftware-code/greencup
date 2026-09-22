@@ -82,16 +82,6 @@
    "updatedAt": "2026-09-19T13:38:55.441Z"
   },
   {
-   "id": "m522p84nmu8fosj3",
-   "unit": "koli",
-   "stock": 8,
-   "price": 0,
-   "createdAt": "2026-09-19T13:39:20.559Z",
-   "name": "16oz Soğuk Bardak Vento",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:39:20.559Z"
-  },
-  {
    "id": "kz88r7uxmu8fpnb7",
    "unit": "koli",
    "stock": 6,
@@ -413,6 +403,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "9cc0p42tmucnxsm8",
+   "createdAt": "2026-09-22T12:41:22.208Z",
+   "customerId": "0zbnwqolmucnxnjz",
+   "name": "16oz Soğuk Bardak Vento",
+   "unit": "koli",
+   "qty": 8,
+   "updatedAt": "2026-09-22T12:41:22.208Z"
+  },
   {
    "id": "4fswxt1kmucnxqrl",
    "createdAt": "2026-09-22T12:41:19.809Z",
@@ -895,6 +894,10 @@
   {
    "id": "oddrhe7lmu8fnori",
    "at": "2026-09-22T12:41:19.809Z"
+  },
+  {
+   "id": "m522p84nmu8fosj3",
+   "at": "2026-09-22T12:41:22.208Z"
   }
  ],
  "settings": {
