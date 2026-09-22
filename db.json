@@ -54,7 +54,7 @@
   {
    "id": "3oos1e95muco1875",
    "unit": "adet",
-   "stock": 20000,
+   "stock": 0,
    "price": 0.4,
    "createdAt": "2026-09-22T12:44:02.369Z",
    "name": "Stick şeker zerno",
@@ -64,7 +64,7 @@
   {
    "id": "2b46zc0kmuco1rcv",
    "unit": "adet",
-   "stock": 1,
+   "stock": 0,
    "price": 1000,
    "createdAt": "2026-09-22T12:44:27.199Z",
    "name": "Klişe Şeker Zerno",
@@ -282,6 +282,36 @@
   }
  ],
  "transactions": [
+  {
+   "id": "oi82ewfumuco31tt",
+   "date": "2026-09-22",
+   "createdAt": "2026-09-22T12:45:27.429Z",
+   "customerId": "8hsrjmpumucnpz8t",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "3oos1e95muco1875",
+     "name": "Stick şeker zerno",
+     "unit": "adet",
+     "qty": 20000,
+     "unitPrice": 0.4,
+     "amount": 8000
+    },
+    {
+     "productId": "2b46zc0kmuco1rcv",
+     "name": "Klişe Şeker Zerno",
+     "unit": "adet",
+     "qty": 1,
+     "unitPrice": 1000,
+     "amount": 1000
+    }
+   ],
+   "amount": 9000,
+   "invoiced": false,
+   "payment": "vadeli",
+   "dueDate": "2026-09-24",
+   "method": "nakit"
+  },
   {
    "id": "o8md2d0gmubhngtv",
    "date": "2026-09-21",
