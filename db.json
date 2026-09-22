@@ -112,16 +112,6 @@
    "updatedAt": "2026-09-19T13:40:00.451Z"
   },
   {
-   "id": "nsr0ilmnmu8fqbbg",
-   "unit": "koli",
-   "stock": 10,
-   "price": 0,
-   "createdAt": "2026-09-19T13:40:31.564Z",
-   "name": "14oz Doublewall Cozy",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:40:31.564Z"
-  },
-  {
    "id": "hrcu0aekmu8fr9iw",
    "unit": "koli",
    "stock": 3,
@@ -450,6 +440,15 @@
   }
  ],
  "reserved": [
+  {
+   "id": "knt4yf2xmucnw67i",
+   "createdAt": "2026-09-22T12:40:06.510Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "name": "14oz Doublewall Cozy",
+   "unit": "koli",
+   "qty": 10,
+   "updatedAt": "2026-09-22T12:40:06.510Z"
+  },
   {
    "id": "t4kc1q6tmucnw3w7",
    "createdAt": "2026-09-22T12:40:03.511Z",
@@ -867,6 +866,10 @@
   {
    "id": "a0orm106mu8fqswc",
    "at": "2026-09-22T12:40:03.511Z"
+  },
+  {
+   "id": "nsr0ilmnmu8fqbbg",
+   "at": "2026-09-22T12:40:06.510Z"
   }
  ],
  "settings": {
