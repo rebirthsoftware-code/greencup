@@ -54,6 +54,18 @@
  ],
  "customers": [
   {
+   "id": "n0li5b5vmucp3ngk",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-22T13:13:55.095Z",
+   "name": "Boost",
+   "type": "Cafe & Restaurant",
+   "phone": "05446676708",
+   "city": "Zonguldak ",
+   "district": "Filyos ",
+   "notes": "",
+   "updatedAt": "2026-09-22T13:13:55.095Z"
+  },
+  {
    "id": "dgj1ozdumucozila",
    "color": "#0E6B3F",
    "createdAt": "2026-09-22T13:10:42.149Z",
