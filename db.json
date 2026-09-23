@@ -50,6 +50,16 @@
    "name": "95 çap Soğuk kapak",
    "minStock": 0,
    "updatedAt": "2026-09-19T13:44:24.855Z"
+  },
+  {
+   "id": "84jy2er2mue7a6o1",
+   "unit": "adet",
+   "stock": 3000,
+   "price": 5.86,
+   "createdAt": "2026-09-23T14:30:39.169Z",
+   "name": "14OZ Doublewall",
+   "minStock": 0,
+   "updatedAt": "2026-09-23T14:30:39.169Z"
   }
  ],
  "customers": [
