@@ -372,18 +372,8 @@
    "dueDate": "2026-09-30",
    "method": "nakit",
    "invoiceNo": "2026/0001",
-   "attachments": [
-    {
-     "id": "c18xl3s8mue7nn3r",
-     "name": "CUP2026000000002.pdf",
-     "path": "belgeler/2026/icbqm5inmue7d4az/c18xl3s8mue7nn3r-CUP2026000000002.pdf",
-     "type": "application/pdf",
-     "size": 96512,
-     "sha": "857507c2eef61e9dcc45f5fc0154c3ad9544d619",
-     "addedAt": "2026-09-23T14:41:08.559Z"
-    }
-   ],
-   "updatedAt": "2026-09-23T14:41:08.567Z"
+   "attachments": [],
+   "updatedAt": "2026-09-23T14:41:26.859Z"
   },
   {
    "id": "ufy5835dmue6n0yk",
