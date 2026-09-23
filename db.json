@@ -791,9 +791,18 @@
  "cash": {
   "nakit": -19990,
   "banka": 22374.18,
-  "kart": 44598.38
+  "kart": 14598.379999999997
  },
  "cashMoves": [
+  {
+   "id": "l03s9hnlmudwft22",
+   "date": "2026-09-23",
+   "createdAt": "2026-09-23T09:27:05.690Z",
+   "type": "out",
+   "account": "kart",
+   "amount": 30000,
+   "title": "Nihat abi"
+  },
   {
    "id": "512nr6avmudtx6xq",
    "date": "2026-09-23",
