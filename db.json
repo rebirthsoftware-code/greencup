@@ -313,6 +313,28 @@
  ],
  "transactions": [
   {
+   "id": "ufy5835dmue6n0yk",
+   "customerId": "ctf5htz2mucodty7",
+   "type": "sale",
+   "date": "2026-09-23",
+   "createdAt": "2026-09-23T14:12:38.684Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "14oz Doublewall",
+     "unit": "koli",
+     "qty": 2,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-09-23",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "inpj3mtfmucuedzr",
    "date": "2026-09-22",
    "createdAt": "2026-09-22T15:42:14.103Z",
@@ -440,8 +462,8 @@
    "customerId": "ctf5htz2mucodty7",
    "name": "14oz Doublewall",
    "unit": "koli",
-   "qty": 6,
-   "updatedAt": "2026-09-23T09:03:17.311Z"
+   "qty": 4,
+   "updatedAt": "2026-09-23T14:12:38.684Z"
   },
   {
    "id": "79qnqvthmucqle6k",
