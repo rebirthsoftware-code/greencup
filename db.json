@@ -54,7 +54,7 @@
   {
    "id": "84jy2er2mue7a6o1",
    "unit": "adet",
-   "stock": 3000,
+   "stock": 0,
    "price": 5.86,
    "createdAt": "2026-09-23T14:30:39.169Z",
    "name": "14OZ Doublewall",
@@ -64,7 +64,7 @@
   {
    "id": "f32j8xl2mue7ap83",
    "unit": "adet",
-   "stock": 3000,
+   "stock": 0,
    "price": 1.2,
    "createdAt": "2026-09-23T14:31:03.219Z",
    "name": "90 Çap kapak",
@@ -332,6 +332,37 @@
   }
  ],
  "transactions": [
+  {
+   "id": "icbqm5inmue7d4az",
+   "date": "2026-09-23",
+   "createdAt": "2026-09-23T14:32:56.092Z",
+   "customerId": "ctf5htz2mucodty7",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "f32j8xl2mue7ap83",
+     "name": "90 Çap kapak",
+     "unit": "adet",
+     "qty": 3000,
+     "unitPrice": 1.2,
+     "amount": 3600
+    },
+    {
+     "productId": "84jy2er2mue7a6o1",
+     "name": "14OZ Doublewall",
+     "unit": "adet",
+     "qty": 3000,
+     "unitPrice": 5.85,
+     "amount": 17550
+    }
+   ],
+   "amount": 21150,
+   "invoiced": true,
+   "payment": "vadeli",
+   "dueDate": "2026-09-30",
+   "method": "nakit",
+   "invoiceNo": "2026/0001"
+  },
   {
    "id": "ufy5835dmue6n0yk",
    "customerId": "ctf5htz2mucodty7",
@@ -1290,7 +1321,7 @@
   "kdv": 20,
   "overdueDays": 5,
   "defaultDueDays": 15,
-  "invoiceSeq": 1,
+  "invoiceSeq": 2,
   "updatedAt": "2026-09-17T17:32:38.110Z"
  }
 }
