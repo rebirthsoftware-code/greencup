@@ -60,6 +60,16 @@
    "name": "14OZ Doublewall",
    "minStock": 0,
    "updatedAt": "2026-09-23T14:30:39.169Z"
+  },
+  {
+   "id": "f32j8xl2mue7ap83",
+   "unit": "adet",
+   "stock": 3000,
+   "price": 1.2,
+   "createdAt": "2026-09-23T14:31:03.219Z",
+   "name": "90 Çap kapak",
+   "minStock": 0,
+   "updatedAt": "2026-09-23T14:31:03.219Z"
   }
  ],
  "customers": [
