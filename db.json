@@ -74,7 +74,7 @@
   {
    "id": "39qzdsu9mufd7rtz",
    "unit": "adet",
-   "stock": 10000,
+   "stock": 0,
    "price": 0.9,
    "createdAt": "2026-09-24T10:04:30.503Z",
    "name": "7/12 Islak mendil",
@@ -84,7 +84,7 @@
   {
    "id": "f3q6nj6gmufd834y",
    "unit": "adet",
-   "stock": 1,
+   "stock": 0,
    "price": 1000,
    "createdAt": "2026-09-24T10:04:45.154Z",
    "name": "Mendil Klişesi",
@@ -365,6 +365,36 @@
   }
  ],
  "transactions": [
+  {
+   "id": "onw30kbamufd924d",
+   "date": "2026-09-24",
+   "createdAt": "2026-09-24T10:05:30.497Z",
+   "customerId": "mo4pq36smufd5zty",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "39qzdsu9mufd7rtz",
+     "name": "7/12 Islak mendil",
+     "unit": "adet",
+     "qty": 10000,
+     "unitPrice": 0.9,
+     "amount": 9000
+    },
+    {
+     "productId": "f3q6nj6gmufd834y",
+     "name": "Mendil Klişesi",
+     "unit": "adet",
+     "qty": 1,
+     "unitPrice": 1000,
+     "amount": 1000
+    }
+   ],
+   "amount": 10000,
+   "invoiced": false,
+   "payment": "vadeli",
+   "dueDate": "2026-09-26",
+   "method": "nakit"
+  },
   {
    "id": "cnh6dpmjmue7hg49",
    "date": "2026-09-23",
