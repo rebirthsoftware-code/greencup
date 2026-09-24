@@ -478,10 +478,11 @@
     }
    ],
    "amount": 10000,
-   "invoiced": false,
+   "invoiced": true,
    "payment": "vadeli",
    "dueDate": "2026-09-26",
-   "method": "nakit"
+   "method": "nakit",
+   "updatedAt": "2026-09-24T13:58:18.236Z"
   },
   {
    "id": "cnh6dpmjmue7hg49",
