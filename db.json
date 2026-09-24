@@ -74,12 +74,12 @@
   {
    "id": "39qzdsu9mufd7rtz",
    "unit": "adet",
-   "stock": 0,
-   "price": 0.9,
+   "stock": 10000,
+   "price": 1.08,
    "createdAt": "2026-09-24T10:04:30.503Z",
    "name": "7/12 Islak mendil",
    "minStock": 0,
-   "updatedAt": "2026-09-24T10:04:30.503Z"
+   "updatedAt": "2026-09-24T13:09:01.001Z"
   },
   {
    "id": "f3q6nj6gmufd834y",
