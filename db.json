@@ -994,9 +994,18 @@
  "cash": {
   "nakit": -20230,
   "banka": 54489.18,
-  "kart": 14598.379999999997
+  "kart": 14468.379999999997
  },
  "cashMoves": [
+  {
+   "id": "qhe3topdmufekt7r",
+   "date": "2026-09-24",
+   "createdAt": "2026-09-24T10:42:38.439Z",
+   "type": "out",
+   "account": "kart",
+   "amount": 130,
+   "title": "Sigara"
+  },
   {
    "id": "axuasjp4mufek4gl",
    "date": "2026-09-24",
