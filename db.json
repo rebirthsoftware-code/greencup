@@ -530,6 +530,33 @@
  ],
  "reserved": [
   {
+   "id": "3yrvme9ymufag9ed",
+   "createdAt": "2026-09-24T08:47:07.669Z",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "name": "7/12 Islak mendil",
+   "unit": "koli",
+   "qty": 4,
+   "updatedAt": "2026-09-24T08:47:07.669Z"
+  },
+  {
+   "id": "5qiwueonmufaf4is",
+   "createdAt": "2026-09-24T08:46:14.692Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "name": "Sıcak kapak 90mm",
+   "unit": "koli",
+   "qty": 5,
+   "updatedAt": "2026-09-24T08:46:14.692Z"
+  },
+  {
+   "id": "tujk3jm6mufa4x5w",
+   "createdAt": "2026-09-24T08:38:18.596Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "name": "Tatlı Kutusu",
+   "unit": "adet",
+   "qty": 5000,
+   "updatedAt": "2026-09-24T08:38:18.596Z"
+  },
+  {
    "id": "h4pgxp8dmudvl6wv",
    "createdAt": "2026-09-23T09:03:17.311Z",
    "customerId": "ctf5htz2mucodty7",
@@ -661,8 +688,8 @@
    "customerId": "0cy6o7y5mucnvmjg",
    "name": "14oz Doublewall Cozy",
    "unit": "koli",
-   "qty": 10,
-   "updatedAt": "2026-09-22T12:40:06.510Z"
+   "qty": 16,
+   "updatedAt": "2026-09-24T08:37:45.287Z"
   },
   {
    "id": "t4kc1q6tmucnw3w7",
