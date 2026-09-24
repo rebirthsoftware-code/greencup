@@ -992,11 +992,20 @@
   }
  ],
  "cash": {
-  "nakit": -20090,
+  "nakit": -20230,
   "banka": 54489.18,
   "kart": 14598.379999999997
  },
  "cashMoves": [
+  {
+   "id": "axuasjp4mufek4gl",
+   "date": "2026-09-24",
+   "createdAt": "2026-09-24T10:42:06.358Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 140,
+   "title": "Ayakkabı boyama"
+  },
   {
    "id": "offmnf5jmuf5con9",
    "date": "2026-09-24",
