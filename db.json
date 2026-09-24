@@ -356,6 +356,15 @@
  ],
  "transactions": [
   {
+   "id": "euh33axymufks2ot",
+   "date": "2026-09-24",
+   "createdAt": "2026-09-24T13:36:15.005Z",
+   "customerId": "oavj5j2bmubhngtp",
+   "type": "payment",
+   "amount": 10000,
+   "method": "banka"
+  },
+  {
    "id": "yssks3ctmufjvjs8",
    "customerId": "oavj5j2bmubhngtp",
    "type": "sale",
@@ -1036,10 +1045,19 @@
  ],
  "cash": {
   "nakit": -20230,
-  "banka": 54489.18,
+  "banka": 64489.18,
   "kart": 33468.38
  },
  "cashMoves": [
+  {
+   "id": "2kwygy2imufks2ot",
+   "date": "2026-09-24",
+   "type": "in",
+   "amount": 10000,
+   "title": "Tahsilat",
+   "account": "banka",
+   "txId": "euh33axymufks2ot"
+  },
   {
    "id": "pqkdte95mufjqfy0",
    "date": "2026-09-24",
