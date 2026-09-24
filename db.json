@@ -356,6 +356,14 @@
  ],
  "transactions": [
   {
+   "id": "2blc0rh3mufli0lb",
+   "date": "2026-09-24",
+   "createdAt": "2026-09-24T13:56:25.343Z",
+   "customerId": "5z17vspwmub2d4nc",
+   "note": "Ziyaret yapıldı.",
+   "type": "visit"
+  },
+  {
    "id": "3fwyupqrmuflhq26",
    "date": "2026-09-24",
    "createdAt": "2026-09-24T13:56:11.694Z",
