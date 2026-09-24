@@ -70,6 +70,16 @@
    "name": "90 Çap kapak",
    "minStock": 0,
    "updatedAt": "2026-09-23T14:31:03.219Z"
+  },
+  {
+   "id": "39qzdsu9mufd7rtz",
+   "unit": "adet",
+   "stock": 10000,
+   "price": 0.9,
+   "createdAt": "2026-09-24T10:04:30.503Z",
+   "name": "7/12 Islak mendil",
+   "minStock": 0,
+   "updatedAt": "2026-09-24T10:04:30.503Z"
   }
  ],
  "customers": [
