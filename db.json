@@ -356,6 +356,28 @@
  ],
  "transactions": [
   {
+   "id": "yssks3ctmufjvjs8",
+   "customerId": "oavj5j2bmubhngtp",
+   "type": "sale",
+   "date": "2026-09-24",
+   "createdAt": "2026-09-24T13:10:57.512Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Stick şeker",
+     "unit": "koli",
+     "qty": 2,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-09-24",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "08cv39jrmufjuyyr",
    "customerId": "oavj5j2bmubhngtp",
    "type": "sale",
@@ -619,8 +641,8 @@
    "customerId": "oavj5j2bmubhngtp",
    "name": "Stick şeker",
    "unit": "koli",
-   "qty": 10,
-   "updatedAt": "2026-09-24T13:10:47.346Z"
+   "qty": 8,
+   "updatedAt": "2026-09-24T13:10:57.512Z"
   },
   {
    "id": "yuq4rpq2mufai16x",
