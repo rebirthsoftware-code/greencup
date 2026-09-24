@@ -356,6 +356,28 @@
  ],
  "transactions": [
   {
+   "id": "08cv39jrmufjuyyr",
+   "customerId": "oavj5j2bmubhngtp",
+   "type": "sale",
+   "date": "2026-09-24",
+   "createdAt": "2026-09-24T13:10:30.532Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "7/12 Islak mendil",
+     "unit": "koli",
+     "qty": 4,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-09-24",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "jmurbocqmufjqfy0",
    "date": "2026-09-24",
    "createdAt": "2026-09-24T13:06:59.256Z",
@@ -599,15 +621,6 @@
    "unit": "koli",
    "qty": 4,
    "updatedAt": "2026-09-24T08:48:30.345Z"
-  },
-  {
-   "id": "5q143v5emufahepr",
-   "createdAt": "2026-09-24T08:48:01.215Z",
-   "customerId": "oavj5j2bmubhngtp",
-   "name": "7/12 Islak mendil",
-   "unit": "koli",
-   "qty": 4,
-   "updatedAt": "2026-09-24T08:48:01.215Z"
   },
   {
    "id": "3yrvme9ymufag9ed",
@@ -1492,6 +1505,10 @@
   {
    "id": "39qzdsu9mufd7rtz",
    "at": "2026-09-24T13:10:11.664Z"
+  },
+  {
+   "id": "5q143v5emufahepr",
+   "at": "2026-09-24T13:10:30.532Z"
   }
  ],
  "settings": {
