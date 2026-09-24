@@ -80,6 +80,16 @@
    "name": "7/12 Islak mendil",
    "minStock": 0,
    "updatedAt": "2026-09-24T10:04:30.503Z"
+  },
+  {
+   "id": "f3q6nj6gmufd834y",
+   "unit": "adet",
+   "stock": 1,
+   "price": 1000,
+   "createdAt": "2026-09-24T10:04:45.154Z",
+   "name": "Mendil Klişesi",
+   "minStock": 0,
+   "updatedAt": "2026-09-24T10:04:45.154Z"
   }
  ],
  "customers": [
