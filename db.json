@@ -84,6 +84,18 @@
  ],
  "customers": [
   {
+   "id": "lxx2ph97muflj0q5",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-24T13:57:12.193Z",
+   "name": "Toprak Tekel Büfe",
+   "type": "Diğer",
+   "phone": "05373582213",
+   "city": "Zonguldak ",
+   "district": "Devrek",
+   "notes": "",
+   "updatedAt": "2026-09-24T13:57:12.194Z"
+  },
+  {
    "id": "mo4pq36smufd5zty",
    "color": "#0E6B3F",
    "createdAt": "2026-09-24T10:03:07.580Z",
