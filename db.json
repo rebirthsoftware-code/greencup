@@ -90,6 +90,16 @@
    "name": "Mendil Klişesi",
    "minStock": 0,
    "updatedAt": "2026-09-24T10:04:45.154Z"
+  },
+  {
+   "id": "74bqxrn8mufjtmvd",
+   "unit": "adet",
+   "stock": 20000,
+   "price": 0.48,
+   "createdAt": "2026-09-24T13:09:28.201Z",
+   "name": "STİCK ŞEKER",
+   "minStock": 0,
+   "updatedAt": "2026-09-24T13:09:28.201Z"
   }
  ],
  "customers": [
