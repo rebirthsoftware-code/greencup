@@ -1106,9 +1106,18 @@
  "cash": {
   "nakit": -20380,
   "banka": 73489.18,
-  "kart": 32278.379999999997
+  "kart": 31303.379999999997
  },
  "cashMoves": [
+  {
+   "id": "4w2f292smugmwsug",
+   "date": "2026-09-25",
+   "createdAt": "2026-09-25T07:23:40.936Z",
+   "type": "out",
+   "account": "kart",
+   "amount": 975,
+   "title": "Market"
+  },
   {
    "id": "or7coc8tmufum0n8",
    "date": "2026-09-24",
