@@ -1143,9 +1143,18 @@
  "cash": {
   "nakit": -20380,
   "banka": 73489.18,
-  "kart": 30803.379999999997
+  "kart": 30373.379999999997
  },
  "cashMoves": [
+  {
+   "id": "c0vh5hohmuh4dpk2",
+   "date": "2026-09-25",
+   "createdAt": "2026-09-25T15:32:43.298Z",
+   "type": "out",
+   "account": "kart",
+   "amount": 430,
+   "title": "Yıkama"
+  },
   {
    "id": "iznuutkhmuguwafv",
    "date": "2026-09-25",
