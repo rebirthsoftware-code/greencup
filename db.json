@@ -381,6 +381,14 @@
  ],
  "transactions": [
   {
+   "id": "vup81tw0muh2sh1p",
+   "date": "2026-09-25",
+   "createdAt": "2026-09-25T14:48:12.877Z",
+   "customerId": "ovd1cvujmub2f7wc",
+   "note": "2 kutu depoda ki malından istedi",
+   "type": "visit"
+  },
+  {
    "id": "oiu7wkjimuh2cc62",
    "date": "2026-09-25",
    "createdAt": "2026-09-25T14:35:40.059Z",
