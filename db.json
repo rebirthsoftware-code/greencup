@@ -1142,10 +1142,19 @@
  ],
  "cash": {
   "nakit": -20380,
-  "banka": 55873.17999999999,
+  "banka": 50923.17999999999,
   "kart": 29933.379999999997
  },
  "cashMoves": [
+  {
+   "id": "ftx2munxmuip5jt2",
+   "date": "2026-09-26",
+   "createdAt": "2026-09-26T18:02:00.711Z",
+   "type": "out",
+   "account": "banka",
+   "amount": 4950,
+   "title": "Yakıt"
+  },
   {
    "id": "54gwu8p5muip4yu3",
    "date": "2026-09-26",
