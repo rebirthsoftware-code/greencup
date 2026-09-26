@@ -1142,10 +1142,19 @@
  ],
  "cash": {
   "nakit": -20380,
-  "banka": 73489.18,
+  "banka": 73029.18,
   "kart": 29933.379999999997
  },
  "cashMoves": [
+  {
+   "id": "vcoe30swmuhwvw4y",
+   "date": "2026-09-26",
+   "createdAt": "2026-09-26T04:50:40.882Z",
+   "type": "out",
+   "account": "banka",
+   "amount": 460,
+   "title": "Kahvaltı"
+  },
   {
    "id": "ggvdyyzrmuhert38",
    "date": "2026-09-25",
