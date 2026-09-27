@@ -1142,10 +1142,19 @@
  ],
  "cash": {
   "nakit": -20780,
-  "banka": 47755.17999999999,
+  "banka": 47225.17999999999,
   "kart": 29933.379999999997
  },
  "cashMoves": [
+  {
+   "id": "4a3b02tdmuk9t1dw",
+   "date": "2026-09-27",
+   "createdAt": "2026-09-27T20:27:55.076Z",
+   "type": "out",
+   "account": "banka",
+   "amount": 530,
+   "title": "Çay"
+  },
   {
    "id": "162bu1z1muk765pe",
    "date": "2026-09-27",
