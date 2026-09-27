@@ -102,15 +102,27 @@ export function Tabs({ value, onChange, items }) {
 
 /* ---------- Bottom sheet select ---------- */
 export function Sheet({ open, onClose, title, children }) {
+  const bgRef = useRef(null);
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = prev; };
+    // iOS/Android: klavye açılınca görünür alan küçülür ama sabit (fixed) katman küçülmez;
+    // alt sayfayı görünür alana (visualViewport) göre boyutlandır ki Kaydet butonu klavyenin altında kalmasın.
+    const vv = window.visualViewport;
+    const fit = () => {
+      const el = bgRef.current; if (!el) return;
+      if (vv && vv.height < window.innerHeight - 80) { el.style.top = `${vv.offsetTop}px`; el.style.height = `${vv.height}px`; el.classList.add('kbd'); }
+      else { el.style.top = ''; el.style.height = ''; el.classList.remove('kbd'); }
+    };
+    const onFocus = (e) => { if (e.target?.closest?.('.sheet')) setTimeout(() => { fit(); e.target.scrollIntoView?.({ block: 'center', behavior: 'smooth' }); }, 250); };
+    vv?.addEventListener('resize', fit); vv?.addEventListener('scroll', fit); document.addEventListener('focusin', onFocus);
+    fit();
+    return () => { document.body.style.overflow = prev; vv?.removeEventListener('resize', fit); vv?.removeEventListener('scroll', fit); document.removeEventListener('focusin', onFocus); };
   }, [open]);
   if (!open) return null;
   return createPortal(
-    <div className="sheet-bg" onClick={onClose}>
+    <div className="sheet-bg" ref={bgRef} onClick={onClose}>
       <div className="sheet" onClick={(e) => e.stopPropagation()}>
         <div className="handle" />
         {title && <h3>{title}</h3>}

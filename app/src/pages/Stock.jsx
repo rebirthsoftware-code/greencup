@@ -120,8 +120,9 @@ export default function Stock() {
         )}
         <div className="btn-row">
           {edit && edit !== 'new' && <DangerButton className="btn btn-ghost" message={usedIn(edit.id) ? `Bu ürün ${usedIn(edit.id)} satışta geçiyor; geçmiş kayıtlarda adı korunur. Silinsin mi?` : 'Ürün silinsin mi?'} onConfirm={() => { deleteProduct(edit.id); toast('Ürün silindi'); setEdit(null); }}>Sil</DangerButton>}
-          <button className="btn btn-primary" onClick={save} disabled={!form.name.trim()}>Kaydet</button>
+          <button className="btn btn-primary" onClick={save}>Kaydet</button>
         </div>
+        {!form.name.trim() && <div className="xs" style={{ color: 'var(--orange)', textAlign: 'center', marginTop: 8, fontWeight: 600 }}>Kaydetmek için ürün adı girin</div>}
       </Sheet>
       {move && <MoveToCustomerSheet product={move} onClose={() => setMove(null)} />}
       {goods && <GoodsSheet kind={goods.kind} entry={goods.entry} onClose={() => setGoods(null)} />}
