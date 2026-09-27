@@ -1142,10 +1142,19 @@
  ],
  "cash": {
   "nakit": -20780,
-  "banka": 48623.17999999999,
+  "banka": 47755.17999999999,
   "kart": 29933.379999999997
  },
  "cashMoves": [
+  {
+   "id": "162bu1z1muk765pe",
+   "date": "2026-09-27",
+   "createdAt": "2026-09-27T19:14:08.354Z",
+   "type": "out",
+   "account": "banka",
+   "amount": 868,
+   "title": "Yemek"
+  },
   {
    "id": "070ku8vimuirv1q6",
    "date": "2026-09-26",
