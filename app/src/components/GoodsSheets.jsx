@@ -77,7 +77,8 @@ export default function GoodsSheet({ kind = 'reserved', customerId, entry, onClo
         <div className="field"><label>Miktar</label><div className="input"><input inputMode="numeric" value={qty} onChange={(e) => setQty(numOnly(e.target.value))} placeholder="0" /><span className="suffix">{productId === CUSTOM ? unit : (product?.unit || 'adet')}</span></div></div>
         {isProd && <DateField label="Tahmini Teslim Tarihi (isteğe bağlı)" value={dueDate} onChange={setDueDate} />}
         <div className="field"><label>Not <span className="opt">(isteğe bağlı)</span></label><div className="input"><input value={note} onChange={(e) => setNote(e.target.value)} placeholder={isProd ? 'Örn: Matbaada, logo onaylandı' : 'Örn: Raf B-3'} /></div></div>
-        <button className="btn btn-primary" disabled={!cust || !nameOk || !(n > 0)} onClick={save}>Kaydet</button>
+        <button className="btn btn-primary" onClick={save}>Kaydet</button>
+        {(!cust || !nameOk || !(n > 0)) && <div className="xs" style={{ color: 'var(--orange)', textAlign: 'center', marginTop: 8, fontWeight: 600 }}>{!cust ? 'Müşteri seçin' : !nameOk ? 'Ürün adı girin' : 'Miktar girin'}</div>}
       </Sheet>
     );
   }

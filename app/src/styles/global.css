@@ -450,6 +450,10 @@ textarea.input { height: auto; min-height: 96px; padding: 12px 14px; resize: ver
 
 /* iOS: sabit konumlu alt sayfa her zaman sekme çubuğunun üstünde; küçük ekranlarda içerik kaydırılabilir */
 .sheet { max-height: min(86dvh, 86vh); -webkit-overflow-scrolling: touch; }
+/* Klavye açık: arka plan görünür alana sabitlenir, alt sayfa o alanın tamamına kadar uzayabilir ve içi kayar */
+.sheet-bg.kbd { bottom: auto; }
+.sheet-bg.kbd .sheet { max-height: 100%; border-radius: 18px 18px 0 0; padding-bottom: 14px; animation: none; }
+.sheet-bg.kbd .sheet .handle { display: none; }
 .sheet > .btn:last-child, .sheet .btn-row:last-child, .sheet .stack:last-child { margin-bottom: 4px; }
 
 /* ---------- Belgeler (fatura PDF / fotoğraf) ---------- */
