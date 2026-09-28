@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useStore } from '../store/store';
-import { allSummaries, monthlySeries, itemsLabel, goodsByCustomer, ACCOUNT_LABEL, STATUS_LABEL, METHOD_LABEL } from '../store/selectors';
+import { allSummaries, monthlySeries, itemsLabel, goodsByCustomer, accountName, STATUS_LABEL } from '../store/selectors';
 import { fmtMoney, fmtNum, fmtDate, today, downloadCsv } from '../utils/format';
 import { PageHeader, DateField } from '../components/ui';
 import BarChart from '../components/BarChart';
@@ -48,7 +48,7 @@ export default function Reports() {
       case 'kasa': {
         const moves = state.cashMoves.filter((m) => inRange(m.date));
         return { head: ['Tarih', 'Açıklama', 'Hesap', 'Giren', 'Kullanıcı', 'Tutar'],
-          rows: moves.map((m) => [fmtDate(m.date), m.title, ACCOUNT_LABEL[m.account], m.by || '', m.by || '', m.type === 'in' ? m.amount : -m.amount]).map((r) => [r[0], r[1], r[2], r[3], r[5]]),
+          rows: moves.map((m) => [fmtDate(m.date), m.adjust ? `${m.title} (düzeltme)` : m.title, accountName(state, m.account), m.by || '', m.by || '', m.type === 'in' ? m.amount : -m.amount]).map((r) => [r[0], r[1], r[2], r[3], r[5]]),
           money: [4], total: moves.reduce((a, m) => a + (m.type === 'in' ? m.amount : -m.amount), 0) };
       }
       case 'ziyaret': {
@@ -63,7 +63,7 @@ export default function Reports() {
       }
       case 'tahsilat': {
         const p = tx.filter((t) => t.type === 'payment');
-        return { head: ['Tarih', 'Müşteri', 'Yöntem', 'Kullanıcı', 'Tutar'], rows: p.map((t) => [fmtDate(t.date), name(t.customerId), METHOD_LABEL[t.method] || '', t.by || '', t.amount]), money: [4], total: p.reduce((a, t) => a + t.amount, 0) };
+        return { head: ['Tarih', 'Müşteri', 'Yöntem', 'Kullanıcı', 'Tutar'], rows: p.map((t) => [fmtDate(t.date), name(t.customerId), accountName(state, t.method || 'nakit'), t.by || '', t.amount]), money: [4], total: p.reduce((a, t) => a + t.amount, 0) };
       }
       default: return { head: [], rows: [], money: [] };
     }

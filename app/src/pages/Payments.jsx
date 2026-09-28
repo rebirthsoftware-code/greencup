@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useStore } from '../store/store';
-import { ACCOUNT_LABEL } from '../store/selectors';
+import { accountName } from '../store/selectors';
+import { sortedAccounts } from '../store/accounts';
 import { fmtMoney, fmtDayMonth, fmtDate, daysBetween, today, parseMoney } from '../utils/format';
-import { PageHeader, Sheet, Segmented, Empty, DateField, DangerButton, useToast, Tabs, MoneyInput } from '../components/ui';
+import { PageHeader, Sheet, Empty, DateField, DangerButton, useToast, Tabs, MoneyInput, AccountSelect } from '../components/ui';
 import * as Ic from '../components/Icons';
 import Attachments from '../components/Attachments';
 
@@ -11,7 +12,8 @@ export default function Payments() {
   const toast = useToast();
   const [tab, setTab] = useState(0);
   const [sel, setSel] = useState(null);     // seçili gider (detay/düzenle)
-  const [account, setAccount] = useState('banka');
+  const accounts = sortedAccounts(state);
+  const [account, setAccount] = useState(() => (accounts.find((a) => a.id === 'banka') || accounts[0])?.id || 'banka');
   const [adding, setAdding] = useState(false);
   const [f, setF] = useState({ title: '', amount: '', due: today() });
 
@@ -73,7 +75,7 @@ export default function Payments() {
           {past.map((e) => (
             <div key={e.id} className="item" onClick={() => open(e)}>
               <div className="tl-icon"><Ic.Check size={18} /></div>
-              <div className="item-body"><div className="item-title">{e.title}</div><div className="item-sub">Ödendi: {fmtDate(e.paidAt)}{e.account ? ` · ${ACCOUNT_LABEL[e.account]}` : ''}{e.attachments?.length ? ` · ${e.attachments.length} belge` : ''}</div></div>
+              <div className="item-body"><div className="item-title">{e.title}</div><div className="item-sub">Ödendi: {fmtDate(e.paidAt)}{e.account ? ` · ${accountName(state, e.account)}` : ''}{e.attachments?.length ? ` · ${e.attachments.length} belge` : ''}</div></div>
               <span className="num">{fmtMoney(e.amount)}</span>
             </div>
           ))}
@@ -83,8 +85,8 @@ export default function Payments() {
 
       {/* Öde */}
       <Sheet open={!!sel?.paying} onClose={() => setSel(null)} title={sel ? `${sel.title} · ${fmtMoney(sel.amount)}` : ''}>
-        <div className="field"><label>Hangi hesaptan?</label>
-          <Segmented light value={account} onChange={setAccount} options={[{ value: 'nakit', label: 'Nakit' }, { value: 'banka', label: 'Banka' }, { value: 'kart', label: 'Kart' }]} /></div>
+        <AccountSelect label="Hangi hesaptan?" value={account} onChange={setAccount} accounts={accounts} />
+        <span className="xs muted" style={{ display: 'block', marginTop: -8, marginBottom: 12 }}>{accountName(state, account)} bakiyesi: {fmtMoney(state.cash[account] || 0)}</span>
         <button className="btn btn-primary" onClick={() => { payExpense(sel.id, account); toast(`${sel.title} ödendi`); setSel(null); }}>Ödendi Olarak İşaretle</button>
       </Sheet>
 
@@ -94,7 +96,7 @@ export default function Payments() {
         <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><MoneyInput value={f.amount} onChange={(v) => setF({ ...f, amount: v })} /></div></div>
         <DateField label="Vade" value={f.due} onChange={(v) => setF({ ...f, due: v })} />
         {sel && <div className="field"><label>Fatura / Fiş</label><Attachments items={(state.expenses.find((x) => x.id === sel.id)?.attachments) || []} onChange={(list) => setExpenseAttachments(sel.id, list)} folder={`giderler/${sel.id}`} compact /></div>}
-        {sel?.paid && <p className="xs muted" style={{ marginBottom: 12 }}>Bu ödeme {fmtDate(sel.paidAt)} tarihinde {ACCOUNT_LABEL[sel.account] || ''} hesabından ödendi. Tutarı değiştirmek kasayı etkilemez; yanlışsa "Ödenmedi yap" deyip yeniden ödeyin.</p>}
+        {sel?.paid && <p className="xs muted" style={{ marginBottom: 12 }}>Bu ödeme {fmtDate(sel.paidAt)} tarihinde {accountName(state, sel.account)} hesabından ödendi. Tutarı değiştirmek kasayı etkilemez; yanlışsa "Ödenmedi yap" deyip yeniden ödeyin.</p>}
         <div className="stack">
           <div className="btn-row">
             <DangerButton className="btn btn-ghost" message="Ödeme kaydı silinsin mi? Ödendiyse kasa etkisi geri alınır." onConfirm={() => { deleteExpense(sel.id); toast('Silindi'); setSel(null); }}>Sil</DangerButton>

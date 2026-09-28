@@ -1,7 +1,9 @@
 // Örnek (demo) veri ve durum şeması yardımcıları.
 // Uygulama ilk açılışta bu veriyle başlar; Ayarlar > Tümünü Temizle ile boş başlanır.
 
-export const STATE_VERSION = 3;
+import { DEFAULT_ACCOUNTS, V4_BANKS, bankPair } from './accounts';
+
+export const STATE_VERSION = 4;
 
 export const seedProducts = [
   { id: 'p-7oz-karton',   name: '7oz Karton',      stock: 25000, unit: 'adet', price: 2.9 },
@@ -125,6 +127,7 @@ export const makeSeed = () => ({
   transactions: seedTransactions,
   reserved: seedReserved,
   production: [],
+  accounts: DEFAULT_ACCOUNTS,
   cash: seedCash,
   cashMoves: seedCashMoves,
   expenses: seedExpenses,
@@ -134,15 +137,16 @@ export const makeSeed = () => ({
   settings: seedSettings,
 });
 
-/** Boş başlangıç: hiç müşteri/ürün/hareket yok, kasa sıfır. Ayarlar ve kullanıcılar korunur. */
-export const makeEmpty = (settings = seedSettings, users = seedUsers) => ({
+/** Boş başlangıç: hiç müşteri/ürün/hareket yok, kasa sıfır. Ayarlar, kullanıcılar ve hesap listesi korunur. */
+export const makeEmpty = (settings = seedSettings, users = seedUsers, accounts = DEFAULT_ACCOUNTS) => ({
   version: STATE_VERSION,
   products: [],
   customers: [],
   transactions: [],
   reserved: [],
   production: [],
-  cash: { nakit: 0, banka: 0, kart: 0 },
+  accounts,
+  cash: Object.fromEntries(accounts.map((a) => [a.id, 0])),
   cashMoves: [],
   expenses: [],
   plannedVisits: [],
@@ -159,10 +163,25 @@ export function normalizeState(raw) {
   if (!raw || typeof raw !== 'object') return null;
   const base = makeEmpty();
   const s = { ...base, ...raw, settings: { ...seedSettings, ...(raw.settings || {}) } };
-  for (const k of ['products', 'customers', 'transactions', 'reserved', 'production', 'cashMoves', 'expenses', 'plannedVisits', 'users', 'tombstones']) {
+  for (const k of ['products', 'customers', 'transactions', 'reserved', 'production', 'accounts', 'cashMoves', 'expenses', 'plannedVisits', 'users', 'tombstones']) {
     if (!Array.isArray(s[k])) s[k] = [];
   }
-  s.cash = { nakit: 0, banka: 0, kart: 0, ...(raw.cash || {}) };
+  // v4: hesaplar serbest liste (banka hesapları, kredi kartları). Eski sabit üç hesap aynı id'lerle korunur.
+  s.accounts = [...s.accounts]; // ham nesne değişmesin
+  const haveAcc = (id) => s.accounts.some((a) => a.id === id); // silinmiş (deleted) hesaplar da listede kalır, adı korunur
+  const firstRun = s.accounts.length === 0;
+  for (const a of DEFAULT_ACCOUNTS) if (!haveAcc(a.id) && firstRun) s.accounts.push({ ...a });
+  if ((raw.version || 0) < 4 && (raw.customers?.length || raw.products?.length || raw.transactions?.length)) {
+    // Mevcut kurulumlara istenen banka ve kredi kartı hesapları bir kez eklenir (id adından türediği için cihazlar arasında çakışmaz)
+    for (const b of V4_BANKS) for (const a of bankPair(b)) if (!haveAcc(a.id)) s.accounts.push({ ...a, createdAt: '2026-09-28T00:00:00.000Z' });
+  }
+  // Hareketlerde geçen ya da bakiyesi olan ama listede olmayan hesap id'leri (eski/bozuk veri) görünür kalsın diye eklenir
+  const used = new Set(s.cashMoves.map((m) => m.account).filter(Boolean));
+  for (const [id, v] of Object.entries(raw.cash || {})) if (Math.abs(v || 0) >= 0.005) used.add(id);
+  for (const id of used) if (!haveAcc(id)) s.accounts.push({ id, name: { nakit: 'Nakit', banka: 'Banka', kart: 'Kart' }[id] || id, kind: id === 'nakit' ? 'nakit' : id === 'kart' || id.endsWith('-kk') ? 'kart' : 'banka', createdAt: '2026-09-28T00:00:00.000Z' });
+  if (!s.accounts.some((a) => !a.deleted)) s.accounts.push({ ...DEFAULT_ACCOUNTS[0], deleted: false, updatedAt: new Date().toISOString() });
+  s.cash = { ...Object.fromEntries(s.accounts.filter((a) => !a.deleted).map((a) => [a.id, 0])), ...(raw.cash || {}) };
+  for (const a of s.accounts) if (a.deleted && Math.abs(s.cash[a.id] || 0) < 0.005) delete s.cash[a.id]; // silinmiş ve sıfır: anahtar kalmasın
   s.transactions = s.transactions.map((t) => {
     if (t.type !== 'sale' || Array.isArray(t.items)) return t;
     const p = s.products.find((x) => x.id === t.productId);

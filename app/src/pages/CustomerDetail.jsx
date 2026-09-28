@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useStore } from '../store/store';
-import { customerSummary, METHOD_LABEL, PAYMENT_LABEL, txItems, itemsLabel, TX_TITLE, txTitle } from '../store/selectors';
+import { customerSummary, accountName, PAYMENT_LABEL, txItems, itemsLabel, TX_TITLE, txTitle } from '../store/selectors';
+import { sortedAccounts } from '../store/accounts';
 import { fmtMoney, fmtNum, fmtDate, parseMoney, toInput, today } from '../utils/format';
-import { PageHeader, Avatar, StatusBadge, Empty, Sheet, Segmented, Tabs, DateField, DangerButton, useToast, MoneyInput } from '../components/ui';
+import { PageHeader, Avatar, StatusBadge, Empty, Sheet, Segmented, Tabs, DateField, DangerButton, useToast, MoneyInput, AccountSelect } from '../components/ui';
 import { ItemsEditor } from './NewTransaction';
 import { cleanItem } from '../utils/format';
 import * as Ic from '../components/Icons';
@@ -18,6 +19,7 @@ const TX_FILTERS = [
 const TITLE = TX_TITLE;
 
 export function TxItem({ t, alloc, onClick }) {
+  const { state } = useStore();
   const Icon = t.type === 'sale' ? (t.fromReserve ? Ic.Box : Ic.Truck) : t.type === 'debt' ? Ic.Receipt : t.type === 'payment' ? Ic.Cash : t.type === 'visit' ? Ic.Target : Ic.Note;
   const cls = t.type === 'payment' ? 'pay' : t.type === 'visit' ? 'visit' : t.type === 'note' ? 'note' : '';
   const owes = (t.type === 'sale' || t.type === 'debt') && t.amount > 0;
@@ -42,7 +44,7 @@ export function TxItem({ t, alloc, onClick }) {
         <div className="tl-foot" style={{ gap: 6 }}>
           {overdue && <span className="badge badge--gecikmis">Gecikmiş</span>}
           {t.type === 'sale' && !t.fromReserve && <span className={`badge ${t.invoiced ? 'badge--aktif' : 'badge--gecikmis'}`}>{t.invoiced ? `Faturalı${t.invoiceNo ? ' · ' + t.invoiceNo : ''}` : 'Faturasız'}</span>}
-          {t.type === 'payment' && <span className="badge badge--blue">{METHOD_LABEL[t.method] || 'Nakit'}</span>}
+          {t.type === 'payment' && <span className="badge badge--blue">{accountName(state, t.method || 'nakit')}</span>}
           {t.attachments?.length > 0 && <span className="badge badge--neutral"><Ic.FileText size={12} /> {t.attachments.length} belge</span>}
         </div>
       </div>
@@ -95,7 +97,7 @@ function TxEditor({ tx, onClose }) {
       {f.type === 'payment' && (
         <>
           <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><MoneyInput value={f.amountStr} onChange={set('amountStr')} /></div></div>
-          <div className="field"><label>Yöntem</label><Segmented light value={f.method || 'nakit'} onChange={set('method')} options={[{ value: 'nakit', label: 'Nakit' }, { value: 'banka', label: 'Havale' }, { value: 'kart', label: 'Kart' }]} /></div>
+          <AccountSelect label="Hangi hesaba girdi?" value={f.method || 'nakit'} onChange={set('method')} accounts={sortedAccounts(state)} labelFor={(id) => accountName(state, id)} />
         </>
       )}
       <div className="field"><label>Not</label><textarea className="input" value={f.note || ''} onChange={(e) => set('note')(e.target.value)} /></div>

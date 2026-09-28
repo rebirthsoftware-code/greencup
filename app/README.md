@@ -27,7 +27,7 @@ npm run lint
 | Müşteri detayı | Cari durum (FIFO ile açık/gecikmiş tutar, en yakın vade), hareketler (dokunarak düzenle/sil), ürünler, **depodaki müşteri malları** ve **üretimdekiler** (ekle, depoya al, teslim et), faturalar, notlar, planlı ziyaretler |
 | Yeni işlem | **Çok ürünlü** mal verme (satır başına miktar ve birim fiyat), vade tarihi, faturalı/faturasız, vadeli/peşin/kısmi; **Borç Ekle** (mal girmeden bakiyeye borç, örn. devir); tahsilat; ziyaret. Yeni müşteride **açılış bakiyesi** |
 | Stok / Depo | **Stoğum**: yalnızca kendi satılabilir ürünleriniz (ekle/düzenle/sil, birim, uyarı eşiği; ürünü müşteri malına taşı). **Müşteri Malları**: depoda müşteriye ait mallar, stoktan ayrı (teslim et, isteğe bağlı tutarla borç yaz). **Üretimde**: müşteri için üretilen siparişler (teslim tarihi, depoya al, doğrudan teslim) |
-| Kasa | Nakit/banka/kart, hareket ekle/sil, **hesaplar arası transfer** |
+| Kasa | **Hesap listesi** (nakit, banka hesapları, kredi kartları; ekle/yeniden adlandır/sil, hazır banka listesinden çift olarak ekle), hesap başına bakiye, hareket ekle/sil, **hesaplar arası transfer**, **bakiyeyi düzelt** (gelir/gider yazmadan sayım farkı) |
 | Benim ödemelerim | Ekle, düzenle, sil, öde / ödenmedi yap |
 | Ziyaretler | Son ziyaretler; **ziyaret planı** (tarih ata, yapıldı olarak kapat), öneriler |
 | Fatura | Çok satırlı, firma bilgileri, KDV, yazdır/PDF (resmi e-Fatura değildir) |
@@ -118,14 +118,15 @@ Ayarlar > **Tümünü Temizle** ile boş başlanır (ayarlar korunur), **Örnek 
 - `transactions` – hareket: `sale` (mal verildi; `items[]`, `dueDate`; `fromReserve` = müşteri malı teslimi, stoğu etkilemez), `debt` (elle borç / devir), `payment` (tahsilat), `visit`, `note`; `by` = giren kullanıcı
 - `reserved` – depoda müşteriye ait mallar (`productId` veya serbest `name`/`unit`); sizin stoğunuzdan **ayrı** tutulur
 - `production` – müşteri için üretimde olan mallar (`dueDate` tahmini teslim)
-- `cash` / `cashMoves` – kasa hesapları ve hareketleri (`txId` ile hareketlere bağlı, `transferId` ile transfer çiftleri)
+- `accounts` – kasa hesapları (`id`, `name`, `kind`: nakit / banka / kart). Eski sabit `nakit`, `banka`, `kart` id'leri korunur; banka listesinden eklenenler `acc-<slug>` ve `acc-<slug>-kk` id'lerini alır (cihazlar arasında çakışmaz)
+- `cash` / `cashMoves` – hesap bakiyeleri (hesap id'si ile) ve hareketler (`txId` ile hareketlere bağlı, `transferId` ile transfer çiftleri, `adjust: true` = bakiye düzeltme, gelir/gider sayılmaz)
 - `expenses` – benim ödemelerim
 - `plannedVisits` – ziyaret planı
 - `users` – kullanıcı listesi (tüm cihazlarda ortak)
 - `tombstones` – silinen kayıt id'leri (birleştirme için)
 - `settings` – firma, KDV, varsayılan vade, gecikme eşiği, fatura sırası
 
-Eski tek ürünlü kayıtlar açılışta `items` biçimine çevrilir (`normalizeState`). Şema v3'te müşteri malları stoktan ayrıldı: eski (v2) veride rezerve miktarlar ürün stoğundan bir kez düşülür (eski "satılabilir" = yeni stok).
+Eski tek ürünlü kayıtlar açılışta `items` biçimine çevrilir (`normalizeState`). Şema v3'te müşteri malları stoktan ayrıldı: eski (v2) veride rezerve miktarlar ürün stoğundan bir kez düşülür (eski "satılabilir" = yeni stok). Şema v4'te hesaplar serbest listeye dönüştü; mevcut kurulumlara yaygın bankalar (banka hesabı + kredi kartı) bir kez otomatik eklenir.
 
 Müşteri bakiyesi, durumu (Aktif / Takipte / Gecikmiş) ve müşterideki ürünler hareketlerden
 türetilir (`src/store/selectors.js`).

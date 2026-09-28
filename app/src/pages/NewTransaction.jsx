@@ -3,7 +3,8 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { addDays } from '../store/seed';
 import { fmtMoney, fmtNum, fmtPrice, today, parseMoney, toInput } from '../utils/format';
-import { PageHeader, SelectField, Segmented, Avatar, DateField, useToast, MoneyInput } from '../components/ui';
+import { PageHeader, SelectField, Segmented, Avatar, DateField, useToast, MoneyInput, AccountSelect } from '../components/ui';
+import { sortedAccounts } from '../store/accounts';
 import { useSync } from '../store/sync';
 import { prepareFile, uploadAttachment } from '../store/files';
 import { loadDevice } from '../store/storage';
@@ -76,7 +77,8 @@ export default function NewTransaction() {
   const [invoiced, setInvoiced] = useState(params.get('fatura') === '1');
   const [payment, setPayment] = useState('vadeli');
   const [paidNow, setPaidNow] = useState('');
-  const [method, setMethod] = useState('nakit');
+  const accounts = sortedAccounts(state);
+  const [method, setMethod] = useState(() => (accounts.find((a) => a.id === 'nakit') || accounts[0])?.id || 'nakit');
   const [date, setDate] = useState(today());
   const [dueDate, setDueDateRaw] = useState(addDays(today(), state.settings.defaultDueDays || 30));
   const [dueTouched, setDueTouched] = useState(false);
@@ -177,8 +179,7 @@ export default function NewTransaction() {
         )}
 
         {(type === 'payment' || (type === 'sale' && payment !== 'vadeli')) && (
-          <div className="field"><label>Ödeme Yöntemi</label>
-            <Segmented value={method} onChange={setMethod} options={[{ value: 'nakit', label: 'Nakit' }, { value: 'banka', label: 'Havale' }, { value: 'kart', label: 'Kart' }]} light /></div>
+          <AccountSelect label="Hangi hesaba girdi?" value={method} onChange={setMethod} accounts={accounts} />
         )}
 
         <DateField label="Tarih" value={date} onChange={setDateAndDue} />

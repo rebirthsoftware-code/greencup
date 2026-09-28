@@ -4,7 +4,7 @@
 //  - bir tarafta silinmiş (tombstone) kayıt diğer tarafta geri gelmez
 //  - kasa bakiyesi: buluttaki bakiye + yalnızca yerelde olan kasa hareketleri
 //  - ayarlar: updatedAt geç olan
-const LISTS = ['products', 'customers', 'transactions', 'reserved', 'production', 'cashMoves', 'expenses', 'plannedVisits', 'users'];
+const LISTS = ['products', 'customers', 'transactions', 'reserved', 'production', 'accounts', 'cashMoves', 'expenses', 'plannedVisits', 'users'];
 
 const later = (a, b) => ((a?.updatedAt || a?.createdAt || '') >= (b?.updatedAt || b?.createdAt || '') ? a : b);
 
