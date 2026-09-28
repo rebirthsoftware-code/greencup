@@ -381,6 +381,50 @@
  ],
  "transactions": [
   {
+   "id": "ax2efy3hmul5hsgg",
+   "customerId": "8k6q25l9mucntoaa",
+   "type": "sale",
+   "date": "2026-09-28",
+   "createdAt": "2026-09-28T11:14:58.000Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Stick Şeker Çaylak",
+     "unit": "koli",
+     "qty": 2,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-09-28",
+   "note": "Depodan teslim"
+  },
+  {
+   "id": "ug5glwvumul5hbgg",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "type": "sale",
+   "date": "2026-09-28",
+   "createdAt": "2026-09-28T11:14:35.968Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "7/12 Islak mendil",
+     "unit": "koli",
+     "qty": 1,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-09-28",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "69ifq6e4mul3onse",
    "date": "2026-09-28",
    "createdAt": "2026-09-28T10:24:19.310Z",
@@ -774,8 +818,8 @@
    "customerId": "k0g0wjfsmub2ppuo",
    "name": "7/12 Islak mendil",
    "unit": "koli",
-   "qty": 4,
-   "updatedAt": "2026-09-24T08:47:07.669Z"
+   "qty": 3,
+   "updatedAt": "2026-09-28T11:14:35.968Z"
   },
   {
    "id": "5qiwueonmufaf4is",
@@ -900,8 +944,8 @@
    "customerId": "k0g0wjfsmub2ppuo",
    "name": "14oz Soğuk Bardak Goldbeans",
    "unit": "koli",
-   "qty": 3,
-   "updatedAt": "2026-09-22T12:40:27.124Z"
+   "qty": 9,
+   "updatedAt": "2026-09-28T11:14:17.005Z"
   },
   {
    "id": "3mvtytk5mucnwfxh",
@@ -909,8 +953,8 @@
    "customerId": "8k6q25l9mucntoaa",
    "name": "Stick Şeker Çaylak",
    "unit": "koli",
-   "qty": 10,
-   "updatedAt": "2026-09-22T12:40:19.109Z"
+   "qty": 8,
+   "updatedAt": "2026-09-28T11:14:58.000Z"
   },
   {
    "id": "wwoqeixvmucnw9pg",
