@@ -1043,6 +1043,15 @@
  ],
  "production": [
   {
+   "id": "4el2qlgumul5zzpd",
+   "createdAt": "2026-09-28T11:29:07.201Z",
+   "unit": "adet",
+   "customerId": "nb35yakrmu5t27t0",
+   "name": "Pipet",
+   "qty": 5000,
+   "updatedAt": "2026-09-28T11:29:07.201Z"
+  },
+  {
    "id": "y6o2qkmfmul5zmbi",
    "createdAt": "2026-09-28T11:28:49.854Z",
    "unit": "adet",
