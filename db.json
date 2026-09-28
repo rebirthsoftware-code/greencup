@@ -1142,10 +1142,19 @@
  ],
  "cash": {
   "nakit": -20780,
-  "banka": 22425.179999999993,
+  "banka": 21825.179999999993,
   "kart": 29933.379999999997
  },
  "cashMoves": [
+  {
+   "id": "yki293ipmul1j3yy",
+   "date": "2026-09-28",
+   "createdAt": "2026-09-28T09:24:01.114Z",
+   "type": "out",
+   "account": "banka",
+   "amount": 600,
+   "title": "Onur"
+  },
   {
    "id": "rgox2jogmul1ixz9",
    "date": "2026-09-28",
