@@ -1,5 +1,5 @@
 {
- "version": 3,
+ "version": 4,
  "products": [
   {
    "id": "3683vjhpmu8fhvbq",
@@ -1229,12 +1229,139 @@
    "updatedAt": "2026-09-22T12:56:28.701Z"
   }
  ],
+ "accounts": [
+  {
+   "id": "nakit",
+   "name": "Nakit",
+   "kind": "nakit",
+   "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+   "id": "banka",
+   "name": "Banka",
+   "kind": "banka",
+   "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+   "id": "kart",
+   "name": "Kart",
+   "kind": "kart",
+   "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+   "id": "acc-garanti-bbva",
+   "name": "Garanti BBVA",
+   "kind": "banka",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-garanti-bbva-kk",
+   "name": "Garanti BBVA Kredi Kartı",
+   "kind": "kart",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-kuveyt-turk",
+   "name": "Kuveyt Türk",
+   "kind": "banka",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-kuveyt-turk-kk",
+   "name": "Kuveyt Türk Kredi Kartı",
+   "kind": "kart",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-ziraat-bankasi",
+   "name": "Ziraat Bankası",
+   "kind": "banka",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-ziraat-bankasi-kk",
+   "name": "Ziraat Bankası Kredi Kartı",
+   "kind": "kart",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-sekerbank",
+   "name": "Şekerbank",
+   "kind": "banka",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-sekerbank-kk",
+   "name": "Şekerbank Kredi Kartı",
+   "kind": "kart",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-yapi-kredi",
+   "name": "Yapı Kredi",
+   "kind": "banka",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-yapi-kredi-kk",
+   "name": "Yapı Kredi Kredi Kartı",
+   "kind": "kart",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-halkbank",
+   "name": "Halkbank",
+   "kind": "banka",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-halkbank-kk",
+   "name": "Halkbank Kredi Kartı",
+   "kind": "kart",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-qnb-finansbank",
+   "name": "QNB Finansbank",
+   "kind": "banka",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  },
+  {
+   "id": "acc-qnb-finansbank-kk",
+   "name": "QNB Finansbank Kredi Kartı",
+   "kind": "kart",
+   "createdAt": "2026-09-28T00:00:00.000Z"
+  }
+ ],
  "cash": {
-  "nakit": -20780,
+  "nakit": -24780,
   "banka": 30185.179999999993,
-  "kart": 29933.379999999997
+  "kart": 29933.379999999997,
+  "acc-garanti-bbva": 0,
+  "acc-garanti-bbva-kk": 0,
+  "acc-kuveyt-turk": 0,
+  "acc-kuveyt-turk-kk": 0,
+  "acc-ziraat-bankasi": 0,
+  "acc-ziraat-bankasi-kk": 0,
+  "acc-sekerbank": 0,
+  "acc-sekerbank-kk": 0,
+  "acc-yapi-kredi": 0,
+  "acc-yapi-kredi-kk": 0,
+  "acc-halkbank": 0,
+  "acc-halkbank-kk": 0,
+  "acc-qnb-finansbank": 0,
+  "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "6t8lrc3bmuljdwfz",
+   "date": "2026-09-28",
+   "createdAt": "2026-09-28T17:43:51.167Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 4000,
+   "title": "Deneyim Ambalaj"
+  },
   {
    "id": "lf23gbn7mul9oey1",
    "date": "2026-09-28",
