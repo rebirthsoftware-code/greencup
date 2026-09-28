@@ -1043,6 +1043,15 @@
  ],
  "production": [
   {
+   "id": "0vxpcoydmul5z8ka",
+   "createdAt": "2026-09-28T11:28:32.026Z",
+   "unit": "kg",
+   "customerId": "nb35yakrmu5t27t0",
+   "name": "Kese kağıdı paket",
+   "qty": 250,
+   "updatedAt": "2026-09-28T11:28:32.026Z"
+  },
+  {
    "id": "icsa4c2pmuculzi8",
    "createdAt": "2026-09-22T15:48:08.576Z",
    "unit": "adet",
