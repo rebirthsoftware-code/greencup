@@ -1142,10 +1142,19 @@
  ],
  "cash": {
   "nakit": -20780,
-  "banka": 21825.179999999993,
+  "banka": 21675.179999999993,
   "kart": 29933.379999999997
  },
  "cashMoves": [
+  {
+   "id": "jsoqve96mul1jbsc",
+   "date": "2026-09-28",
+   "createdAt": "2026-09-28T09:24:11.244Z",
+   "type": "out",
+   "account": "banka",
+   "amount": 150,
+   "title": "Bim"
+  },
   {
    "id": "yki293ipmul1j3yy",
    "date": "2026-09-28",
