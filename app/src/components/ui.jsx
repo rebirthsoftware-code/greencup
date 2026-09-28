@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { tap } from '../utils/hooks';
 import * as Ic from './Icons';
+import { KIND_LABEL, KIND_ORDER } from '../store/accounts';
 import { initials, fmtDate, formatMoneyInput, normalizeMoneyInput } from '../utils/format';
 import { STATUS_LABEL } from '../store/selectors';
 
@@ -87,6 +88,20 @@ export function Segmented({ value, onChange, options, light }) {
           {o.label}
         </button>
       ))}
+    </div>
+  );
+}
+/** Hesap seçici: nakit / banka hesapları / kredi kartları gruplu yerel açılır liste. */
+export function AccountSelect({ value, onChange, accounts, label, exclude, labelFor }) {
+  const groups = KIND_ORDER.map((kind) => ({ kind, label: KIND_LABEL[kind], items: (accounts || []).filter((a) => a.kind === kind && a.id !== exclude) })).filter((g) => g.items.length);
+  const known = (accounts || []).some((a) => a.id === value);
+  return (
+    <div className="field">
+      {label && <label>{label}</label>}
+      <div className="input"><select value={value || ''} onChange={(e) => onChange(e.target.value)}>
+        {!known && value && <option value={value}>{labelFor ? labelFor(value) : value}</option>}
+        {groups.map((g) => <optgroup key={g.kind} label={g.label}>{g.items.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}</optgroup>)}
+      </select></div>
     </div>
   );
 }

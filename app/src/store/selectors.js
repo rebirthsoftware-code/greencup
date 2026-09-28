@@ -133,7 +133,7 @@ export function dashboard(state) {
 export function todayCashMoves(state) {
   const t = today();
   const moves = state.cashMoves.filter((m) => m.date === t);
-  const net = sum(moves, (m) => (m.type === 'in' ? m.amount : -m.amount));
+  const net = sum(moves.filter((m) => !m.adjust), (m) => (m.type === 'in' ? m.amount : -m.amount)); // bakiye düzeltmeleri gerçek giriş/çıkış değildir
   return { moves, net };
 }
 
@@ -155,5 +155,4 @@ export const TX_TITLE = { sale: 'Mal Verildi', debt: 'Borç Kaydı', payment: 'T
 /** Hareket başlığı (müşteri malı teslimi ayrı adlandırılır). */
 export const txTitle = (t) => (t.fromReserve ? 'Müşteri Malı Teslim' : TX_TITLE[t.type] || t.type);
 export const PAYMENT_LABEL = { vadeli: 'Vadeli', pesin: 'Peşin', kismi: 'Kısmi' };
-export const METHOD_LABEL = { nakit: 'Nakit', banka: 'Havale', kart: 'Kart' };
-export const ACCOUNT_LABEL = { nakit: 'Nakit', banka: 'Banka', kart: 'Kart' };
+export { accountName } from './accounts';

@@ -274,7 +274,7 @@ function reducer(state, action) {
       const { from, to, amount, note } = action;
       if (!amount || from === to) return state;
       const transferId = uid(); const date = today(); const created = now();
-      const label = { nakit: 'Nakit', banka: 'Banka', kart: 'Kart' };
+      const label = Object.fromEntries((state.accounts || []).map((a) => [a.id, a.name]));
       return {
         ...state,
         cash: { ...state.cash, [from]: (state.cash[from] || 0) - amount, [to]: (state.cash[to] || 0) + amount },
@@ -284,6 +284,34 @@ function reducer(state, action) {
           ...state.cashMoves,
         ],
       };
+    }
+
+    case 'ADJUST_CASH': {
+      // Bakiye düzeltme: hesabın gerçek bakiyesi girilir; fark "düzeltme" hareketi olarak yazılır (gelir/gider sayılmaz)
+      const cur = state.cash[action.account] || 0;
+      const delta = Math.round((action.target - cur) * 100) / 100;
+      if (!delta) return state;
+      const m = { id: uid(), date: today(), by: by(), createdAt: now(), type: delta > 0 ? 'in' : 'out', amount: Math.abs(delta), account: action.account, title: action.note?.trim() || 'Bakiye düzeltme', adjust: true };
+      return { ...state, cash: { ...state.cash, [action.account]: cur + delta }, cashMoves: [m, ...state.cashMoves] };
+    }
+
+    /* ---- hesaplar (nakit, banka, kredi kartı) ---- */
+    case 'ADD_ACCOUNT': {
+      const a = action.account;
+      if (!a?.name) return state;
+      const ex = a.id && state.accounts.find((x) => x.id === a.id);
+      if (ex && !ex.deleted) return state;
+      if (ex) return { ...state, accounts: state.accounts.map((x) => (x.id === ex.id ? stamp({ ...x, ...a, deleted: false }) : x)), cash: { ...state.cash, [ex.id]: state.cash[ex.id] || 0 } }; // silinmişse geri açılır
+      const acc = stamp({ id: uid(), kind: 'banka', createdAt: now(), ...a, deleted: false });
+      return { ...state, accounts: [...state.accounts, acc], cash: { ...state.cash, [acc.id]: state.cash[acc.id] || 0 } };
+    }
+    case 'UPDATE_ACCOUNT':
+      return { ...state, accounts: state.accounts.map((a) => (a.id === action.id ? stamp({ ...a, ...action.patch }) : a)) };
+    case 'DELETE_ACCOUNT': {
+      // Yalnızca bakiyesi sıfır olan hesap silinir (gizlenir); geçmiş hareketlerde adı korunur
+      if (Math.abs(state.cash[action.id] || 0) >= 0.005 || state.accounts.filter((a) => !a.deleted).length <= 1) return state;
+      const cash = { ...state.cash }; delete cash[action.id];
+      return { ...state, cash, accounts: state.accounts.map((a) => (a.id === action.id ? stamp({ ...a, deleted: true }) : a)) };
     }
 
     /* ---- ürünler ---- */
@@ -318,7 +346,7 @@ function reducer(state, action) {
     case 'RESET':
       return makeSeed();
     case 'CLEAR':
-      return makeEmpty(state.settings, state.users);
+      return makeEmpty(state.settings, state.users, state.accounts);
     default:
       return state;
   }
@@ -357,6 +385,10 @@ export function StoreProvider({ children }) {
     addCashMove: (move) => dispatch({ type: 'ADD_CASH_MOVE', move }),
     deleteCashMove: (id) => dispatch({ type: 'DELETE_CASH_MOVE', id }),
     transferCash: (from, to, amount, note) => dispatch({ type: 'TRANSFER_CASH', from, to, amount, note }),
+    adjustCash: (account, target, note) => dispatch({ type: 'ADJUST_CASH', account, target, note }),
+    addAccount: (account) => dispatch({ type: 'ADD_ACCOUNT', account }),
+    updateAccount: (id, patch) => dispatch({ type: 'UPDATE_ACCOUNT', id, patch }),
+    deleteAccount: (id) => dispatch({ type: 'DELETE_ACCOUNT', id }),
     updateProduct: (id, patch) => dispatch({ type: 'UPDATE_PRODUCT', id, patch }),
     addProduct: (product) => dispatch({ type: 'ADD_PRODUCT', product }),
     deleteProduct: (id) => dispatch({ type: 'DELETE_PRODUCT', id }),
