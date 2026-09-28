@@ -1231,10 +1231,19 @@
  ],
  "cash": {
   "nakit": -20780,
-  "banka": 44655.17999999999,
+  "banka": 37425.17999999999,
   "kart": 29933.379999999997
  },
  "cashMoves": [
+  {
+   "id": "tvhg0tlsmul9nzoz",
+   "date": "2026-09-28",
+   "createdAt": "2026-09-28T13:11:45.779Z",
+   "type": "out",
+   "account": "banka",
+   "amount": 7230,
+   "title": "Boyut promosyon"
+  },
   {
    "id": "byk8y5cgmul800sl",
    "date": "2026-09-28",
