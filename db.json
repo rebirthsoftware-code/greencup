@@ -1142,10 +1142,19 @@
  ],
  "cash": {
   "nakit": -20780,
-  "banka": 46425.17999999999,
+  "banka": 22425.179999999993,
   "kart": 29933.379999999997
  },
  "cashMoves": [
+  {
+   "id": "rgox2jogmul1ixz9",
+   "date": "2026-09-28",
+   "createdAt": "2026-09-28T09:23:53.349Z",
+   "type": "out",
+   "account": "banka",
+   "amount": 24000,
+   "title": "Cosby"
+  },
   {
    "id": "aehbz6lwmukzld8u",
    "date": "2026-09-28",
