@@ -4,6 +4,8 @@ import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { tap } from '../utils/hooks';
 import * as Ic from './Icons';
 import { KIND_LABEL, KIND_ORDER } from '../store/accounts';
+import { useStore } from '../store/store';
+import { fmtMoney } from '../utils/format';
 import { initials, fmtDate, formatMoneyInput, normalizeMoneyInput } from '../utils/format';
 import { STATUS_LABEL } from '../store/selectors';
 
@@ -91,17 +93,39 @@ export function Segmented({ value, onChange, options, light }) {
     </div>
   );
 }
-/** Hesap seçici: nakit / banka hesapları / kredi kartları gruplu yerel açılır liste. */
-export function AccountSelect({ value, onChange, accounts, label, exclude, labelFor }) {
-  const groups = KIND_ORDER.map((kind) => ({ kind, label: KIND_LABEL[kind], items: (accounts || []).filter((a) => a.kind === kind && a.id !== exclude) })).filter((g) => g.items.length);
-  const known = (accounts || []).some((a) => a.id === value);
+/** Hesap seçici: dokununca nakit / banka hesapları / kredi kartları gruplu ve bakiyeli liste açılır. */
+export function AccountSelect({ value, onChange, accounts, label, exclude, labelFor, hint }) {
+  const { state } = useStore();
+  const [open, setOpen] = useState(false);
+  const list = (accounts || state.accounts || []).filter((a) => !a.deleted && a.id !== exclude);
+  const groups = KIND_ORDER.map((kind) => ({ kind, label: KIND_LABEL[kind], items: list.filter((a) => a.kind === kind) })).filter((g) => g.items.length);
+  const sel = list.find((a) => a.id === value);
+  const name = sel ? sel.name : value ? (labelFor ? labelFor(value) : value) : 'Hesap seçin';
+  const bal = (id) => fmtMoney(state.cash[id] || 0);
   return (
     <div className="field">
       {label && <label>{label}</label>}
-      <div className="input"><select value={value || ''} onChange={(e) => onChange(e.target.value)}>
-        {!known && value && <option value={value}>{labelFor ? labelFor(value) : value}</option>}
-        {groups.map((g) => <optgroup key={g.kind} label={g.label}>{g.items.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}</optgroup>)}
-      </select></div>
+      <div className="input select" onClick={() => setOpen(true)} role="button">
+        <span style={{ flex: 1, color: sel || value ? 'inherit' : 'var(--text-3)' }}>{name}</span>
+        {sel && <span className="xs muted" style={{ marginRight: 6 }}>{bal(sel.id)}</span>}
+        <Ic.ChevronDown className="chev" size={20} />
+      </div>
+      {hint && <span className="xs muted">{hint}</span>}
+      <Sheet open={open} onClose={() => setOpen(false)} title={label || 'Hesap'}>
+        {groups.map((g) => (
+          <div key={g.kind} style={{ marginBottom: 8 }}>
+            <div className="card-title" style={{ margin: '6px 0 2px' }}>{g.label}</div>
+            {g.items.map((a) => (
+              <div key={a.id} className={`opt-row ${a.id === value ? 'active' : ''}`} onClick={() => { onChange(a.id); setOpen(false); }}>
+                <span style={{ flex: 1 }}>{a.name}</span>
+                <span className={`num ${(state.cash[a.id] || 0) < 0 ? 'neg' : 'muted'}`} style={{ fontSize: 13 }}>{bal(a.id)}</span>
+                {a.id === value && <Ic.Check size={18} />}
+              </div>
+            ))}
+          </div>
+        ))}
+        {groups.length === 0 && <Empty>Hesap yok. Kasa sayfasından "Hesap Ekle" ile ekleyin.</Empty>}
+      </Sheet>
     </div>
   );
 }

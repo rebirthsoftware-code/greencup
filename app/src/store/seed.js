@@ -3,7 +3,7 @@
 
 import { DEFAULT_ACCOUNTS, V4_BANKS, bankPair } from './accounts';
 
-export const STATE_VERSION = 4;
+export const STATE_VERSION = 5;
 
 export const seedProducts = [
   { id: 'p-7oz-karton',   name: '7oz Karton',      stock: 25000, unit: 'adet', price: 2.9 },
@@ -181,6 +181,14 @@ export function normalizeState(raw) {
   for (const id of used) if (!haveAcc(id)) s.accounts.push({ id, name: { nakit: 'Nakit', banka: 'Banka', kart: 'Kart' }[id] || id, kind: id === 'nakit' ? 'nakit' : id === 'kart' || id.endsWith('-kk') ? 'kart' : 'banka', createdAt: '2026-09-28T00:00:00.000Z' });
   if (!s.accounts.some((a) => !a.deleted)) s.accounts.push({ ...DEFAULT_ACCOUNTS[0], deleted: false, updatedAt: new Date().toISOString() });
   s.cash = { ...Object.fromEntries(s.accounts.filter((a) => !a.deleted).map((a) => [a.id, 0])), ...(raw.cash || {}) };
+  // v5: eski genel "Banka" ve "Kart" hesapları, bakiyeleri sıfırsa ve aynı türde başka hesap varsa gizlenir
+  if ((raw.version || 0) < 5) {
+    for (const id of ['banka', 'kart']) {
+      const a = s.accounts.find((x) => x.id === id);
+      if (a && !a.deleted && Math.abs(s.cash[id] || 0) < 0.005 && s.accounts.some((x) => x.id !== id && !x.deleted && x.kind === a.kind)) a.deleted = true;
+    }
+  }
+  for (const k of Object.keys(s.cash)) s.cash[k] = Math.round((s.cash[k] || 0) * 100) / 100; // kuruş hassasiyeti (float kalıntısı temizlenir)
   for (const a of s.accounts) if (a.deleted && Math.abs(s.cash[a.id] || 0) < 0.005) delete s.cash[a.id]; // silinmiş ve sıfır: anahtar kalmasın
   s.transactions = s.transactions.map((t) => {
     if (t.type !== 'sale' || Array.isArray(t.items)) return t;

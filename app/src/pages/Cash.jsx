@@ -24,6 +24,7 @@ export default function Cash() {
   const [adj, setAdj] = useState({ target: '', note: '' });
   const [acc, setAcc] = useState({ name: '', kind: 'banka', banks: [] });
   const [rename, setRename] = useState('');
+  const [moveTo, setMoveTo] = useState('');
   const [showAll, setShowAll] = useState(false);
 
   const saveMove = () => {
@@ -41,7 +42,8 @@ export default function Cash() {
     toast('Transfer yapıldı'); setSheet(null); setTr({ ...tr, amount: '', note: '' });
   };
   const selAcc = sheet?.account ? accounts.find((a) => a.id === sheet.account) : null;
-  const openAccount = (a) => { setAdj({ target: toInput(state.cash[a.id] || 0), note: '' }); setRename(a.name); setSheet({ account: a.id }); };
+  const openAccount = (a) => { setAdj({ target: toInput(state.cash[a.id] || 0), note: '' }); setRename(a.name); setMoveTo(accounts.find((x) => x.id !== a.id)?.id || ''); setSheet({ account: a.id }); };
+  const accMoves = selAcc ? state.cashMoves.filter((m) => m.account === selAcc.id).slice(0, 15) : [];
   const saveAdjust = () => {
     if (adj.target.trim() === '') return toast('Gerçek bakiyeyi yazın');
     const target = parseMoney(adj.target);
@@ -110,7 +112,7 @@ export default function Cash() {
               <span className={`dot ${m.adjust ? 'orange' : m.type === 'in' ? 'green' : 'red'}`} />
               <span className={`num ${m.adjust ? 'muted' : m.type === 'in' ? 'pos' : 'neg'}`}>{fmtMoney(m.type === 'in' ? m.amount : -m.amount, true)}</span>
             </span>
-            <span style={{ textAlign: 'right' }}><div>{m.title}{m.adjust && <span className="badge badge--takipte" style={{ marginLeft: 6 }}>Düzeltme</span>}</div><div className="xs muted">{showAll ? `${fmtDate(m.date)} · ` : ''}{accountName(state, m.account)}{m.by ? ` · ${m.by}` : ''}</div></span>
+            <span style={{ textAlign: 'right' }}><div>{m.title}{m.adjust && <span className="badge badge--takipte" style={{ marginLeft: 6 }}>Düzeltme</span>}</div><div className="xs"><b>{m.type === 'in' ? '→ ' : '← '}{accountName(state, m.account)}</b><span className="muted">{showAll ? ` · ${fmtDate(m.date)}` : ''}{m.by ? ` · ${m.by}` : ''}</span></div></span>
           </button>
         ))}
         {list.length === 0 && <div className="muted small">Hareket yok.</div>}
@@ -154,10 +156,22 @@ export default function Cash() {
             <div className="btn-row">
               <Segmented light value={selAcc.kind} onChange={(v) => { updateAccount(selAcc.id, { kind: v }); }} options={KIND_OPTS} />
             </div>
-            <div style={{ marginTop: 14 }}>
-              {Math.abs(state.cash[selAcc.id] || 0) < 0.005 && accounts.length > 1
-                ? <DangerButton className="btn btn-ghost" message={`${selAcc.name} hesabı silinsin mi? Geçmiş hareketlerde adı korunur.`} onConfirm={() => { deleteAccount(selAcc.id); toast('Hesap silindi'); setSheet(null); }}>Hesabı Sil</DangerButton>
-                : <span className="xs muted">Silmek için önce bakiyeyi sıfırlayın (transfer edin veya düzeltin).</span>}
+            <div className="card-title" style={{ marginTop: 18 }}>Bu hesabın hareketleri</div>
+            {accMoves.map((m) => (
+              <div key={m.id} className="row pad">
+                <span style={{ display: 'flex', gap: 8, alignItems: 'center', minWidth: 0 }}><span className={`dot ${m.adjust ? 'orange' : m.type === 'in' ? 'green' : 'red'}`} /><span style={{ minWidth: 0 }}><div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{m.title}</div><div className="xs muted">{fmtDate(m.date)}{m.by ? ` · ${m.by}` : ''}</div></span></span>
+                <span className={`num ${m.adjust ? 'muted' : m.type === 'in' ? 'pos' : 'neg'}`} style={{ flexShrink: 0 }}>{fmtMoney(m.type === 'in' ? m.amount : -m.amount, true)}</span>
+              </div>
+            ))}
+            {accMoves.length === 0 && <div className="muted small">Bu hesapta hareket yok.</div>}
+            {accMoves.length === 15 && <Link to="/daha/raporlar?r=kasa" className="xs" style={{ color: 'var(--green)', fontWeight: 700 }}>Tümü için kasa raporu →</Link>}
+            <div style={{ marginTop: 16 }}>
+              {accounts.length > 1 && Math.abs(state.cash[selAcc.id] || 0) >= 0.005 && (
+                <AccountSelect label="Silmeden önce bakiyeyi şu hesaba aktar" value={moveTo} onChange={setMoveTo} accounts={accounts} exclude={selAcc.id} />
+              )}
+              {accounts.length > 1
+                ? <DangerButton className="btn btn-ghost" message={Math.abs(state.cash[selAcc.id] || 0) >= 0.005 ? `${selAcc.name} hesabındaki ${fmtMoney(state.cash[selAcc.id])} ${accountName(state, moveTo)} hesabına aktarılıp hesap silinecek. Emin misiniz?` : `${selAcc.name} hesabı silinsin mi? Geçmiş hareketlerde adı korunur.`} onConfirm={() => { deleteAccount(selAcc.id, moveTo); toast('Hesap silindi'); setSheet(null); }}>Hesabı Sil</DangerButton>
+                : <span className="xs muted">Tek hesap silinemez.</span>}
             </div>
           </>
         )}
