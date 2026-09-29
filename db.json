@@ -381,6 +381,14 @@
  ],
  "transactions": [
   {
+   "id": "bu8c5vfymumkfq8r",
+   "date": "2026-09-29",
+   "createdAt": "2026-09-29T11:01:02.235Z",
+   "customerId": "ctf5htz2mucodty7",
+   "note": "Stok yeterli. Rutin ziyaret",
+   "type": "visit"
+  },
+  {
    "id": "ax2efy3hmul5hsgg",
    "customerId": "8k6q25l9mucntoaa",
    "type": "sale",
