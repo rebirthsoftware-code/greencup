@@ -44,6 +44,7 @@ const adjustStock = (products, items, sign) => {
   });
 };
 const tomb = (state, id) => ({ ...state, tombstones: [...state.tombstones, { id, at: now() }] });
+const accountLabel = (state, id) => (state.accounts || []).find((a) => a.id === id)?.name || id;
 /** Satışın stok etkisi: müşteri malı teslimleri (fromReserve) benim stoğumu etkilemez. */
 const saleStock = (products, t, sign) => (t.fromReserve ? products : adjustStock(products, t.items, sign));
 /** Müşteri malı (depo/üretim) teslim hareketi: stok düşmez; tutar girildiyse cariye vadeli borç yazılır. */
@@ -88,7 +89,14 @@ function undoTx(state, t) {
   return next;
 }
 
+/** Her eylemden sonra kasa bakiyeleri kuruşa yuvarlanır (float kalıntısı birikmesin: -7e-12 gibi). */
+const r2 = (n) => Math.round((n || 0) * 100) / 100;
 function reducer(state, action) {
+  const next = reduce(state, action);
+  if (!next || next === state || next.cash === state.cash) return next;
+  return { ...next, cash: Object.fromEntries(Object.entries(next.cash).map(([k, v]) => [k, r2(v)])) };
+}
+function reduce(state, action) {
   switch (action.type) {
     /* ---- müşteri ---- */
     case 'ADD_CUSTOMER':
@@ -308,10 +316,20 @@ function reducer(state, action) {
     case 'UPDATE_ACCOUNT':
       return { ...state, accounts: state.accounts.map((a) => (a.id === action.id ? stamp({ ...a, ...action.patch }) : a)) };
     case 'DELETE_ACCOUNT': {
-      // Yalnızca bakiyesi sıfır olan hesap silinir (gizlenir); geçmiş hareketlerde adı korunur
-      if (Math.abs(state.cash[action.id] || 0) >= 0.005 || state.accounts.filter((a) => !a.deleted).length <= 1) return state;
-      const cash = { ...state.cash }; delete cash[action.id];
-      return { ...state, cash, accounts: state.accounts.map((a) => (a.id === action.id ? stamp({ ...a, deleted: true }) : a)) };
+      // Hesap silinir (gizlenir); geçmiş hareketlerde adı korunur. Bakiyesi varsa önce `moveTo` hesabına aktarılır.
+      if (state.accounts.filter((a) => !a.deleted).length <= 1) return state;
+      let next = state;
+      const bal = r2(state.cash[action.id] || 0);
+      if (Math.abs(bal) >= 0.005) {
+        const to = state.accounts.find((a) => a.id === action.moveTo && !a.deleted && a.id !== action.id);
+        if (!to) return state;
+        const name = accountLabel(state, action.id);
+        next = bal > 0
+          ? reduce(state, { type: 'TRANSFER_CASH', from: action.id, to: to.id, amount: bal, note: `${name} kapatıldı: bakiye ${to.name} hesabına aktarıldı` })
+          : reduce(state, { type: 'TRANSFER_CASH', from: to.id, to: action.id, amount: -bal, note: `${name} kapatıldı: borç ${to.name} hesabından kapatıldı` });
+      }
+      const cash = { ...next.cash }; delete cash[action.id];
+      return { ...next, cash, accounts: next.accounts.map((a) => (a.id === action.id ? stamp({ ...a, deleted: true }) : a)) };
     }
 
     /* ---- ürünler ---- */
@@ -388,7 +406,7 @@ export function StoreProvider({ children }) {
     adjustCash: (account, target, note) => dispatch({ type: 'ADJUST_CASH', account, target, note }),
     addAccount: (account) => dispatch({ type: 'ADD_ACCOUNT', account }),
     updateAccount: (id, patch) => dispatch({ type: 'UPDATE_ACCOUNT', id, patch }),
-    deleteAccount: (id) => dispatch({ type: 'DELETE_ACCOUNT', id }),
+    deleteAccount: (id, moveTo) => dispatch({ type: 'DELETE_ACCOUNT', id, moveTo }),
     updateProduct: (id, patch) => dispatch({ type: 'UPDATE_PRODUCT', id, patch }),
     addProduct: (product) => dispatch({ type: 'ADD_PRODUCT', product }),
     deleteProduct: (id) => dispatch({ type: 'DELETE_PRODUCT', id }),
