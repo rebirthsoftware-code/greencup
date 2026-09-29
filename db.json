@@ -1,5 +1,5 @@
 {
- "version": 4,
+ "version": 5,
  "products": [
   {
    "id": "3683vjhpmu8fhvbq",
@@ -1240,13 +1240,15 @@
    "id": "banka",
    "name": "Banka",
    "kind": "banka",
-   "createdAt": "2026-01-01T00:00:00.000Z"
+   "createdAt": "2026-01-01T00:00:00.000Z",
+   "deleted": true
   },
   {
    "id": "kart",
    "name": "Kart",
    "kind": "kart",
-   "createdAt": "2026-01-01T00:00:00.000Z"
+   "createdAt": "2026-01-01T00:00:00.000Z",
+   "deleted": true
   },
   {
    "id": "acc-garanti-bbva",
@@ -1263,8 +1265,9 @@
   {
    "id": "acc-kuveyt-turk",
    "name": "Kuveyt Türk",
-   "kind": "banka",
-   "createdAt": "2026-09-28T00:00:00.000Z"
+   "kind": "nakit",
+   "createdAt": "2026-09-28T00:00:00.000Z",
+   "updatedAt": "2026-09-29T06:42:46.001Z"
   },
   {
    "id": "acc-kuveyt-turk-kk",
@@ -1335,8 +1338,6 @@
  ],
  "cash": {
   "nakit": 0,
-  "banka": -7.275957614183426e-12,
-  "kart": -3.637978807091713e-12,
   "acc-garanti-bbva": 40.45,
   "acc-garanti-bbva-kk": 899.83,
   "acc-kuveyt-turk": 18344.3,
