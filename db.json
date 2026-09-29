@@ -1340,7 +1340,7 @@
   "nakit": 0,
   "acc-garanti-bbva": 40.45,
   "acc-garanti-bbva-kk": 899.83,
-  "acc-kuveyt-turk": 18169.3,
+  "acc-kuveyt-turk": 17699.3,
   "acc-kuveyt-turk-kk": 8986.58,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1354,6 +1354,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "6zskrasbmumipo65",
+   "date": "2026-09-29",
+   "createdAt": "2026-09-29T10:12:46.877Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 470,
+   "title": "Efes"
+  },
   {
    "id": "zygijqx7mumb8p71",
    "date": "2026-09-29",
