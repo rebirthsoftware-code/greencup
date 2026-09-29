@@ -650,7 +650,7 @@
    "amount": 21150,
    "invoiced": true,
    "payment": "vadeli",
-   "dueDate": "2026-09-30",
+   "dueDate": "2026-10-05",
    "method": "nakit",
    "invoiceNo": "2026/0001",
    "attachments": [
@@ -664,7 +664,7 @@
      "addedAt": "2026-09-23T14:43:14.926Z"
     }
    ],
-   "updatedAt": "2026-09-23T14:43:14.933Z"
+   "updatedAt": "2026-09-29T11:02:58.190Z"
   },
   {
    "id": "ufy5835dmue6n0yk",
