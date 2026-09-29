@@ -1348,7 +1348,7 @@
   "nakit": 0,
   "acc-garanti-bbva": 40.45,
   "acc-garanti-bbva-kk": 899.83,
-  "acc-kuveyt-turk": 17664.3,
+  "acc-kuveyt-turk": 6064.3,
   "acc-kuveyt-turk-kk": 8986.58,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1362,6 +1362,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "24s6eehumumkxvor",
+   "date": "2026-09-29",
+   "createdAt": "2026-09-29T11:15:09.099Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 11600,
+   "title": "Ambar"
+  },
   {
    "id": "q18h87o1mumkdrr1",
    "date": "2026-09-29",
