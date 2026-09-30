@@ -84,6 +84,19 @@
  ],
  "customers": [
   {
+   "id": "b2snknj7munucw1m",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-30T08:26:32.145Z",
+   "name": "Fırın Tatte",
+   "type": "Cafe & Restaurant",
+   "phone": "",
+   "city": "Zonguldak ",
+   "district": "Merkez ",
+   "notes": "",
+   "address": "Gazipaşa",
+   "updatedAt": "2026-09-30T08:26:32.146Z"
+  },
+  {
    "id": "gt35fmbpmunoiww9",
    "color": "#0E6B3F",
    "createdAt": "2026-09-30T05:43:15.478Z",
