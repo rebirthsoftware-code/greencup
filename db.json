@@ -420,6 +420,14 @@
  ],
  "transactions": [
   {
+   "id": "gs9jopfdmuo7ycp6",
+   "date": "2026-09-30",
+   "createdAt": "2026-09-30T14:47:08.490Z",
+   "customerId": "8p26w1otmunybo46",
+   "note": "Aylin hanımla görüştüm. Rutin ziyaretlerimiz devam edecek. Potansiyel bir müşteri",
+   "type": "visit"
+  },
+  {
    "id": "p4haqcnrmuo5drea",
    "date": "2026-09-30",
    "createdAt": "2026-09-30T13:35:08.531Z",
