@@ -1400,7 +1400,7 @@
   "acc-garanti-bbva": 40.45,
   "acc-garanti-bbva-kk": 899.83,
   "acc-kuveyt-turk": 3319.3,
-  "acc-kuveyt-turk-kk": 8986.58,
+  "acc-kuveyt-turk-kk": 6781.58,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
   "acc-sekerbank": 0,
@@ -1413,6 +1413,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "4flr6fvpmunwd6fz",
+   "date": "2026-09-30",
+   "createdAt": "2026-09-30T09:22:44.831Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk-kk",
+   "amount": 2205,
+   "title": "LCW"
+  },
   {
    "id": "3wmbvd8hmunwcqvi",
    "date": "2026-09-30",
