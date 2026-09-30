@@ -84,6 +84,19 @@
  ],
  "customers": [
   {
+   "id": "gt35fmbpmunoiww9",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-30T05:43:15.478Z",
+   "name": "Brew",
+   "type": "Cafe & Restaurant",
+   "phone": "05393455951",
+   "city": "Zonguldak",
+   "district": "Kozlu",
+   "notes": "",
+   "address": "Kavaklık ",
+   "updatedAt": "2026-09-30T05:43:15.478Z"
+  },
+  {
    "id": "t479y4zomuh2bwpl",
    "color": "#0E6B3F",
    "createdAt": "2026-09-25T14:35:20.046Z",
