@@ -420,6 +420,14 @@
  ],
  "transactions": [
   {
+   "id": "sxn1j26nmunyc83l",
+   "date": "2026-09-30",
+   "createdAt": "2026-09-30T10:17:59.553Z",
+   "customerId": "8p26w1otmunybo46",
+   "note": "Yetkili nokta da yok. Gün içinde tekrar uğranacak",
+   "type": "visit"
+  },
+  {
    "id": "ihjec9tbmuntzd5z",
    "date": "2026-09-30",
    "createdAt": "2026-09-30T08:16:01.128Z",
