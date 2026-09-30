@@ -84,6 +84,19 @@
  ],
  "customers": [
   {
+   "id": "8p26w1otmunybo46",
+   "color": "#0E6B3F",
+   "createdAt": "2026-09-30T10:17:33.662Z",
+   "name": "Americassoo",
+   "type": "Cafe & Restaurant",
+   "phone": "",
+   "city": "Zonguldak ",
+   "district": "Merkez ",
+   "notes": "",
+   "address": "Alaborina",
+   "updatedAt": "2026-09-30T10:17:33.662Z"
+  },
+  {
    "id": "b2snknj7munucw1m",
    "color": "#0E6B3F",
    "createdAt": "2026-09-30T08:26:32.145Z",
