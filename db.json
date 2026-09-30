@@ -420,6 +420,14 @@
  ],
  "transactions": [
   {
+   "id": "jrjfzd3omunzd2y5",
+   "date": "2026-09-30",
+   "createdAt": "2026-09-30T10:46:39.149Z",
+   "customerId": "ovd1cvujmub2f7wc",
+   "note": "Stok yeterli rutin ziyaret Ekim’in 5’inde ödeme yapacak",
+   "type": "visit"
+  },
+  {
    "id": "sxn1j26nmunyc83l",
    "date": "2026-09-30",
    "createdAt": "2026-09-30T10:17:59.553Z",
