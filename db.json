@@ -1064,6 +1064,15 @@
  ],
  "production": [
   {
+   "id": "sw9hmoohmunoj9lb",
+   "createdAt": "2026-09-30T05:43:31.919Z",
+   "unit": "kg",
+   "customerId": "gt35fmbpmunoiww9",
+   "name": "Yağlı kağıt",
+   "qty": 100,
+   "updatedAt": "2026-09-30T05:43:31.919Z"
+  },
+  {
    "id": "3b2h8w8omul61a3c",
    "createdAt": "2026-09-28T11:30:07.320Z",
    "unit": "kg",
