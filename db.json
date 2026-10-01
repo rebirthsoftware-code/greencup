@@ -1460,7 +1460,7 @@
   "nakit": 0,
   "acc-garanti-bbva": 40.45,
   "acc-garanti-bbva-kk": 899.83,
-  "acc-kuveyt-turk": 9164.3,
+  "acc-kuveyt-turk": 8164.3,
   "acc-kuveyt-turk-kk": 1071.58,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1474,6 +1474,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "9is1sne8mups6epy",
+   "date": "2026-10-01",
+   "createdAt": "2026-10-01T17:01:02.854Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 1000,
+   "title": "Tarhana"
+  },
   {
    "id": "gtlyoly0mupjgpi8",
    "date": "2026-10-01",
