@@ -1437,7 +1437,7 @@
   "nakit": 0,
   "acc-garanti-bbva": 40.45,
   "acc-garanti-bbva-kk": 899.83,
-  "acc-kuveyt-turk": 17034.3,
+  "acc-kuveyt-turk": 14234.3,
   "acc-kuveyt-turk-kk": 1071.58,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1451,6 +1451,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "jknfdp7hmupan9qb",
+   "date": "2026-10-01",
+   "createdAt": "2026-10-01T08:50:16.452Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 2800,
+   "title": "Pantolon"
+  },
   {
    "id": "sms9x0dimuohvu78",
    "date": "2026-09-30",
