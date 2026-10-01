@@ -84,6 +84,19 @@
  ],
  "customers": [
   {
+   "id": "eley9558mupk27u4",
+   "color": "#0E6B3F",
+   "createdAt": "2026-10-01T13:13:50.392Z",
+   "name": "Goldbeans Zonguldak",
+   "type": "Cafe & Restaurant",
+   "phone": "05380211478",
+   "city": "Zonguldak",
+   "district": "Merkez",
+   "notes": "",
+   "address": "Kordon boyu",
+   "updatedAt": "2026-10-01T13:13:50.393Z"
+  },
+  {
    "id": "8p26w1otmunybo46",
    "color": "#0E6B3F",
    "createdAt": "2026-09-30T10:17:33.662Z",
@@ -419,6 +432,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "eqjvwpqtmupk27uh",
+   "date": "2026-10-01",
+   "createdAt": "2026-10-01T13:13:50.393Z",
+   "customerId": "eley9558mupk27u4",
+   "type": "debt",
+   "amount": 6840,
+   "dueDate": "2026-10-01",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "gs9jopfdmuo7ycp6",
    "date": "2026-09-30",
