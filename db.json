@@ -1437,7 +1437,7 @@
   "nakit": 0,
   "acc-garanti-bbva": 40.45,
   "acc-garanti-bbva-kk": 899.83,
-  "acc-kuveyt-turk": 14164.3,
+  "acc-kuveyt-turk": 9164.3,
   "acc-kuveyt-turk-kk": 1071.58,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1451,6 +1451,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "gtlyoly0mupjgpi8",
+   "date": "2026-10-01",
+   "createdAt": "2026-10-01T12:57:06.848Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 5000,
+   "title": "Fatura"
+  },
   {
    "id": "nd5zk9esmupb0y8q",
    "date": "2026-10-01",
