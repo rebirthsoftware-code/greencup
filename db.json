@@ -1183,6 +1183,15 @@
  ],
  "production": [
   {
+   "id": "ery7x755muss5fck",
+   "createdAt": "2026-10-03T19:23:35.540Z",
+   "unit": "adet",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "name": "14oz Double",
+   "qty": 50000,
+   "updatedAt": "2026-10-03T19:23:35.540Z"
+  },
+  {
    "id": "sw9hmoohmunoj9lb",
    "createdAt": "2026-09-30T05:43:31.919Z",
    "unit": "kg",
