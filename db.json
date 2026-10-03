@@ -1488,7 +1488,7 @@
   "nakit": 0,
   "acc-garanti-bbva": 40.45,
   "acc-garanti-bbva-kk": 899.83,
-  "acc-kuveyt-turk": 32939.3,
+  "acc-kuveyt-turk": 31739.3,
   "acc-kuveyt-turk-kk": 1071.58,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1502,6 +1502,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "986xfvukmuskwl4x",
+   "date": "2026-10-03",
+   "createdAt": "2026-10-03T16:00:45.825Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 1200,
+   "title": "Berber"
+  },
   {
    "id": "vkb32y4bmusj7uex",
    "date": "2026-10-03",
