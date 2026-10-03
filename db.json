@@ -1488,7 +1488,7 @@
   "nakit": 0,
   "acc-garanti-bbva": 40.45,
   "acc-garanti-bbva-kk": 899.83,
-  "acc-kuveyt-turk": 20939.3,
+  "acc-kuveyt-turk": 5939.3,
   "acc-kuveyt-turk-kk": 1071.58,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1502,6 +1502,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "lg9ke5ytmusrw57b",
+   "date": "2026-10-03",
+   "createdAt": "2026-10-03T19:16:22.487Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 15000,
+   "title": "Kira"
+  },
   {
    "id": "uwaze2bimusrvt1w",
    "date": "2026-10-03",
