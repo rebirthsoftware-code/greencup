@@ -433,6 +433,28 @@
  ],
  "transactions": [
   {
+   "id": "gfjzhd3amuss8fs2",
+   "customerId": "nb35yakrmu5t27t0",
+   "type": "sale",
+   "date": "2026-10-03",
+   "createdAt": "2026-10-03T19:25:56.066Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Yağlı kağıt",
+     "unit": "kg",
+     "qty": 100,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-03",
+   "note": "Üretimden teslim"
+  },
+  {
    "id": "xtm1qlhwmusj7uew",
    "date": "2026-10-03",
    "createdAt": "2026-10-03T15:13:31.833Z",
@@ -1199,15 +1221,6 @@
    "name": "Yağlı kağıt",
    "qty": 100,
    "updatedAt": "2026-09-30T05:43:31.919Z"
-  },
-  {
-   "id": "3b2h8w8omul61a3c",
-   "createdAt": "2026-09-28T11:30:07.320Z",
-   "unit": "kg",
-   "customerId": "nb35yakrmu5t27t0",
-   "name": "Yağlı kağıt",
-   "qty": 100,
-   "updatedAt": "2026-09-28T11:30:07.320Z"
   },
   {
    "id": "4el2qlgumul5zzpd",
@@ -2632,6 +2645,10 @@
   {
    "id": "vup81tw0muh2sh1p",
    "at": "2026-09-30T14:47:57.654Z"
+  },
+  {
+   "id": "3b2h8w8omul61a3c",
+   "at": "2026-10-03T19:25:56.066Z"
   }
  ],
  "settings": {
