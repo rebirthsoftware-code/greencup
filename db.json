@@ -433,6 +433,28 @@
  ],
  "transactions": [
   {
+   "id": "87dz0tvgmuss8kni",
+   "customerId": "nb35yakrmu5t27t0",
+   "type": "sale",
+   "date": "2026-10-03",
+   "createdAt": "2026-10-03T19:26:02.382Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Kese kağıdı paket",
+     "unit": "kg",
+     "qty": 250,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-03",
+   "note": "Üretimden teslim"
+  },
+  {
    "id": "gfjzhd3amuss8fs2",
    "customerId": "nb35yakrmu5t27t0",
    "type": "sale",
@@ -1239,15 +1261,6 @@
    "name": "Peçete",
    "qty": 24000,
    "updatedAt": "2026-09-28T11:28:49.854Z"
-  },
-  {
-   "id": "0vxpcoydmul5z8ka",
-   "createdAt": "2026-09-28T11:28:32.026Z",
-   "unit": "kg",
-   "customerId": "nb35yakrmu5t27t0",
-   "name": "Kese kağıdı paket",
-   "qty": 250,
-   "updatedAt": "2026-09-28T11:28:32.026Z"
   },
   {
    "id": "icsa4c2pmuculzi8",
@@ -2649,6 +2662,10 @@
   {
    "id": "3b2h8w8omul61a3c",
    "at": "2026-10-03T19:25:56.066Z"
+  },
+  {
+   "id": "0vxpcoydmul5z8ka",
+   "at": "2026-10-03T19:26:02.382Z"
   }
  ],
  "settings": {
