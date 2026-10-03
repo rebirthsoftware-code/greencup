@@ -894,10 +894,10 @@
    "createdAt": "2026-09-21T09:59:27.271Z",
    "customerId": "k0g0wjfsmub2ppuo",
    "type": "debt",
-   "amount": 80000,
+   "amount": 284000,
    "dueDate": "2026-10-22",
    "note": "Açılış bakiyesi (devir)",
-   "updatedAt": "2026-09-22T12:35:57.633Z"
+   "updatedAt": "2026-10-03T19:24:03.892Z"
   },
   {
    "id": "sepp9w1ymub2f7wj",
