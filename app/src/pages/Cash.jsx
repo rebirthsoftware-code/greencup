@@ -82,7 +82,7 @@ export default function Cash() {
 
       <div className="row" style={{ marginTop: 18, marginBottom: 10 }}>
         <h2 className="section-title" style={{ margin: 0 }}>Hesaplar</h2>
-        <button className="btn btn-sm btn-ghost" onClick={() => setSheet('account-new')}><Ic.Plus size={14} /> Hesap Ekle</button>
+        <span style={{ display: 'flex', gap: 6 }}><button className="btn btn-sm btn-primary" style={{ boxShadow: 'none' }} onClick={() => setSheet('transfer')}><Ic.ArrowDown size={14} style={{ transform: 'rotate(-90deg)' }} /> Transfer</button><button className="btn btn-sm btn-ghost" onClick={() => setSheet('account-new')}><Ic.Plus size={14} /> Hesap Ekle</button></span>
       </div>
       {groups.map((g) => {
         const Icon = KIND_ICON[g.kind];
@@ -99,7 +99,7 @@ export default function Cash() {
           </div>
         );
       })}
-      <div className="xs muted" style={{ padding: '0 4px 6px' }}>Hesaba dokunarak bakiyeyi düzeltebilir, adını değiştirebilirsiniz. Para çıkışı yazmadan düzeltmek için "Bakiyeyi Düzelt".</div>
+      <div className="xs muted" style={{ padding: '0 4px 6px' }}>ATM'den para çekme, bankaya yatırma, kart borcu ödeme gibi hesaplar arası geçişler için <b>Transfer</b>. Hesaba dokunarak bakiyeyi düzeltebilir, adını değiştirebilirsiniz.</div>
 
       <div className="row" style={{ marginTop: 14, marginBottom: 10 }}>
         <h2 className="section-title" style={{ margin: 0 }}>{showAll ? 'Tüm Hareketler' : 'Bugün'}</h2>
@@ -122,7 +122,7 @@ export default function Cash() {
       <Link to="/daha/raporlar?r=kasa" className="btn btn-primary" style={{ marginTop: 16 }}>Detaylı Rapor</Link>
 
       <Sheet open={sheet === 'move'} onClose={() => setSheet(null)} title="Kasa Hareketi">
-        <div className="field"><Segmented value={f.type} onChange={(v) => setF({ ...f, type: v })} options={[{ value: 'in', label: 'Giriş (+)' }, { value: 'out', label: 'Çıkış (−)' }]} /></div>
+        <div className="field"><Segmented value={f.type} onChange={(v) => (v === 'transfer' ? setSheet('transfer') : setF({ ...f, type: v }))} options={[{ value: 'in', label: 'Giriş (+)' }, { value: 'out', label: 'Çıkış (−)' }, { value: 'transfer', label: 'Transfer' }]} /></div>
         <AccountSelect label="Hesap" value={f.account} onChange={(v) => setF({ ...f, account: v })} accounts={accounts} />
         <div className="field"><label>Açıklama</label><div className="input"><input value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} placeholder="Örn: Yakıt" /></div></div>
         <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><MoneyInput value={f.amount} onChange={(v) => setF({ ...f, amount: v })} /></div></div>
@@ -131,6 +131,7 @@ export default function Cash() {
       </Sheet>
 
       <Sheet open={sheet === 'transfer'} onClose={() => setSheet(null)} title="Hesaplar Arası Transfer">
+        <p className="small muted" style={{ marginBottom: 10 }}>Para bir hesaptan çıkar, diğerine girer; toplam kasa değişmez. Örn. ATM'den çekim: Banka → Nakit. Bankaya yatırma: Nakit → Banka. Kart borcu ödeme: Banka → Kredi Kartı.</p>
         <AccountSelect label="Nereden" value={tr.from} onChange={(v) => setTr({ ...tr, from: v })} accounts={accounts} />
         <AccountSelect label="Nereye" value={tr.to} onChange={(v) => setTr({ ...tr, to: v })} accounts={accounts} />
         <div className="field"><label>Tutar</label><div className="input"><span className="suffix">₺</span><MoneyInput value={tr.amount} onChange={(v) => setTr({ ...tr, amount: v })} /></div>
@@ -151,6 +152,7 @@ export default function Cash() {
             <div className="field"><label>Not <span className="opt">(isteğe bağlı)</span></label><div className="input"><input value={adj.note} onChange={(e) => setAdj({ ...adj, note: e.target.value })} placeholder="Örn: Sayım farkı" /></div></div>
             {Math.abs(adjDelta) >= 0.005 && <div className={`card small ${adjDelta < 0 ? 'neg' : 'pos'}`} style={{ marginBottom: 12 }}>Fark: {fmtMoney(adjDelta, true)} · {adjDelta < 0 ? 'bakiye düşürülecek' : 'bakiye artırılacak'}</div>}
             <button className="btn btn-primary" onClick={saveAdjust} disabled={Math.abs(adjDelta) < 0.005}>Bakiyeyi Düzelt</button>
+            <button className="btn btn-outline" style={{ marginTop: 8 }} onClick={() => { setTr({ ...tr, from: selAcc.id, to: accounts.find((x) => x.id !== selAcc.id)?.id || selAcc.id }); setSheet('transfer'); }}><Ic.ArrowDown size={16} style={{ transform: 'rotate(-90deg)' }} /> Bu hesaptan başka hesaba aktar</button>
             <div className="field" style={{ marginTop: 18 }}><label>Hesap adı</label>
               <div className="input"><input value={rename} onChange={(e) => setRename(e.target.value)} /><button className="btn btn-sm btn-ghost" style={{ boxShadow: 'none' }} disabled={!rename.trim() || rename.trim() === selAcc.name} onClick={() => { updateAccount(selAcc.id, { name: rename.trim() }); toast('Ad güncellendi'); setSheet(null); }}>Kaydet</button></div></div>
             <div className="btn-row">

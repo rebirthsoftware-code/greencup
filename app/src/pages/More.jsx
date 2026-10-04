@@ -24,7 +24,8 @@ export default function More() {
         <Row to="/bildirimler" icon={Ic.Bell} label="Bildirimler" sub="Gecikmeler, vadeler, ziyaretler" />
         <Row to="/daha/odemeler" icon={Ic.Receipt} label="Benim Ödemelerim" sub="Kira, tedarikçi, maaş..." />
         <Row to="/daha/ziyaretler" icon={Ic.Target} label="Ziyaretler" sub="Son ziyaretler ve plan" />
-        <Row to="/daha/raporlar" icon={Ic.BarChart} label="Raporlar" sub="Cari, stok, kasa, satış" />
+        <Row to="/daha/ozet" icon={Ic.BarChart} label="Gelir-Gider Özeti" sub="Günlük, haftalık, aylık, yıllık; bölüm bölüm" />
+        <Row to="/daha/raporlar" icon={Ic.FileText} label="Ayrıntılı Raporlar" sub="Cari, stok, kasa, satış, tahsilat listeleri" />
         <Row to="/daha/ayarlar" icon={Ic.Settings} label="Ayarlar" sub="Firma, kullanıcı, yedekleme" />
       </div>
     </div>
