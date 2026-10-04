@@ -1522,7 +1522,7 @@
  ],
  "cash": {
   "nakit": 255,
-  "acc-garanti-bbva": 32056.06,
+  "acc-garanti-bbva": 31546.06,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 61.33,
   "acc-kuveyt-turk-kk": 1049.85,
@@ -1538,6 +1538,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "jhymxca6muu71e6w",
+   "date": "2026-10-04",
+   "createdAt": "2026-10-04T19:08:07.833Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 510,
+   "title": "Brew"
+  },
   {
    "id": "4mcrpjq5muu1ey5j",
    "date": "2026-10-04",
