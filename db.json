@@ -2454,6 +2454,15 @@
  ],
  "expenses": [
   {
+   "id": "j9pka83fmutrq101",
+   "paid": false,
+   "createdAt": "2026-10-04T11:59:23.281Z",
+   "title": "KuveytTürk Kredi Kartı",
+   "amount": 67286.65,
+   "due": "2026-10-15",
+   "updatedAt": "2026-10-04T11:59:23.282Z"
+  },
+  {
    "id": "dzw87zwymutrp4gd",
    "paid": false,
    "createdAt": "2026-10-04T11:58:41.101Z",
