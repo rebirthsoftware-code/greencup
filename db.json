@@ -2454,6 +2454,15 @@
  ],
  "expenses": [
   {
+   "id": "hx035jhnmutrsp7y",
+   "paid": false,
+   "createdAt": "2026-10-04T12:01:27.982Z",
+   "title": "Ziraat Kredi Kartı",
+   "amount": 8000,
+   "due": "2026-10-11",
+   "updatedAt": "2026-10-04T12:01:27.982Z"
+  },
+  {
    "id": "j9pka83fmutrq101",
    "paid": false,
    "createdAt": "2026-10-04T11:59:23.281Z",
