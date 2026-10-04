@@ -2454,6 +2454,15 @@
  ],
  "expenses": [
   {
+   "id": "dzw87zwymutrp4gd",
+   "paid": false,
+   "createdAt": "2026-10-04T11:58:41.101Z",
+   "title": "Garanti Kredi Kartı",
+   "amount": 36428.6,
+   "due": "2026-10-10",
+   "updatedAt": "2026-10-04T11:58:41.101Z"
+  },
+  {
    "id": "uggcuiyymui9fwhr",
    "paid": false,
    "createdAt": "2026-09-26T10:42:09.855Z",
