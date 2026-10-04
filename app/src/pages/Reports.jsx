@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { allSummaries, monthlySeries, itemsLabel, goodsByCustomer, accountName, STATUS_LABEL } from '../store/selectors';
 import { fmtMoney, fmtNum, fmtDate, today, downloadCsv } from '../utils/format';
@@ -80,6 +80,7 @@ export default function Reports() {
   return (
     <div className="page">
       <PageHeader title="Raporlar" to="/daha" />
+      <Link to="/daha/ozet" className="card row" style={{ marginBottom: 12, background: 'var(--green-light)', borderColor: 'var(--green-soft)' }}><span style={{ display: 'flex', gap: 10, alignItems: 'center' }}><span className="tl-icon"><Ic.BarChart size={18} /></span><span><div className="bold">Gelir-Gider Özeti</div><div className="xs muted">Günlük · haftalık · aylık · yıllık, bölüm bölüm</div></span></span><Ic.ChevronRight size={18} className="muted" /></Link>
       <div className="card">
         <div className="card-title">Son 6 Ay · Satış ve Tahsilat</div>
         <BarChart data={series} />

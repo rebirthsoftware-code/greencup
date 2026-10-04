@@ -150,6 +150,43 @@ export function monthlySeries(state, months = 6) {
   return out;
 }
 
+/** Bir grup toplamı: başlığa göre topla ve büyükten küçüğe sırala. */
+const groupBy = (items, keyOf, amountOf, labelOf = keyOf) => {
+  const m = new Map();
+  for (const x of items) { const k = keyOf(x); const g = m.get(k) || { key: k, label: labelOf(x), count: 0, amount: 0 }; g.count += 1; g.amount += amountOf(x); m.set(k, g); }
+  return [...m.values()].sort((a, b) => b.amount - a.amount);
+};
+
+/**
+ * Dönem özeti (gelir-gider raporu): satışlar, tahsilatlar, giderler ve diğer kasa girişleri
+ * bölüm bölüm; giderler başlığa göre gruplanır (ör. "Kira × 2"). Çift sayım yok:
+ * gider ödemeleri kasa hareketinde txId ile bağlı olduğu için kasa çıkışlarından hariç tutulur.
+ */
+export function periodSummary(state, from, to) {
+  const inR = (d) => d && d >= from && d <= to;
+  const name = (id) => state.customers.find((c) => c.id === id)?.name || '-';
+  const accName = (id) => (state.accounts || []).find((a) => a.id === id)?.name || id || '-';
+  const sales = state.transactions.filter((t) => t.type === 'sale' && inR(t.date) && t.amount > 0);
+  const debts = state.transactions.filter((t) => t.type === 'debt' && inR(t.date));
+  const payments = state.transactions.filter((t) => t.type === 'payment' && inR(t.date));
+  const paidExpenses = state.expenses.filter((e) => e.paid && inR(e.paidAt || e.due));
+  const moves = state.cashMoves.filter((m) => inR(m.date) && !m.adjust && !m.transferId && !m.txId);
+  const outMoves = moves.filter((m) => m.type === 'out');
+  const inMoves = moves.filter((m) => m.type === 'in');
+  const expenseItems = [...paidExpenses.map((e) => ({ title: e.title, amount: e.amount, account: e.account })), ...outMoves.map((m) => ({ title: m.title, amount: m.amount, account: m.account }))];
+  const sum = (arr, f) => arr.reduce((a, x) => a + f(x), 0);
+  const salesTotal = sum(sales, (t) => t.amount), paymentsTotal = sum(payments, (t) => t.amount), expensesTotal = sum(expenseItems, (x) => x.amount), otherInTotal = sum(inMoves, (m) => m.amount);
+  return {
+    from, to,
+    sales: { total: salesTotal, count: sales.length, byCustomer: groupBy(sales, (t) => t.customerId, (t) => t.amount, (t) => name(t.customerId)), invoiced: sum(sales.filter((t) => t.invoiced), (t) => t.amount), cashSales: sum(sales.filter((t) => t.payment === 'pesin'), (t) => t.amount) },
+    debts: { total: sum(debts, (t) => t.amount), count: debts.length },
+    payments: { total: paymentsTotal, count: payments.length, byAccount: groupBy(payments, (t) => t.method || 'nakit', (t) => t.amount, (t) => accName(t.method || 'nakit')), byCustomer: groupBy(payments, (t) => t.customerId, (t) => t.amount, (t) => name(t.customerId)) },
+    expenses: { total: expensesTotal, count: expenseItems.length, byTitle: groupBy(expenseItems, (x) => x.title.trim().toLocaleLowerCase('tr-TR'), (x) => x.amount, (x) => x.title.trim()), byAccount: groupBy(expenseItems.filter((x) => x.account), (x) => x.account, (x) => x.amount, (x) => accName(x.account)) },
+    otherIn: { total: otherInTotal, count: inMoves.length, byTitle: groupBy(inMoves, (m) => m.title.trim().toLocaleLowerCase('tr-TR'), (m) => m.amount, (m) => m.title.trim()) },
+    cashIn: paymentsTotal + otherInTotal, cashOut: expensesTotal, net: paymentsTotal + otherInTotal - expensesTotal,
+  };
+}
+
 export const STATUS_LABEL = { gecikmis: 'Gecikmiş', takipte: 'Takipte', aktif: 'Aktif' };
 export const TX_TITLE = { sale: 'Mal Verildi', debt: 'Borç Kaydı', payment: 'Tahsilat', visit: 'Ziyaret', note: 'Not' };
 /** Hareket başlığı (müşteri malı teslimi ayrı adlandırılır). */
