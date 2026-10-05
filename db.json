@@ -1601,7 +1601,7 @@
   "nakit": 65,
   "acc-garanti-bbva": 28546.06,
   "acc-garanti-bbva-kk": 366.46,
-  "acc-kuveyt-turk": 55211.33,
+  "acc-kuveyt-turk": 35211.33,
   "acc-kuveyt-turk-kk": 1049.85,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1615,6 +1615,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "v6h03ykemuvc4hy8",
+   "date": "2026-10-05",
+   "createdAt": "2026-10-05T14:18:16.928Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 20000,
+   "title": "Deneyim Ambalaj Murat Abi"
+  },
   {
    "id": "d1zcxh6hmuvc3wmo",
    "date": "2026-10-05",
