@@ -1559,7 +1559,7 @@
  ],
  "cash": {
   "nakit": 65,
-  "acc-garanti-bbva": 31546.06,
+  "acc-garanti-bbva": 28546.06,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 61.33,
   "acc-kuveyt-turk-kk": 1049.85,
@@ -1575,6 +1575,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "yyql6kjsmuv4yxtj",
+   "date": "2026-10-05",
+   "createdAt": "2026-10-05T10:58:00.247Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 3000,
+   "title": "Veysel altın"
+  },
   {
    "id": "q2w258djmuux4ekh",
    "date": "2026-10-05",
