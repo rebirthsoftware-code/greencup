@@ -998,6 +998,15 @@
  ],
  "reserved": [
   {
+   "id": "7unmb24umuuy94ud",
+   "createdAt": "2026-10-05T07:49:58.597Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "name": "Yağlı kâğıt",
+   "unit": "kg",
+   "qty": 100,
+   "updatedAt": "2026-10-05T07:49:58.597Z"
+  },
+  {
    "id": "cyx7kp5gmufjvbxu",
    "createdAt": "2026-09-24T13:10:47.346Z",
    "customerId": "oavj5j2bmubhngtp",
