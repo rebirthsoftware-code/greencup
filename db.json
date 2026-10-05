@@ -80,6 +80,16 @@
    "name": "Mendil Klişesi",
    "minStock": 0,
    "updatedAt": "2026-09-24T10:04:45.154Z"
+  },
+  {
+   "id": "uykztcmpmuuy89h9",
+   "unit": "koli",
+   "stock": 6,
+   "price": 0,
+   "createdAt": "2026-10-05T07:49:17.949Z",
+   "name": "95 çap Bombe kapak",
+   "minStock": 0,
+   "updatedAt": "2026-10-05T07:49:17.949Z"
   }
  ],
  "customers": [
