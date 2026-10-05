@@ -1521,7 +1521,7 @@
   }
  ],
  "cash": {
-  "nakit": 200,
+  "nakit": 65,
   "acc-garanti-bbva": 31546.06,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 61.33,
@@ -1538,6 +1538,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "q2w258djmuux4ekh",
+   "date": "2026-10-05",
+   "createdAt": "2026-10-05T07:18:18.305Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 135,
+   "title": "Kahvaltı"
+  },
   {
    "id": "rmcjdqq8muu8j3hq",
    "date": "2026-10-04",
