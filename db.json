@@ -94,6 +94,18 @@
  ],
  "customers": [
   {
+   "id": "a2wxcx47muwglja4",
+   "color": "#0E6B3F",
+   "createdAt": "2026-10-06T09:11:16.453Z",
+   "name": "Asayiş Şube",
+   "type": "Diğer",
+   "phone": "05531005143",
+   "city": "Zonguldak ",
+   "district": "Çaydamar",
+   "notes": "",
+   "updatedAt": "2026-10-06T09:11:16.453Z"
+  },
+  {
    "id": "eley9558mupk27u4",
    "color": "#0E6B3F",
    "createdAt": "2026-10-01T13:13:50.392Z",
@@ -442,6 +454,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "teclymgqmuwgljad",
+   "date": "2026-10-06",
+   "createdAt": "2026-10-06T09:11:16.453Z",
+   "customerId": "a2wxcx47muwglja4",
+   "type": "debt",
+   "amount": 2100,
+   "dueDate": "2026-10-06",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "unbaph29muvc3wmo",
    "date": "2026-10-05",
