@@ -1624,7 +1624,7 @@
   "nakit": 3800,
   "acc-garanti-bbva": 24246.06,
   "acc-garanti-bbva-kk": 366.46,
-  "acc-kuveyt-turk": 35211.33,
+  "acc-kuveyt-turk": 34881.33,
   "acc-kuveyt-turk-kk": 1049.85,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1638,6 +1638,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "5imndllzmuwn9qpw",
+   "date": "2026-10-06",
+   "createdAt": "2026-10-06T12:18:03.524Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 330,
+   "title": "Oda kayıt"
+  },
   {
    "id": "wztzf3s5muwgdit9",
    "date": "2026-10-06",
