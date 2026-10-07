@@ -1649,7 +1649,7 @@
  ],
  "cash": {
   "nakit": 1450,
-  "acc-garanti-bbva": 14696.06,
+  "acc-garanti-bbva": 13396.06,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 45721.33,
   "acc-kuveyt-turk-kk": 1049.85,
@@ -1665,6 +1665,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "l7b8yf96muyc2si8",
+   "date": "2026-10-07",
+   "createdAt": "2026-10-07T16:40:15.824Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 1300,
+   "title": "Grafiker Emel"
+  },
   {
    "id": "qknvhm3vmuy8wffg",
    "date": "2026-10-07",
