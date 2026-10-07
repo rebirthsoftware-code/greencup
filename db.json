@@ -478,10 +478,10 @@
    "createdAt": "2026-10-06T09:11:16.453Z",
    "customerId": "a2wxcx47muwglja4",
    "type": "debt",
-   "amount": 2100,
+   "amount": 2050,
    "dueDate": "2026-10-15",
    "note": "Açılış bakiyesi (devir)",
-   "updatedAt": "2026-10-06T09:11:34.627Z"
+   "updatedAt": "2026-10-07T10:41:01.589Z"
   },
   {
    "id": "unbaph29muvc3wmo",
