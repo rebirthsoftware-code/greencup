@@ -1648,7 +1648,7 @@
   }
  ],
  "cash": {
-  "nakit": 1530,
+  "nakit": 1450,
   "acc-garanti-bbva": 14696.06,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 45721.33,
@@ -1665,6 +1665,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "qknvhm3vmuy8wffg",
+   "date": "2026-10-07",
+   "createdAt": "2026-10-07T15:11:20.093Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 80,
+   "title": "Plakalık"
+  },
   {
    "id": "w8uoopnqmuy7422t",
    "date": "2026-10-07",
