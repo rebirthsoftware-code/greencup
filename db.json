@@ -1630,7 +1630,7 @@
   }
  ],
  "cash": {
-  "nakit": 2300,
+  "nakit": 2030,
   "acc-garanti-bbva": 24246.06,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 45551.33,
@@ -1647,6 +1647,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "l8kvxk0pmuxtopd6",
+   "date": "2026-10-07",
+   "createdAt": "2026-10-07T08:05:25.483Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 270,
+   "title": "Arçelik"
+  },
   {
    "id": "mpb2ytuwmuxtc6zr",
    "date": "2026-10-07",
