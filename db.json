@@ -455,6 +455,28 @@
  ],
  "transactions": [
   {
+   "id": "egq97gxvmuzgt78a",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "type": "sale",
+   "date": "2026-10-08",
+   "createdAt": "2026-10-08T11:40:32.602Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "14oz Soğuk Bardak Goldbeans",
+     "unit": "koli",
+     "qty": 15,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-08",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "ko5r1ifxmuxz92tw",
    "date": "2026-10-07",
    "createdAt": "2026-10-07T10:41:14.132Z",
@@ -1246,8 +1268,8 @@
    "customerId": "k0g0wjfsmub2ppuo",
    "name": "14oz Soğuk Bardak Goldbeans",
    "unit": "koli",
-   "qty": 27,
-   "updatedAt": "2026-10-05T07:52:11.595Z"
+   "qty": 15,
+   "updatedAt": "2026-10-08T11:41:05.612Z"
   },
   {
    "id": "3mvtytk5mucnwfxh",
