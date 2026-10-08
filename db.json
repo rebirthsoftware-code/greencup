@@ -455,6 +455,28 @@
  ],
  "transactions": [
   {
+   "id": "i18y3mh7muzgu4mv",
+   "customerId": "oavj5j2bmubhngtp",
+   "type": "sale",
+   "date": "2026-10-08",
+   "createdAt": "2026-10-08T11:41:15.895Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Stick şeker",
+     "unit": "koli",
+     "qty": 8,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-08",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "egq97gxvmuzgt78a",
    "customerId": "k0g0wjfsmub2ppuo",
    "type": "sale",
@@ -1135,15 +1157,6 @@
    "unit": "kg",
    "qty": 100,
    "updatedAt": "2026-10-05T07:49:58.597Z"
-  },
-  {
-   "id": "cyx7kp5gmufjvbxu",
-   "createdAt": "2026-09-24T13:10:47.346Z",
-   "customerId": "oavj5j2bmubhngtp",
-   "name": "Stick şeker",
-   "unit": "koli",
-   "qty": 8,
-   "updatedAt": "2026-09-24T13:10:57.512Z"
   },
   {
    "id": "5qiwueonmufaf4is",
@@ -1828,24 +1841,6 @@
    "title": "Ambar"
   },
   {
-   "id": "iahls9i5muxz92tw",
-   "date": "2026-10-07",
-   "type": "in",
-   "amount": 2050,
-   "title": "Tahsilat",
-   "account": "acc-garanti-bbva",
-   "txId": "ko5r1ifxmuxz92tw"
-  },
-  {
-   "id": "5rx0ghadmuxxdig8",
-   "date": "2026-10-07",
-   "type": "in",
-   "amount": 6840,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "0ybo5yvymuxxdig8"
-  },
-  {
    "id": "l8kvxk0pmuxtopd6",
    "date": "2026-10-07",
    "createdAt": "2026-10-07T08:05:25.483Z",
@@ -1853,15 +1848,6 @@
    "account": "nakit",
    "amount": 270,
    "title": "Arçelik"
-  },
-  {
-   "id": "mpb2ytuwmuxtc6zr",
-   "date": "2026-10-07",
-   "type": "in",
-   "amount": 10670,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "ort3wq42muxtc6zq"
   },
   {
    "id": "3okfv1vlmuxsxvf8",
@@ -1880,6 +1866,33 @@
    "account": "nakit",
    "amount": 30,
    "title": "Su"
+  },
+  {
+   "id": "iahls9i5muxz92tw",
+   "date": "2026-10-07",
+   "type": "in",
+   "amount": 2050,
+   "title": "Tahsilat",
+   "account": "acc-garanti-bbva",
+   "txId": "ko5r1ifxmuxz92tw"
+  },
+  {
+   "id": "5rx0ghadmuxxdig8",
+   "date": "2026-10-07",
+   "type": "in",
+   "amount": 6840,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "0ybo5yvymuxxdig8"
+  },
+  {
+   "id": "mpb2ytuwmuxtc6zr",
+   "date": "2026-10-07",
+   "type": "in",
+   "amount": 10670,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "ort3wq42muxtc6zq"
   },
   {
    "id": "vfwlmv2xmuwytpkh",
@@ -1975,15 +1988,6 @@
    "title": "Deneyim Ambalaj Murat Abi"
   },
   {
-   "id": "d1zcxh6hmuvc3wmo",
-   "date": "2026-10-05",
-   "type": "in",
-   "amount": 21150,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "unbaph29muvc3wmo"
-  },
-  {
    "id": "p4rneq1cmuvbf9c9",
    "date": "2026-10-05",
    "createdAt": "2026-10-05T13:58:39.369Z",
@@ -1991,24 +1995,6 @@
    "account": "acc-kuveyt-turk",
    "amount": 100000,
    "title": "Deneyim Ambalaj Murat Abi"
-  },
-  {
-   "id": "ke0umsn0muvbd6p6",
-   "date": "2026-10-05",
-   "type": "in",
-   "amount": 34000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "srwduo7wmuvbd6p6"
-  },
-  {
-   "id": "f2vjkuf5muvbcv78",
-   "date": "2026-10-05",
-   "type": "in",
-   "amount": 100000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "wzjc818omuvbcv78"
   },
   {
    "id": "yyql6kjsmuv4yxtj",
@@ -2027,6 +2013,33 @@
    "account": "nakit",
    "amount": 135,
    "title": "Kahvaltı"
+  },
+  {
+   "id": "d1zcxh6hmuvc3wmo",
+   "date": "2026-10-05",
+   "type": "in",
+   "amount": 21150,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "unbaph29muvc3wmo"
+  },
+  {
+   "id": "ke0umsn0muvbd6p6",
+   "date": "2026-10-05",
+   "type": "in",
+   "amount": 34000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "srwduo7wmuvbd6p6"
+  },
+  {
+   "id": "f2vjkuf5muvbcv78",
+   "date": "2026-10-05",
+   "type": "in",
+   "amount": 100000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "wzjc818omuvbcv78"
   },
   {
    "id": "rmcjdqq8muu8j3hq",
@@ -2160,15 +2173,6 @@
    "title": "Berber"
   },
   {
-   "id": "vkb32y4bmusj7uex",
-   "date": "2026-10-03",
-   "type": "in",
-   "amount": 25000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "xtm1qlhwmusj7uew"
-  },
-  {
    "id": "p2e1px3amus50qih",
    "date": "2026-10-03",
    "createdAt": "2026-10-03T08:36:05.561Z",
@@ -2176,6 +2180,15 @@
    "account": "acc-kuveyt-turk",
    "amount": 30000,
    "title": "Nihat abi"
+  },
+  {
+   "id": "vkb32y4bmusj7uex",
+   "date": "2026-10-03",
+   "type": "in",
+   "amount": 25000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "xtm1qlhwmusj7uew"
   },
   {
    "id": "myuycwsamurcu6k6",
@@ -2295,15 +2308,6 @@
    "title": "Can abi kese kağıdı"
   },
   {
-   "id": "d9nj5nd5muo5dreb",
-   "date": "2026-09-30",
-   "type": "in",
-   "amount": 30000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "p4haqcnrmuo5drea"
-  },
-  {
    "id": "jr2il8clmuo1i9o8",
    "date": "2026-09-30",
    "createdAt": "2026-09-30T11:46:40.376Z",
@@ -2329,6 +2333,15 @@
    "account": "acc-kuveyt-turk",
    "amount": 160,
    "title": "Kahve"
+  },
+  {
+   "id": "d9nj5nd5muo5dreb",
+   "date": "2026-09-30",
+   "type": "in",
+   "amount": 30000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "p4haqcnrmuo5drea"
   },
   {
    "id": "i4w5enphmumprtmb",
@@ -2520,15 +2533,6 @@
    "title": "Yağ"
   },
   {
-   "id": "f57iguismul3onse",
-   "date": "2026-09-28",
-   "type": "in",
-   "amount": 26800,
-   "title": "Tahsilat",
-   "account": "banka",
-   "txId": "69ifq6e4mul3onse"
-  },
-  {
    "id": "3202j30gmul2szwy",
    "date": "2026-09-28",
    "createdAt": "2026-09-28T09:59:42.034Z",
@@ -2572,6 +2576,15 @@
    "account": "banka",
    "amount": 800,
    "title": "Sueda"
+  },
+  {
+   "id": "f57iguismul3onse",
+   "date": "2026-09-28",
+   "type": "in",
+   "amount": 26800,
+   "title": "Tahsilat",
+   "account": "banka",
+   "txId": "69ifq6e4mul3onse"
   },
   {
    "id": "4a3b02tdmuk9t1dw",
@@ -2691,15 +2704,6 @@
    "title": "Market"
   },
   {
-   "id": "or7coc8tmufum0n8",
-   "date": "2026-09-24",
-   "type": "in",
-   "amount": 9000,
-   "title": "Tahsilat",
-   "account": "banka",
-   "txId": "azzczlf8mufum0n8"
-  },
-  {
    "id": "j317beq6mufu83sp",
    "date": "2026-09-24",
    "createdAt": "2026-09-24T18:00:39.481Z",
@@ -2716,24 +2720,6 @@
    "account": "kart",
    "amount": 1190,
    "title": "Yemek"
-  },
-  {
-   "id": "2kwygy2imufks2ot",
-   "date": "2026-09-24",
-   "type": "in",
-   "amount": 10000,
-   "title": "Tahsilat",
-   "account": "banka",
-   "txId": "euh33axymufks2ot"
-  },
-  {
-   "id": "pqkdte95mufjqfy0",
-   "date": "2026-09-24",
-   "type": "in",
-   "amount": 19000,
-   "title": "Tahsilat",
-   "account": "kart",
-   "txId": "jmurbocqmufjqfy0"
   },
   {
    "id": "qhe3topdmufekt7r",
@@ -2763,13 +2749,31 @@
    "title": "Çay"
   },
   {
-   "id": "q8d1bbp4mue7hg49",
-   "date": "2026-09-23",
+   "id": "or7coc8tmufum0n8",
+   "date": "2026-09-24",
    "type": "in",
    "amount": 9000,
    "title": "Tahsilat",
    "account": "banka",
-   "txId": "cnh6dpmjmue7hg49"
+   "txId": "azzczlf8mufum0n8"
+  },
+  {
+   "id": "2kwygy2imufks2ot",
+   "date": "2026-09-24",
+   "type": "in",
+   "amount": 10000,
+   "title": "Tahsilat",
+   "account": "banka",
+   "txId": "euh33axymufks2ot"
+  },
+  {
+   "id": "pqkdte95mufjqfy0",
+   "date": "2026-09-24",
+   "type": "in",
+   "amount": 19000,
+   "title": "Tahsilat",
+   "account": "kart",
+   "txId": "jmurbocqmufjqfy0"
   },
   {
    "id": "tzm30b9wmue3m2vp",
@@ -2806,6 +2810,15 @@
    "account": "nakit",
    "amount": 200,
    "title": "Kahvaltı"
+  },
+  {
+   "id": "q8d1bbp4mue7hg49",
+   "date": "2026-09-23",
+   "type": "in",
+   "amount": 9000,
+   "title": "Tahsilat",
+   "account": "banka",
+   "txId": "cnh6dpmjmue7hg49"
   },
   {
    "id": "ko1ije81muclq1v9",
@@ -2871,15 +2884,6 @@
    "title": "Kahve"
   },
   {
-   "id": "4xdt8q6cmub4ilba",
-   "date": "2026-09-21",
-   "type": "out",
-   "amount": 25000,
-   "title": "Nihat abi kutu parası",
-   "account": "nakit",
-   "txId": "2xw4f8vfmu74nh60"
-  },
-  {
    "id": "v97slrb9mub26xpx",
    "date": "2026-09-21",
    "createdAt": "2026-09-21T09:44:50.997Z",
@@ -2887,6 +2891,15 @@
    "account": "nakit",
    "amount": 300,
    "title": "Yemek"
+  },
+  {
+   "id": "4xdt8q6cmub4ilba",
+   "date": "2026-09-21",
+   "type": "out",
+   "amount": 25000,
+   "title": "Nihat abi kutu parası",
+   "account": "nakit",
+   "txId": "2xw4f8vfmu74nh60"
   },
   {
    "id": "s1tvq3q2mua63zzy",
@@ -3277,6 +3290,10 @@
   {
    "id": "uggcuiyymui9fwhr",
    "at": "2026-10-05T13:58:16.554Z"
+  },
+  {
+   "id": "cyx7kp5gmufjvbxu",
+   "at": "2026-10-08T11:41:15.896Z"
   }
  ],
  "settings": {
