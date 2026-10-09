@@ -1684,7 +1684,7 @@
  ],
  "cash": {
   "nakit": 960,
-  "acc-garanti-bbva": 9096.06,
+  "acc-garanti-bbva": 0,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 33101.33,
   "acc-kuveyt-turk-kk": 589.85,
@@ -1700,6 +1700,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "e7nw816tmv117xdr",
+   "date": "2026-10-09",
+   "createdAt": "2026-10-09T13:59:38.175Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 9096.06,
+   "title": "Craft çanta"
+  },
   {
    "id": "ccc182kkmv0s5psu",
    "date": "2026-10-09",
