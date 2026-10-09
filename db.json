@@ -1683,7 +1683,7 @@
   }
  ],
  "cash": {
-  "nakit": 960,
+  "nakit": 610,
   "acc-garanti-bbva": 0,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 30281.33,
@@ -1700,6 +1700,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "zlyzizwamv137met",
+   "date": "2026-10-09",
+   "createdAt": "2026-10-09T14:55:23.189Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 350,
+   "title": "Anans"
+  },
   {
    "id": "o24w4bz9mv1185ot",
    "date": "2026-10-09",
