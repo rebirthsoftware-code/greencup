@@ -1684,7 +1684,7 @@
  ],
  "cash": {
   "nakit": -2265,
-  "acc-garanti-bbva": 6214.37,
+  "acc-garanti-bbva": 5814.37,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 1936.06,
   "acc-kuveyt-turk-kk": 589.84,
@@ -1700,6 +1700,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "r11qbn34mv3o68tn",
+   "date": "2026-10-11",
+   "createdAt": "2026-10-11T10:17:43.212Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 400,
+   "title": "Samet"
+  },
   {
    "id": "40qt2yj2mv2culu5",
    "date": "2026-10-10",
