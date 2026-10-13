@@ -507,6 +507,14 @@
  ],
  "transactions": [
   {
+   "id": "7a83v6cpmv6mrqc4",
+   "date": "2026-10-13",
+   "createdAt": "2026-10-13T12:01:44.980Z",
+   "customerId": "ll5eu1rgmv6mrffx",
+   "note": "Stok yeterli Rutin ziyaret",
+   "type": "visit"
+  },
+  {
    "id": "6sr61uzrmv6mpb50",
    "date": "2026-10-13",
    "createdAt": "2026-10-13T11:59:51.973Z",
