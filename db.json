@@ -94,6 +94,19 @@
  ],
  "customers": [
   {
+   "id": "ptn7skzxmv6m5tp5",
+   "color": "#0E6B3F",
+   "createdAt": "2026-10-13T11:44:42.935Z",
+   "name": "No:1 Devrek",
+   "type": "Cafe",
+   "phone": "0 (505) 210 38 93",
+   "city": "Zonguldak ",
+   "district": "Devrek",
+   "notes": "",
+   "address": "Çarşı",
+   "updatedAt": "2026-10-13T11:44:42.935Z"
+  },
+  {
    "id": "ku2lk0wimv6kvwzk",
    "color": "#0E6B3F",
    "createdAt": "2026-10-13T11:09:01.014Z",
