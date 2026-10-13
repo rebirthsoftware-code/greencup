@@ -94,6 +94,19 @@
  ],
  "customers": [
   {
+   "id": "ll5eu1rgmv6mrffx",
+   "color": "#0E6B3F",
+   "createdAt": "2026-10-13T12:01:30.896Z",
+   "name": "Red cafe",
+   "type": "Cafe",
+   "phone": "0 (544) 384 16 16",
+   "city": "Zonguldak ",
+   "district": "Devrek ",
+   "notes": "",
+   "address": "Çarşı",
+   "updatedAt": "2026-10-13T12:01:30.897Z"
+  },
+  {
    "id": "9mdwez72mv6mp29u",
    "color": "#0E6B3F",
    "createdAt": "2026-10-13T11:59:40.492Z",
