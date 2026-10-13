@@ -468,6 +468,14 @@
  ],
  "transactions": [
   {
+   "id": "iqoth77omv6m2jor",
+   "date": "2026-10-13",
+   "createdAt": "2026-10-13T11:42:09.963Z",
+   "customerId": "lxx2ph97muflj0q5",
+   "note": "Stok yeterli rutin ziyaret",
+   "type": "visit"
+  },
+  {
    "id": "c91kxz8tmv3odrkw",
    "date": "2026-10-11",
    "createdAt": "2026-10-11T10:23:34.113Z",
