@@ -94,6 +94,19 @@
  ],
  "customers": [
   {
+   "id": "9mdwez72mv6mp29u",
+   "color": "#0E6B3F",
+   "createdAt": "2026-10-13T11:59:40.492Z",
+   "name": "My Family",
+   "type": "Cafe & Restaurant",
+   "phone": "0 (533) 026 73 22",
+   "city": "Zonguldak ",
+   "district": "Devrek",
+   "notes": "",
+   "address": "Ankara caddesi ",
+   "updatedAt": "2026-10-13T11:59:40.493Z"
+  },
+  {
    "id": "ptn7skzxmv6m5tp5",
    "color": "#0E6B3F",
    "createdAt": "2026-10-13T11:44:42.935Z",
