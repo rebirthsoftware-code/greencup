@@ -1771,7 +1771,7 @@
   "nakit": 3035,
   "acc-garanti-bbva": 70.12,
   "acc-garanti-bbva-kk": 366.46,
-  "acc-kuveyt-turk": 10981.65,
+  "acc-kuveyt-turk": 5981.65,
   "acc-kuveyt-turk-kk": 589.84,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1785,6 +1785,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "zdhjasgdmv7v7iur",
+   "date": "2026-10-14",
+   "createdAt": "2026-10-14T08:45:44.884Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 5000,
+   "title": "Hikmet Abi"
+  },
   {
    "id": "rwr7xiucmv7v772c",
    "date": "2026-10-14",
