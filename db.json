@@ -1768,7 +1768,7 @@
   }
  ],
  "cash": {
-  "nakit": 2385,
+  "nakit": 4485,
   "acc-garanti-bbva": 70.12,
   "acc-garanti-bbva-kk": 366.46,
   "acc-kuveyt-turk": 5981.65,
@@ -1785,6 +1785,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "mvr5ha1jmv853uwr",
+   "date": "2026-10-14",
+   "createdAt": "2026-10-14T13:22:50.043Z",
+   "type": "in",
+   "account": "nakit",
+   "amount": 2100,
+   "title": "TTK asma"
+  },
   {
    "id": "8oxsmw71mv8318yl",
    "date": "2026-10-14",
