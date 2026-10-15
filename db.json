@@ -1797,7 +1797,7 @@
  "cash": {
   "nakit": 4150,
   "acc-garanti-bbva": 70.12,
-  "acc-garanti-bbva-kk": 366.46,
+  "acc-garanti-bbva-kk": 37875.06,
   "acc-kuveyt-turk": 8473.05,
   "acc-kuveyt-turk-kk": 589.84,
   "acc-ziraat-bankasi": 0,
@@ -1812,6 +1812,16 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "g9h3cpvomv9eqv0c",
+   "date": "2026-10-15",
+   "createdAt": "2026-10-15T10:40:25.981Z",
+   "type": "in",
+   "amount": 37508.6,
+   "account": "acc-garanti-bbva-kk",
+   "title": "Borç Ödemesi sonrası",
+   "adjust": true
+  },
   {
    "id": "lzcfke7lmv9epshb",
    "date": "2026-10-15",
