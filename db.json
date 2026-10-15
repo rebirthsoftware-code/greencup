@@ -1798,7 +1798,7 @@
   "nakit": 4150,
   "acc-garanti-bbva": 70.12,
   "acc-garanti-bbva-kk": 366.46,
-  "acc-kuveyt-turk": 45981.65,
+  "acc-kuveyt-turk": 8473.05,
   "acc-kuveyt-turk-kk": 589.84,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 0,
@@ -1812,6 +1812,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "lzcfke7lmv9epshb",
+   "date": "2026-10-15",
+   "type": "out",
+   "amount": 37508.6,
+   "title": "Garanti Kredi Kartı",
+   "account": "acc-kuveyt-turk",
+   "txId": "dzw87zwymutrp4gd"
+  },
   {
    "id": "kyovlkmemv9em2tv",
    "date": "2026-10-15",
@@ -3489,12 +3498,14 @@
   },
   {
    "id": "dzw87zwymutrp4gd",
-   "paid": false,
+   "paid": true,
    "createdAt": "2026-10-04T11:58:41.101Z",
    "title": "Garanti Kredi Kartı",
    "amount": 37508.6,
    "due": "2026-10-10",
-   "updatedAt": "2026-10-15T10:38:38.864Z"
+   "updatedAt": "2026-10-15T10:39:36.046Z",
+   "paidAt": "2026-10-15",
+   "account": "acc-kuveyt-turk"
   },
   {
    "id": "2xw4f8vfmu74nh60",
