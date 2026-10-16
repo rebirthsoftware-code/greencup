@@ -1797,7 +1797,7 @@
  "cash": {
   "nakit": 1440,
   "acc-garanti-bbva": 70.12,
-  "acc-garanti-bbva-kk": 37875.06,
+  "acc-garanti-bbva-kk": 36543.06,
   "acc-kuveyt-turk": 8473.05,
   "acc-kuveyt-turk-kk": 589.84,
   "acc-ziraat-bankasi": 0,
@@ -1812,6 +1812,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "4qog7rjdmvantryz",
+   "date": "2026-10-16",
+   "createdAt": "2026-10-16T07:42:24.731Z",
+   "type": "out",
+   "account": "acc-garanti-bbva-kk",
+   "amount": 1332,
+   "title": "Vergi dairesi"
+  },
   {
    "id": "q57p7h2smvak4tnd",
    "date": "2026-10-16",
