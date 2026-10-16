@@ -1850,15 +1850,6 @@
    "adjust": true
   },
   {
-   "id": "lzcfke7lmv9epshb",
-   "date": "2026-10-15",
-   "type": "out",
-   "amount": 37508.6,
-   "title": "Garanti Kredi Kartı",
-   "account": "acc-kuveyt-turk",
-   "txId": "dzw87zwymutrp4gd"
-  },
-  {
    "id": "kyovlkmemv9em2tv",
    "date": "2026-10-15",
    "createdAt": "2026-10-15T10:36:42.835Z",
@@ -1867,24 +1858,6 @@
    "account": "nakit",
    "title": "Bakiye düzeltme",
    "adjust": true
-  },
-  {
-   "id": "l57v3xeumv9eluv2",
-   "date": "2026-10-15",
-   "type": "in",
-   "amount": 1000,
-   "title": "Tahsilat",
-   "account": "nakit",
-   "txId": "buz8nmgomv9eluv2"
-  },
-  {
-   "id": "jhozzkc9mv9elanj",
-   "date": "2026-10-15",
-   "type": "in",
-   "amount": 40000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "ynf0wskvmv9elani"
   },
   {
    "id": "8mf9wgw9mv9308k1",
@@ -1904,6 +1877,33 @@
    "account": "nakit",
    "amount": 200,
    "title": "Şokella"
+  },
+  {
+   "id": "lzcfke7lmv9epshb",
+   "date": "2026-10-15",
+   "type": "out",
+   "amount": 37508.6,
+   "title": "Garanti Kredi Kartı",
+   "account": "acc-kuveyt-turk",
+   "txId": "dzw87zwymutrp4gd"
+  },
+  {
+   "id": "l57v3xeumv9eluv2",
+   "date": "2026-10-15",
+   "type": "in",
+   "amount": 1000,
+   "title": "Tahsilat",
+   "account": "nakit",
+   "txId": "buz8nmgomv9eluv2"
+  },
+  {
+   "id": "jhozzkc9mv9elanj",
+   "date": "2026-10-15",
+   "type": "in",
+   "amount": 40000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "ynf0wskvmv9elani"
   },
   {
    "id": "mvr5ha1jmv853uwr",
@@ -2030,15 +2030,6 @@
    "adjust": true
   },
   {
-   "id": "dutu96bjmv3odrkx",
-   "date": "2026-10-11",
-   "type": "in",
-   "amount": 21500,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "c91kxz8tmv3odrkw"
-  },
-  {
    "id": "r11qbn34mv3o68tn",
    "date": "2026-10-11",
    "createdAt": "2026-10-11T10:17:43.212Z",
@@ -2046,6 +2037,15 @@
    "account": "acc-garanti-bbva",
    "amount": 400,
    "title": "Samet"
+  },
+  {
+   "id": "dutu96bjmv3odrkx",
+   "date": "2026-10-11",
+   "type": "in",
+   "amount": 21500,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "c91kxz8tmv3odrkw"
   },
   {
    "id": "40qt2yj2mv2culu5",
