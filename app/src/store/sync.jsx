@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from './store';
-import { normalizeState } from './seed';
+import { normalizeState, hasRealData } from './seed';
 import { mergeStates } from './merge';
 import { fetchDb, pushDb, createDb, ensureBranchConfig, GithubError } from './github';
 import { newAlerts } from './alerts';
@@ -86,7 +86,10 @@ export function SyncProvider({ children }) {
         setMeta({ sha, dirty: false, lastSync: new Date().toISOString() }); setStatus('idle');
         return;
       }
-      if (metaRef.current.dirty && !force) {     // yerelde bekleyen değişiklik var
+      // Bu cihaz buluta ilk kez bağlanıyor ya da token yenilendi (sha yok) ve cihazda gerçek veri var:
+      // buluttakini üstüne yazmak yerine BİRLEŞTİR (hiçbir kayıt silinmez), sonra buluta yaz.
+      const firstLink = !metaRef.current.sha && hasRealData(stateRef.current);
+      if ((metaRef.current.dirty || firstLink) && !force) {     // yerelde bekleyen değişiklik var
         if (remote.sha !== metaRef.current.sha) { // ve bulut da değişmiş: birleştir
           const merged = mergeStates(stateRef.current, normalizeState(remote.data));
           stateRef.current = merged; apply(merged);
