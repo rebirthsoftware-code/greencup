@@ -41,7 +41,7 @@ export function SyncProvider({ children }) {
 
   const fail = useCallback((e) => {
     const msg = e instanceof GithubError
-      ? (e.status === 401 ? 'Token geçersiz' : e.status === 403 ? 'Yetki yok (token izinlerini kontrol edin)' : e.status === 404 ? 'Repo bulunamadı' : e.message)
+      ? (e.status === 401 ? 'Token geçersiz veya süresi dolmuş' : e.status === 403 ? 'Yetki yok (token izinlerini kontrol edin)' : e.status === 404 ? 'Repo bulunamadı' : e.message)
       : (navigator.onLine ? e.message : 'Çevrimdışı');
     setError(msg); setStatus(navigator.onLine ? 'error' : 'offline');
   }, []);
@@ -80,6 +80,7 @@ export function SyncProvider({ children }) {
     busyRef.current = true; setStatus('syncing'); setError(null);
     try {
       const remote = await fetchDb(c);
+      if (remote.tokenExp !== undefined) setMeta({ tokenExp: remote.tokenExp });
       if (!remote.data) {                        // dosya/dal yok: ilk kurulum, yereli yükle
         const sha = await createDb(c, stateRef.current);
         setMeta({ sha, dirty: false, lastSync: new Date().toISOString() }); setStatus('idle');
@@ -132,7 +133,7 @@ export function SyncProvider({ children }) {
   const setCfg = useCallback((next) => {
     setCfgState(next);
     if (next) writeJson(CFG_KEY, next); else { try { localStorage.removeItem(CFG_KEY); } catch { /* noop */ } }
-    setMeta({ sha: null, dirty: false, lastSync: null }); setStatus('idle'); setError(null);
+    setMeta({ sha: null, dirty: false, lastSync: null, tokenExp: null }); setStatus('idle'); setError(null);
   }, [setMeta]);
 
   const value = useMemo(() => ({ cfg, setCfg, enabled, status, error, meta, pull, push }), [cfg, setCfg, enabled, status, error, meta, pull, push]);
