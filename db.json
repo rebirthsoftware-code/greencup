@@ -2,16 +2,6 @@
  "version": 5,
  "products": [
   {
-   "id": "3683vjhpmu8fhvbq",
-   "unit": "koli",
-   "stock": 3,
-   "price": 0,
-   "createdAt": "2026-09-19T13:33:57.590Z",
-   "name": "Düz deliksiz soğuk kapak",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:33:57.590Z"
-  },
-  {
    "id": "kz88r7uxmu8fpnb7",
    "unit": "koli",
    "stock": 6,
@@ -3822,6 +3812,10 @@
   {
    "id": "f3q6nj6gmufd834y",
    "at": "2026-10-23T15:48:51.877Z"
+  },
+  {
+   "id": "3683vjhpmu8fhvbq",
+   "at": "2026-10-23T15:48:58.728Z"
   }
  ],
  "settings": {
