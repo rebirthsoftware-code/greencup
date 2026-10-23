@@ -10,6 +10,16 @@
    "name": "7/12 Islak Mendil",
    "minStock": 0,
    "updatedAt": "2026-10-23T15:53:59.859Z"
+  },
+  {
+   "id": "fzve9b6fmvl5haj4",
+   "unit": "adet",
+   "stock": 20000,
+   "price": 0.48,
+   "createdAt": "2026-10-23T15:54:17.104Z",
+   "name": "Stick Şeker",
+   "minStock": 0,
+   "updatedAt": "2026-10-23T15:54:17.104Z"
   }
  ],
  "customers": [
