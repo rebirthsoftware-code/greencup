@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { asset } from '../utils/asset';
 import { useStore } from '../store/store';
 import { useSync, DEFAULT_CFG } from '../store/sync';
-import { testConnection } from '../store/github';
+import { testConnection, fetchDb } from '../store/github';
+import { normalizeState } from '../store/seed';
+import { mergeStates } from '../store/merge';
 import { loadDevice, saveDevice } from '../store/storage';
 import { setDevicePin, hasDevicePin } from '../store/pin';
 import { pushSupported, getSubscription, subscribePush, unsubscribePush, sendTestPush, isIOS, isStandalone } from '../store/push';
@@ -20,7 +22,7 @@ const Row = ({ icon: Icon, label, sub, onClick, danger }) => (
 const Field = ({ label, children, hint }) => <div className="field"><label>{label}</label>{children}{hint && <span className="xs muted">{hint}</span>}</div>;
 
 export default function Settings() {
-  const { state, updateSettings, reset, clearAll, addUser, updateUser, deleteUser } = useStore();
+  const { state, updateSettings, reset, clearAll, addUser, updateUser, deleteUser, replaceState } = useStore();
   const sync = useSync();
   const toast = useToast();
   const [sheet, setSheet] = useState(null);
@@ -64,14 +66,43 @@ export default function Settings() {
   const lastSyncText = sync.meta.lastSync ? new Date(sync.meta.lastSync).toLocaleString('tr-TR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : null;
   const syncLabel = !sync.enabled ? 'Kapalı' : sync.status === 'syncing' ? 'Senkronize ediliyor...' : sync.status === 'error' ? `Hata: ${sync.error}` : sync.status === 'offline' ? 'Çevrimdışı, bekliyor' : sync.meta.dirty ? 'Bekleyen değişiklik var' : lastSyncText ? `Güncel · ${lastSyncText}` : 'Hazır';
 
+  const counts = (s) => `${(s.customers || []).length} müşteri, ${(s.transactions || []).length} hareket, ${(s.products || []).length} ürün`;
+  /** Veriyi değiştiren her işlemden önce bu cihazın otomatik yedeği indirilir. */
+  const safetyBackup = (why) => {
+    try {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `greencup-otomatik-yedek-${why}-${new Date().toISOString().slice(0, 16).replace(/[T:]/g, '-')}.json`; a.click();
+    } catch { /* indirilemezse devam */ }
+  };
   const exportJson = () => {
     const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `greencup-yedek-${new Date().toISOString().slice(0, 10)}.json`; a.click();
     toast('Yedek indirildi');
   };
   const importJson = (e) => {
-    const file = e.target.files?.[0]; if (!file) return;
-    file.text().then((txt) => { JSON.parse(txt); localStorage.setItem('greencup.app.v1', txt); try { const m = JSON.parse(localStorage.getItem('greencup.sync.meta.v1') || '{}'); localStorage.setItem('greencup.sync.meta.v1', JSON.stringify({ ...m, dirty: true })); } catch { /* noop */ } location.reload(); }).catch(() => toast('Dosya okunamadı'));
+    const file = e.target.files?.[0]; e.target.value = ''; if (!file) return;
+    file.text().then((txt) => {
+      const incoming = normalizeState(JSON.parse(txt));
+      if (!incoming) throw new Error('biçim');
+      if (confirm(`Dosya: ${counts(incoming)}.\nBu cihaz: ${counts(state)}.\n\nBİRLEŞTİR (önerilen): iki taraftaki kayıtlar birleşir, hiçbir kayıt silinmez.\n\nTamam = Birleştir · İptal = diğer seçenek`)) {
+        safetyBackup('birlestirme-oncesi');
+        replaceState(mergeStates(state, incoming)); toast('Yedek birleştirildi'); setSheet(null); return;
+      }
+      if (confirm(`Bu cihazdaki ${counts(state)} SİLİNİP yerine dosyadaki ${counts(incoming)} yazılacak.\nÖnce bu cihazın otomatik yedeği indirilecek.\n\nTamamen değiştirilsin mi?`)) {
+        safetyBackup('degistirme-oncesi');
+        replaceState(incoming); toast('Yedek yüklendi (değiştirildi)'); setSheet(null);
+      }
+    }).catch(() => toast('Dosya okunamadı'));
+  };
+  const pullFromCloud = async () => {
+    try {
+      const remote = await fetchDb(sync.cfg);
+      if (!remote.data) return toast('Bulutta veri yok');
+      const r = normalizeState(remote.data);
+      if (!confirm(`Bulut: ${counts(r)}.\nBu cihaz: ${counts(state)}.\n\nBu cihazdaki veriler SİLİNİP buluttakiyle değiştirilecek. Önce bu cihazın otomatik yedeği indirilecek.\n\nDevam edilsin mi? (Birleştirmek için bunun yerine "Buluta Gönder" kullanın; bulut değişmişse otomatik birleşir.)`)) return;
+      safetyBackup('buluttan-alma-oncesi');
+      await sync.pull({ force: true }); toast('Buluttaki veri yüklendi');
+    } catch (err) { toast(`Hata: ${err.message}`); }
   };
 
   return (
@@ -94,9 +125,9 @@ export default function Settings() {
       </div>
       <div className="card" style={{ marginTop: 12 }}>
         <Row icon={Ic.Trash} label="Tümünü Temizle (boş başla)" danger onClick={() => {
-          if (confirm('Tüm müşteriler, hareketler, ürünler, kasa ve ödemeler silinecek. Bulut senkron açıksa buluttaki veri de temizlenir. Emin misiniz?')) { clearAll(); toast('Tüm veriler temizlendi'); }
+          if (confirm('Tüm müşteriler, hareketler, ürünler, kasa ve ödemeler silinecek. Bulut senkron açıksa buluttaki veri de temizlenir. Önce bu cihazın otomatik yedeği indirilecek. Emin misiniz?')) { safetyBackup('temizleme-oncesi'); clearAll(); toast('Tüm veriler temizlendi'); }
         }} />
-        <Row icon={Ic.Box} label="Örnek Veriyi Yükle" onClick={() => { if (confirm('Mevcut veriler silinip örnek (demo) veri yüklenecek. Emin misiniz?')) { reset(); toast('Örnek veri yüklendi'); } }} />
+        <Row icon={Ic.Box} label="Örnek Veriyi Yükle" onClick={() => { if (confirm('Mevcut veriler silinip örnek (demo) veri yüklenecek. Önce otomatik yedek indirilecek. Emin misiniz?')) { safetyBackup('ornek-veri-oncesi'); reset(); toast('Örnek veri yüklendi'); } }} />
       </div>
 
       {/* Firma */}
@@ -145,7 +176,7 @@ export default function Settings() {
       {/* Bulut */}
       <Sheet open={sheet === 'sync'} onClose={() => setSheet(null)} title="Bulut Senkron (GitHub)">
         <p className="small muted" style={{ marginBottom: 10 }}>Veriler GitHub'daki repoda, <b>{sc.branch}</b> dalındaki <b>{sc.path}</b> dosyasında saklanır. Her değişiklik otomatik yazılır; iki cihaz aynı anda değiştirirse kayıtlar birleştirilir.</p>
-        <div className="card small" style={{ marginBottom: 14, background: 'var(--green-light)', borderColor: 'var(--green-soft)' }}><div className="bold">Durum: {syncLabel}</div></div>
+        <div className="card small" style={{ marginBottom: 14, background: 'var(--green-light)', borderColor: 'var(--green-soft)' }}><div className="bold">Durum: {syncLabel}</div>{sync.meta.tokenExp && <div className="xs" style={{ marginTop: 4 }}>Token bitiş tarihi: <b>{new Date(sync.meta.tokenExp).toLocaleDateString('tr-TR')}</b> · dolmadan yenileyin, yoksa senkron durur.</div>}</div>
         <div className="grid-2">
           <Field label="Kullanıcı / Org"><div className="input"><input value={sc.owner} onChange={setScField('owner')} autoCapitalize="off" /></div></Field>
           <Field label="Repo"><div className="input"><input value={sc.repo} onChange={setScField('repo')} autoCapitalize="off" /></div></Field>
@@ -154,20 +185,20 @@ export default function Settings() {
           <Field label="Dal"><div className="input"><input value={sc.branch} onChange={setScField('branch')} autoCapitalize="off" /></div></Field>
           <Field label="Dosya"><div className="input"><input value={sc.path} onChange={setScField('path')} autoCapitalize="off" /></div></Field>
         </div>
-        <Field label="Erişim Token'ı" hint="GitHub → Settings → Developer settings → Personal access tokens → Fine-grained → yalnızca bu repo, Contents: Read and write. Token sadece bu cihazda saklanır.">
+        <Field label="Erişim Token'ı" hint="GitHub → Settings → Developer settings → Personal access tokens → Fine-grained → yalnızca bu repo, Contents: Read and write. Süreyi (Expiration) en uzun seçin ve bitiş tarihini not edin; token her cihazda ayrı girilir ve sadece o cihazda saklanır.">
           <div className="input"><input type="password" value={sc.token} onChange={setScField('token')} placeholder="github_pat_..." autoCapitalize="off" autoComplete="off" /></div></Field>
         <div className="stack">
           <div className="btn-row">
             <button className="btn btn-ghost" onClick={testSync} disabled={testing || !sc.token}>{testing ? 'Test ediliyor...' : 'Bağlantıyı Test Et'}</button>
             <button className="btn btn-primary" onClick={saveSync} disabled={!sc.token || !sc.owner || !sc.repo}>Kaydet ve Bağla</button>
           </div>
-          {sync.enabled && <div className="btn-row"><button className="btn btn-ghost" onClick={() => sync.pull({ force: true })}>Buluttan Al</button><button className="btn btn-ghost" onClick={() => sync.push()}>Buluta Gönder</button></div>}
+          {sync.enabled && <div className="btn-row"><button className="btn btn-ghost" onClick={pullFromCloud}>Buluttan Al (değiştir)</button><button className="btn btn-ghost" onClick={() => sync.push()}>Buluta Gönder</button></div>}
           {sync.enabled && <button className="btn btn-ghost" style={{ color: 'var(--red)' }} onClick={removeSync}>Bağlantıyı Kaldır</button>}
         </div>
       </Sheet>
 
       <Sheet open={sheet === 'yedek'} onClose={() => setSheet(null)} title="Yedekleme">
-        <p className="small muted" style={{ marginBottom: 12 }}>Bulut senkron açıksa her değişiklik GitHub'a commit edilir ve dalın geçmişinden eski sürümlere dönülebilir. Ek olarak JSON yedek alıp başka cihazda geri yükleyebilirsiniz.</p>
+        <p className="small muted" style={{ marginBottom: 12 }}>Bulut senkron açıksa her değişiklik GitHub'a commit edilir ve dalın geçmişinden eski sürümlere dönülebilir. Ek olarak JSON yedek alıp başka cihazda geri yükleyebilirsiniz. Geri yüklerken <b>Birleştir</b> seçeneği hiçbir kaydı silmez; her durumda önce bu cihazın otomatik yedeği indirilir.</p>
         <div className="stack">
           <button className="btn btn-primary" onClick={exportJson}>Yedek İndir (JSON)</button>
           <label className="btn btn-ghost">Yedekten Geri Yükle<input type="file" accept="application/json" hidden onChange={importJson} /></label>

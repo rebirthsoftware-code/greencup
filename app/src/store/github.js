@@ -36,13 +36,16 @@ async function handle(res) {
   throw new GithubError(res.status, msg);
 }
 
-/** Dosyayı getirir. Yoksa { data: null, sha: null } döner. */
+/** Dosyayı getirir. Yoksa { data: null, sha: null } döner. tokenExp: ince ayarlı token'ın bitiş tarihi (GitHub başlığından; yoksa null). */
 export async function fetchDb(cfg) {
   const res = await fetch(fileUrl(cfg), { headers: headers(cfg.token), cache: 'no-store' });
-  if (res.status === 404) return { data: null, sha: null };
+  const tokenExp = parseExp(res.headers.get('github-authentication-token-expiration'));
+  if (res.status === 404) return { data: null, sha: null, tokenExp };
   const json = await handle(res);
-  return { data: JSON.parse(b64decode(json.content)), sha: json.sha };
+  return { data: JSON.parse(b64decode(json.content)), sha: json.sha, tokenExp };
 }
+/** "2026-10-17 12:00:00 UTC" → ISO; okunamazsa null. */
+export const parseExp = (h) => { if (!h) return null; const d = new Date(h.replace(' UTC', 'Z').replace(' ', 'T')); return Number.isNaN(d.getTime()) ? null : d.toISOString(); };
 
 /** Dosyayı yazar (sha verilmezse oluşturur). Yeni sha döner. */
 export async function pushDb(cfg, data, sha) {

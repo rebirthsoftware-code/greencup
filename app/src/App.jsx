@@ -7,6 +7,7 @@ import Splash from './components/Splash';
 import PinLock from './components/PinLock';
 import Notifications from './pages/Notifications';
 import UpdateBanner from './components/UpdateBanner';
+import SyncAlert from './components/SyncAlert';
 import Home from './pages/Home';
 import Customers from './pages/Customers';
 import CustomerDetail from './pages/CustomerDetail';
@@ -49,6 +50,7 @@ export default function App() {
           <ScrollTop />
           <PinLock>
           <div className="app">
+            <SyncAlert />
             <Routes>
               <Route element={<WithTabs />}>
                 <Route path="/" element={<Home />} />
