@@ -52,16 +52,6 @@
    "updatedAt": "2026-09-19T13:44:24.855Z"
   },
   {
-   "id": "f3q6nj6gmufd834y",
-   "unit": "adet",
-   "stock": 0,
-   "price": 1000,
-   "createdAt": "2026-09-24T10:04:45.154Z",
-   "name": "Mendil Klişesi",
-   "minStock": 0,
-   "updatedAt": "2026-09-24T10:04:45.154Z"
-  },
-  {
    "id": "uykztcmpmuuy89h9",
    "unit": "koli",
    "stock": 6,
@@ -3828,6 +3818,10 @@
   {
    "id": "f32j8xl2mue7ap83",
    "at": "2026-10-23T15:48:49.094Z"
+  },
+  {
+   "id": "f3q6nj6gmufd834y",
+   "at": "2026-10-23T15:48:51.877Z"
   }
  ],
  "settings": {
