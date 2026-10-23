@@ -1,6 +1,17 @@
 {
  "version": 5,
- "products": [],
+ "products": [
+  {
+   "id": "vltgr8zcmvl5gx83",
+   "unit": "adet",
+   "stock": 10000,
+   "price": 1.14,
+   "createdAt": "2026-10-23T15:53:59.859Z",
+   "name": "7/12 Islak Mendil",
+   "minStock": 0,
+   "updatedAt": "2026-10-23T15:53:59.859Z"
+  }
+ ],
  "customers": [
   {
    "id": "ll5eu1rgmv6mrffx",
