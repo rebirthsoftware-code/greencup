@@ -4,7 +4,7 @@
   {
    "id": "vltgr8zcmvl5gx83",
    "unit": "adet",
-   "stock": 10000,
+   "stock": 0,
    "price": 1.14,
    "createdAt": "2026-10-23T15:53:59.859Z",
    "name": "7/12 Islak Mendil",
@@ -14,7 +14,7 @@
   {
    "id": "fzve9b6fmvl5haj4",
    "unit": "adet",
-   "stock": 20000,
+   "stock": 0,
    "price": 0.48,
    "createdAt": "2026-10-23T15:54:17.104Z",
    "name": "Stick Şeker",
@@ -436,6 +436,37 @@
   }
  ],
  "transactions": [
+  {
+   "id": "lxjvsh3pmvl5iry2",
+   "date": "2026-10-23",
+   "createdAt": "2026-10-23T15:55:26.335Z",
+   "customerId": "n0li5b5vmucp3ngk",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "vltgr8zcmvl5gx83",
+     "name": "7/12 Islak Mendil",
+     "unit": "adet",
+     "qty": 10000,
+     "unitPrice": 1.14,
+     "amount": 11400
+    },
+    {
+     "productId": "fzve9b6fmvl5haj4",
+     "name": "Stick Şeker",
+     "unit": "adet",
+     "qty": 20000,
+     "unitPrice": 0.48,
+     "amount": 9600
+    }
+   ],
+   "amount": 21000,
+   "invoiced": true,
+   "payment": "vadeli",
+   "dueDate": "2026-11-06",
+   "method": "nakit",
+   "invoiceNo": "2026/0002"
+  },
   {
    "id": "buz8nmgomv9eluv2",
    "date": "2026-10-15",
@@ -3817,7 +3848,7 @@
   "kdv": 20,
   "overdueDays": 5,
   "defaultDueDays": 15,
-  "invoiceSeq": 2,
+  "invoiceSeq": 3,
   "updatedAt": "2026-09-17T17:32:38.110Z"
  }
 }
