@@ -1,27 +1,6 @@
 {
  "version": 5,
- "products": [
-  {
-   "id": "wxc90mrnmu8fvbbr",
-   "unit": "koli",
-   "stock": 11,
-   "price": 0,
-   "createdAt": "2026-09-19T13:44:24.855Z",
-   "name": "95 çap Soğuk kapak",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:44:24.855Z"
-  },
-  {
-   "id": "uykztcmpmuuy89h9",
-   "unit": "koli",
-   "stock": 6,
-   "price": 0,
-   "createdAt": "2026-10-05T07:49:17.949Z",
-   "name": "95 çap Bombe kapak",
-   "minStock": 0,
-   "updatedAt": "2026-10-05T07:49:17.949Z"
-  }
- ],
+ "products": [],
  "customers": [
   {
    "id": "ll5eu1rgmv6mrffx",
@@ -3798,6 +3777,14 @@
   {
    "id": "stkgs6v8mu8fsd0l",
    "at": "2026-10-23T15:49:09.094Z"
+  },
+  {
+   "id": "wxc90mrnmu8fvbbr",
+   "at": "2026-10-23T15:49:11.360Z"
+  },
+  {
+   "id": "uykztcmpmuuy89h9",
+   "at": "2026-10-23T15:49:13.543Z"
   }
  ],
  "settings": {
