@@ -2,16 +2,6 @@
  "version": 5,
  "products": [
   {
-   "id": "kz88r7uxmu8fpnb7",
-   "unit": "koli",
-   "stock": 6,
-   "price": 0,
-   "createdAt": "2026-09-19T13:40:00.451Z",
-   "name": "90mm Sıcak Kapak",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:40:00.451Z"
-  },
-  {
    "id": "stkgs6v8mu8fsd0l",
    "unit": "adet",
    "stock": 2500,
@@ -3816,6 +3806,10 @@
   {
    "id": "3683vjhpmu8fhvbq",
    "at": "2026-10-23T15:48:58.728Z"
+  },
+  {
+   "id": "kz88r7uxmu8fpnb7",
+   "at": "2026-10-23T15:49:02.966Z"
   }
  ],
  "settings": {
