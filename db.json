@@ -12,16 +12,6 @@
    "updatedAt": "2026-09-19T13:42:07.077Z"
   },
   {
-   "id": "grazkl9cmu8fsu5b",
-   "unit": "koli",
-   "stock": 12,
-   "price": 0,
-   "createdAt": "2026-09-19T13:42:29.279Z",
-   "name": "Taşıma Çantası Ceraft Baskısız",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:42:29.279Z"
-  },
-  {
    "id": "wxc90mrnmu8fvbbr",
    "unit": "koli",
    "stock": 11,
@@ -3810,6 +3800,10 @@
   {
    "id": "kz88r7uxmu8fpnb7",
    "at": "2026-10-23T15:49:02.966Z"
+  },
+  {
+   "id": "grazkl9cmu8fsu5b",
+   "at": "2026-10-23T15:49:06.323Z"
   }
  ],
  "settings": {
