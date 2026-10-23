@@ -2,16 +2,6 @@
  "version": 5,
  "products": [
   {
-   "id": "stkgs6v8mu8fsd0l",
-   "unit": "adet",
-   "stock": 2500,
-   "price": 0,
-   "createdAt": "2026-09-19T13:42:07.077Z",
-   "name": "12oz Soğuk bardak Baskısız",
-   "minStock": 0,
-   "updatedAt": "2026-09-19T13:42:07.077Z"
-  },
-  {
    "id": "wxc90mrnmu8fvbbr",
    "unit": "koli",
    "stock": 11,
@@ -3804,6 +3794,10 @@
   {
    "id": "grazkl9cmu8fsu5b",
    "at": "2026-10-23T15:49:06.323Z"
+  },
+  {
+   "id": "stkgs6v8mu8fsd0l",
+   "at": "2026-10-23T15:49:09.094Z"
   }
  ],
  "settings": {
