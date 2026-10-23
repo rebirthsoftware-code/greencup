@@ -93,8 +93,10 @@ function undoTx(state, t) {
 const r2 = (n) => Math.round((n || 0) * 100) / 100;
 function reducer(state, action) {
   const next = reduce(state, action);
-  if (!next || next === state || next.cash === state.cash) return next;
-  return { ...next, cash: Object.fromEntries(Object.entries(next.cash).map(([k, v]) => [k, r2(v)])) };
+  if (!next || next === state || next.cash === state.cash || action.type === 'REPLACE') return next;
+  let changed = false;
+  const cash = Object.fromEntries(Object.entries(next.cash).map(([k, v]) => { const r = r2(v); if (r !== v) changed = true; return [k, r]; }));
+  return changed ? { ...next, cash } : next; // değişmediyse aynı nesne kalsın (uzaktan uygulanan state yerel değişiklik sanılmasın)
 }
 function reduce(state, action) {
   switch (action.type) {

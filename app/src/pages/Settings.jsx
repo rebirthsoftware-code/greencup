@@ -3,7 +3,7 @@ import { asset } from '../utils/asset';
 import { useStore } from '../store/store';
 import { useSync, DEFAULT_CFG } from '../store/sync';
 import { testConnection, fetchDb } from '../store/github';
-import { normalizeState } from '../store/seed';
+import { normalizeState, hasRealData } from '../store/seed';
 import { mergeStates } from '../store/merge';
 import { loadDevice, saveDevice } from '../store/storage';
 import { setDevicePin, hasDevicePin } from '../store/pin';
@@ -61,7 +61,7 @@ export default function Settings() {
     try { const r = await testConnection(sc); toast(r.canWrite ? `Bağlandı: ${r.name}` : `Bağlandı ama yazma izni yok: ${r.name}`); }
     catch (e) { toast(`Bağlantı hatası: ${e.message}`); } finally { setTesting(false); }
   };
-  const saveSync = () => { sync.setCfg(sc); toast('Senkron açıldı, veriler yükleniyor...'); setSheet(null); };
+  const saveSync = () => { if (hasRealData(state)) safetyBackup('baglanti-oncesi'); sync.setCfg(sc); toast('Senkron açıldı; cihazdaki kayıtlar buluttakilerle birleştirilir'); setSheet(null); };
   const removeSync = () => { if (confirm('Bulut bağlantısı kaldırılsın mı? Veriler cihazda kalır.')) { sync.setCfg(null); setSc(DEFAULT_CFG); toast('Bağlantı kaldırıldı'); } };
   const lastSyncText = sync.meta.lastSync ? new Date(sync.meta.lastSync).toLocaleString('tr-TR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : null;
   const syncLabel = !sync.enabled ? 'Kapalı' : sync.status === 'syncing' ? 'Senkronize ediliyor...' : sync.status === 'error' ? `Hata: ${sync.error}` : sync.status === 'offline' ? 'Çevrimdışı, bekliyor' : sync.meta.dirty ? 'Bekleyen değişiklik var' : lastSyncText ? `Güncel · ${lastSyncText}` : 'Hazır';

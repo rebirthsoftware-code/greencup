@@ -155,6 +155,14 @@ export const makeEmpty = (settings = seedSettings, users = seedUsers, accounts =
   settings,
 });
 
+/** Cihazda gerçek veri var mı (müşteri/hareket/ürün); yoksa boş ya da sadece örnek (demo) veri mi? */
+export const isDemoData = (s) => {
+  if (!s) return true;
+  const seedC = new Set(seedCustomers.map((c) => c.id)), seedT = new Set(seedTransactions.map((t) => t.id)), seedP = new Set(seedProducts.map((p) => p.id));
+  return s.customers.every((c) => seedC.has(c.id)) && s.transactions.every((t) => seedT.has(t.id)) && s.products.every((p) => seedP.has(p.id));
+};
+export const hasRealData = (s) => !!s && (s.customers.length + s.transactions.length + s.products.length) > 0 && !isDemoData(s);
+
 /**
  * Cihazdan veya buluttan gelen ham durumu bugünkü şemaya getirir:
  * eksik listeler boş, eksik ayarlar varsayılan, eski tek ürünlü satışlar `items` biçimine.
