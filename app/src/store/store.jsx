@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useReducer } from 'react';
-import { makeSeed, makeEmpty, normalizeState } from './seed';
+import { makeSeed, makeEmpty, normalizeState, hasRealData } from './seed';
 import { loadState, saveState, clearState, loadDevice } from './storage';
 import { uid, today } from '../utils/format';
+import { dailySnapshot } from './snapshots';
 
 const StoreCtx = createContext(null);
 
@@ -374,7 +375,7 @@ function reduce(state, action) {
 
 export function StoreProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, null, () => normalizeState(loadState()) || makeSeed());
-  useEffect(() => { saveState(state); }, [state]);
+  useEffect(() => { saveState(state); if (hasRealData(state)) dailySnapshot(state); }, [state]);
 
   // Eylem fonksiyonları sabittir (dispatch değişmez); sadece state değişir.
   const actions = useMemo(() => ({

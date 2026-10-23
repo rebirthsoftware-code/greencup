@@ -6,6 +6,7 @@ import { fetchDb, pushDb, createDb, ensureBranchConfig, GithubError } from './gi
 import { newAlerts } from './alerts';
 import { notifyAll } from './push';
 import { NOTIFY_API } from '../push-config';
+import { saveSnapshot } from './snapshots';
 export { DEFAULT_CFG } from './github';
 
 // Senkron ayarları (token dahil) sadece bu cihazda, uygulama verisinden ayrı saklanır.
@@ -48,6 +49,8 @@ export function SyncProvider({ children }) {
 
   const apply = useCallback((data) => {
     const next = normalizeState(data);
+    const cur = stateRef.current;
+    if (hasRealData(cur) && (next.customers.length < cur.customers.length || next.transactions.length < cur.transactions.length)) saveSnapshot(cur, 'buluttan-once');
     appliedRef.current = next; seenRef.current = next;
     replaceState(next);
     return next;
