@@ -32,7 +32,7 @@ npm run lint
 | Ziyaretler | Son ziyaretler; **ziyaret planı** (tarih ata, yapıldı olarak kapat), öneriler |
 | Fatura | Çok satırlı, firma bilgileri, KDV, yazdır/PDF (resmi e-Fatura değildir) |
 | Raporlar | Son 6 ay satış/tahsilat grafiği; cari, stok, kasa, ziyaret, satış, tahsilat raporları; **Excel (CSV) indir** |
-| Ayarlar | Firma bilgileri (adres, VKN, KDV, varsayılan vade, fatura no), **kullanıcılar** (cihaz başına aktif kullanıcı, hareketlerde "kim girdi"), PIN, bulut senkron, JSON yedek, tümünü temizle / örnek veri |
+| Ayarlar | Firma bilgileri (adres, VKN, KDV, varsayılan vade, fatura no), **kullanıcılar** (cihaz başına aktif kullanıcı, hareketlerde "kim girdi"), PIN, bulut senkron (token bitiş tarihi uyarısı), JSON yedek (birleştirerek geri yükleme), **Geçmiş Sürümler** (cihazdaki günlük anlık görüntüler + bulut commit geçmişi; birleştir / geri dön), tümünü temizle / örnek veri |
 
 Sunucu gerektirdiği için bu sürümde olmayanlar: şifreli çok kullanıcılı giriş, resmi e-Fatura entegrasyonu.
 

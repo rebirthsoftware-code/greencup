@@ -22,6 +22,7 @@ import VisitDetail from './pages/VisitDetail';
 import Invoice from './pages/Invoice';
 import Reports from './pages/Reports';
 import Summary from './pages/Summary';
+import History from './pages/History';
 import Settings from './pages/Settings';
 
 function ScrollTop() {
@@ -63,6 +64,7 @@ export default function App() {
                 <Route path="/daha/ziyaretler" element={<Visits />} />
                 <Route path="/daha/raporlar" element={<Reports />} />
                 <Route path="/daha/ozet" element={<Summary />} />
+                <Route path="/daha/gecmis" element={<History />} />
                 <Route path="/daha/ayarlar" element={<Settings />} />
                 <Route path="/bildirimler" element={<Notifications />} />
               </Route>

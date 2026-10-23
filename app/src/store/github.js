@@ -47,6 +47,20 @@ export async function fetchDb(cfg) {
 /** "2026-10-17 12:00:00 UTC" → ISO; okunamazsa null. */
 export const parseExp = (h) => { if (!h) return null; const d = new Date(h.replace(' UTC', 'Z').replace(' ', 'T')); return Number.isNaN(d.getTime()) ? null : d.toISOString(); };
 
+/** Veri dosyasının bulut geçmişi: son n commit (yeniden eskiye). */
+export async function listCommits(cfg, n = 60) {
+  const q = new URLSearchParams({ sha: cfg.branch || 'main', path: cfg.path, per_page: String(n) });
+  const res = await fetch(`${API}/repos/${cfg.owner}/${cfg.repo}/commits?${q}`, { headers: headers(cfg.token), cache: 'no-store' });
+  const json = await handle(res);
+  return json.map((c) => ({ sha: c.sha, at: c.commit?.committer?.date || c.commit?.author?.date, message: c.commit?.message || '' }));
+}
+/** Belirli bir commit'teki veri dosyası. */
+export async function fetchDbAt(cfg, sha) {
+  const res = await fetch(`${API}/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}?ref=${encodeURIComponent(sha)}`, { headers: headers(cfg.token), cache: 'no-store' });
+  const json = await handle(res);
+  return JSON.parse(b64decode(json.content));
+}
+
 /** Dosyayı yazar (sha verilmezse oluşturur). Yeni sha döner. */
 export async function pushDb(cfg, data, sha) {
   const body = {

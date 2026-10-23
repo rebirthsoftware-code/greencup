@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { saveSnapshot } from '../store/snapshots';
 import { asset } from '../utils/asset';
 import { useStore } from '../store/store';
 import { useSync, DEFAULT_CFG } from '../store/sync';
@@ -25,6 +27,7 @@ export default function Settings() {
   const { state, updateSettings, reset, clearAll, addUser, updateUser, deleteUser, replaceState } = useStore();
   const sync = useSync();
   const toast = useToast();
+  const nav = useNavigate();
   const [sheet, setSheet] = useState(null);
   const [f, setF] = useState(state.settings);
   const [device, setDevice] = useState(() => loadDevice());
@@ -69,6 +72,7 @@ export default function Settings() {
   const counts = (s) => `${(s.customers || []).length} müşteri, ${(s.transactions || []).length} hareket, ${(s.products || []).length} ürün`;
   /** Veriyi değiştiren her işlemden önce bu cihazın otomatik yedeği indirilir. */
   const safetyBackup = (why) => {
+    saveSnapshot(state, why);
     try {
       const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
       const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `greencup-otomatik-yedek-${why}-${new Date().toISOString().slice(0, 16).replace(/[T:]/g, '-')}.json`; a.click();
@@ -120,6 +124,7 @@ export default function Settings() {
         <Row icon={Ic.Lock} label="PIN Kilidi" sub={hasDevicePin() ? 'Açık · bu cihazda' : 'Kapalı'} onClick={() => setSheet('pin')} />
         <Row icon={Ic.Cloud} label="Bulut Senkron (GitHub)" sub={syncLabel} onClick={() => setSheet('sync')} />
         <Row icon={Ic.FileText} label="Yedekleme (JSON)" onClick={() => setSheet('yedek')} />
+        <Row icon={Ic.Clock} label="Geçmiş Sürümler" sub="Bu cihazdaki günlük görüntüler ve bulut geçmişi; birleştir / geri dön" onClick={() => nav('/daha/gecmis')} />
         <Row icon={Ic.Bell} label="Anlık Bildirimler" sub={pushOn ? 'Açık · stok azalınca/tükenince' : 'Kapalı'} onClick={() => setSheet('bildirim')} />
         <Row icon={Ic.Info} label="Hakkında" onClick={() => setSheet('hakkinda')} />
       </div>
