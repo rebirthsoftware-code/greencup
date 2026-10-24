@@ -55,11 +55,11 @@
    "id": "lznuj2pbmvm7kngm",
    "unit": "paket",
    "stock": 28,
-   "price": 35,
+   "price": 0,
    "createdAt": "2026-10-24T09:40:39.238Z",
    "name": "7OZ Karton Bardak (baskısız)",
    "minStock": 0,
-   "updatedAt": "2026-10-24T09:40:39.238Z"
+   "updatedAt": "2026-10-24T09:40:56.285Z"
   }
  ],
  "customers": [
