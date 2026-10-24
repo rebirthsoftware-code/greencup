@@ -70,6 +70,16 @@
    "name": "95 Çap Soğuk Plastik Kapak Klips (koli içi 1.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:42:19.378Z"
+  },
+  {
+   "id": "qf2ub3k0mvm7ppe6",
+   "unit": "koli",
+   "stock": 11,
+   "price": 0,
+   "createdAt": "2026-10-24T09:44:35.022Z",
+   "name": "Craft 2li Taşıma Çantası (koli içi 400 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:44:35.022Z"
   }
  ],
  "customers": [
