@@ -437,6 +437,28 @@
  ],
  "transactions": [
   {
+   "id": "hom527humvm6oxf4",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "type": "sale",
+   "date": "2026-10-24",
+   "createdAt": "2026-10-24T09:15:59.152Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "14oz Doublewall Cozy",
+     "unit": "koli",
+     "qty": 5,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-24",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "n84q8vhimvm6ocof",
    "customerId": "0cy6o7y5mucnvmjg",
    "type": "sale",
@@ -1439,8 +1461,8 @@
    "customerId": "0cy6o7y5mucnvmjg",
    "name": "14oz Doublewall Cozy",
    "unit": "koli",
-   "qty": 16,
-   "updatedAt": "2026-09-24T08:37:45.287Z"
+   "qty": 11,
+   "updatedAt": "2026-10-24T09:15:59.152Z"
   },
   {
    "id": "t4kc1q6tmucnw3w7",
