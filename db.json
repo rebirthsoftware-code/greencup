@@ -63,13 +63,13 @@
   },
   {
    "id": "jmoy8pnzmvm7msqa",
-   "unit": "koli",
-   "stock": 1,
+   "unit": "paket",
+   "stock": 17,
    "price": 0,
    "createdAt": "2026-10-24T09:42:19.378Z",
-   "name": "95 Çap Soğuk Plastik Kapak Klips (koli içi 1.000 adet)",
+   "name": "95 Çap Soğuk Plastik Kapak Klips (koli içi 10 paket 1.000 adet)",
    "minStock": 0,
-   "updatedAt": "2026-10-24T09:42:19.378Z"
+   "updatedAt": "2026-10-24T09:47:51.032Z"
   },
   {
    "id": "qf2ub3k0mvm7ppe6",
