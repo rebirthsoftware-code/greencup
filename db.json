@@ -30,6 +30,16 @@
    "name": "550 CC Virgin Craft Kase (Paket içi 50 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:34:49.188Z"
+  },
+  {
+   "id": "dq8hhsvcmvm7fp6f",
+   "unit": "paket",
+   "stock": 39,
+   "price": 0,
+   "createdAt": "2026-10-24T09:36:48.183Z",
+   "name": "1300 CC Virgin Craft Kase (Paket içi 50 adet koli içi 6 paket)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:36:48.183Z"
   }
  ],
  "customers": [
