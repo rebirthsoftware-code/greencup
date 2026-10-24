@@ -587,6 +587,16 @@
  ],
  "transactions": [
   {
+   "id": "s3bb8na4mvmcnui7",
+   "date": "2026-10-24",
+   "createdAt": "2026-10-24T12:03:06.415Z",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "note": "Pipet\n0,55 + KDV 20.000 adet\n13.200,00",
+   "type": "debt",
+   "amount": 13200,
+   "dueDate": "2026-11-07"
+  },
+  {
    "id": "aqdu5lmvmvm6spke",
    "customerId": "k0g0wjfsmub2ppuo",
    "type": "sale",
