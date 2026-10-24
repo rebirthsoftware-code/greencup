@@ -90,6 +90,16 @@
    "name": "12OZ Soğuk Plastik Bardak Hafif Gramaj (koli içi 20 paket 1.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:49:07.853Z"
+  },
+  {
+   "id": "z2jl65r8mvm7xn9j",
+   "unit": "koli",
+   "stock": 1,
+   "price": 0,
+   "createdAt": "2026-10-24T09:50:45.511Z",
+   "name": "90mm Sıcak Kapak (koli içi 1.000 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:50:45.511Z"
   }
  ],
  "customers": [
