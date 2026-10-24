@@ -120,6 +120,16 @@
    "name": "Pipet (yeşil)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:53:40.272Z"
+  },
+  {
+   "id": "nigrxzehmvm82pof",
+   "unit": "koli",
+   "stock": 10,
+   "price": 0,
+   "createdAt": "2026-10-24T09:54:41.919Z",
+   "name": "4OZ Sıcak Kapak (siyah) (koli içi 3.000 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:54:41.919Z"
   }
  ],
  "customers": [
