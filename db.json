@@ -130,6 +130,16 @@
    "name": "4OZ Sıcak Kapak (siyah) (koli içi 3.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:54:41.919Z"
+  },
+  {
+   "id": "jgw1e700mvm8fjn4",
+   "unit": "paket",
+   "stock": 16,
+   "price": 0,
+   "createdAt": "2026-10-24T10:04:40.624Z",
+   "name": "300 CC Dondurma Kasesi (Paket içi 25 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T10:04:40.624Z"
   }
  ],
  "customers": [
