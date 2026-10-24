@@ -110,6 +110,16 @@
    "name": "80mm Sıcak Kapak (koli içi 1.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:51:05.412Z"
+  },
+  {
+   "id": "0fb8qwjzmvm81e40",
+   "unit": "koli",
+   "stock": 1,
+   "price": 0,
+   "createdAt": "2026-10-24T09:53:40.272Z",
+   "name": "Pipet (yeşil)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:53:40.272Z"
   }
  ],
  "customers": [
