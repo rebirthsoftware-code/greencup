@@ -1,17 +1,6 @@
 {
  "version": 5,
- "products": [
-  {
-   "id": "fzve9b6fmvl5haj4",
-   "unit": "adet",
-   "stock": 0,
-   "price": 0.48,
-   "createdAt": "2026-10-23T15:54:17.104Z",
-   "name": "Stick Şeker",
-   "minStock": 0,
-   "updatedAt": "2026-10-23T15:54:17.104Z"
-  }
- ],
+ "products": [],
  "customers": [
   {
    "id": "ll5eu1rgmv6mrffx",
@@ -3949,6 +3938,10 @@
   {
    "id": "vltgr8zcmvl5gx83",
    "at": "2026-10-24T09:26:09.019Z"
+  },
+  {
+   "id": "fzve9b6fmvl5haj4",
+   "at": "2026-10-24T09:26:11.273Z"
   }
  ],
  "settings": {
