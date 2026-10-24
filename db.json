@@ -1,6 +1,17 @@
 {
  "version": 5,
- "products": [],
+ "products": [
+  {
+   "id": "eyt2vyxbmvm793lw",
+   "unit": "paket",
+   "stock": 39,
+   "price": 0,
+   "createdAt": "2026-10-24T09:31:40.292Z",
+   "name": "187 Pet Kapak",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:31:40.292Z"
+  }
+ ],
  "customers": [
   {
    "id": "ll5eu1rgmv6mrffx",
