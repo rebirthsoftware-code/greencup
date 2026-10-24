@@ -1205,6 +1205,15 @@
  ],
  "reserved": [
   {
+   "id": "9xvjkc42mvm6l6q7",
+   "createdAt": "2026-10-24T09:13:04.591Z",
+   "customerId": "8bfqvphsmub2ok0d",
+   "name": "Pipet",
+   "unit": "koli",
+   "qty": 2,
+   "updatedAt": "2026-10-24T09:13:04.591Z"
+  },
+  {
    "id": "19kko08umv7uecqj",
    "createdAt": "2026-10-14T08:23:03.931Z",
    "customerId": "k0g0wjfsmub2ppuo",
