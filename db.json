@@ -40,6 +40,16 @@
    "name": "1300 CC Virgin Craft Kase (Paket içi 50 adet koli içi 6 paket)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:36:48.183Z"
+  },
+  {
+   "id": "huy639vjmvm7im9m",
+   "unit": "koli",
+   "stock": 6,
+   "price": 0,
+   "createdAt": "2026-10-24T09:39:04.378Z",
+   "name": "95 Çap Soğuk Plastik Kapak Bombe (koli içi 1.000 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:39:04.378Z"
   }
  ],
  "customers": [
