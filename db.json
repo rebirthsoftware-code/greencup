@@ -1205,13 +1205,22 @@
  ],
  "reserved": [
   {
-   "id": "9xvjkc42mvm6l6q7",
-   "createdAt": "2026-10-24T09:13:04.591Z",
+   "id": "f2e8tsasmvm6mmdc",
+   "createdAt": "2026-10-24T09:14:11.520Z",
    "customerId": "8bfqvphsmub2ok0d",
-   "name": "Pipet",
+   "name": "6/12 Islak mendil",
+   "unit": "adet",
+   "qty": 10000,
+   "updatedAt": "2026-10-24T09:14:11.520Z"
+  },
+  {
+   "id": "3voy7sijmvm6mjft",
+   "createdAt": "2026-10-24T09:14:07.721Z",
+   "customerId": "8bfqvphsmub2ok0d",
+   "name": "Stick Şeker",
    "unit": "koli",
-   "qty": 2,
-   "updatedAt": "2026-10-24T09:13:04.591Z"
+   "qty": 10,
+   "updatedAt": "2026-10-24T09:14:07.721Z"
   },
   {
    "id": "19kko08umv7uecqj",
@@ -1616,16 +1625,6 @@
    "updatedAt": "2026-09-22T13:01:17.204Z"
   },
   {
-   "id": "9kzkcyj8mucomy2e",
-   "createdAt": "2026-09-22T13:00:55.670Z",
-   "unit": "koli",
-   "customerId": "8bfqvphsmub2ok0d",
-   "name": "Stick Şeker",
-   "qty": 10,
-   "dueDate": "2026-10-15",
-   "updatedAt": "2026-09-22T13:00:55.670Z"
-  },
-  {
    "id": "b2pe3klamucom9su",
    "createdAt": "2026-09-22T13:00:24.222Z",
    "unit": "adet",
@@ -1634,16 +1633,6 @@
    "qty": 10000,
    "dueDate": "2026-10-15",
    "updatedAt": "2026-09-22T13:00:24.222Z"
-  },
-  {
-   "id": "1kasxpicmucoloos",
-   "createdAt": "2026-09-22T12:59:56.860Z",
-   "unit": "adet",
-   "customerId": "8bfqvphsmub2ok0d",
-   "name": "6/12 Islak mendil",
-   "qty": 10000,
-   "dueDate": "2026-10-15",
-   "updatedAt": "2026-09-22T12:59:56.860Z"
   },
   {
    "id": "pn6ut6ufmucoh82l",
@@ -3846,6 +3835,22 @@
   {
    "id": "uykztcmpmuuy89h9",
    "at": "2026-10-23T15:49:13.543Z"
+  },
+  {
+   "id": "3sa6wjhzmvm6lupy",
+   "at": "2026-10-24T09:13:55.343Z"
+  },
+  {
+   "id": "9xvjkc42mvm6l6q7",
+   "at": "2026-10-24T09:13:59.286Z"
+  },
+  {
+   "id": "9kzkcyj8mucomy2e",
+   "at": "2026-10-24T09:14:07.721Z"
+  },
+  {
+   "id": "1kasxpicmucoloos",
+   "at": "2026-10-24T09:14:11.520Z"
   }
  ],
  "settings": {
