@@ -10,6 +10,16 @@
    "name": "187 Pet Kapak",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:31:40.292Z"
+  },
+  {
+   "id": "rwyyfooqmvm7aqz0",
+   "unit": "paket",
+   "stock": 97,
+   "price": 0,
+   "createdAt": "2026-10-24T09:32:57.228Z",
+   "name": "145 Pet Kapak (Paket içi 50 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:32:57.228Z"
   }
  ],
  "customers": [
