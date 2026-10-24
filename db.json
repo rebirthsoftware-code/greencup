@@ -100,6 +100,16 @@
    "name": "90mm Sıcak Kapak (koli içi 1.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:50:45.511Z"
+  },
+  {
+   "id": "8j9vgitpmvm7y2mc",
+   "unit": "koli",
+   "stock": 1,
+   "price": 0,
+   "createdAt": "2026-10-24T09:51:05.412Z",
+   "name": "80mm Sıcak Kapak (koli içi 1.000 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:51:05.412Z"
   }
  ],
  "customers": [
