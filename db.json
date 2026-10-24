@@ -437,6 +437,28 @@
  ],
  "transactions": [
   {
+   "id": "n84q8vhimvm6ocof",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "type": "sale",
+   "date": "2026-10-24",
+   "createdAt": "2026-10-24T09:15:32.271Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Sıcak kapak 90mm",
+     "unit": "koli",
+     "qty": 4,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-24",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "lxjvsh3pmvl5iry2",
    "date": "2026-10-23",
    "createdAt": "2026-10-23T15:55:26.335Z",
@@ -1273,8 +1295,8 @@
    "customerId": "0cy6o7y5mucnvmjg",
    "name": "Sıcak kapak 90mm",
    "unit": "koli",
-   "qty": 6,
-   "updatedAt": "2026-10-24T09:15:25.070Z"
+   "qty": 2,
+   "updatedAt": "2026-10-24T09:15:32.271Z"
   },
   {
    "id": "tujk3jm6mufa4x5w",
