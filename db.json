@@ -437,6 +437,28 @@
  ],
  "transactions": [
   {
+   "id": "3pa3qa7wmvm6pynu",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "type": "sale",
+   "date": "2026-10-24",
+   "createdAt": "2026-10-24T09:16:47.418Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "200cc Dondurma Kasesi",
+     "unit": "koli",
+     "qty": 1,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-24",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "hom527humvm6oxf4",
    "customerId": "0cy6o7y5mucnvmjg",
    "type": "sale",
@@ -1344,8 +1366,8 @@
    "customerId": "0cy6o7y5mucnvmjg",
    "name": "200cc Dondurma Kasesi",
    "unit": "koli",
-   "qty": 3,
-   "updatedAt": "2026-09-22T13:55:42.476Z"
+   "qty": 2,
+   "updatedAt": "2026-10-24T09:16:47.419Z"
   },
   {
    "id": "ckz9p8gxmucnzljn",
