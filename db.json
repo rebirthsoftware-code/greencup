@@ -140,6 +140,16 @@
    "name": "300 CC Dondurma Kasesi (Paket içi 25 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T10:04:40.624Z"
+  },
+  {
+   "id": "zz8e4bc0mvm8hf8k",
+   "unit": "paket",
+   "stock": 17,
+   "price": 0,
+   "createdAt": "2026-10-24T10:06:08.228Z",
+   "name": "100 CC Dondurma Kasesi (Paket içi 50 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T10:06:08.228Z"
   }
  ],
  "customers": [
