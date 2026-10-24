@@ -2042,7 +2042,7 @@
   }
  ],
  "cash": {
-  "nakit": 1705,
+  "nakit": 705,
   "acc-garanti-bbva": 6436.64,
   "acc-garanti-bbva-kk": 5044.43,
   "acc-kuveyt-turk": 23152.55,
@@ -2059,6 +2059,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "bwogxayvmvmpo9d8",
+   "date": "2026-10-24",
+   "createdAt": "2026-10-24T18:07:20.685Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 1000,
+   "title": "Kokereç"
+  },
   {
    "id": "from4r17mvmpnqto",
    "date": "2026-10-24",
