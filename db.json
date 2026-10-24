@@ -80,6 +80,16 @@
    "name": "Craft 2li Taşıma Çantası (koli içi 400 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:44:35.022Z"
+  },
+  {
+   "id": "ud17vtp6mvm7vjwt",
+   "unit": "paket",
+   "stock": 40,
+   "price": 0,
+   "createdAt": "2026-10-24T09:49:07.853Z",
+   "name": "12OZ Soğuk Plastik Bardak Hafif Gramaj (koli içi 20 paket 1.000 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:49:07.853Z"
   }
  ],
  "customers": [
