@@ -20,6 +20,16 @@
    "name": "145 Pet Kapak (Paket içi 50 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:32:57.228Z"
+  },
+  {
+   "id": "uboslvycmvm7d5d0",
+   "unit": "paket",
+   "stock": 47,
+   "price": 0,
+   "createdAt": "2026-10-24T09:34:49.188Z",
+   "name": "550 CC Virgin Craft Kase (Paket içi 50 adet)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:34:49.188Z"
   }
  ],
  "customers": [
