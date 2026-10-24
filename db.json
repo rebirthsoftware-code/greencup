@@ -1271,6 +1271,15 @@
  ],
  "reserved": [
   {
+   "id": "plu6g5q8mvm6r1pc",
+   "createdAt": "2026-10-24T09:17:38.016Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "name": "Peçete Cozy",
+   "unit": "koli",
+   "qty": 10,
+   "updatedAt": "2026-10-24T09:17:38.016Z"
+  },
+  {
    "id": "u3je46wxmvm6neob",
    "createdAt": "2026-10-24T09:14:48.203Z",
    "customerId": "0cy6o7y5mucnvmjg",
