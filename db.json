@@ -50,6 +50,16 @@
    "name": "95 Çap Soğuk Plastik Kapak Bombe (koli içi 1.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T09:39:04.378Z"
+  },
+  {
+   "id": "lznuj2pbmvm7kngm",
+   "unit": "paket",
+   "stock": 28,
+   "price": 35,
+   "createdAt": "2026-10-24T09:40:39.238Z",
+   "name": "7OZ Karton Bardak (baskısız)",
+   "minStock": 0,
+   "updatedAt": "2026-10-24T09:40:39.238Z"
   }
  ],
  "customers": [
