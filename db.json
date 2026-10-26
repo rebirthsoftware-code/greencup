@@ -174,6 +174,19 @@
  ],
  "customers": [
   {
+   "id": "hfkh6k57mvowh4g0",
+   "color": "#0E6B3F",
+   "createdAt": "2026-10-26T06:53:17.382Z",
+   "name": "Çınar Ocakbaşı",
+   "type": "Restaurant",
+   "phone": "0 (546) 468 03 07",
+   "city": "Zonguldak ",
+   "district": "Kozlu",
+   "notes": "",
+   "address": "Fakülte",
+   "updatedAt": "2026-10-26T06:53:17.382Z"
+  },
+  {
    "id": "qko7262nmvowfzk0",
    "color": "#0E6B3F",
    "createdAt": "2026-10-26T06:52:24.391Z",
