@@ -678,6 +678,28 @@
  ],
  "transactions": [
   {
+   "id": "exazy790mvownxa6",
+   "customerId": "nb35yakrmu5t27t0",
+   "type": "sale",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:58:34.687Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Peçete",
+     "unit": "adet",
+     "qty": 24000,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-26",
+   "note": "Üretimden teslim"
+  },
+  {
    "id": "k677yyipmvownoig",
    "customerId": "3rxqfynxmubhkook",
    "type": "sale",
@@ -2102,15 +2124,6 @@
    "name": "Pipet",
    "qty": 5000,
    "updatedAt": "2026-09-28T11:29:07.201Z"
-  },
-  {
-   "id": "y6o2qkmfmul5zmbi",
-   "createdAt": "2026-09-28T11:28:49.854Z",
-   "unit": "adet",
-   "customerId": "nb35yakrmu5t27t0",
-   "name": "Peçete",
-   "qty": 24000,
-   "updatedAt": "2026-09-28T11:28:49.854Z"
   },
   {
    "id": "0em66b5jmucqmqq0",
@@ -4599,6 +4612,10 @@
   {
    "id": "pn6ut6ufmucoh82l",
    "at": "2026-10-26T06:58:29.969Z"
+  },
+  {
+   "id": "y6o2qkmfmul5zmbi",
+   "at": "2026-10-26T06:58:34.687Z"
   }
  ],
  "settings": {
