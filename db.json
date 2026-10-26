@@ -2326,7 +2326,7 @@
  ],
  "cash": {
   "nakit": 800,
-  "acc-garanti-bbva": 2486.64,
+  "acc-garanti-bbva": 2286.64,
   "acc-garanti-bbva-kk": 4259.03,
   "acc-kuveyt-turk": 11922.55,
   "acc-kuveyt-turk-kk": 589.84,
@@ -2342,6 +2342,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "f3r1ok9tmvp3p754",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T10:15:31.432Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 200,
+   "title": "Ambar"
+  },
   {
    "id": "muxr86msmvp00g7r",
    "date": "2026-10-26",
