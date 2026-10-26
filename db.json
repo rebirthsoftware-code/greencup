@@ -1801,6 +1801,15 @@
  ],
  "production": [
   {
+   "id": "ho9ba0oxmvow1081",
+   "createdAt": "2026-10-26T06:40:45.409Z",
+   "unit": "adet",
+   "customerId": "7gfwsnosmvovtn4w",
+   "name": "Yılbaşı 8oz Doublewall Revue",
+   "qty": 1000,
+   "updatedAt": "2026-10-26T06:40:45.409Z"
+  },
+  {
    "id": "rzzxdqzsmvow00wt",
    "createdAt": "2026-10-26T06:39:59.645Z",
    "unit": "adet",
