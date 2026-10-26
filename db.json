@@ -678,6 +678,28 @@
  ],
  "transactions": [
   {
+   "id": "i1gtooc5mvowo9fm",
+   "customerId": "dgj1ozdumucozila",
+   "type": "sale",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:58:50.434Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Craft Çanta Baskılı",
+     "unit": "adet",
+     "qty": 500,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-26",
+   "note": "Üretimden teslim"
+  },
+  {
    "id": "exazy790mvownxa6",
    "customerId": "nb35yakrmu5t27t0",
    "type": "sale",
@@ -2133,16 +2155,6 @@
    "name": "90mm Sıcak Kapak",
    "qty": 4,
    "updatedAt": "2026-09-22T13:56:45.384Z"
-  },
-  {
-   "id": "hx79ol42mucqj68r",
-   "createdAt": "2026-09-22T13:53:58.875Z",
-   "unit": "adet",
-   "customerId": "dgj1ozdumucozila",
-   "name": "Craft Çanta Baskılı",
-   "qty": 500,
-   "dueDate": "2026-10-14",
-   "updatedAt": "2026-09-22T13:53:58.875Z"
   },
   {
    "id": "zxbd9f4xmucqijwu",
@@ -4616,6 +4628,10 @@
   {
    "id": "y6o2qkmfmul5zmbi",
    "at": "2026-10-26T06:58:34.687Z"
+  },
+  {
+   "id": "hx79ol42mucqj68r",
+   "at": "2026-10-26T06:58:50.435Z"
   }
  ],
  "settings": {
