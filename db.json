@@ -665,6 +665,16 @@
  ],
  "transactions": [
   {
+   "id": "6bpbfrx0mvowizzn",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:54:44.915Z",
+   "customerId": "eley9558mupk27u4",
+   "note": "Taşıma Çantası 2li",
+   "type": "debt",
+   "amount": 1680,
+   "dueDate": "2026-11-09"
+  },
+  {
    "id": "v765lovhmvowe90x",
    "customerId": "gt35fmbpmunoiww9",
    "type": "sale",
