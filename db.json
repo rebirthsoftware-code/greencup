@@ -1876,6 +1876,15 @@
  ],
  "production": [
   {
+   "id": "h1q5d67lmvoweozd",
+   "createdAt": "2026-10-26T06:51:24.025Z",
+   "unit": "adet",
+   "customerId": "gt35fmbpmunoiww9",
+   "name": "7/12 Islak Mendil",
+   "qty": 10000,
+   "updatedAt": "2026-10-26T06:51:24.025Z"
+  },
+  {
    "id": "316sz3w6mvow2ovt",
    "createdAt": "2026-10-26T06:42:04.025Z",
    "unit": "adet",
