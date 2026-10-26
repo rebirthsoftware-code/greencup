@@ -1801,6 +1801,15 @@
  ],
  "production": [
   {
+   "id": "rzzxdqzsmvow00wt",
+   "createdAt": "2026-10-26T06:39:59.645Z",
+   "unit": "adet",
+   "customerId": "7gfwsnosmvovtn4w",
+   "name": "14oz Doublewall Revue",
+   "qty": 3000,
+   "updatedAt": "2026-10-26T06:39:59.645Z"
+  },
+  {
    "id": "6cgquq53mvovzmbw",
    "createdAt": "2026-10-26T06:39:40.748Z",
    "unit": "adet",
