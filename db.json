@@ -626,6 +626,16 @@
  ],
  "transactions": [
   {
+   "id": "ga83egtnmvowd4tb",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:50:11.231Z",
+   "customerId": "8hsrjmpumucnpz8t",
+   "note": "1.000 adet 8oz Doublewall: 5,10 - 5.100,00\n24.000 adet Peçete: 0,65 - 15.600,00",
+   "type": "debt",
+   "amount": 20700,
+   "dueDate": "2026-11-09"
+  },
+  {
    "id": "59egpmqzmvowaq8l",
    "date": "2026-10-26",
    "createdAt": "2026-10-26T06:48:19.031Z",
