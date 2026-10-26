@@ -1801,6 +1801,15 @@
  ],
  "production": [
   {
+   "id": "316sz3w6mvow2ovt",
+   "createdAt": "2026-10-26T06:42:04.025Z",
+   "unit": "adet",
+   "customerId": "7gfwsnosmvovtn4w",
+   "name": "4oz Singlewall Revue",
+   "qty": 3000,
+   "updatedAt": "2026-10-26T06:42:04.025Z"
+  },
+  {
    "id": "vx465epzmvow2a4b",
    "createdAt": "2026-10-26T06:41:44.891Z",
    "unit": "adet",
