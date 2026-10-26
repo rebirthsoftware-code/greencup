@@ -626,6 +626,28 @@
  ],
  "transactions": [
   {
+   "id": "v765lovhmvowe90x",
+   "customerId": "gt35fmbpmunoiww9",
+   "type": "sale",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:51:03.345Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Yağlı kağıt",
+     "unit": "kg",
+     "qty": 100,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-26",
+   "note": "Üretimden teslim"
+  },
+  {
    "id": "ga83egtnmvowd4tb",
    "date": "2026-10-26",
    "createdAt": "2026-10-26T06:50:11.231Z",
@@ -1915,15 +1937,6 @@
    "name": "Pipet",
    "qty": 20000,
    "updatedAt": "2026-10-14T16:10:08.928Z"
-  },
-  {
-   "id": "sw9hmoohmunoj9lb",
-   "createdAt": "2026-09-30T05:43:31.919Z",
-   "unit": "kg",
-   "customerId": "gt35fmbpmunoiww9",
-   "name": "Yağlı kağıt",
-   "qty": 100,
-   "updatedAt": "2026-09-30T05:43:31.919Z"
   },
   {
    "id": "4el2qlgumul5zzpd",
@@ -4432,6 +4445,10 @@
   {
    "id": "fzve9b6fmvl5haj4",
    "at": "2026-10-24T09:26:11.273Z"
+  },
+  {
+   "id": "sw9hmoohmunoj9lb",
+   "at": "2026-10-26T06:51:03.345Z"
   }
  ],
  "settings": {
