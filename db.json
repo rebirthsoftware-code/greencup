@@ -613,6 +613,16 @@
  ],
  "transactions": [
   {
+   "id": "4nxrpr3nmvovys1q",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:39:01.502Z",
+   "customerId": "7gfwsnosmvovtn4w",
+   "note": "8oz Doublewall 3.000 adet: 3,90 - 11.700,00\n14oz Doublewall 3.000 adet: 5,40 - 16.200,00\nYılbaşı 8oz Doublewall 1.000 adet:4,00-4.000,00\nYılbaşı 14oz Doublewall 1.000 adet:5,50-5.500,00\nPet 16oz Ağır 3.000 adet: 4,70 - 14.100,00\n4oz Singlewall 3.000 adet: 3.600,00\n\nToplam: 55.100,00",
+   "type": "debt",
+   "amount": 55100,
+   "dueDate": "2026-11-09"
+  },
+  {
    "id": "t6f63c78mvmcp294",
    "date": "2026-10-24",
    "createdAt": "2026-10-24T12:04:03.112Z",
