@@ -678,6 +678,14 @@
  ],
  "transactions": [
   {
+   "id": "yscesmogmvp5bhjq",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T11:00:50.966Z",
+   "customerId": "qko7262nmvowfzk0",
+   "note": "Yılbaşı bardağı yaptıracak yakınlarda rutin ziyaretlere devam",
+   "type": "visit"
+  },
+  {
    "id": "i1gtooc5mvowo9fm",
    "customerId": "dgj1ozdumucozila",
    "type": "sale",
