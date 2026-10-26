@@ -2344,7 +2344,7 @@
  "cash": {
   "nakit": 470,
   "acc-garanti-bbva": 248.95,
-  "acc-garanti-bbva-kk": 4259.03,
+  "acc-garanti-bbva-kk": 4209.03,
   "acc-kuveyt-turk": 24477.55,
   "acc-kuveyt-turk-kk": 589.84,
   "acc-ziraat-bankasi": 0,
@@ -2359,6 +2359,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "36ee96semvpa3x3s",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T13:14:55.960Z",
+   "type": "out",
+   "account": "acc-garanti-bbva-kk",
+   "amount": 50,
+   "title": "Otopark"
+  },
   {
    "id": "toe4xnqymvpa3ij8",
    "date": "2026-10-26",
