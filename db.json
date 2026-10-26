@@ -613,6 +613,16 @@
  ],
  "transactions": [
   {
+   "id": "6fwmusn2mvow44nc",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:43:11.112Z",
+   "customerId": "ctf5htz2mucodty7",
+   "note": "48.000 adet tek kat peçete\n0,55 + KDV\n31.680,00",
+   "type": "debt",
+   "amount": 31680,
+   "dueDate": "2026-11-09"
+  },
+  {
    "id": "4nxrpr3nmvovys1q",
    "date": "2026-10-26",
    "createdAt": "2026-10-26T06:39:01.502Z",
