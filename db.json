@@ -626,6 +626,16 @@
  ],
  "transactions": [
   {
+   "id": "59egpmqzmvowaq8l",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:48:19.031Z",
+   "customerId": "8zfd4dhkmvow9u4p",
+   "note": "3.000 adet 14oz Doublewall: 6,50 + KDV\n23.400,00",
+   "type": "debt",
+   "amount": 23400,
+   "dueDate": "2026-11-09"
+  },
+  {
    "id": "auamhvwwmvow863g",
    "date": "2026-10-26",
    "createdAt": "2026-10-26T06:46:19.612Z",
