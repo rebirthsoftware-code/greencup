@@ -1801,6 +1801,15 @@
  ],
  "production": [
   {
+   "id": "6cgquq53mvovzmbw",
+   "createdAt": "2026-10-26T06:39:40.748Z",
+   "unit": "adet",
+   "customerId": "7gfwsnosmvovtn4w",
+   "name": "8oz Doublewall Revue",
+   "qty": 3000,
+   "updatedAt": "2026-10-26T06:39:40.748Z"
+  },
+  {
    "id": "dumedppcmv8b30yo",
    "createdAt": "2026-10-14T16:10:08.928Z",
    "unit": "adet",
