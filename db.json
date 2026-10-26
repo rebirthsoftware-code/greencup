@@ -678,6 +678,28 @@
  ],
  "transactions": [
   {
+   "id": "k677yyipmvownoig",
+   "customerId": "3rxqfynxmubhkook",
+   "type": "sale",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:58:23.320Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Craft Çanta",
+     "unit": "adet",
+     "qty": 500,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-26",
+   "note": "Üretimden teslim"
+  },
+  {
    "id": "g5wxffz3mvownm12",
    "customerId": "3rxqfynxmubhkook",
    "type": "sale",
@@ -2089,16 +2111,6 @@
    "name": "Peçete",
    "qty": 24000,
    "updatedAt": "2026-09-28T11:28:49.854Z"
-  },
-  {
-   "id": "icsa4c2pmuculzi8",
-   "createdAt": "2026-09-22T15:48:08.576Z",
-   "unit": "adet",
-   "customerId": "3rxqfynxmubhkook",
-   "name": "Craft Çanta",
-   "qty": 500,
-   "dueDate": "2026-10-15",
-   "updatedAt": "2026-09-22T15:48:08.576Z"
   },
   {
    "id": "0em66b5jmucqmqq0",
@@ -4590,6 +4602,10 @@
   {
    "id": "82aj0rvmmucoul5f",
    "at": "2026-10-26T06:58:20.103Z"
+  },
+  {
+   "id": "icsa4c2pmuculzi8",
+   "at": "2026-10-26T06:58:23.320Z"
   }
  ],
  "settings": {
