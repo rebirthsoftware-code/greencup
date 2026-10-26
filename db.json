@@ -613,6 +613,16 @@
  ],
  "transactions": [
   {
+   "id": "auamhvwwmvow863g",
+   "date": "2026-10-26",
+   "createdAt": "2026-10-26T06:46:19.612Z",
+   "customerId": "dgj1ozdumucozila",
+   "note": "4.000 adet 14oz Doublewall 6,00 - 24.000,00\n500 adet craft çanta: 9,00 - 4.500,00",
+   "type": "debt",
+   "amount": 28500,
+   "dueDate": "2026-11-09"
+  },
+  {
    "id": "6fwmusn2mvow44nc",
    "date": "2026-10-26",
    "createdAt": "2026-10-26T06:43:11.112Z",
