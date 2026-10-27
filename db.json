@@ -170,6 +170,16 @@
    "name": "90mm Sıcak Kapak Siyah (Paket içi 100 adet koli içi 1.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-10-24T10:12:37.558Z"
+  },
+  {
+   "id": "zo2um423mvqpwtqz",
+   "unit": "adet",
+   "stock": 33600,
+   "price": 0.66,
+   "createdAt": "2026-10-27T13:25:05.051Z",
+   "name": "Peçete Pana deria",
+   "minStock": 0,
+   "updatedAt": "2026-10-27T13:25:05.051Z"
   }
  ],
  "customers": [
