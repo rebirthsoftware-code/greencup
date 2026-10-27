@@ -174,7 +174,7 @@
   {
    "id": "zo2um423mvqpwtqz",
    "unit": "adet",
-   "stock": 33600,
+   "stock": 0,
    "price": 0.66,
    "createdAt": "2026-10-27T13:25:05.051Z",
    "name": "Peçete Pana deria",
@@ -687,6 +687,29 @@
   }
  ],
  "transactions": [
+  {
+   "id": "v8xftj3imvqpz6t7",
+   "date": "2026-10-27",
+   "createdAt": "2026-10-27T13:26:55.294Z",
+   "customerId": "ctf5htz2mucodty7",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "zo2um423mvqpwtqz",
+     "name": "Peçete Pana deria",
+     "unit": "adet",
+     "qty": 33600,
+     "unitPrice": 0.66,
+     "amount": 22176
+    }
+   ],
+   "amount": 22176,
+   "invoiced": true,
+   "payment": "vadeli",
+   "dueDate": "2026-11-10",
+   "method": "nakit",
+   "invoiceNo": "2026/0003"
+  },
   {
    "id": "2rgfqrzpmvqi1nr6",
    "customerId": "ctf5htz2mucodty7",
@@ -4797,7 +4820,7 @@
   "kdv": 20,
   "overdueDays": 5,
   "defaultDueDays": 15,
-  "invoiceSeq": 3,
+  "invoiceSeq": 4,
   "updatedAt": "2026-09-17T17:32:38.110Z"
  }
 }
