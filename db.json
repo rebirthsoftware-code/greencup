@@ -1782,6 +1782,15 @@
  ],
  "reserved": [
   {
+   "id": "ktmi7s14mvqi1ioe",
+   "createdAt": "2026-10-27T09:44:47.054Z",
+   "customerId": "ctf5htz2mucodty7",
+   "name": "Tek Kat Peçete (koli içi 4800 adet)",
+   "unit": "koli",
+   "qty": 7,
+   "updatedAt": "2026-10-27T09:44:47.054Z"
+  },
+  {
    "id": "97mk1z1jmvm7zu30",
    "createdAt": "2026-10-24T09:52:27.660Z",
    "customerId": "gt35fmbpmunoiww9",
