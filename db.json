@@ -2447,7 +2447,7 @@
  "cash": {
   "nakit": 470,
   "acc-garanti-bbva": 7848.95,
-  "acc-garanti-bbva-kk": 3186.19,
+  "acc-garanti-bbva-kk": 2306.19,
   "acc-kuveyt-turk": 34477.55,
   "acc-kuveyt-turk-kk": 589.84,
   "acc-ziraat-bankasi": 0,
@@ -2462,6 +2462,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "75iyxrwdmvs6y9z2",
+   "date": "2026-10-28",
+   "createdAt": "2026-10-28T14:09:52.382Z",
+   "type": "out",
+   "account": "acc-garanti-bbva-kk",
+   "amount": 880,
+   "title": "Aş"
+  },
   {
    "id": "ac1nidnvmvs0jelh",
    "date": "2026-10-28",
