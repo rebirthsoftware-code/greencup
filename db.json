@@ -2451,7 +2451,7 @@
   "acc-kuveyt-turk": 32298.5,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
-  "acc-ziraat-bankasi-kk": 1625.5,
+  "acc-ziraat-bankasi-kk": 2030.5,
   "acc-sekerbank": 0,
   "acc-sekerbank-kk": 0,
   "acc-yapi-kredi": 0,
@@ -2462,6 +2462,16 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "3zjtxiwsmvsezglk",
+   "date": "2026-10-28",
+   "createdAt": "2026-10-28T17:54:44.552Z",
+   "type": "in",
+   "amount": 405,
+   "account": "acc-ziraat-bankasi-kk",
+   "title": "Bakiye düzeltme",
+   "adjust": true
+  },
   {
    "id": "6jngd77wmvseyfm7",
    "date": "2026-10-28",
