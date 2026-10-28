@@ -2446,7 +2446,7 @@
  ],
  "cash": {
   "nakit": 100,
-  "acc-garanti-bbva": 7848.95,
+  "acc-garanti-bbva": 7840.57,
   "acc-garanti-bbva-kk": 2306.19,
   "acc-kuveyt-turk": 32298.5,
   "acc-kuveyt-turk-kk": 6.79,
@@ -2462,6 +2462,16 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "dqqd77x6mvsey5pp",
+   "date": "2026-10-28",
+   "createdAt": "2026-10-28T17:53:43.789Z",
+   "type": "out",
+   "amount": 8.38,
+   "account": "acc-garanti-bbva",
+   "title": "Bakiye düzeltme",
+   "adjust": true
+  },
   {
    "id": "w0ofjhk0mvsewbh5",
    "date": "2026-10-28",
