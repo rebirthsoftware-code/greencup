@@ -2451,7 +2451,7 @@
   "acc-kuveyt-turk": 34477.55,
   "acc-kuveyt-turk-kk": 589.84,
   "acc-ziraat-bankasi": 0,
-  "acc-ziraat-bankasi-kk": 2030.5,
+  "acc-ziraat-bankasi-kk": 1625.5,
   "acc-sekerbank": 0,
   "acc-sekerbank-kk": 0,
   "acc-yapi-kredi": 0,
@@ -2462,6 +2462,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "8jwvm6y7mvs9i7sv",
+   "date": "2026-10-28",
+   "createdAt": "2026-10-28T15:21:21.919Z",
+   "type": "out",
+   "account": "acc-ziraat-bankasi-kk",
+   "amount": 405,
+   "title": "Kahve"
+  },
   {
    "id": "75iyxrwdmvs6y9z2",
    "date": "2026-10-28",
