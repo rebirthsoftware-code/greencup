@@ -2454,10 +2454,10 @@
   }
  ],
  "cash": {
-  "nakit": 100,
+  "nakit": 3100,
   "acc-garanti-bbva": 7840.57,
   "acc-garanti-bbva-kk": 826.19,
-  "acc-kuveyt-turk": 82298.5,
+  "acc-kuveyt-turk": 79298.5,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 2030.5,
@@ -2471,6 +2471,26 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "7ek1djtmmvta2hf2",
+   "date": "2026-10-29",
+   "type": "in",
+   "amount": 3000,
+   "title": "Transfer: Kuveyt Türk → Nakit",
+   "account": "nakit",
+   "transferId": "bp1plb3gmvta2hf2",
+   "createdAt": "2026-10-29T08:24:53.678Z"
+  },
+  {
+   "id": "ysnq9ehemvta2hf2",
+   "date": "2026-10-29",
+   "type": "out",
+   "amount": 3000,
+   "title": "Transfer: Kuveyt Türk → Nakit",
+   "account": "acc-kuveyt-turk",
+   "transferId": "bp1plb3gmvta2hf2",
+   "createdAt": "2026-10-29T08:24:53.678Z"
+  },
   {
    "id": "ng3do3nymvta1m2f",
    "date": "2026-10-29",
