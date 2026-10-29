@@ -64,7 +64,7 @@
   {
    "id": "jmoy8pnzmvm7msqa",
    "unit": "paket",
-   "stock": 27,
+   "stock": 26,
    "price": 0,
    "createdAt": "2026-10-24T09:42:19.378Z",
    "name": "95 Çap Soğuk Plastik Kapak Klips (koli içi 10 paket 1.000 adet)",
@@ -687,6 +687,29 @@
   }
  ],
  "transactions": [
+  {
+   "id": "9pxkqgoomvtc4hmr",
+   "date": "2026-10-29",
+   "createdAt": "2026-10-29T09:22:26.506Z",
+   "customerId": "eley9558mupk27u4",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "jmoy8pnzmvm7msqa",
+     "name": "95 Çap Soğuk Plastik Kapak Klips (koli içi 10 paket 1.000 adet)",
+     "unit": "paket",
+     "qty": 1,
+     "unitPrice": 1140,
+     "amount": 1140
+    }
+   ],
+   "amount": 1140,
+   "invoiced": true,
+   "payment": "vadeli",
+   "dueDate": "2026-11-12",
+   "method": "nakit",
+   "invoiceNo": "2026/0004"
+  },
   {
    "id": "yayh70rsmvtb1dqj",
    "date": "2026-10-29",
@@ -5066,7 +5089,7 @@
   "kdv": 20,
   "overdueDays": 5,
   "defaultDueDays": 15,
-  "invoiceSeq": 4,
+  "invoiceSeq": 5,
   "updatedAt": "2026-09-17T17:32:38.110Z"
  }
 }
