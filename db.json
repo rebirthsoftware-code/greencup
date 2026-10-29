@@ -2466,7 +2466,7 @@
   "nakit": 2950,
   "acc-garanti-bbva": 2109.81,
   "acc-garanti-bbva-kk": 826.19,
-  "acc-kuveyt-turk": 79483.5,
+  "acc-kuveyt-turk": 29483.5,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 2030.5,
@@ -2480,6 +2480,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "yu40i6dymvtbwr0j",
+   "date": "2026-10-29",
+   "createdAt": "2026-10-29T09:16:25.411Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 50000,
+   "title": "Murat abi deneyim"
+  },
   {
    "id": "8c202sbumvtb76gp",
    "date": "2026-10-29",
