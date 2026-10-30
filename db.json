@@ -688,6 +688,28 @@
  ],
  "transactions": [
   {
+   "id": "i48qxxckmvv22e6d",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "type": "sale",
+   "date": "2026-10-30",
+   "createdAt": "2026-10-30T14:16:24.901Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "14Oz Doublewall",
+     "unit": "koli",
+     "qty": 14,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-10-30",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "aq3lnzdimvv21xej",
    "customerId": "k0g0wjfsmub2ppuo",
    "type": "sale",
@@ -2047,8 +2069,8 @@
    "customerId": "k0g0wjfsmub2ppuo",
    "name": "14Oz Doublewall",
    "unit": "koli",
-   "qty": 64,
-   "updatedAt": "2026-10-14T08:23:03.931Z"
+   "qty": 50,
+   "updatedAt": "2026-10-30T14:16:24.901Z"
   },
   {
    "id": "7unmb24umuuy94ud",
