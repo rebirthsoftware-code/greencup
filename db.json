@@ -2553,7 +2553,7 @@
  ],
  "cash": {
   "nakit": 375,
-  "acc-garanti-bbva": 2101.44,
+  "acc-garanti-bbva": 271.44,
   "acc-garanti-bbva-kk": 826.19,
   "acc-kuveyt-turk": 34323.5,
   "acc-kuveyt-turk-kk": 6.79,
@@ -2569,6 +2569,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "a9lsibs9mvvdxmi8",
+   "date": "2026-10-30",
+   "createdAt": "2026-10-30T19:48:37.808Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 1830,
+   "title": "Sigara Mantar"
+  },
   {
    "id": "vcz8gyv6mvvdxa9k",
    "date": "2026-10-30",
