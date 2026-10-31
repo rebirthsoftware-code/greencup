@@ -2552,7 +2552,7 @@
   }
  ],
  "cash": {
-  "nakit": 3075,
+  "nakit": 2895,
   "acc-garanti-bbva": 263.07,
   "acc-garanti-bbva-kk": 826.19,
   "acc-kuveyt-turk": 24761.14,
@@ -2569,6 +2569,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "45gbmz80mvvzh336",
+   "date": "2026-10-31",
+   "createdAt": "2026-10-31T05:51:37.698Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 180,
+   "title": "Kahve"
+  },
   {
    "id": "qllnza2omvvu3ipi",
    "date": "2026-10-31",
