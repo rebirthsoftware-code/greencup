@@ -1025,15 +1025,6 @@
    "note": "Üretimden teslim"
   },
   {
-   "id": "7o6vq21qmvowm2xk",
-   "date": "2026-10-24",
-   "createdAt": "2026-10-26T06:57:08.696Z",
-   "customerId": "n0li5b5vmucp3ngk",
-   "type": "payment",
-   "amount": 11000,
-   "method": "acc-kuveyt-turk"
-  },
-  {
    "id": "0d56woosmvowjz3y",
    "date": "2026-10-26",
    "createdAt": "2026-10-26T06:55:30.430Z",
@@ -1114,6 +1105,15 @@
    "type": "debt",
    "amount": 55100,
    "dueDate": "2026-11-09"
+  },
+  {
+   "id": "7o6vq21qmvowm2xk",
+   "date": "2026-10-24",
+   "createdAt": "2026-10-26T06:57:08.696Z",
+   "customerId": "n0li5b5vmucp3ngk",
+   "type": "payment",
+   "amount": 11000,
+   "method": "acc-kuveyt-turk"
   },
   {
    "id": "t6f63c78mvmcp294",
@@ -2662,15 +2662,6 @@
    "title": "Yemek"
   },
   {
-   "id": "o6ydmnnlmvuw8rtv",
-   "date": "2026-10-30",
-   "type": "in",
-   "amount": 10000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "7ykijc07mvuw8rtv"
-  },
-  {
    "id": "h6wtgdcdmvupvgpy",
    "date": "2026-10-30",
    "createdAt": "2026-10-30T08:35:06.214Z",
@@ -2707,6 +2698,15 @@
    "title": "Berber"
   },
   {
+   "id": "o6ydmnnlmvuw8rtv",
+   "date": "2026-10-30",
+   "type": "in",
+   "amount": 10000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "7ykijc07mvuw8rtv"
+  },
+  {
    "id": "gnbduqmsmvtdul59",
    "date": "2026-10-29",
    "createdAt": "2026-10-29T10:10:43.727Z",
@@ -2736,15 +2736,6 @@
    "createdAt": "2026-10-29T10:09:57.641Z"
   },
   {
-   "id": "76f35nwymvtc84gb",
-   "date": "2026-10-29",
-   "type": "in",
-   "amount": 1140,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "2u6tny2zmvtc84ga"
-  },
-  {
    "id": "yu40i6dymvtbwr0j",
    "date": "2026-10-29",
    "createdAt": "2026-10-29T09:16:25.411Z",
@@ -2761,15 +2752,6 @@
    "account": "acc-garanti-bbva",
    "amount": 5730.76,
    "title": "Yakıt"
-  },
-  {
-   "id": "yvw21sm3mvtb1dqk",
-   "date": "2026-10-29",
-   "type": "in",
-   "amount": 1680,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "yayh70rsmvtb1dqj"
   },
   {
    "id": "lgqc32awmvta3w3z",
@@ -2808,6 +2790,24 @@
    "account": "acc-kuveyt-turk",
    "transferId": "bp1plb3gmvta2hf2",
    "createdAt": "2026-10-29T08:24:53.678Z"
+  },
+  {
+   "id": "76f35nwymvtc84gb",
+   "date": "2026-10-29",
+   "type": "in",
+   "amount": 1140,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "2u6tny2zmvtc84ga"
+  },
+  {
+   "id": "yvw21sm3mvtb1dqk",
+   "date": "2026-10-29",
+   "type": "in",
+   "amount": 1680,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "yayh70rsmvtb1dqj"
   },
   {
    "id": "ng3do3nymvta1m2f",
@@ -2906,15 +2906,6 @@
    "title": "Aş"
   },
   {
-   "id": "ac1nidnvmvs0jelh",
-   "date": "2026-10-28",
-   "type": "in",
-   "amount": 7600,
-   "title": "Tahsilat",
-   "account": "acc-garanti-bbva",
-   "txId": "1eglgjmbmvs0jelg"
-  },
-  {
    "id": "e5gqu4yemvryehj6",
    "date": "2026-10-28",
    "createdAt": "2026-10-28T10:10:32.130Z",
@@ -2922,6 +2913,15 @@
    "account": "acc-garanti-bbva-kk",
    "amount": 1022.84,
    "title": "Market"
+  },
+  {
+   "id": "ac1nidnvmvs0jelh",
+   "date": "2026-10-28",
+   "type": "in",
+   "amount": 7600,
+   "title": "Tahsilat",
+   "account": "acc-garanti-bbva",
+   "txId": "1eglgjmbmvs0jelg"
   },
   {
    "id": "jwktual9mvqxu3w6",
@@ -2999,15 +2999,6 @@
    "title": "Muhasebe"
   },
   {
-   "id": "7yzw9trjmvp91nqc",
-   "date": "2026-10-26",
-   "type": "in",
-   "amount": 23400,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "zt7le0d3mvp91nqc"
-  },
-  {
    "id": "f3r1ok9tmvp3p754",
    "date": "2026-10-26",
    "createdAt": "2026-10-26T10:15:31.432Z",
@@ -3034,6 +3025,15 @@
    "account": "acc-kuveyt-turk",
    "title": "Bakiye düzeltme",
    "adjust": true
+  },
+  {
+   "id": "7yzw9trjmvp91nqc",
+   "date": "2026-10-26",
+   "type": "in",
+   "amount": 23400,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "zt7le0d3mvp91nqc"
   },
   {
    "id": "yg3caiwamvowm2xk",
