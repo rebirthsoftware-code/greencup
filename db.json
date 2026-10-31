@@ -2552,7 +2552,7 @@
   }
  ],
  "cash": {
-  "nakit": 1950,
+  "nakit": 1925,
   "acc-garanti-bbva": 263.07,
   "acc-garanti-bbva-kk": 826.19,
   "acc-kuveyt-turk": 19382.11,
@@ -2569,6 +2569,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "c5toempmmvwkh69i",
+   "date": "2026-10-31",
+   "createdAt": "2026-10-31T15:39:33.751Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 25,
+   "title": "Soda"
+  },
   {
    "id": "6wue8j42mvwkdzxp",
    "date": "2026-10-31",
