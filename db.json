@@ -2552,7 +2552,7 @@
   }
  ],
  "cash": {
-  "nakit": 1210,
+  "nakit": 890,
   "acc-garanti-bbva": 263.07,
   "acc-garanti-bbva-kk": 826.19,
   "acc-kuveyt-turk": 16582.11,
@@ -2569,6 +2569,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "br1hdunimvxvj2pm",
+   "date": "2026-11-01",
+   "createdAt": "2026-11-01T13:36:44.410Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 320,
+   "title": "Kırtasiye"
+  },
   {
    "id": "n8kagp27mvxv5nvl",
    "date": "2026-11-01",
