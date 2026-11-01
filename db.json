@@ -180,6 +180,16 @@
    "name": "Peçete Pana deria",
    "minStock": 0,
    "updatedAt": "2026-10-27T13:25:05.051Z"
+  },
+  {
+   "id": "rp663r4dmvxym1bg",
+   "unit": "adet",
+   "stock": 350,
+   "price": 0,
+   "createdAt": "2026-11-01T15:03:01.420Z",
+   "name": "14 Oz Doublewall (baskısız)",
+   "minStock": 0,
+   "updatedAt": "2026-11-01T15:03:01.420Z"
   }
  ],
  "customers": [
