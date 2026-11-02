@@ -5220,13 +5220,13 @@
  ],
  "expenses": [
   {
-   "id": "hx035jhnmutrsp7y",
+   "id": "6f07fs7dmvzdv2lf",
    "paid": false,
-   "createdAt": "2026-10-04T12:01:27.982Z",
-   "title": "Ziraat Kredi Kartı",
-   "amount": 8000,
-   "due": "2026-10-11",
-   "updatedAt": "2026-10-04T12:01:27.982Z"
+   "createdAt": "2026-11-02T14:57:43.395Z",
+   "title": "Nihat abi",
+   "amount": 41185,
+   "due": "2026-11-02",
+   "updatedAt": "2026-11-02T14:57:43.395Z"
   },
   {
    "id": "dzw87zwymutrp4gd",
@@ -5611,6 +5611,10 @@
   {
    "id": "j9pka83fmutrq101",
    "at": "2026-11-02T14:57:29.534Z"
+  },
+  {
+   "id": "hx035jhnmutrsp7y",
+   "at": "2026-11-02T14:57:31.974Z"
   }
  ],
  "settings": {
