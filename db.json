@@ -204,6 +204,19 @@
  ],
  "customers": [
   {
+   "id": "k9406vizmvz87fs4",
+   "color": "#0E6B3F",
+   "createdAt": "2026-11-02T12:19:22.668Z",
+   "name": "LOTUS Pansiyon Filyos",
+   "type": "Diğer",
+   "phone": "0 (543) 248 08 07",
+   "city": "Zonguldak ",
+   "district": "Filyos ",
+   "notes": "",
+   "address": "Otel",
+   "updatedAt": "2026-11-02T12:19:22.668Z"
+  },
+  {
    "id": "v7sqzoobmvz84k09",
    "color": "#0E6B3F",
    "createdAt": "2026-11-02T12:17:08.189Z",
@@ -720,6 +733,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "ziznrg9dmvz87fsc",
+   "date": "2026-11-02",
+   "createdAt": "2026-11-02T12:19:22.669Z",
+   "customerId": "k9406vizmvz87fs4",
+   "type": "debt",
+   "amount": 36000,
+   "dueDate": "2026-11-02",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "o2bt1uhkmvz84k0t",
    "date": "2026-11-02",
