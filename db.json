@@ -204,6 +204,19 @@
  ],
  "customers": [
   {
+   "id": "v7sqzoobmvz84k09",
+   "color": "#0E6B3F",
+   "createdAt": "2026-11-02T12:17:08.189Z",
+   "name": "Hatice Turhan Yurt",
+   "type": "Diğer",
+   "phone": "05327396331",
+   "city": "Zonguldak ",
+   "district": "Merkez ",
+   "notes": "",
+   "address": "İncivez",
+   "updatedAt": "2026-11-02T12:17:08.189Z"
+  },
+  {
    "id": "ycyykb1vmvowjz3q",
    "color": "#0E6B3F",
    "createdAt": "2026-10-26T06:55:30.430Z",
@@ -707,6 +720,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "o2bt1uhkmvz84k0t",
+   "date": "2026-11-02",
+   "createdAt": "2026-11-02T12:17:08.190Z",
+   "customerId": "v7sqzoobmvz84k09",
+   "type": "debt",
+   "amount": 24000,
+   "dueDate": "2026-11-02",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "i48qxxckmvv22e6d",
    "customerId": "k0g0wjfsmub2ppuo",
