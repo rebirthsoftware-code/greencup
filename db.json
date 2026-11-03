@@ -2392,6 +2392,15 @@
  ],
  "production": [
   {
+   "id": "py6bmhg6mw0cgjf0",
+   "createdAt": "2026-11-03T07:06:11.916Z",
+   "unit": "adet",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "name": "İnce Gramaj sleev",
+   "qty": 20000,
+   "updatedAt": "2026-11-03T07:06:11.916Z"
+  },
+  {
    "id": "vk5u4ekqmvzjnyux",
    "createdAt": "2026-11-02T17:40:09.657Z",
    "unit": "adet",
