@@ -747,6 +747,16 @@
  ],
  "transactions": [
   {
+   "id": "hnuf00semw0chqwz",
+   "date": "2026-11-03",
+   "createdAt": "2026-11-03T07:07:08.292Z",
+   "customerId": "k0g0wjfsmub2ppuo",
+   "note": "İnce Gramaj sleev\n0,75 + KDV- 0,90\n20.000 adet 18.000,00",
+   "type": "debt",
+   "amount": 18000,
+   "dueDate": "2026-11-17"
+  },
+  {
    "id": "wzapz4twmw0bwape",
    "date": "2026-11-03",
    "createdAt": "2026-11-03T06:50:27.506Z",
