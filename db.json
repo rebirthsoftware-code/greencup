@@ -5373,6 +5373,15 @@
  ],
  "expenses": [
   {
+   "id": "ojele550mw0i1gdg",
+   "paid": false,
+   "createdAt": "2026-11-03T09:42:25.828Z",
+   "title": "Islak mendil BREW",
+   "amount": 6850,
+   "due": "2026-11-03",
+   "updatedAt": "2026-11-03T09:42:25.828Z"
+  },
+  {
    "id": "6f07fs7dmvzdv2lf",
    "paid": false,
    "createdAt": "2026-11-02T14:57:43.395Z",
