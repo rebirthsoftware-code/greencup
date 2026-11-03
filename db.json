@@ -204,6 +204,19 @@
  ],
  "customers": [
   {
+   "id": "79onvooamw0bwaot",
+   "color": "#0E6B3F",
+   "createdAt": "2026-11-03T06:50:27.506Z",
+   "name": "Özde Gross",
+   "type": "Cafe & Restaurant",
+   "phone": "+90 541 805 33 76",
+   "city": "Bartın",
+   "district": "Merkez",
+   "notes": "",
+   "address": "Amasra yolu üzeri ",
+   "updatedAt": "2026-11-03T06:50:27.506Z"
+  },
+  {
    "id": "k9406vizmvz87fs4",
    "color": "#0E6B3F",
    "createdAt": "2026-11-02T12:19:22.668Z",
@@ -733,6 +746,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "wzapz4twmw0bwape",
+   "date": "2026-11-03",
+   "createdAt": "2026-11-03T06:50:27.506Z",
+   "customerId": "79onvooamw0bwaot",
+   "type": "debt",
+   "amount": 35000,
+   "dueDate": "2026-11-03",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "eg6ryoy1mvz87s0d",
    "date": "2026-11-02",
