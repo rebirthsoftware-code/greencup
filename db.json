@@ -172,16 +172,6 @@
    "updatedAt": "2026-10-24T10:12:37.558Z"
   },
   {
-   "id": "zo2um423mvqpwtqz",
-   "unit": "adet",
-   "stock": 0,
-   "price": 0.66,
-   "createdAt": "2026-10-27T13:25:05.051Z",
-   "name": "Peçete Pana deria",
-   "minStock": 0,
-   "updatedAt": "2026-10-27T13:25:05.051Z"
-  },
-  {
    "id": "rp663r4dmvxym1bg",
    "unit": "adet",
    "stock": 350,
@@ -5778,6 +5768,10 @@
   {
    "id": "hx035jhnmutrsp7y",
    "at": "2026-11-02T14:57:31.974Z"
+  },
+  {
+   "id": "zo2um423mvqpwtqz",
+   "at": "2026-11-03T09:14:30.803Z"
   }
  ],
  "settings": {
