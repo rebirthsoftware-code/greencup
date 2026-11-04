@@ -2753,7 +2753,7 @@
   "nakit": 1225,
   "acc-garanti-bbva": 170.9,
   "acc-garanti-bbva-kk": 826.19,
-  "acc-kuveyt-turk": 66475.72,
+  "acc-kuveyt-turk": 65995.72,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 2030.5,
@@ -2767,6 +2767,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "cd0ucdlgmw2eda23",
+   "date": "2026-11-04",
+   "createdAt": "2026-11-04T17:35:11.403Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 480,
+   "title": "BREW"
+  },
   {
    "id": "pi3hnbetmw2clwn1",
    "date": "2026-11-04",
