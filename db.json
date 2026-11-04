@@ -2751,7 +2751,7 @@
  ],
  "cash": {
   "nakit": 1225,
-  "acc-garanti-bbva": 187.66,
+  "acc-garanti-bbva": 179.29,
   "acc-garanti-bbva-kk": 826.19,
   "acc-kuveyt-turk": 66475.72,
   "acc-kuveyt-turk-kk": 6.79,
@@ -2767,6 +2767,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "c7pa4q0qmw2cldqi",
+   "date": "2026-11-04",
+   "createdAt": "2026-11-04T16:45:30.186Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 8.37,
+   "title": "Komisyon"
+  },
   {
    "id": "fddgkw9zmw2ckto1",
    "date": "2026-11-04",
