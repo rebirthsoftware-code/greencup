@@ -5554,6 +5554,15 @@
  ],
  "expenses": [
   {
+   "id": "m3tet68emw27sojt",
+   "paid": false,
+   "createdAt": "2026-11-04T14:31:12.713Z",
+   "title": "Eray abi kase",
+   "amount": 27536.58,
+   "due": "2026-11-04",
+   "updatedAt": "2026-11-04T14:31:12.713Z"
+  },
+  {
    "id": "conx5lj0mw1w7zmh",
    "paid": false,
    "createdAt": "2026-11-04T09:07:11.513Z",
