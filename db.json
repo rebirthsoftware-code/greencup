@@ -2671,7 +2671,7 @@
   "nakit": 1715,
   "acc-garanti-bbva": 187.66,
   "acc-garanti-bbva-kk": 826.19,
-  "acc-kuveyt-turk": 27213.91,
+  "acc-kuveyt-turk": 0,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 2030.5,
@@ -2685,6 +2685,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "dfhjl19pmw1vvaoi",
+   "date": "2026-11-04",
+   "createdAt": "2026-11-04T08:57:19.315Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 27213.91,
+   "title": "Efe Pack"
+  },
   {
    "id": "xfnqt5s8mw1p3gua",
    "date": "2026-11-04",
