@@ -2717,15 +2717,6 @@
    "title": "Berfinim"
   },
   {
-   "id": "k7cgtclcmw1xmfsh",
-   "date": "2026-11-04",
-   "type": "in",
-   "amount": 20000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "37hnp8ocmw1xmfsh"
-  },
-  {
    "id": "e17623oemw1xm48y",
    "date": "2026-11-04",
    "createdAt": "2026-11-04T09:46:10.306Z",
@@ -2760,6 +2751,15 @@
    "account": "nakit",
    "amount": 400,
    "title": "Pazar"
+  },
+  {
+   "id": "k7cgtclcmw1xmfsh",
+   "date": "2026-11-04",
+   "type": "in",
+   "amount": 20000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "37hnp8ocmw1xmfsh"
   },
   {
    "id": "0lhotv2cmw0pxej4",
@@ -2968,15 +2968,6 @@
    "title": "Hikmet Abi AKB"
   },
   {
-   "id": "1q8036d1mvz87s0e",
-   "date": "2026-11-02",
-   "type": "in",
-   "amount": 36000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "eg6ryoy1mvz87s0d"
-  },
-  {
    "id": "saxyv0x3mvyvi8kz",
    "date": "2026-11-02",
    "createdAt": "2026-11-02T06:23:51.539Z",
@@ -2984,6 +2975,15 @@
    "account": "nakit",
    "amount": 1150,
    "title": "Market"
+  },
+  {
+   "id": "1q8036d1mvz87s0e",
+   "date": "2026-11-02",
+   "type": "in",
+   "amount": 36000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "eg6ryoy1mvz87s0d"
   },
   {
    "id": "d1444d8wmvy7i6z5",
