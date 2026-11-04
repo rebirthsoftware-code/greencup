@@ -5427,6 +5427,15 @@
  ],
  "expenses": [
   {
+   "id": "conx5lj0mw1w7zmh",
+   "paid": false,
+   "createdAt": "2026-11-04T09:07:11.513Z",
+   "title": "EfePack",
+   "amount": 37950,
+   "due": "2026-11-11",
+   "updatedAt": "2026-11-04T09:07:11.513Z"
+  },
+  {
    "id": "1f8qjz5vmw0i1r7o",
    "paid": false,
    "createdAt": "2026-11-03T09:42:39.876Z",
