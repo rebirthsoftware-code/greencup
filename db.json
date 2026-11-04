@@ -2414,6 +2414,15 @@
  ],
  "production": [
   {
+   "id": "pwwv4t9wmw1zle1b",
+   "createdAt": "2026-11-04T10:41:35.567Z",
+   "unit": "adet",
+   "customerId": "uswxua2cmw1yim9o",
+   "name": "14oz dw",
+   "qty": 1000,
+   "updatedAt": "2026-11-04T10:41:35.567Z"
+  },
+  {
    "id": "py6bmhg6mw0cgjf0",
    "createdAt": "2026-11-03T07:06:11.916Z",
    "unit": "adet",
