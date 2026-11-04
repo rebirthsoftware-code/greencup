@@ -5630,6 +5630,15 @@
  ],
  "expenses": [
   {
+   "id": "gfo50262mw2dc2by",
+   "paid": false,
+   "createdAt": "2026-11-04T17:06:15.118Z",
+   "title": "Sanayi",
+   "amount": 31500,
+   "due": "2026-11-09",
+   "updatedAt": "2026-11-04T17:06:15.118Z"
+  },
+  {
    "id": "3pv03f2mmw27taf2",
    "paid": true,
    "createdAt": "2026-11-04T14:31:41.054Z",
