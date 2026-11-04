@@ -2753,7 +2753,7 @@
   "nakit": 1225,
   "acc-garanti-bbva": 187.66,
   "acc-garanti-bbva-kk": 826.19,
-  "acc-kuveyt-turk": 134000,
+  "acc-kuveyt-turk": 106463.42,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 2030.5,
@@ -2767,6 +2767,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "khcmjmh5mw27su6j",
+   "date": "2026-11-04",
+   "type": "out",
+   "amount": 27536.58,
+   "title": "Eray abi kase",
+   "account": "acc-kuveyt-turk",
+   "txId": "m3tet68emw27sojt"
+  },
   {
    "id": "2nt3wg6dmw27rvuf",
    "date": "2026-11-04",
@@ -5555,12 +5564,14 @@
  "expenses": [
   {
    "id": "m3tet68emw27sojt",
-   "paid": false,
+   "paid": true,
    "createdAt": "2026-11-04T14:31:12.713Z",
    "title": "Eray abi kase",
    "amount": 27536.58,
    "due": "2026-11-04",
-   "updatedAt": "2026-11-04T14:31:12.713Z"
+   "updatedAt": "2026-11-04T14:31:20.011Z",
+   "paidAt": "2026-11-04",
+   "account": "acc-kuveyt-turk"
   },
   {
    "id": "conx5lj0mw1w7zmh",
