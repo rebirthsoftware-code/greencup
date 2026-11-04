@@ -2414,6 +2414,15 @@
  ],
  "production": [
   {
+   "id": "n56vc6c6mw1zlw1f",
+   "createdAt": "2026-11-04T10:41:58.899Z",
+   "unit": "adet",
+   "customerId": "uswxua2cmw1yim9o",
+   "name": "14oz Hafif gramaj pet",
+   "qty": 1000,
+   "updatedAt": "2026-11-04T10:41:58.899Z"
+  },
+  {
    "id": "pwwv4t9wmw1zle1b",
    "createdAt": "2026-11-04T10:41:35.567Z",
    "unit": "adet",
