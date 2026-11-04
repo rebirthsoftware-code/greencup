@@ -194,6 +194,19 @@
  ],
  "customers": [
   {
+   "id": "uswxua2cmw1yim9o",
+   "color": "#0E6B3F",
+   "createdAt": "2026-11-04T10:11:26.658Z",
+   "name": "OS Cafe",
+   "type": "Cafe & Restaurant",
+   "phone": "05334902766",
+   "city": "Zonguldak ",
+   "district": "Merkez",
+   "notes": "",
+   "address": "Elmas Park",
+   "updatedAt": "2026-11-04T10:11:26.658Z"
+  },
+  {
    "id": "79onvooamw0bwaot",
    "color": "#0E6B3F",
    "createdAt": "2026-11-03T06:50:27.506Z",
