@@ -194,6 +194,19 @@
  ],
  "customers": [
   {
+   "id": "1y179eevmw27ritm",
+   "color": "#0E6B3F",
+   "createdAt": "2026-11-04T14:30:18.655Z",
+   "name": "Enes Abi Fakülte",
+   "type": "Diğer",
+   "phone": "0 (549) 207 67 67",
+   "city": "Zonguldak ",
+   "district": "Kozlu",
+   "notes": "",
+   "address": "Fakülte",
+   "updatedAt": "2026-11-04T14:30:18.655Z"
+  },
+  {
    "id": "uswxua2cmw1yim9o",
    "color": "#0E6B3F",
    "createdAt": "2026-11-04T10:11:26.658Z",
@@ -749,6 +762,16 @@
   }
  ],
  "transactions": [
+  {
+   "id": "xwd8vtfgmw27riu7",
+   "date": "2026-11-04",
+   "createdAt": "2026-11-04T14:30:18.656Z",
+   "customerId": "1y179eevmw27ritm",
+   "type": "debt",
+   "amount": 195000,
+   "dueDate": "2026-11-04",
+   "note": "Açılış bakiyesi (devir)"
+  },
   {
    "id": "gr9tfccomw1zo6rw",
    "date": "2026-11-04",
