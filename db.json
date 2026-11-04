@@ -2751,7 +2751,7 @@
  ],
  "cash": {
   "nakit": 1225,
-  "acc-garanti-bbva": 39787.66,
+  "acc-garanti-bbva": 187.66,
   "acc-garanti-bbva-kk": 826.19,
   "acc-kuveyt-turk": 66475.72,
   "acc-kuveyt-turk-kk": 6.79,
@@ -2767,6 +2767,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "fddgkw9zmw2ckto1",
+   "date": "2026-11-04",
+   "type": "out",
+   "amount": 39600,
+   "title": "Hikmet abi",
+   "account": "acc-garanti-bbva",
+   "txId": "3pv03f2mmw27taf2"
+  },
   {
    "id": "t4hpeo53mw2cgvlh",
    "date": "2026-11-04",
@@ -5603,12 +5612,14 @@
  "expenses": [
   {
    "id": "3pv03f2mmw27taf2",
-   "paid": false,
+   "paid": true,
    "createdAt": "2026-11-04T14:31:41.054Z",
    "title": "Hikmet abi",
    "amount": 39600,
    "due": "2026-11-04",
-   "updatedAt": "2026-11-04T14:31:41.054Z"
+   "updatedAt": "2026-11-04T16:45:04.177Z",
+   "paidAt": "2026-11-04",
+   "account": "acc-garanti-bbva"
   },
   {
    "id": "m3tet68emw27sojt",
