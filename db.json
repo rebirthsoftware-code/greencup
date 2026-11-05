@@ -2753,7 +2753,7 @@
   "nakit": 115,
   "acc-garanti-bbva": 170.9,
   "acc-garanti-bbva-kk": 826.19,
-  "acc-kuveyt-turk": 65355.72,
+  "acc-kuveyt-turk": 64355.72,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 2030.5,
@@ -2767,6 +2767,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "zm01o8womw3kb0bg",
+   "date": "2026-11-05",
+   "createdAt": "2026-11-05T13:09:09.340Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 1000,
+   "title": "Elektrik faturası"
+  },
   {
    "id": "42vrj9mwmw3jn6vi",
    "date": "2026-11-05",
