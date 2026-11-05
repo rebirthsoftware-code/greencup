@@ -2750,7 +2750,7 @@
   }
  ],
  "cash": {
-  "nakit": 800,
+  "nakit": 350,
   "acc-garanti-bbva": 170.9,
   "acc-garanti-bbva-kk": 826.19,
   "acc-kuveyt-turk": 65495.72,
@@ -2767,6 +2767,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "j4msjep7mw3iceut",
+   "date": "2026-11-05",
+   "createdAt": "2026-11-05T12:14:15.605Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 450,
+   "title": "Berber"
+  },
   {
    "id": "ft7kupywmw36x6x8",
    "date": "2026-11-05",
