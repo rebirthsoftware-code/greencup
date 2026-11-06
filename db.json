@@ -5826,6 +5826,15 @@
  ],
  "expenses": [
   {
+   "id": "1inn76rlmw51wnxb",
+   "paid": false,
+   "createdAt": "2026-11-06T14:09:39.359Z",
+   "title": "Murat abi pet",
+   "amount": 45000,
+   "due": "2026-11-06",
+   "updatedAt": "2026-11-06T14:09:39.359Z"
+  },
+  {
    "id": "fzm12dcqmw4rqfjg",
    "paid": false,
    "createdAt": "2026-11-06T09:24:52.396Z",
