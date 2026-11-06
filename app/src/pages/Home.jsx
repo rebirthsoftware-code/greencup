@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStore } from '../store/store';
 import { useSync } from '../store/sync';
-import { dashboard, notifications, monthlySeries, lowStockProducts, itemsLabel, txTitle } from '../store/selectors';
+import { dashboard, notifications, monthlySeries, lowStockProducts, itemsLabel, txTitle, expenseRemaining, expensePaid } from '../store/selectors';
 import { fmtMoney, fmtNum, fmtDate, daysBetween, today } from '../utils/format';
 import { useCountUp } from '../utils/hooks';
 import { loadDevice } from '../store/storage';
@@ -172,7 +172,7 @@ export default function Home() {
                 <div key={e.id} className="today-row">
                   <Link to="/daha/odemeler" className="today-main">
                     <span className="tl-icon visit" style={{ width: 36, height: 36 }}><Ic.Cash size={16} /></span>
-                    <span className="today-text"><b>{e.title}</b><span>{dd < 0 ? `${-dd} gün gecikti` : dd === 0 ? 'Bugün' : `${dd} gün kaldı`} · {fmtMoney(e.amount)}</span></span>
+                    <span className="today-text"><b>{e.title}</b><span>{dd < 0 ? `${-dd} gün gecikti` : dd === 0 ? 'Bugün' : `${dd} gün kaldı`} · {fmtMoney(expenseRemaining(e))}{expensePaid(e) > 0 ? ' kaldı' : ''}</span></span>
                   </Link>
                   <div className="today-actions"><Link to="/daha/odemeler" className="mini">Öde</Link></div>
                 </div>

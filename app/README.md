@@ -28,7 +28,7 @@ npm run lint
 | Yeni işlem | **Çok ürünlü** mal verme (satır başına miktar ve birim fiyat), vade tarihi, faturalı/faturasız, vadeli/peşin/kısmi; **Borç Ekle** (mal girmeden bakiyeye borç, örn. devir); tahsilat; ziyaret. Yeni müşteride **açılış bakiyesi** |
 | Stok / Depo | **Stoğum**: yalnızca kendi satılabilir ürünleriniz (ekle/düzenle/sil, birim, uyarı eşiği; ürünü müşteri malına taşı). **Müşteri Malları**: depoda müşteriye ait mallar, stoktan ayrı (teslim et, isteğe bağlı tutarla borç yaz). **Üretimde**: müşteri için üretilen siparişler (teslim tarihi, depoya al, doğrudan teslim) |
 | Kasa | **Hesap listesi** (nakit, banka hesapları, kredi kartları; ekle/yeniden adlandır/sil, hazır banka listesinden çift olarak ekle), hesap başına bakiye, hareket ekle/sil, **hesaplar arası transfer**, **bakiyeyi düzelt** (gelir/gider yazmadan sayım farkı) |
-| Benim ödemelerim | Ekle, düzenle, sil, öde / ödenmedi yap |
+| Benim ödemelerim | Ekle, düzenle, sil; **tam veya kısmi öde** (her parça ayrı kasa çıkışı, kalan takibi, parça geri alma), ödenmedi yap |
 | Ziyaretler | Son ziyaretler; **ziyaret planı** (tarih ata, yapıldı olarak kapat), öneriler |
 | Fatura | Çok satırlı, firma bilgileri, KDV, yazdır/PDF (resmi e-Fatura değildir) |
 | Raporlar | Son 6 ay satış/tahsilat grafiği; cari, stok, kasa, ziyaret, satış, tahsilat raporları; **Excel (CSV) indir** |
