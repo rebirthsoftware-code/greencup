@@ -5750,6 +5750,15 @@
  ],
  "expenses": [
   {
+   "id": "fzm12dcqmw4rqfjg",
+   "paid": false,
+   "createdAt": "2026-11-06T09:24:52.396Z",
+   "title": "Dursun abi",
+   "amount": 34700,
+   "due": "2026-11-12",
+   "updatedAt": "2026-11-06T09:24:52.396Z"
+  },
+  {
    "id": "gfo50262mw2dc2by",
    "paid": false,
    "createdAt": "2026-11-04T17:06:15.118Z",
