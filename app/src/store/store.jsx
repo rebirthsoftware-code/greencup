@@ -46,6 +46,15 @@ const adjustStock = (products, items, sign) => {
 };
 const tomb = (state, id) => ({ ...state, tombstones: [...state.tombstones, { id, at: now() }] });
 const accountLabel = (state, id) => (state.accounts || []).find((a) => a.id === id)?.name || id;
+/** Giderin ödeme kayıtları; eski tek adımlı ödemeler (payments[] yok, paid=true) tek kayıt gibi ele alınır. */
+const expensePays = (e) => (Array.isArray(e.payments) && e.payments.length ? e.payments : e.paid ? [{ id: e.id, date: e.paidAt || e.due, amount: e.amount, account: e.account || 'banka', legacy: true }] : []);
+const paidOf = (e) => expensePays(e).reduce((a, p) => a + (p.amount || 0), 0);
+/** Giderin tüm ödemelerinin kasa etkisini geri alır. */
+const undoExpenseCash = (state, e) => {
+  let next = state;
+  for (const p of expensePays(e)) next = undoCash(next, p.id, { type: 'out', amount: p.amount, account: p.account || 'banka', title: e.title });
+  return next;
+};
 /** Satışın stok etkisi: müşteri malı teslimleri (fromReserve) benim stoğumu etkilemez. */
 const saleStock = (products, t, sign) => (t.fromReserve ? products : adjustStock(products, t.items, sign));
 /** Müşteri malı (depo/üretim) teslim hareketi: stok düşmez; tutar girildiyse cariye vadeli borç yazılır. */
@@ -242,22 +251,39 @@ function reduce(state, action) {
     case 'DELETE_EXPENSE': {
       const e = state.expenses.find((x) => x.id === action.id);
       if (!e) return state;
-      let next = e.paid ? undoCash(state, e.id, { type: 'out', amount: e.amount, account: e.account || 'banka', title: e.title }) : state;
+      let next = undoExpenseCash(state, e);
       next = { ...next, expenses: next.expenses.filter((x) => x.id !== action.id) };
       return tomb(next, action.id);
     }
     case 'PAY_EXPENSE': {
+      // Tam ya da kısmi ödeme: her ödeme ayrı kayıt (payments[]) ve ayrı kasa çıkışı; kalan sıfırlanınca ödendi olur
       const e = state.expenses.find((x) => x.id === action.id);
       if (!e || e.paid) return state;
       const acc = action.account || 'banka';
-      let next = { ...state, expenses: state.expenses.map((x) => (x.id === action.id ? stamp({ ...x, paid: true, paidAt: today(), account: acc }) : x)) };
-      return cashOut(next, acc, e.amount, e.title, { txId: e.id });
+      const remaining = r2(e.amount - paidOf(e));
+      const amount = r2(Math.min(action.amount > 0 ? action.amount : remaining, remaining));
+      if (!(amount > 0)) return state;
+      const pay = { id: uid(), date: today(), amount, account: acc, by: by() };
+      const payments = [...expensePays(e), pay];
+      const done = r2(e.amount - payments.reduce((a, p) => a + p.amount, 0)) <= 0.005;
+      let next = { ...state, expenses: state.expenses.map((x) => (x.id === action.id ? stamp({ ...x, payments, paidAmount: r2(payments.reduce((a, p) => a + p.amount, 0)), paid: done, paidAt: done ? today() : undefined, account: done ? acc : x.account }) : x)) };
+      return cashOut(next, acc, amount, done || payments.length === 1 ? e.title : `${e.title} (kısmi)`, { txId: pay.id, expenseId: e.id });
     }
     case 'UNPAY_EXPENSE': {
+      // Tüm ödemeleri geri alır (kasaya iade), gider yeniden "ödenmedi" olur
       const e = state.expenses.find((x) => x.id === action.id);
-      if (!e || !e.paid) return state;
-      const next = undoCash(state, e.id, { type: 'out', amount: e.amount, account: e.account || 'banka', title: e.title });
-      return { ...next, expenses: next.expenses.map((x) => (x.id === action.id ? stamp({ ...x, paid: false, paidAt: undefined, account: undefined }) : x)) };
+      if (!e || expensePays(e).length === 0) return state;
+      const next = undoExpenseCash(state, e);
+      return { ...next, expenses: next.expenses.map((x) => (x.id === action.id ? stamp({ ...x, paid: false, paidAt: undefined, account: undefined, payments: [], paidAmount: 0 }) : x)) };
+    }
+    case 'DELETE_EXPENSE_PAYMENT': {
+      // Tek bir (kısmi) ödemeyi geri alır
+      const e = state.expenses.find((x) => x.id === action.id);
+      const p = e && expensePays(e).find((x) => x.id === action.payId);
+      if (!p) return state;
+      const next = undoCash(state, p.id, { type: 'out', amount: p.amount, account: p.account || 'banka', title: e.title });
+      const payments = expensePays(e).filter((x) => x.id !== p.id);
+      return { ...next, expenses: next.expenses.map((x) => (x.id === e.id ? stamp({ ...x, payments, paidAmount: r2(payments.reduce((a, q) => a + q.amount, 0)), paid: false, paidAt: undefined }) : x)) };
     }
 
     /* ---- kasa ---- */
@@ -401,7 +427,8 @@ export function StoreProvider({ children }) {
     addExpense: (expense) => dispatch({ type: 'ADD_EXPENSE', expense }),
     updateExpense: (id, patch) => dispatch({ type: 'UPDATE_EXPENSE', id, patch }),
     deleteExpense: (id) => dispatch({ type: 'DELETE_EXPENSE', id }),
-    payExpense: (id, account) => dispatch({ type: 'PAY_EXPENSE', id, account }),
+    payExpense: (id, account, amount) => dispatch({ type: 'PAY_EXPENSE', id, account, amount }),
+    deleteExpensePayment: (id, payId) => dispatch({ type: 'DELETE_EXPENSE_PAYMENT', id, payId }),
     unpayExpense: (id) => dispatch({ type: 'UNPAY_EXPENSE', id }),
     addCashMove: (move) => dispatch({ type: 'ADD_CASH_MOVE', move }),
     deleteCashMove: (id) => dispatch({ type: 'DELETE_CASH_MOVE', id }),

@@ -101,7 +101,7 @@ export function notifications(state) {
   }
   for (const e of state.expenses) if (!e.paid && daysBetween(t, e.due) <= 3) {
     const d = daysBetween(t, e.due);
-    out.push({ kind: 'expense', level: d < 0 ? 'red' : 'orange', title: `Ödeme: ${e.title}`, sub: d < 0 ? `${-d} gün gecikti` : d === 0 ? 'Bugün' : `${d} gün kaldı`, amount: e.amount, to: '/daha/odemeler', sort: d < 0 ? 0 : 1 });
+    out.push({ kind: 'expense', level: d < 0 ? 'red' : 'orange', title: `Ödeme: ${e.title}`, sub: `${d < 0 ? `${-d} gün gecikti` : d === 0 ? 'Bugün' : `${d} gün kaldı`}${expensePaid(e) > 0 ? ' · kısmi ödendi' : ''}`, amount: expenseRemaining(e), to: '/daha/odemeler', sort: d < 0 ? 0 : 1 });
   }
   for (const v of state.plannedVisits) if (!v.done && v.date <= t) {
     const c = state.customers.find((x) => x.id === v.customerId);
@@ -150,6 +150,11 @@ export function monthlySeries(state, months = 6) {
   return out;
 }
 
+/** Giderin ödeme kayıtları (eski tek adımlı ödemeler tek kayıt sayılır), ödenen ve kalan tutar. */
+export const expensePayments = (e) => (Array.isArray(e.payments) && e.payments.length ? e.payments : e.paid ? [{ id: e.id, date: e.paidAt || e.due, amount: e.amount, account: e.account || 'banka', legacy: true }] : []);
+export const expensePaid = (e) => Math.round(expensePayments(e).reduce((a, p) => a + (p.amount || 0), 0) * 100) / 100;
+export const expenseRemaining = (e) => Math.max(0, Math.round((e.amount - expensePaid(e)) * 100) / 100);
+
 /** Bir grup toplamı: başlığa göre topla ve büyükten küçüğe sırala. */
 const groupBy = (items, keyOf, amountOf, labelOf = keyOf) => {
   const m = new Map();
@@ -169,7 +174,7 @@ export function periodSummary(state, from, to) {
   const sales = state.transactions.filter((t) => t.type === 'sale' && inR(t.date) && t.amount > 0);
   const debts = state.transactions.filter((t) => t.type === 'debt' && inR(t.date));
   const payments = state.transactions.filter((t) => t.type === 'payment' && inR(t.date));
-  const paidExpenses = state.expenses.filter((e) => e.paid && inR(e.paidAt || e.due));
+  const paidExpenses = state.expenses.flatMap((e) => expensePayments(e).filter((p) => inR(p.date)).map((p) => ({ ...e, amount: p.amount, account: p.account })));
   const moves = state.cashMoves.filter((m) => inR(m.date) && !m.adjust && !m.transferId && !m.txId);
   const outMoves = moves.filter((m) => m.type === 'out');
   const inMoves = moves.filter((m) => m.type === 'in');
