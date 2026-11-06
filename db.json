@@ -2777,15 +2777,6 @@
  },
  "cashMoves": [
   {
-   "id": "t7lhwul1mw50myxw",
-   "date": "2026-11-06",
-   "type": "in",
-   "amount": 20000,
-   "title": "Tahsilat",
-   "account": "acc-garanti-bbva",
-   "txId": "17j5z97jmw50myxw"
-  },
-  {
    "id": "i6xe785gmw4v7x0i",
    "date": "2026-11-06",
    "createdAt": "2026-11-06T11:02:27.044Z",
@@ -2860,6 +2851,15 @@
    "account": "acc-kuveyt-turk",
    "transferId": "23868u54mw4rcyha",
    "createdAt": "2026-11-06T09:14:23.758Z"
+  },
+  {
+   "id": "t7lhwul1mw50myxw",
+   "date": "2026-11-06",
+   "type": "in",
+   "amount": 20000,
+   "title": "Tahsilat",
+   "account": "acc-garanti-bbva",
+   "txId": "17j5z97jmw50myxw"
   },
   {
    "id": "3un4havwmw3u1xwz",
@@ -2954,15 +2954,6 @@
    "title": "Komisyon"
   },
   {
-   "id": "fddgkw9zmw2ckto1",
-   "date": "2026-11-04",
-   "type": "out",
-   "amount": 39600,
-   "title": "Hikmet abi",
-   "account": "acc-garanti-bbva",
-   "txId": "3pv03f2mmw27taf2"
-  },
-  {
    "id": "t4hpeo53mw2cgvlh",
    "date": "2026-11-04",
    "type": "in",
@@ -3000,24 +2991,6 @@
    "account": "acc-kuveyt-turk",
    "amount": 601.61,
    "title": "Market"
-  },
-  {
-   "id": "khcmjmh5mw27su6j",
-   "date": "2026-11-04",
-   "type": "out",
-   "amount": 27536.58,
-   "title": "Eray abi kase",
-   "account": "acc-kuveyt-turk",
-   "txId": "m3tet68emw27sojt"
-  },
-  {
-   "id": "2nt3wg6dmw27rvuf",
-   "date": "2026-11-04",
-   "type": "in",
-   "amount": 117000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "x8nzyr91mw27rvuf"
   },
   {
    "id": "gli0uuipmw24sai7",
@@ -3072,6 +3045,33 @@
    "account": "nakit",
    "amount": 400,
    "title": "Pazar"
+  },
+  {
+   "id": "fddgkw9zmw2ckto1",
+   "date": "2026-11-04",
+   "type": "out",
+   "amount": 39600,
+   "title": "Hikmet abi",
+   "account": "acc-garanti-bbva",
+   "txId": "3pv03f2mmw27taf2"
+  },
+  {
+   "id": "khcmjmh5mw27su6j",
+   "date": "2026-11-04",
+   "type": "out",
+   "amount": 27536.58,
+   "title": "Eray abi kase",
+   "account": "acc-kuveyt-turk",
+   "txId": "m3tet68emw27sojt"
+  },
+  {
+   "id": "2nt3wg6dmw27rvuf",
+   "date": "2026-11-04",
+   "type": "in",
+   "amount": 117000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "x8nzyr91mw27rvuf"
   },
   {
    "id": "k7cgtclcmw1xmfsh",
