@@ -2762,7 +2762,7 @@
   "nakit": 1200,
   "acc-garanti-bbva": 13154.16,
   "acc-garanti-bbva-kk": 826.19,
-  "acc-kuveyt-turk": 65985.72,
+  "acc-kuveyt-turk": 20985.72,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 2030.5,
@@ -2776,6 +2776,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "vi9y48sxmw51wt9d",
+   "date": "2026-11-06",
+   "type": "out",
+   "amount": 45000,
+   "title": "Murat abi pet",
+   "account": "acc-kuveyt-turk",
+   "txId": "1inn76rlmw51wnxb"
+  },
   {
    "id": "fual9qgfmw51veta",
    "date": "2026-11-06",
@@ -5827,12 +5836,14 @@
  "expenses": [
   {
    "id": "1inn76rlmw51wnxb",
-   "paid": false,
+   "paid": true,
    "createdAt": "2026-11-06T14:09:39.359Z",
    "title": "Murat abi pet",
    "amount": 45000,
    "due": "2026-11-06",
-   "updatedAt": "2026-11-06T14:09:39.359Z"
+   "updatedAt": "2026-11-06T14:09:46.273Z",
+   "paidAt": "2026-11-06",
+   "account": "acc-kuveyt-turk"
   },
   {
    "id": "fzm12dcqmw4rqfjg",
