@@ -763,6 +763,28 @@
  ],
  "transactions": [
   {
+   "id": "szc4y3jrmw69ipm6",
+   "customerId": "dgj1ozdumucozila",
+   "type": "sale",
+   "date": "2026-11-07",
+   "createdAt": "2026-11-07T10:30:31.470Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "90mm Sıcak Kapak",
+     "unit": "koli",
+     "qty": 4,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-07",
+   "note": "Üretimden teslim"
+  },
+  {
    "id": "bpqj7491mw69inxj",
    "customerId": "dgj1ozdumucozila",
    "type": "sale",
@@ -2654,15 +2676,6 @@
    "name": "Pipet",
    "qty": 5000,
    "updatedAt": "2026-09-28T11:29:07.201Z"
-  },
-  {
-   "id": "0em66b5jmucqmqq0",
-   "createdAt": "2026-09-22T13:56:45.384Z",
-   "unit": "koli",
-   "customerId": "dgj1ozdumucozila",
-   "name": "90mm Sıcak Kapak",
-   "qty": 4,
-   "updatedAt": "2026-09-22T13:56:45.384Z"
   },
   {
    "id": "ddfy79obmucown62",
@@ -6489,6 +6502,10 @@
   {
    "id": "zxbd9f4xmucqijwu",
    "at": "2026-11-07T10:30:29.288Z"
+  },
+  {
+   "id": "0em66b5jmucqmqq0",
+   "at": "2026-11-07T10:30:31.470Z"
   }
  ],
  "settings": {
