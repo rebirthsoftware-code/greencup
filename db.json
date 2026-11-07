@@ -763,6 +763,28 @@
  ],
  "transactions": [
   {
+   "id": "7plj4fjxmw69i0ji",
+   "customerId": "7gfwsnosmvovtn4w",
+   "type": "sale",
+   "date": "2026-11-07",
+   "createdAt": "2026-11-07T10:29:58.974Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Yılbaşı 8oz Doublewall Revue",
+     "unit": "adet",
+     "qty": 1000,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-07",
+   "note": "Üretimden teslim"
+  },
+  {
    "id": "ji2juvkemw69hy2m",
    "customerId": "7gfwsnosmvovtn4w",
    "type": "sale",
@@ -2548,15 +2570,6 @@
    "name": "Pet Ağır Gramaj 16oz Revue",
    "qty": 3000,
    "updatedAt": "2026-10-26T06:41:44.891Z"
-  },
-  {
-   "id": "ho9ba0oxmvow1081",
-   "createdAt": "2026-10-26T06:40:45.409Z",
-   "unit": "adet",
-   "customerId": "7gfwsnosmvovtn4w",
-   "name": "Yılbaşı 8oz Doublewall Revue",
-   "qty": 1000,
-   "updatedAt": "2026-10-26T06:40:45.409Z"
   },
   {
    "id": "rzzxdqzsmvow00wt",
@@ -6422,6 +6435,10 @@
   {
    "id": "uvt9ax9mmvow1ipa",
    "at": "2026-11-07T10:29:55.775Z"
+  },
+  {
+   "id": "ho9ba0oxmvow1081",
+   "at": "2026-11-07T10:29:58.974Z"
   }
  ],
  "settings": {
