@@ -5910,6 +5910,15 @@
  ],
  "expenses": [
   {
+   "id": "orcswfdnmw691iqy",
+   "paid": false,
+   "createdAt": "2026-11-07T10:17:09.418Z",
+   "title": "Özde Gross ıslak mendil",
+   "amount": 6850,
+   "due": "2026-11-29",
+   "updatedAt": "2026-11-07T10:17:09.418Z"
+  },
+  {
    "id": "1inn76rlmw51wnxb",
    "paid": true,
    "createdAt": "2026-11-06T14:09:39.359Z",
