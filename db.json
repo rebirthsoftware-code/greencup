@@ -5977,6 +5977,15 @@
  ],
  "expenses": [
   {
+   "id": "484lbks6mw6brcbx",
+   "paid": false,
+   "createdAt": "2026-11-07T11:33:13.389Z",
+   "title": "Mis Mendil",
+   "amount": 51135,
+   "due": "2026-11-30",
+   "updatedAt": "2026-11-07T11:33:13.389Z"
+  },
+  {
    "id": "1inn76rlmw51wnxb",
    "paid": true,
    "createdAt": "2026-11-06T14:09:39.359Z",
