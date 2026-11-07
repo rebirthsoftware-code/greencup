@@ -2836,7 +2836,7 @@
   }
  ],
  "cash": {
-  "nakit": 635,
+  "nakit": 20635,
   "acc-garanti-bbva": 5978.63,
   "acc-garanti-bbva-kk": 826.19,
   "acc-kuveyt-turk": 985.72,
@@ -2853,16 +2853,6 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
-  {
-   "id": "2s7rtwrjmw68z1xh",
-   "date": "2026-11-07",
-   "type": "out",
-   "amount": 20000,
-   "title": "Nihat abi",
-   "account": "nakit",
-   "txId": "4zcni3apmw68z1xg",
-   "expenseId": "6f07fs7dmvzdv2lf"
-  },
   {
    "id": "77nrno1nmw68yqvn",
    "date": "2026-11-07",
@@ -6047,24 +6037,6 @@
    "updatedAt": "2026-11-04T09:07:11.513Z"
   },
   {
-   "id": "6f07fs7dmvzdv2lf",
-   "paid": false,
-   "createdAt": "2026-11-02T14:57:43.395Z",
-   "title": "Nihat abi",
-   "amount": 41185,
-   "due": "2026-11-30",
-   "updatedAt": "2026-11-07T10:15:14.309Z",
-   "payments": [
-    {
-     "id": "4zcni3apmw68z1xg",
-     "date": "2026-11-07",
-     "amount": 20000,
-     "account": "nakit"
-    }
-   ],
-   "paidAmount": 20000
-  },
-  {
    "id": "dzw87zwymutrp4gd",
    "paid": true,
    "createdAt": "2026-10-04T11:58:41.101Z",
@@ -6491,6 +6463,14 @@
   {
    "id": "orcswfdnmw691iqy",
    "at": "2026-11-07T11:31:52.384Z"
+  },
+  {
+   "id": "2s7rtwrjmw68z1xh",
+   "at": "2026-11-07T11:31:54.821Z"
+  },
+  {
+   "id": "6f07fs7dmvzdv2lf",
+   "at": "2026-11-07T11:31:54.822Z"
   }
  ],
  "settings": {
