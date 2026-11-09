@@ -763,6 +763,28 @@
  ],
  "transactions": [
   {
+   "id": "2jve8cezmw8uz56o",
+   "customerId": "8k6q25l9mucntoaa",
+   "type": "sale",
+   "date": "2026-11-09",
+   "createdAt": "2026-11-09T06:06:42.432Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Stick Şeker Çaylak",
+     "unit": "koli",
+     "qty": 2,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-09",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "szc4y3jrmw69ipm6",
    "customerId": "dgj1ozdumucozila",
    "type": "sale",
@@ -2507,8 +2529,8 @@
    "customerId": "8k6q25l9mucntoaa",
    "name": "Stick Şeker Çaylak",
    "unit": "koli",
-   "qty": 8,
-   "updatedAt": "2026-09-28T11:14:58.000Z"
+   "qty": 6,
+   "updatedAt": "2026-11-09T06:06:42.432Z"
   },
   {
    "id": "wwoqeixvmucnw9pg",
