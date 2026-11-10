@@ -2871,7 +2871,7 @@
   "acc-kuveyt-turk": 29785.72,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
-  "acc-ziraat-bankasi-kk": 2030.5,
+  "acc-ziraat-bankasi-kk": 430.5,
   "acc-sekerbank": 0,
   "acc-sekerbank-kk": 0,
   "acc-yapi-kredi": 0,
@@ -2882,6 +2882,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "36kclzkmmwb2mf1k",
+   "date": "2026-11-10",
+   "createdAt": "2026-11-10T19:16:17.960Z",
+   "type": "out",
+   "account": "acc-ziraat-bankasi-kk",
+   "amount": 1600,
+   "title": "BREW"
+  },
   {
    "id": "usd6fyaomwaq0u6m",
    "date": "2026-11-10",
