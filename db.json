@@ -6106,6 +6106,15 @@
  ],
  "expenses": [
   {
+   "id": "bjw2ufc1mwad4w2z",
+   "paid": false,
+   "createdAt": "2026-11-10T07:22:49.835Z",
+   "title": "Murat Abi Deneyim",
+   "amount": 130509.8,
+   "due": "2026-11-10",
+   "updatedAt": "2026-11-10T07:22:49.835Z"
+  },
+  {
    "id": "484lbks6mw6brcbx",
    "paid": false,
    "createdAt": "2026-11-07T11:33:13.389Z",
