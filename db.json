@@ -763,6 +763,28 @@
  ],
  "transactions": [
   {
+   "id": "rgfyb8m6mwc3d0kt",
+   "customerId": "8bfqvphsmub2ok0d",
+   "type": "sale",
+   "date": "2026-11-11",
+   "createdAt": "2026-11-11T12:24:45.102Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "11/6,5 Peçete Baskılı",
+     "unit": "adet",
+     "qty": 4800,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-11",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "nvdmx3namwaq0u6m",
    "date": "2026-11-10",
    "createdAt": "2026-11-10T13:23:35.758Z",
@@ -2331,8 +2353,8 @@
    "customerId": "8bfqvphsmub2ok0d",
    "name": "11/6,5 Peçete Baskılı",
    "unit": "adet",
-   "qty": 48000,
-   "updatedAt": "2026-11-11T10:48:38.674Z"
+   "qty": 43200,
+   "updatedAt": "2026-11-11T12:24:45.102Z"
   },
   {
    "id": "vqah7p3amwbzp0z9",
