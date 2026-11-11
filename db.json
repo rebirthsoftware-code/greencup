@@ -2326,6 +2326,15 @@
  ],
  "reserved": [
   {
+   "id": "49r2vy45mwbzxf6a",
+   "createdAt": "2026-11-11T10:48:38.674Z",
+   "customerId": "8bfqvphsmub2ok0d",
+   "name": "11/6,5 Peçete Baskılı",
+   "unit": "adet",
+   "qty": 48000,
+   "updatedAt": "2026-11-11T10:48:38.674Z"
+  },
+  {
    "id": "vqah7p3amwbzp0z9",
    "createdAt": "2026-11-11T10:42:07.029Z",
    "customerId": "7gfwsnosmvovtn4w",
@@ -2745,16 +2754,6 @@
    "qty": 2000,
    "dueDate": "2026-10-15",
    "updatedAt": "2026-09-22T13:04:09.049Z"
-  },
-  {
-   "id": "7fwug11jmucoqafh",
-   "createdAt": "2026-09-22T13:03:31.661Z",
-   "unit": "adet",
-   "customerId": "8bfqvphsmub2ok0d",
-   "name": "11/6,5 Peçete Baskılı",
-   "qty": 48000,
-   "dueDate": "2026-10-15",
-   "updatedAt": "2026-09-22T13:03:31.661Z"
   }
  ],
  "accounts": [
@@ -6666,6 +6665,10 @@
   {
    "id": "316sz3w6mvow2ovt",
    "at": "2026-11-11T10:42:07.029Z"
+  },
+  {
+   "id": "7fwug11jmucoqafh",
+   "at": "2026-11-11T10:48:38.675Z"
   }
  ],
  "settings": {
