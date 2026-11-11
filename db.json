@@ -194,7 +194,7 @@
   {
    "id": "rxdskosymwck26l8",
    "unit": "koli",
-   "stock": 1,
+   "stock": 0,
    "price": 4000,
    "createdAt": "2026-11-11T20:12:13.148Z",
    "name": "7oz Karton Bardak Baskılı",
@@ -785,6 +785,38 @@
   }
  ],
  "transactions": [
+  {
+   "id": "h4f9gyy6mwck3yfj",
+   "customerId": "gukkds97mwck19ou",
+   "type": "payment",
+   "date": "2026-11-11",
+   "amount": 4000,
+   "method": "acc-garanti-bbva",
+   "saleId": "vx028x74mwck3yfe",
+   "createdAt": "2026-11-11T20:13:35.885Z"
+  },
+  {
+   "id": "vx028x74mwck3yfe",
+   "date": "2026-11-11",
+   "createdAt": "2026-11-11T20:13:35.885Z",
+   "customerId": "gukkds97mwck19ou",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "rxdskosymwck26l8",
+     "name": "7oz Karton Bardak Baskılı",
+     "unit": "koli",
+     "qty": 1,
+     "unitPrice": 4000,
+     "amount": 4000
+    }
+   ],
+   "amount": 4000,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-11",
+   "method": "acc-garanti-bbva"
+  },
   {
    "id": "81ogfulxmwc3e5w8",
    "customerId": "8bfqvphsmub2ok0d",
@@ -2998,7 +3030,7 @@
  ],
  "cash": {
   "nakit": 255,
-  "acc-garanti-bbva": 50.33,
+  "acc-garanti-bbva": 4050.33,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 785.72,
   "acc-kuveyt-turk-kk": 6.79,
@@ -3014,6 +3046,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "jqtlizepmwck3yfj",
+   "date": "2026-11-11",
+   "type": "in",
+   "amount": 4000,
+   "title": "Tahsilat",
+   "account": "acc-garanti-bbva",
+   "txId": "h4f9gyy6mwck3yfj"
+  },
   {
    "id": "dau8gms7mwcjuc1e",
    "date": "2026-11-11",
