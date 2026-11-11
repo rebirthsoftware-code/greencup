@@ -763,6 +763,28 @@
  ],
  "transactions": [
   {
+   "id": "vocrfgmumwc3dxdr",
+   "customerId": "8bfqvphsmub2ok0d",
+   "type": "sale",
+   "date": "2026-11-11",
+   "createdAt": "2026-11-11T12:25:27.615Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "6/12 Islak mendil",
+     "unit": "adet",
+     "qty": 3333,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-11",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "ybja64ssmwc3djql",
    "customerId": "8bfqvphsmub2ok0d",
    "type": "sale",
@@ -2487,8 +2509,8 @@
    "customerId": "8bfqvphsmub2ok0d",
    "name": "6/12 Islak mendil",
    "unit": "adet",
-   "qty": 10000,
-   "updatedAt": "2026-10-24T09:14:11.520Z"
+   "qty": 6667,
+   "updatedAt": "2026-11-11T12:25:27.615Z"
   },
   {
    "id": "3voy7sijmvm6mjft",
