@@ -763,6 +763,28 @@
  ],
  "transactions": [
   {
+   "id": "z9nyetc4mwc3d57h",
+   "customerId": "8bfqvphsmub2ok0d",
+   "type": "sale",
+   "date": "2026-11-11",
+   "createdAt": "2026-11-11T12:24:51.101Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Stick Şeker",
+     "unit": "koli",
+     "qty": 3,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-11",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "rgfyb8m6mwc3d0kt",
    "customerId": "8bfqvphsmub2ok0d",
    "type": "sale",
@@ -2452,8 +2474,8 @@
    "customerId": "8bfqvphsmub2ok0d",
    "name": "Stick Şeker",
    "unit": "koli",
-   "qty": 10,
-   "updatedAt": "2026-10-24T09:14:07.721Z"
+   "qty": 7,
+   "updatedAt": "2026-11-11T12:24:51.101Z"
   },
   {
    "id": "19kko08umv7uecqj",
