@@ -190,6 +190,16 @@
    "name": "95 çap düz delikli kapak (koli içi 1.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-11-01T15:10:44.019Z"
+  },
+  {
+   "id": "rxdskosymwck26l8",
+   "unit": "koli",
+   "stock": 1,
+   "price": 4000,
+   "createdAt": "2026-11-11T20:12:13.148Z",
+   "name": "7oz Karton Bardak Baskılı",
+   "minStock": 0,
+   "updatedAt": "2026-11-11T20:12:13.148Z"
   }
  ],
  "customers": [
