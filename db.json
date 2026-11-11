@@ -2977,7 +2977,7 @@
   "nakit": 255,
   "acc-garanti-bbva": 50.33,
   "acc-garanti-bbva-kk": 411.19,
-  "acc-kuveyt-turk": 32285.72,
+  "acc-kuveyt-turk": 785.72,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -2991,6 +2991,16 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "dau8gms7mwcjuc1e",
+   "date": "2026-11-11",
+   "type": "out",
+   "amount": 31500,
+   "title": "Sanayi",
+   "account": "acc-kuveyt-turk",
+   "txId": "75lfev82mwcjuc1e",
+   "expenseId": "gfo50262mw2dc2by"
+  },
   {
    "id": "wrj3v7womwcju4vn",
    "date": "2026-11-11",
@@ -6319,12 +6329,23 @@
   },
   {
    "id": "gfo50262mw2dc2by",
-   "paid": false,
+   "paid": true,
    "createdAt": "2026-11-04T17:06:15.118Z",
    "title": "Sanayi",
    "amount": 31500,
    "due": "2026-11-09",
-   "updatedAt": "2026-11-04T17:06:15.118Z"
+   "updatedAt": "2026-11-11T20:06:06.962Z",
+   "payments": [
+    {
+     "id": "75lfev82mwcjuc1e",
+     "date": "2026-11-11",
+     "amount": 31500,
+     "account": "acc-kuveyt-turk"
+    }
+   ],
+   "paidAmount": 31500,
+   "paidAt": "2026-11-11",
+   "account": "acc-kuveyt-turk"
   },
   {
    "id": "3pv03f2mmw27taf2",
