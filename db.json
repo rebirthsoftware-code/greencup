@@ -2326,6 +2326,15 @@
  ],
  "reserved": [
   {
+   "id": "vqah7p3amwbzp0z9",
+   "createdAt": "2026-11-11T10:42:07.029Z",
+   "customerId": "7gfwsnosmvovtn4w",
+   "name": "4oz Singlewall Revue",
+   "unit": "adet",
+   "qty": 3000,
+   "updatedAt": "2026-11-11T10:42:07.029Z"
+  },
+  {
    "id": "gtw1hn8qmw8v0918",
    "createdAt": "2026-11-09T06:07:34.076Z",
    "customerId": "8bfqvphsmub2ok0d",
@@ -2689,15 +2698,6 @@
    "name": "7/12 Islak Mendil",
    "qty": 10000,
    "updatedAt": "2026-10-26T06:51:24.025Z"
-  },
-  {
-   "id": "316sz3w6mvow2ovt",
-   "createdAt": "2026-10-26T06:42:04.025Z",
-   "unit": "adet",
-   "customerId": "7gfwsnosmvovtn4w",
-   "name": "4oz Singlewall Revue",
-   "qty": 3000,
-   "updatedAt": "2026-10-26T06:42:04.025Z"
   },
   {
    "id": "vx465epzmvow2a4b",
@@ -6662,6 +6662,10 @@
   {
    "id": "pq6ctkdsmuconeok",
    "at": "2026-11-09T06:07:34.076Z"
+  },
+  {
+   "id": "316sz3w6mvow2ovt",
+   "at": "2026-11-11T10:42:07.029Z"
   }
  ],
  "settings": {
