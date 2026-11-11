@@ -763,6 +763,28 @@
  ],
  "transactions": [
   {
+   "id": "81ogfulxmwc3e5w8",
+   "customerId": "8bfqvphsmub2ok0d",
+   "type": "sale",
+   "date": "2026-11-11",
+   "createdAt": "2026-11-11T12:25:38.648Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Baskılı pipet",
+     "unit": "adet",
+     "qty": 5000,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-11",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "vocrfgmumwc3dxdr",
    "customerId": "8bfqvphsmub2ok0d",
    "type": "sale",
@@ -2500,8 +2522,8 @@
    "customerId": "8bfqvphsmub2ok0d",
    "name": "Baskılı pipet",
    "unit": "adet",
-   "qty": 10000,
-   "updatedAt": "2026-10-24T09:14:16.586Z"
+   "qty": 5000,
+   "updatedAt": "2026-11-11T12:25:38.648Z"
   },
   {
    "id": "f2e8tsasmvm6mmdc",
