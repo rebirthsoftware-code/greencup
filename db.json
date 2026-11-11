@@ -194,6 +194,19 @@
  ],
  "customers": [
   {
+   "id": "gukkds97mwck19ou",
+   "color": "#0E6B3F",
+   "createdAt": "2026-11-11T20:11:30.523Z",
+   "name": "Kilimli Yerel Eylem Grubu",
+   "type": "Diğer",
+   "phone": "0 (554) 615 07 53",
+   "city": "Zonguldak ",
+   "district": "Kilimli",
+   "notes": "",
+   "address": "Belediye",
+   "updatedAt": "2026-11-11T20:11:30.523Z"
+  },
+  {
    "id": "1y179eevmw27ritm",
    "color": "#0E6B3F",
    "createdAt": "2026-11-04T14:30:18.655Z",
