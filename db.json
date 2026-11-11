@@ -2977,7 +2977,7 @@
   "nakit": 255,
   "acc-garanti-bbva": 1050.33,
   "acc-garanti-bbva-kk": 411.19,
-  "acc-kuveyt-turk": 29785.72,
+  "acc-kuveyt-turk": 31285.72,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -2991,6 +2991,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "8upb6thzmwcjrum9",
+   "date": "2026-11-11",
+   "createdAt": "2026-11-11T20:04:11.073Z",
+   "type": "in",
+   "account": "acc-kuveyt-turk",
+   "amount": 1500,
+   "title": "Berfinim destek"
+  },
   {
    "id": "36kclzkmmwb2mf1k",
    "date": "2026-11-10",
