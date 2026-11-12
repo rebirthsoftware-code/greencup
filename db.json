@@ -194,7 +194,7 @@
   {
    "id": "efv51dvcmwdcumtz",
    "unit": "adet",
-   "stock": 1,
+   "stock": 0,
    "price": 65000,
    "createdAt": "2026-11-12T09:38:09.815Z",
    "name": "Islak mendil BREW 7/12",
@@ -785,6 +785,28 @@
   }
  ],
  "transactions": [
+  {
+   "id": "o830ugknmwdcvbxf",
+   "date": "2026-11-12",
+   "createdAt": "2026-11-12T09:38:42.344Z",
+   "customerId": "gt35fmbpmunoiww9",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "efv51dvcmwdcumtz",
+     "name": "Islak mendil BREW 7/12",
+     "unit": "adet",
+     "qty": 1,
+     "unitPrice": 65000,
+     "amount": 65000
+    }
+   ],
+   "amount": 65000,
+   "invoiced": false,
+   "payment": "vadeli",
+   "dueDate": "2026-11-26",
+   "method": "nakit"
+  },
   {
    "id": "h4f9gyy6mwck3yfj",
    "customerId": "gukkds97mwck19ou",
