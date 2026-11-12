@@ -190,6 +190,16 @@
    "name": "95 çap düz delikli kapak (koli içi 1.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-11-01T15:10:44.019Z"
+  },
+  {
+   "id": "a9udj8e0mwdcylpl",
+   "unit": "adet",
+   "stock": 1,
+   "price": 17000,
+   "createdAt": "2026-11-12T09:41:14.985Z",
+   "name": "Cozy bardak",
+   "minStock": 0,
+   "updatedAt": "2026-11-12T09:41:14.985Z"
   }
  ],
  "customers": [
