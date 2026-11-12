@@ -786,6 +786,15 @@
  ],
  "transactions": [
   {
+   "id": "ti60ihptmwdczhz9",
+   "date": "2026-11-12",
+   "createdAt": "2026-11-12T09:41:56.805Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "type": "payment",
+   "amount": 17000,
+   "method": "acc-kuveyt-turk"
+  },
+  {
    "id": "8rq8kkw8mwdcz1ek",
    "date": "2026-11-12",
    "createdAt": "2026-11-12T09:41:35.327Z",
@@ -3085,7 +3094,7 @@
   "nakit": 3220,
   "acc-garanti-bbva": 41.96,
   "acc-garanti-bbva-kk": 411.19,
-  "acc-kuveyt-turk": 65342.22,
+  "acc-kuveyt-turk": 82342.22,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3099,6 +3108,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "g1r7b9pimwdczhz9",
+   "date": "2026-11-12",
+   "type": "in",
+   "amount": 17000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "ti60ihptmwdczhz9"
+  },
   {
    "id": "kcljw7z0mwdcxtcc",
    "date": "2026-11-12",
