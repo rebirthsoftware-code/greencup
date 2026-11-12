@@ -190,6 +190,16 @@
    "name": "95 çap düz delikli kapak (koli içi 1.000 adet)",
    "minStock": 0,
    "updatedAt": "2026-11-01T15:10:44.019Z"
+  },
+  {
+   "id": "efv51dvcmwdcumtz",
+   "unit": "adet",
+   "stock": 1,
+   "price": 65000,
+   "createdAt": "2026-11-12T09:38:09.815Z",
+   "name": "Islak mendil BREW 7/12",
+   "minStock": 0,
+   "updatedAt": "2026-11-12T09:38:09.815Z"
   }
  ],
  "customers": [
