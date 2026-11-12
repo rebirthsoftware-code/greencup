@@ -3019,7 +3019,7 @@
   }
  ],
  "cash": {
-  "nakit": 3700,
+  "nakit": 3470,
   "acc-garanti-bbva": 41.96,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 785.72,
@@ -3036,6 +3036,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "c91nt0cjmwd9u6rx",
+   "date": "2026-11-12",
+   "createdAt": "2026-11-12T08:13:50.157Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 230,
+   "title": "Terzi"
+  },
   {
    "id": "14blr7h5mwd957st",
    "date": "2026-11-12",
