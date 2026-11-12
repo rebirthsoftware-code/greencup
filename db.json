@@ -3019,7 +3019,7 @@
   }
  ],
  "cash": {
-  "nakit": 4100,
+  "nakit": 3700,
   "acc-garanti-bbva": 41.96,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 785.72,
@@ -3036,6 +3036,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "14blr7h5mwd957st",
+   "date": "2026-11-12",
+   "createdAt": "2026-11-12T07:54:25.086Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 400,
+   "title": "Ayakkabı"
+  },
   {
    "id": "uzmuyxpdmwd86hei",
    "date": "2026-11-12",
