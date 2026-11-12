@@ -3060,7 +3060,7 @@
   }
  ],
  "cash": {
-  "nakit": 3470,
+  "nakit": 3220,
   "acc-garanti-bbva": 41.96,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 65342.22,
@@ -3077,6 +3077,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "kcljw7z0mwdcxtcc",
+   "date": "2026-11-12",
+   "createdAt": "2026-11-12T09:40:38.220Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 250,
+   "title": "Saat Tamiri"
+  },
   {
    "id": "apo0vlqemwdcxfzf",
    "date": "2026-11-12",
