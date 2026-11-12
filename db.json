@@ -3063,7 +3063,7 @@
   "nakit": 3470,
   "acc-garanti-bbva": 41.96,
   "acc-garanti-bbva-kk": 411.19,
-  "acc-kuveyt-turk": 65785.72,
+  "acc-kuveyt-turk": 65342.22,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3077,6 +3077,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "apo0vlqemwdcxfzf",
+   "date": "2026-11-12",
+   "createdAt": "2026-11-12T09:40:20.907Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 443.5,
+   "title": "Banka komisyon"
+  },
   {
    "id": "iipgvvl8mwdcx153",
    "date": "2026-11-12",
