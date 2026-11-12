@@ -194,7 +194,7 @@
   {
    "id": "a9udj8e0mwdcylpl",
    "unit": "adet",
-   "stock": 1,
+   "stock": 0,
    "price": 17000,
    "createdAt": "2026-11-12T09:41:14.985Z",
    "name": "Cozy bardak",
@@ -785,6 +785,28 @@
   }
  ],
  "transactions": [
+  {
+   "id": "8rq8kkw8mwdcz1ek",
+   "date": "2026-11-12",
+   "createdAt": "2026-11-12T09:41:35.327Z",
+   "customerId": "0cy6o7y5mucnvmjg",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "a9udj8e0mwdcylpl",
+     "name": "Cozy bardak",
+     "unit": "adet",
+     "qty": 1,
+     "unitPrice": 17000,
+     "amount": 17000
+    }
+   ],
+   "amount": 17000,
+   "invoiced": false,
+   "payment": "vadeli",
+   "dueDate": "2026-11-26",
+   "method": "nakit"
+  },
   {
    "id": "xaujtb58mwdcx153",
    "date": "2026-11-12",
