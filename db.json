@@ -776,6 +776,16 @@
  ],
  "transactions": [
   {
+   "id": "qw8dxn6bmwffvvj3",
+   "date": "2026-11-13",
+   "createdAt": "2026-11-13T20:38:38.943Z",
+   "customerId": "uo7kqubfmu5w4ome",
+   "note": "Taş parası",
+   "type": "debt",
+   "amount": 2000,
+   "dueDate": "2026-11-30"
+  },
+  {
    "id": "sic8m596mwdhr3r6",
    "date": "2026-11-12",
    "createdAt": "2026-11-12T11:55:23.202Z",
