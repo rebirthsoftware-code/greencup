@@ -3090,7 +3090,7 @@
   }
  ],
  "cash": {
-  "nakit": 3275,
+  "nakit": 1275,
   "acc-garanti-bbva": 437.09,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 19249.48,
@@ -3107,6 +3107,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "q91vuw3nmwffea00",
+   "date": "2026-11-13",
+   "createdAt": "2026-11-13T20:24:57.888Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 2000,
+   "title": "Nejdet abi taş"
+  },
   {
    "id": "mzi9041fmwf90a6y",
    "date": "2026-11-13",
