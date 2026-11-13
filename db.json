@@ -6743,15 +6743,6 @@
    "account": "acc-kuveyt-turk"
   },
   {
-   "id": "fzm12dcqmw4rqfjg",
-   "paid": false,
-   "createdAt": "2026-11-06T09:24:52.396Z",
-   "title": "Dursun abi",
-   "amount": 34700,
-   "due": "2026-11-12",
-   "updatedAt": "2026-11-06T09:24:52.396Z"
-  },
-  {
    "id": "gfo50262mw2dc2by",
    "paid": true,
    "createdAt": "2026-11-04T17:06:15.118Z",
@@ -7276,6 +7267,10 @@
   {
    "id": "a9udj8e0mwdcylpl",
    "at": "2026-11-12T09:43:28.261Z"
+  },
+  {
+   "id": "fzm12dcqmw4rqfjg",
+   "at": "2026-11-13T17:17:25.822Z"
   }
  ],
  "settings": {
