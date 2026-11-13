@@ -3091,7 +3091,7 @@
  ],
  "cash": {
   "nakit": 3275,
-  "acc-garanti-bbva": 35242.83,
+  "acc-garanti-bbva": 526.07,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 23616.92,
   "acc-kuveyt-turk-kk": 6.79,
@@ -3107,6 +3107,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "kx0ywufjmwf8o6gk",
+   "date": "2026-11-13",
+   "createdAt": "2026-11-13T17:16:42.548Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 34716.76,
+   "title": "Dursun abi 7oz"
+  },
   {
    "id": "j56q56otmwf8l5fg",
    "date": "2026-11-13",
