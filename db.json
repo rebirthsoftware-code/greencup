@@ -776,6 +776,16 @@
  ],
  "transactions": [
   {
+   "id": "o24qdh88mwgqf5op",
+   "date": "2026-11-14",
+   "createdAt": "2026-11-14T18:21:20.905Z",
+   "customerId": "8p26w1otmunybo46",
+   "note": "1.000 âdet Doublewall Yılbaşı\n10.000 adet 6/10 ıslak mendil\nFaturası Bilgisayarda",
+   "type": "debt",
+   "amount": 17292,
+   "dueDate": "2026-11-16"
+  },
+  {
    "id": "qw8dxn6bmwffvvj3",
    "date": "2026-11-13",
    "createdAt": "2026-11-13T20:38:38.943Z",
