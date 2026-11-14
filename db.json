@@ -3100,7 +3100,7 @@
   }
  ],
  "cash": {
-  "nakit": 1275,
+  "nakit": 865,
   "acc-garanti-bbva": 437.09,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 19249.48,
@@ -3117,6 +3117,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "52htjo13mwgck7m3",
+   "date": "2026-11-14",
+   "createdAt": "2026-11-14T11:53:22.059Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 410,
+   "title": "Yemek"
+  },
   {
    "id": "q91vuw3nmwffea00",
    "date": "2026-11-13",
