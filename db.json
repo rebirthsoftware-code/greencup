@@ -3103,7 +3103,7 @@
   "nakit": 865,
   "acc-garanti-bbva": 203.72,
   "acc-garanti-bbva-kk": 411.19,
-  "acc-kuveyt-turk": 18645.48,
+  "acc-kuveyt-turk": 17705.48,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3117,6 +3117,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "w2o35ksnmwgp8tbh",
+   "date": "2026-11-14",
+   "createdAt": "2026-11-14T17:48:25.325Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 940,
+   "title": "İnternet fatura"
+  },
   {
    "id": "a493q9pimwgk4f0m",
    "date": "2026-11-14",
