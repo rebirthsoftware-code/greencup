@@ -3101,7 +3101,7 @@
  ],
  "cash": {
   "nakit": 865,
-  "acc-garanti-bbva": 437.09,
+  "acc-garanti-bbva": 203.72,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 18645.48,
   "acc-kuveyt-turk-kk": 6.79,
@@ -3117,6 +3117,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "a493q9pimwgk4f0m",
+   "date": "2026-11-14",
+   "createdAt": "2026-11-14T15:25:02.087Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 233.37,
+   "title": "Sueda"
+  },
   {
    "id": "ittn2ipjmwgk3lu4",
    "date": "2026-11-14",
