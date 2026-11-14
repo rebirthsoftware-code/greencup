@@ -3113,7 +3113,7 @@
   "nakit": 60,
   "acc-garanti-bbva": 203.72,
   "acc-garanti-bbva-kk": 411.19,
-  "acc-kuveyt-turk": 17705.48,
+  "acc-kuveyt-turk": 17510.48,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3127,6 +3127,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "vy8y3mvdmwgwopmw",
+   "date": "2026-11-14",
+   "createdAt": "2026-11-14T21:16:44.360Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 195,
+   "title": "Sigara"
+  },
   {
    "id": "lx38h6bgmwgqzadj",
    "date": "2026-11-14",
