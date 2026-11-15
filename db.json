@@ -3110,7 +3110,7 @@
   }
  ],
  "cash": {
-  "nakit": 60,
+  "nakit": 40,
   "acc-garanti-bbva": 203.72,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 15590.48,
@@ -3127,6 +3127,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "2pk7c8a4mwhxiufv",
+   "date": "2026-11-15",
+   "createdAt": "2026-11-15T14:27:56.443Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 20,
+   "title": "İsmet abi"
+  },
   {
    "id": "p9rz3i70mwhximcs",
    "date": "2026-11-15",
