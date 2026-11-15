@@ -776,6 +776,28 @@
  ],
  "transactions": [
   {
+   "id": "yxolvdanmwi1577m",
+   "customerId": "0zbnwqolmucnxnjz",
+   "type": "sale",
+   "date": "2026-11-15",
+   "createdAt": "2026-11-15T16:09:18.274Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "14oz Doublewall Vento",
+     "unit": "koli",
+     "qty": 2,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-15",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "71hsworcmwi152mf",
    "customerId": "0zbnwqolmucnxnjz",
    "type": "sale",
@@ -2815,8 +2837,8 @@
    "customerId": "0zbnwqolmucnxnjz",
    "name": "14oz Doublewall Vento",
    "unit": "koli",
-   "qty": 18,
-   "updatedAt": "2026-09-22T12:41:25.124Z"
+   "qty": 16,
+   "updatedAt": "2026-11-15T16:09:18.274Z"
   },
   {
    "id": "9cc0p42tmucnxsm8",
