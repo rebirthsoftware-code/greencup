@@ -3154,7 +3154,7 @@
   }
  ],
  "cash": {
-  "nakit": 5040,
+  "nakit": 3320,
   "acc-garanti-bbva": 203.72,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 10450.48,
@@ -3171,6 +3171,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "gib1bfpymwibnobc",
+   "date": "2026-11-15",
+   "createdAt": "2026-11-15T21:03:36.408Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 1720,
+   "title": "BREW"
+  },
   {
    "id": "wykowz5gmwhzbd0m",
    "date": "2026-11-15",
