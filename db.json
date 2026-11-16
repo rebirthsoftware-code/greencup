@@ -3163,7 +3163,7 @@
   }
  ],
  "cash": {
-  "nakit": 1480,
+  "nakit": 30,
   "acc-garanti-bbva": 203.72,
   "acc-garanti-bbva-kk": 411.19,
   "acc-kuveyt-turk": 10775.11,
@@ -3180,6 +3180,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "vb4nclf7mwjfea0h",
+   "date": "2026-11-16",
+   "createdAt": "2026-11-16T15:36:02.609Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 1450,
+   "title": "Lastik değişimi"
+  },
   {
    "id": "l0s0i9czmwjdl8hu",
    "date": "2026-11-16",
