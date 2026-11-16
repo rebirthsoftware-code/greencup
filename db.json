@@ -3157,7 +3157,7 @@
   "nakit": 3320,
   "acc-garanti-bbva": 203.72,
   "acc-garanti-bbva-kk": 411.19,
-  "acc-kuveyt-turk": 10450.48,
+  "acc-kuveyt-turk": 5283.48,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3171,6 +3171,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "5mnw85acmwj0x6uq",
+   "date": "2026-11-16",
+   "createdAt": "2026-11-16T08:50:50.739Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 5167,
+   "title": "Otoyol"
+  },
   {
    "id": "gib1bfpymwibnobc",
    "date": "2026-11-15",
