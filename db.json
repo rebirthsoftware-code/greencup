@@ -3166,7 +3166,7 @@
   "nakit": 1480,
   "acc-garanti-bbva": 203.72,
   "acc-garanti-bbva-kk": 411.19,
-  "acc-kuveyt-turk": 13283.48,
+  "acc-kuveyt-turk": 10775.11,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3180,6 +3180,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "l0s0i9czmwjdl8hu",
+   "date": "2026-11-16",
+   "createdAt": "2026-11-16T14:45:28.002Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 2508.37,
+   "title": "Erdoğan"
+  },
   {
    "id": "v3tes9ydmwj8cvtw",
    "date": "2026-11-16",
