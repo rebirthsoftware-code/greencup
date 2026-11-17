@@ -789,6 +789,16 @@
  ],
  "transactions": [
   {
+   "id": "rvwmc4s1mwl4j3x7",
+   "date": "2026-11-17",
+   "createdAt": "2026-11-17T20:07:24.571Z",
+   "customerId": "absm9oqcmwl4hyq6",
+   "note": "500 adet açacak\n12.500,00 TL",
+   "type": "debt",
+   "amount": 12500,
+   "dueDate": "2026-12-31"
+  },
+  {
    "id": "jlindq49mwkqcqxx",
    "date": "2026-11-17",
    "createdAt": "2026-11-17T13:30:33.189Z",
