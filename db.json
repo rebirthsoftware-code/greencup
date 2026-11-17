@@ -194,6 +194,19 @@
  ],
  "customers": [
   {
+   "id": "absm9oqcmwl4hyq6",
+   "color": "#0E6B3F",
+   "createdAt": "2026-11-17T20:06:31.190Z",
+   "name": "Nur-Et",
+   "type": "Diğer",
+   "phone": "0 (507) 933 93 25",
+   "city": "Zonguldak ",
+   "district": "Ereğli",
+   "notes": "",
+   "address": "Kasap",
+   "updatedAt": "2026-11-17T20:06:31.190Z"
+  },
+  {
    "id": "gukkds97mwck19ou",
    "color": "#0E6B3F",
    "createdAt": "2026-11-11T20:11:30.523Z",
