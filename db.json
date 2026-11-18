@@ -44,7 +44,7 @@
   {
    "id": "huy639vjmvm7im9m",
    "unit": "koli",
-   "stock": 8,
+   "stock": 7,
    "price": 0,
    "createdAt": "2026-10-24T09:39:04.378Z",
    "name": "95 Çap Soğuk Plastik Kapak Bombe (koli içi 1.000 adet)",
@@ -788,6 +788,28 @@
   }
  ],
  "transactions": [
+  {
+   "id": "m4g0jajjmwlw42kp",
+   "date": "2026-11-18",
+   "createdAt": "2026-11-18T08:59:32.240Z",
+   "customerId": "8bfqvphsmub2ok0d",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "huy639vjmvm7im9m",
+     "name": "95 Çap Soğuk Plastik Kapak Bombe (koli içi 1.000 adet)",
+     "unit": "koli",
+     "qty": 1,
+     "unitPrice": 950,
+     "amount": 950
+    }
+   ],
+   "amount": 950,
+   "invoiced": false,
+   "payment": "vadeli",
+   "dueDate": "2026-12-31",
+   "method": "nakit"
+  },
   {
    "id": "i9197e8pmwlvlwyq",
    "date": "2026-11-18",
