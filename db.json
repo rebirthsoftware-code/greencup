@@ -3241,15 +3241,6 @@
    "title": "Çay"
   },
   {
-   "id": "ne05dkplmwl4nmgv",
-   "date": "2026-11-17",
-   "type": "in",
-   "amount": 10000,
-   "title": "Tahsilat",
-   "account": "acc-garanti-bbva",
-   "txId": "bhkw86e4mwl4nmgv"
-  },
-  {
    "id": "pxsvbacpmwkq9f91",
    "date": "2026-11-17",
    "createdAt": "2026-11-17T13:27:58.070Z",
@@ -3346,6 +3337,15 @@
    "createdAt": "2026-11-17T10:49:56.498Z"
   },
   {
+   "id": "ne05dkplmwl4nmgv",
+   "date": "2026-11-17",
+   "type": "in",
+   "amount": 10000,
+   "title": "Tahsilat",
+   "account": "acc-garanti-bbva",
+   "txId": "bhkw86e4mwl4nmgv"
+  },
+  {
    "id": "7oaabk5kmwkklixk",
    "date": "2026-11-17",
    "type": "in",
@@ -3409,15 +3409,6 @@
    "title": "Market"
   },
   {
-   "id": "ikjyb02emwj79yxa",
-   "date": "2026-11-16",
-   "type": "in",
-   "amount": 8000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "gxe1inmfmwj79yxa"
-  },
-  {
    "id": "5mnw85acmwj0x6uq",
    "date": "2026-11-16",
    "createdAt": "2026-11-16T08:50:50.739Z",
@@ -3425,6 +3416,15 @@
    "account": "acc-kuveyt-turk",
    "amount": 5167,
    "title": "Otoyol"
+  },
+  {
+   "id": "ikjyb02emwj79yxa",
+   "date": "2026-11-16",
+   "type": "in",
+   "amount": 8000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "gxe1inmfmwj79yxa"
   },
   {
    "id": "gib1bfpymwibnobc",
