@@ -3249,7 +3249,7 @@
   "nakit": 170,
   "acc-garanti-bbva": 1992.43,
   "acc-garanti-bbva-kk": 69.05,
-  "acc-kuveyt-turk": 18263.64,
+  "acc-kuveyt-turk": 17503.64,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3263,6 +3263,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "xc0hyi8gmwntjs9j",
+   "date": "2026-11-19",
+   "createdAt": "2026-11-19T17:23:18.871Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 760,
+   "title": "Yemek"
+  },
   {
    "id": "u8oalcehmwnqasg9",
    "date": "2026-11-19",
