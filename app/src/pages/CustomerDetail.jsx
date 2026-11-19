@@ -6,12 +6,12 @@ import { sortedAccounts } from '../store/accounts';
 import { fmtMoney, fmtNum, fmtDate, parseMoney, toInput, today } from '../utils/format';
 import { PageHeader, Avatar, StatusBadge, Empty, Sheet, Segmented, Tabs, DateField, DangerButton, useToast, MoneyInput, AccountSelect } from '../components/ui';
 import { ItemsEditor } from './NewTransaction';
-import { cleanItem } from '../utils/format';
+import { cleanItem, itemOk } from '../utils/format';
 import * as Ic from '../components/Icons';
 import Attachments from '../components/Attachments';
 import GoodsSheet from '../components/GoodsSheets';
 
-const TABS = ['Hareketler', 'Ürünler', 'Faturalar', 'Notlar'];
+const TABS = ['Hareketler', 'Ürünler', 'Satışlar', 'Notlar'];
 const TX_FILTERS = [
   { key: 'tumu', label: 'Tümü' }, { key: 'sale', label: 'Mal Verildi' }, { key: 'debt', label: 'Borç' },
   { key: 'payment', label: 'Tahsilat' }, { key: 'visit', label: 'Ziyaret' }, { key: 'note', label: 'Not' },
@@ -58,10 +58,10 @@ function TxEditor({ tx, onClose }) {
   const toast = useToast();
   const [f, setF] = useState(() => ({ ...tx, items: txItems(tx).map((i) => ({ ...i })), amountStr: toInput(tx.amount ?? '') }));
   const set = (k) => (v) => setF({ ...f, [k]: v });
-  const total = f.type === 'sale' && !tx.fromReserve ? f.items.filter((i) => i.productId && i.qty > 0).reduce((a, i) => a + i.amount, 0) : parseMoney(f.amountStr);
+  const total = f.type === 'sale' && !tx.fromReserve ? f.items.filter(itemOk).reduce((a, i) => a + i.amount, 0) : parseMoney(f.amountStr);
   const save = () => {
     const patch = { date: f.date, note: f.note?.trim() || undefined };
-    if (f.type === 'sale' && !tx.fromReserve) Object.assign(patch, { items: f.items.filter((i) => i.productId && i.qty > 0).map(cleanItem), amount: total, invoiced: f.invoiced, payment: f.payment, dueDate: f.dueDate });
+    if (f.type === 'sale' && !tx.fromReserve) Object.assign(patch, { items: f.items.filter(itemOk).map(cleanItem), amount: total, invoiced: f.invoiced, payment: f.payment, dueDate: f.dueDate });
     if (f.type === 'sale' && tx.fromReserve) Object.assign(patch, { amount: total, payment: total > 0 ? 'vadeli' : 'pesin', dueDate: total > 0 ? (f.dueDate || f.date) : f.date, items: f.items.map((i) => ({ ...i, amount: total, unitPrice: i.qty ? Math.round((total / i.qty) * 100) / 100 : 0 })) });
     if (f.type === 'payment') Object.assign(patch, { amount: total, method: f.method });
     if (f.type === 'debt') Object.assign(patch, { amount: total, dueDate: f.dueDate || f.date });
@@ -121,6 +121,7 @@ export default function CustomerDetail() {
   const [note, setNote] = useState('');
   const [editTx, setEditTx] = useState(null);
   const [goods, setGoods] = useState(null); // null | { kind: 'reserved'|'production', entry|null }
+  const [salesF, setSalesF] = useState('tumu');
 
   if (!customer) return <div className="page"><PageHeader title="Müşteri" /><Empty>Müşteri bulunamadı.</Empty></div>;
   const s = customerSummary(state, customer);
@@ -136,7 +137,8 @@ export default function CustomerDetail() {
   };
 
   const filteredTx = s.txs.filter((t) => txf === 'tumu' || t.type === txf);
-  const invoices = s.txs.filter((t) => t.type === 'sale' && t.invoiced);
+  const salesList = s.txs.filter((t) => t.type === 'sale' && !t.fromReserve);
+  const invoices = salesList.filter((t) => salesF === 'tumu' || (salesF === 'f' ? t.invoiced : !t.invoiced));
   const notes = s.txs.filter((t) => t.type === 'note' || (t.type === 'visit' && t.note));
 
   return (
@@ -229,23 +231,30 @@ export default function CustomerDetail() {
 
       {tab === 2 && (
         <div className="list">
+          <div className="chips"><button className={`chip ${salesF === 'tumu' ? 'active' : ''}`} onClick={() => setSalesF('tumu')}>Tümü ({salesList.length})</button><button className={`chip ${salesF === 'f' ? 'active' : ''}`} onClick={() => setSalesF('f')}>Faturalı ({salesList.filter((t) => t.invoiced).length})</button><button className={`chip ${salesF === 'nf' ? 'active' : ''}`} onClick={() => setSalesF('nf')}>Faturasız ({salesList.filter((t) => !t.invoiced).length})</button></div>
+          <div className="card row" style={{ marginBottom: 10 }}><span className="bold">Toplam satış</span><span className="num">{fmtMoney(invoices.reduce((a, t) => a + t.amount, 0))}</span></div>
           {invoices.map((t) => (
             <div key={t.id} className="card" style={{ padding: 12 }}>
-              <Link to={`/fatura/${t.id}`} className="row" style={{ gap: 12 }}>
-                <div className="tl-icon"><Ic.FileText size={18} /></div>
+              <div className="row" style={{ gap: 12 }} onClick={() => setEditTx(t)} role="button">
+                <div className="tl-icon"><Ic.Truck size={18} /></div>
                 <div className="item-body">
-                  <div className="item-title">Fatura {t.invoiceNo ? `No: ${t.invoiceNo}` : ''}</div>
-                  <div className="item-sub">{fmtDate(t.date)} · {itemsLabel(t)}</div>
+                  <div className="item-title">{fmtDate(t.date)} · {fmtMoney(t.amount)}</div>
+                  <div className="item-sub">{itemsLabel(t)}</div>
+                  <div className="tl-foot" style={{ gap: 6, marginTop: 4 }}>
+                    <span className={`badge ${t.invoiced ? 'badge--aktif' : 'badge--gecikmis'}`}>{t.invoiced ? `Faturalı${t.invoiceNo ? ' · ' + t.invoiceNo : ''}` : 'Faturasız'}</span>
+                    <span className="badge badge--neutral">{PAYMENT_LABEL[t.payment] || ''}</span>
+                    {(allocOf(t)?.open > 0) && <span className="badge badge--takipte">Açık {fmtMoney(allocOf(t).open)}</span>}
+                  </div>
                 </div>
-                <span className="num">{fmtMoney(t.amount)}</span>
                 <Ic.ChevronRight size={18} className="muted" />
-              </Link>
+              </div>
+              {t.invoiced && <Link to={`/fatura/${t.id}`} className="btn btn-ghost btn-sm" style={{ marginTop: 8 }}><Ic.FileText size={14} /> Faturayı Görüntüle / Yazdır</Link>}
               <div style={{ marginTop: 10 }}>
                 <Attachments items={t.attachments || []} onChange={(list) => setAttachments(t.id, list)} folder={`${(t.date || '').slice(0, 4)}/${t.id}`} compact />
               </div>
             </div>
           ))}
-          {invoices.length === 0 && <Empty>Faturalı satış yok. Mal verirken "Faturalı" seçin ve belgeyi ekleyin.</Empty>}
+          {invoices.length === 0 && <Empty>{salesList.length === 0 ? 'Henüz satış yok.' : 'Bu filtrede satış yok.'} Faturalı / faturasız seçimi Mal Ver ekranında yapılır; dokunarak sonradan da değiştirilebilir.</Empty>}
         </div>
       )}
 

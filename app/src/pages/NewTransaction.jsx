@@ -10,11 +10,12 @@ import { prepareFile, uploadAttachment } from '../store/files';
 import { loadDevice } from '../store/storage';
 import { uid } from '../utils/format';
 import * as Ic from '../components/Icons';
-import { cleanItem } from '../utils/format';
+import { cleanItem, itemOk } from '../utils/format';
 
 const TYPES = [
   { value: 'sale', label: 'Mal Ver' }, { value: 'debt', label: 'Borç Ekle' }, { value: 'payment', label: 'Tahsilat' }, { value: 'visit', label: 'Ziyaret' },
 ];
+const CUSTOM = '__custom';
 const TITLES = { sale: 'Mal Ver / Yeni İşlem', debt: 'Borç Ekle', payment: 'Tahsilat Gir', visit: 'Ziyaret Kaydı' };
 
 /** Çok ürünlü satır düzenleyici (yeni işlem ve düzenleme ekranlarında ortak). */
@@ -23,15 +24,19 @@ export function ItemsEditor({ items, onChange, products }) {
     const next = items.map((r, k) => (k === i ? { ...r, ...patch } : r));
     const r = next[i];
     if (patch.productId !== undefined) {
-      const p = products.find((x) => x.id === patch.productId);
-      if (p) { r.name = p.name; r.unit = p.unit; if (!r.manual) { r.unitPrice = p.price; r.priceStr = toInput(p.price); } }
+      if (patch.productId === CUSTOM) { r.productId = ''; r.custom = true; r.name = r.custom && r.name && !products.some((x) => x.name === r.name) ? r.name : ''; r.unit = r.unit || 'adet'; }
+      else {
+        const p = products.find((x) => x.id === patch.productId);
+        r.custom = false;
+        if (p) { r.name = p.name; r.unit = p.unit; if (!r.manual) { r.unitPrice = p.price; r.priceStr = toInput(p.price); } }
+      }
     }
     r.amount = Math.round((r.qty || 0) * (r.unitPrice || 0) * 100) / 100;
     onChange(next);
   };
   const add = () => {
     const p = products.find((x) => !items.some((r) => r.productId === x.id)) || products[0];
-    onChange([...items, { productId: p?.id || '', name: p?.name || '', unit: p?.unit || 'adet', qty: 0, unitPrice: p?.price || 0, priceStr: toInput(p?.price || 0), amount: 0 }]);
+    onChange([...items, p ? { productId: p.id, name: p.name, unit: p.unit, qty: 0, unitPrice: p.price || 0, priceStr: toInput(p.price || 0), amount: 0 } : { productId: '', custom: true, name: '', unit: 'adet', qty: 0, unitPrice: 0, priceStr: '', amount: 0 }]);
   };
   return (
     <div className="field">
@@ -41,18 +46,25 @@ export function ItemsEditor({ items, onChange, products }) {
         const p = products.find((x) => x.id === r.productId);
         return (
           <div className="line" key={i}>
-            <div className="input"><select value={r.productId} onChange={(e) => setRow(i, { productId: e.target.value })}>
+            <div className="input"><select value={r.custom ? CUSTOM : r.productId} onChange={(e) => setRow(i, { productId: e.target.value })}>
               <option value="">Ürün seçin</option>
               {products.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
+              <option value={CUSTOM}>Depoda yok / listede yok…</option>
             </select></div>
             <div className="input"><input inputMode="numeric" value={r.qty || ''} placeholder="0" onChange={(e) => setRow(i, { qty: parseInt(e.target.value.replace(/\D/g, '') || '0', 10) })} /></div>
             <div className="input"><MoneyInput value={r.priceStr ?? toInput(r.unitPrice)} onChange={(v) => setRow(i, { unitPrice: parseMoney(v), priceStr: v, manual: true })} /></div>
             <button type="button" className="rm" onClick={() => onChange(items.filter((_, k) => k !== i))} aria-label="Satırı kaldır"><Ic.X size={18} /></button>
-            {p && r.qty > p.stock && <div className="xs neg" style={{ gridColumn: '1 / -1', marginTop: -4 }}>Stok yetersiz: {p.name} mevcut {fmtNum(p.stock)} {p.unit}</div>}
+            {r.custom && (
+              <div style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: '1fr 92px', gap: 6, marginTop: -2 }}>
+                <div className="input"><input value={r.name || ''} placeholder="Ürün adı (depoda yok, gelecek)" onChange={(e) => setRow(i, { name: e.target.value })} /></div>
+                <div className="input"><select value={r.unit || 'adet'} onChange={(e) => setRow(i, { unit: e.target.value })}>{['adet', 'koli', 'paket', 'kg'].map((u) => <option key={u}>{u}</option>)}</select></div>
+              </div>
+            )}
+            {p && r.qty > p.stock && <div className="xs" style={{ gridColumn: '1 / -1', marginTop: -4, color: 'var(--orange)' }}>Depoda {fmtNum(p.stock)} {p.unit} var; yine de çıkış yapılır, stok sıfırda kalır.</div>}
           </div>
         );
       })}
-      <button type="button" className="btn btn-ghost btn-sm" onClick={add} disabled={products.length === 0}><Ic.Plus size={16} /> Ürün satırı ekle</button>
+      <button type="button" className="btn btn-ghost btn-sm" onClick={add}><Ic.Plus size={16} /> Ürün satırı ekle</button>
     </div>
   );
 }
@@ -71,7 +83,7 @@ export default function NewTransaction() {
   const [customerId, setCustomerId] = useState(params.get('musteri') || '');
   const [items, setItems] = useState(() => {
     const p = state.products[0];
-    return p ? [{ productId: p.id, name: p.name, unit: p.unit, qty: 0, unitPrice: p.price, amount: 0 }] : [];
+    return p ? [{ productId: p.id, name: p.name, unit: p.unit, qty: 0, unitPrice: p.price, amount: 0 }] : [{ productId: '', custom: true, name: '', unit: 'adet', qty: 0, unitPrice: 0, priceStr: '', amount: 0 }];
   });
   const [amount, setAmount] = useState('');
   const [invoiced, setInvoiced] = useState(params.get('fatura') === '1');
@@ -89,7 +101,7 @@ export default function NewTransaction() {
   const customer = state.customers.find((c) => c.id === customerId);
   const customerOpts = useMemo(() => state.customers.map((c) => ({ value: c.id, label: c.name, c })), [state.customers]);
 
-  const validItems = items.filter((i) => i.productId && i.qty > 0);
+  const validItems = items.filter(itemOk).map((i) => (i.custom ? { ...i, name: i.name.trim() } : i));
   const total = validItems.reduce((a, i) => a + i.amount, 0);
   const amountN = type === 'sale' ? total : parseMoney(amount);
   const paidNowN = parseMoney(paidNow);
@@ -149,9 +161,8 @@ export default function NewTransaction() {
 
         {type === 'sale' && (
           <>
-            {state.products.length === 0
-              ? <div className="card small" style={{ marginBottom: 16 }}>Önce <Link to="/stok" style={{ color: 'var(--green)', fontWeight: 700 }}>Stok / Depo</Link> ekranından ürün ekleyin.</div>
-              : <ItemsEditor items={items} onChange={setItems} products={state.products} />}
+            <ItemsEditor items={items} onChange={setItems} products={state.products} />
+            <div className="xs muted" style={{ marginTop: -6, marginBottom: 12 }}>Depoda olmayan bir mal için satırda "Depoda yok / listede yok…" seçip adını yazın; stok etkilenmez, cariye normal satış olarak işlenir.</div>
             <div className="card row" style={{ marginBottom: 16 }}><span className="bold">Toplam</span><span className="num" style={{ fontSize: 18 }}>{fmtMoney(total)}</span></div>
             <div className="field"><label>Fatura Durumu</label>
               <Segmented value={invoiced ? 'f' : 'nf'} onChange={(v) => setInvoiced(v === 'f')} options={[{ value: 'f', label: 'Faturalı' }, { value: 'nf', label: 'Faturasız' }]} light /></div>
@@ -207,7 +218,7 @@ export default function NewTransaction() {
               : `${customer.name} carisinden ${fmtMoney(amountN)} düşülecek, kasaya eklenecek.`}
           </div>
         )}
-        {type === 'sale' && validItems.length > 0 && <div className="xs muted" style={{ marginBottom: 12 }}>Birim fiyatlar ürün kartından gelir ({validItems.map((i) => `${i.name}: ${fmtPrice(i.unitPrice)}`).join(', ')}); satırda değiştirebilirsiniz.</div>}
+        {type === 'sale' && validItems.length > 0 && <div className="xs muted" style={{ marginBottom: 12 }}>Birim fiyatlar ürün kartından gelir ({validItems.map((i) => `${i.name}${i.custom ? ' (depo dışı)' : ''}: ${fmtPrice(i.unitPrice)}`).join(', ')}); satırda değiştirebilirsiniz.</div>}
 
         <div className="sticky-bottom">
           {missing && <div className="xs" style={{ color: 'var(--orange)', textAlign: 'center', marginBottom: 8, fontWeight: 600 }}>{missing}</div>}
