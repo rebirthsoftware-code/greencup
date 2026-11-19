@@ -83,7 +83,9 @@ export function parseMoney(v) {
 export const toInput = (n) => (n == null || n === '' ? '' : String(n).replace('.', ','));
 
 /** Satır düzenleyicinin geçici alanlarını temizler. */
-export const cleanItem = (i) => { const c = { ...i }; delete c.manual; delete c.priceStr; return c; };
+/** Satış satırı geçerli mi: depodaki ürün ya da adı yazılmış depo dışı ürün, miktar > 0. */
+export const itemOk = (i) => !!(i.productId || (i.custom && (i.name || '').trim())) && i.qty > 0;
+export const cleanItem = (i) => { const c = { ...i }; delete c.manual; delete c.priceStr; if (!c.custom) delete c.custom; if (!c.productId) delete c.productId; return c; };
 
 /**
  * Tutar kutusu için canlı biçimlendirme. Hedef: iPhone'da (klavyede yalnızca virgül) ve
