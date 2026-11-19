@@ -3366,15 +3366,6 @@
    "adjust": true
   },
   {
-   "id": "b0fvfm19mwlvlwyq",
-   "date": "2026-11-18",
-   "type": "in",
-   "amount": 15000,
-   "title": "Tahsilat",
-   "account": "acc-kuveyt-turk",
-   "txId": "i9197e8pmwlvlwyq"
-  },
-  {
    "id": "9fadptnomwlp9vxg",
    "date": "2026-11-18",
    "createdAt": "2026-11-18T05:48:06.244Z",
@@ -3382,6 +3373,15 @@
    "account": "nakit",
    "amount": 45,
    "title": "Çay"
+  },
+  {
+   "id": "b0fvfm19mwlvlwyq",
+   "date": "2026-11-18",
+   "type": "in",
+   "amount": 15000,
+   "title": "Tahsilat",
+   "account": "acc-kuveyt-turk",
+   "txId": "i9197e8pmwlvlwyq"
   },
   {
    "id": "pxsvbacpmwkq9f91",
