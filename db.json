@@ -3247,7 +3247,7 @@
  ],
  "cash": {
   "nakit": 170,
-  "acc-garanti-bbva": 2392.43,
+  "acc-garanti-bbva": 384.06,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 17103.64,
   "acc-kuveyt-turk-kk": 6.79,
@@ -3263,6 +3263,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "ged5tjc8mwnw5ln5",
+   "date": "2026-11-19",
+   "createdAt": "2026-11-19T18:36:15.953Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 2008.37,
+   "title": "Özgür"
+  },
   {
    "id": "8bhguv10mwnw4a1a",
    "date": "2026-11-19",
