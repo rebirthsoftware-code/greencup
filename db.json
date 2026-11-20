@@ -3258,7 +3258,7 @@
   "nakit": 170,
   "acc-garanti-bbva": 384.06,
   "acc-garanti-bbva-kk": 69.05,
-  "acc-kuveyt-turk": 38849.64,
+  "acc-kuveyt-turk": 37593.64,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3272,6 +3272,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "6pcv0ubtmwong19z",
+   "date": "2026-11-20",
+   "createdAt": "2026-11-20T07:20:12.407Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 1256,
+   "title": "Ev internet"
+  },
   {
    "id": "0gppvnm4mwonfbzf",
    "date": "2026-11-20",
