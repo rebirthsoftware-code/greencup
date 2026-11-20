@@ -789,6 +789,28 @@
  ],
  "transactions": [
   {
+   "id": "vatcpga4mwp0fld9",
+   "customerId": "ctf5htz2mucodty7",
+   "type": "sale",
+   "date": "2026-11-20",
+   "createdAt": "2026-11-20T13:23:46.797Z",
+   "fromReserve": true,
+   "items": [
+    {
+     "name": "Tek Kat Peçete (koli içi 4800 adet)",
+     "unit": "koli",
+     "qty": 2,
+     "unitPrice": 0,
+     "amount": 0
+    }
+   ],
+   "amount": 0,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-20",
+   "note": "Depodan teslim"
+  },
+  {
    "id": "p1tlw4b2mwonfbzf",
    "date": "2026-11-20",
    "createdAt": "2026-11-20T07:19:39.627Z",
@@ -2767,8 +2789,8 @@
    "customerId": "ctf5htz2mucodty7",
    "name": "Tek Kat Peçete (koli içi 4800 adet)",
    "unit": "koli",
-   "qty": 5,
-   "updatedAt": "2026-10-27T09:44:53.636Z"
+   "qty": 3,
+   "updatedAt": "2026-11-20T13:23:46.797Z"
   },
   {
    "id": "97mk1z1jmvm7zu30",
