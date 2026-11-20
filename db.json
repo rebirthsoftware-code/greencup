@@ -3256,7 +3256,7 @@
  ],
  "cash": {
   "nakit": 40,
-  "acc-garanti-bbva": 1384.06,
+  "acc-garanti-bbva": 1075.39,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 32788.64,
   "acc-kuveyt-turk-kk": 6.79,
@@ -3272,6 +3272,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "4r7ywukjmwowfqh8",
+   "date": "2026-11-20",
+   "createdAt": "2026-11-20T11:31:54.957Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 308.67,
+   "title": "Reklam"
+  },
   {
    "id": "qbrjlsvlmwowf6v9",
    "date": "2026-11-20",
