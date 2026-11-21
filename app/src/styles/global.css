@@ -470,6 +470,7 @@ textarea.input { height: auto; min-height: 96px; padding: 12px 14px; resize: ver
 /* Yeni sürüm şeridi */
 .update-banner { position: fixed; left: 50%; transform: translateX(-50%); top: calc(10px + var(--safe-t)); z-index: 240; background: var(--text); color: var(--bg); border-radius: 999px; padding: 8px 8px 8px 16px; display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; box-shadow: var(--shadow); animation: toast-in .25s var(--ease); }
 .update-banner button { background: var(--green-2); color: #fff; border-radius: 999px; padding: 6px 14px; font-weight: 800; font-size: 13px; }
+.update-banner button.x { background: transparent; color: var(--bg); padding: 4px 6px; opacity: .8; }
 /* Bulut uyarı şeridi (bağlantı kopuk / kapalı / token dolmak üzere) */
 .sync-alert { display: flex; align-items: center; gap: 10px; margin: calc(8px + var(--safe-t)) 16px 0; padding: 10px 14px; border-radius: 14px; font-size: 13px; font-weight: 600; line-height: 1.35; }
 .sync-alert span { flex: 1; }
