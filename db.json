@@ -3305,9 +3305,9 @@
  ],
  "cash": {
   "nakit": 1670,
-  "acc-garanti-bbva": 6075.39,
+  "acc-garanti-bbva": 3.63,
   "acc-garanti-bbva-kk": 69.05,
-  "acc-kuveyt-turk": 8868.64,
+  "acc-kuveyt-turk": 13654.69,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3321,6 +3321,26 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "314pfzp2mwrrwh4o",
+   "date": "2026-11-22",
+   "createdAt": "2026-11-22T11:48:16.440Z",
+   "type": "in",
+   "amount": 4786.05,
+   "account": "acc-kuveyt-turk",
+   "title": "Bakiye düzeltme",
+   "adjust": true
+  },
+  {
+   "id": "t1l5rsl4mwrrw6f7",
+   "date": "2026-11-22",
+   "createdAt": "2026-11-22T11:48:02.563Z",
+   "type": "out",
+   "amount": 6071.76,
+   "account": "acc-garanti-bbva",
+   "title": "Bakiye düzeltme",
+   "adjust": true
+  },
   {
    "id": "kps1kerlmwrrup9e",
    "date": "2026-11-22",
