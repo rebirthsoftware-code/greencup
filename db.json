@@ -3397,15 +3397,6 @@
    "title": "Brew"
   },
   {
-   "id": "h5lddi19mwqh0wdk",
-   "date": "2026-11-21",
-   "type": "in",
-   "amount": 2000,
-   "title": "Tahsilat",
-   "account": "nakit",
-   "txId": "qq29don3mwqh0wdk"
-  },
-  {
    "id": "g5ji1j67mwqaey8e",
    "date": "2026-11-21",
    "createdAt": "2026-11-21T10:50:59.150Z",
@@ -3423,6 +3414,15 @@
    "account": "nakit",
    "title": "Bakiye düzeltme",
    "adjust": true
+  },
+  {
+   "id": "h5lddi19mwqh0wdk",
+   "date": "2026-11-21",
+   "type": "in",
+   "amount": 2000,
+   "title": "Tahsilat",
+   "account": "nakit",
+   "txId": "qq29don3mwqh0wdk"
   },
   {
    "id": "mgrt55y7mwq8e32v",
