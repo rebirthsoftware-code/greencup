@@ -3304,7 +3304,7 @@
   }
  ],
  "cash": {
-  "nakit": 305,
+  "nakit": 265,
   "acc-garanti-bbva": 3.63,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 12064.69,
@@ -3321,6 +3321,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "syy0o3jsmws0wgad",
+   "date": "2026-11-22",
+   "createdAt": "2026-11-22T16:00:11.893Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 40,
+   "title": "Sadaka"
+  },
   {
    "id": "zccs2ebkmws0g2h9",
    "date": "2026-11-22",
