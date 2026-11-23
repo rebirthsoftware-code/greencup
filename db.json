@@ -3355,7 +3355,7 @@
   "acc-kuveyt-turk": 4403.69,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
-  "acc-ziraat-bankasi-kk": 430.5,
+  "acc-ziraat-bankasi-kk": 8000,
   "acc-sekerbank": 0,
   "acc-sekerbank-kk": 0,
   "acc-yapi-kredi": 0,
@@ -3366,6 +3366,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "64pdh58pmwtb48x4",
+   "date": "2026-11-23",
+   "createdAt": "2026-11-23T13:33:57.928Z",
+   "type": "in",
+   "account": "acc-ziraat-bankasi-kk",
+   "amount": 7569.5,
+   "title": "Yapılan ödeme karşıtı gelen bakiye"
+  },
   {
    "id": "8e39jevcmwt95mku",
    "date": "2026-11-23",
