@@ -3349,7 +3349,7 @@
   }
  ],
  "cash": {
-  "nakit": 896,
+  "nakit": 621,
   "acc-garanti-bbva": 3.63,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 4403.69,
@@ -3366,6 +3366,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "8e39jevcmwt95mku",
+   "date": "2026-11-23",
+   "createdAt": "2026-11-23T12:39:03.054Z",
+   "type": "out",
+   "account": "nakit",
+   "amount": 275,
+   "title": "Yıkama ve sigara"
+  },
   {
    "id": "v3op00zkmwt9516e",
    "date": "2026-11-23",
