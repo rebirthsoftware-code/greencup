@@ -54,7 +54,7 @@
   {
    "id": "lznuj2pbmvm7kngm",
    "unit": "paket",
-   "stock": 28,
+   "stock": 0,
    "price": 0,
    "createdAt": "2026-10-24T09:40:39.238Z",
    "name": "7OZ Karton Bardak (baskısız)",
@@ -801,6 +801,38 @@
   }
  ],
  "transactions": [
+  {
+   "id": "quo0d6xtmwt9516e",
+   "customerId": "2hqu3aaqmwt93btj",
+   "type": "payment",
+   "date": "2026-11-23",
+   "amount": 896,
+   "method": "nakit",
+   "saleId": "1hdmptrwmwt95168",
+   "createdAt": "2026-11-23T12:38:35.318Z"
+  },
+  {
+   "id": "1hdmptrwmwt95168",
+   "date": "2026-11-23",
+   "createdAt": "2026-11-23T12:38:35.318Z",
+   "customerId": "2hqu3aaqmwt93btj",
+   "type": "sale",
+   "items": [
+    {
+     "productId": "lznuj2pbmvm7kngm",
+     "name": "7OZ Karton Bardak (baskısız)",
+     "unit": "paket",
+     "qty": 28,
+     "unitPrice": 32,
+     "amount": 896
+    }
+   ],
+   "amount": 896,
+   "invoiced": false,
+   "payment": "pesin",
+   "dueDate": "2026-11-23",
+   "method": "nakit"
+  },
   {
    "id": "qq29don3mwqh0wdk",
    "date": "2026-11-21",
@@ -3317,7 +3349,7 @@
   }
  ],
  "cash": {
-  "nakit": 0,
+  "nakit": 896,
   "acc-garanti-bbva": 3.63,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 4403.69,
@@ -3334,6 +3366,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "v3op00zkmwt9516e",
+   "date": "2026-11-23",
+   "type": "in",
+   "amount": 896,
+   "title": "Tahsilat",
+   "account": "nakit",
+   "txId": "quo0d6xtmwt9516e"
+  },
   {
    "id": "kx0iw3cxmwt56ovw",
    "date": "2026-11-23",
