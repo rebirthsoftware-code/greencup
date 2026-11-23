@@ -3307,7 +3307,7 @@
   "nakit": 0,
   "acc-garanti-bbva": 3.63,
   "acc-garanti-bbva-kk": 69.05,
-  "acc-kuveyt-turk": 12064.69,
+  "acc-kuveyt-turk": 4403.69,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 430.5,
@@ -3321,6 +3321,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "kx0iw3cxmwt56ovw",
+   "date": "2026-11-23",
+   "createdAt": "2026-11-23T10:47:54.236Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk",
+   "amount": 7661,
+   "title": "Ziraat Kredi kartı ödeme"
+  },
   {
    "id": "rgsquz3fmws6c3d3",
    "date": "2026-11-22",
