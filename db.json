@@ -3364,7 +3364,7 @@
   "acc-kuveyt-turk": 179,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
-  "acc-ziraat-bankasi-kk": 6750,
+  "acc-ziraat-bankasi-kk": 6150,
   "acc-sekerbank": 0,
   "acc-sekerbank-kk": 0,
   "acc-yapi-kredi": 0,
@@ -3375,6 +3375,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "mxb34ch7mwuh742l",
+   "date": "2026-11-24",
+   "createdAt": "2026-11-24T09:11:55.485Z",
+   "type": "out",
+   "account": "acc-ziraat-bankasi-kk",
+   "amount": 600,
+   "title": "Brew"
+  },
   {
    "id": "ms7mdmd6mwuh692h",
    "date": "2026-11-24",
