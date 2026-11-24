@@ -3359,7 +3359,7 @@
  ],
  "cash": {
   "nakit": 3000,
-  "acc-garanti-bbva": 21000,
+  "acc-garanti-bbva": 20183.2,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 179,
   "acc-kuveyt-turk-kk": 6.79,
@@ -3375,6 +3375,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "mzv25kacmwukjlno",
+   "date": "2026-11-24",
+   "createdAt": "2026-11-24T10:45:36.996Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 816.8,
+   "title": "Kullanat pazarı"
+  },
   {
    "id": "mxb34ch7mwuh742l",
    "date": "2026-11-24",
