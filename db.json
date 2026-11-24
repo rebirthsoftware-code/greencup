@@ -3364,7 +3364,7 @@
   "acc-kuveyt-turk": 179,
   "acc-kuveyt-turk-kk": 6.79,
   "acc-ziraat-bankasi": 0,
-  "acc-ziraat-bankasi-kk": 6150,
+  "acc-ziraat-bankasi-kk": 882.75,
   "acc-sekerbank": 0,
   "acc-sekerbank-kk": 0,
   "acc-yapi-kredi": 0,
@@ -3375,6 +3375,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "o2syinmxmwuq6w30",
+   "date": "2026-11-24",
+   "createdAt": "2026-11-24T13:23:41.676Z",
+   "type": "out",
+   "account": "acc-ziraat-bankasi-kk",
+   "amount": 5267.25,
+   "title": "Yakıt"
+  },
   {
    "id": "mzv25kacmwukjlno",
    "date": "2026-11-24",
