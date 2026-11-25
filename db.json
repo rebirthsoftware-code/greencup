@@ -3389,7 +3389,7 @@
   "acc-garanti-bbva": 2818.22,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 480.59,
-  "acc-kuveyt-turk-kk": 97506.79,
+  "acc-kuveyt-turk-kk": 17506.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 882.75,
   "acc-sekerbank": 0,
@@ -3402,6 +3402,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "o0pfc4nemww81wio",
+   "date": "2026-11-25",
+   "createdAt": "2026-11-25T14:31:28.225Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk-kk",
+   "amount": 80000,
+   "title": "Murat abi"
+  },
   {
    "id": "hbm9zqdcmww7h39z",
    "date": "2026-11-25",
