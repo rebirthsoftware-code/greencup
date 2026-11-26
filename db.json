@@ -3404,7 +3404,7 @@
  ],
  "cash": {
   "nakit": 260,
-  "acc-garanti-bbva": 10778.32,
+  "acc-garanti-bbva": 278.32,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 480.59,
   "acc-kuveyt-turk-kk": 17506.79,
@@ -3420,6 +3420,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "ujwtvx82mwxn76ou",
+   "date": "2026-11-26",
+   "createdAt": "2026-11-26T14:23:15.102Z",
+   "type": "out",
+   "account": "acc-garanti-bbva",
+   "amount": 10500,
+   "title": "Sanayi"
+  },
   {
    "id": "g2d6xeyomwxn4elg",
    "date": "2026-11-26",
