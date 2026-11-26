@@ -802,6 +802,15 @@
  ],
  "transactions": [
   {
+   "id": "sr07m9wnmwxn44ko",
+   "date": "2026-11-26",
+   "createdAt": "2026-11-26T14:20:52.392Z",
+   "customerId": "eq1gb157mu9sxuwm",
+   "type": "debt",
+   "amount": 9500,
+   "dueDate": "2026-12-10"
+  },
+  {
    "id": "4mr39qstmww3bjdp",
    "date": "2026-11-25",
    "createdAt": "2026-11-25T12:18:59.678Z",
