@@ -3416,7 +3416,7 @@
   "acc-garanti-bbva": 5343.27,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 480.59,
-  "acc-kuveyt-turk-kk": 16496.79,
+  "acc-kuveyt-turk-kk": 15096.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 882.75,
   "acc-sekerbank": 0,
@@ -3429,6 +3429,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "3nzto6asmx082mrr",
+   "date": "2026-11-28",
+   "createdAt": "2026-11-28T09:43:06.951Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk-kk",
+   "amount": 1400,
+   "title": "Yağ"
+  },
   {
    "id": "btolmey9mwytv1e6",
    "date": "2026-11-27",
