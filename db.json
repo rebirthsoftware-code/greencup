@@ -3416,7 +3416,7 @@
   "acc-garanti-bbva": 1343.27,
   "acc-garanti-bbva-kk": 69.05,
   "acc-kuveyt-turk": 480.59,
-  "acc-kuveyt-turk-kk": 15096.79,
+  "acc-kuveyt-turk-kk": 14846.79,
   "acc-ziraat-bankasi": 0,
   "acc-ziraat-bankasi-kk": 882.75,
   "acc-sekerbank": 0,
@@ -3429,6 +3429,15 @@
   "acc-qnb-finansbank-kk": 0
  },
  "cashMoves": [
+  {
+   "id": "z02ff2a0mx08iahg",
+   "date": "2026-11-28",
+   "createdAt": "2026-11-28T09:55:17.524Z",
+   "type": "out",
+   "account": "acc-kuveyt-turk-kk",
+   "amount": 250,
+   "title": "Yapıştırıcı"
+  },
   {
    "id": "0d3k1uc7mx08cs2c",
    "date": "2026-11-28",
